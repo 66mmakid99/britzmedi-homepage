@@ -35,7 +35,7 @@
             color: var(--gold);
             margin-bottom: 1.5rem;
         }
-        .product-intro-content p {
+        .product-intro-content .description {
             color: var(--gray-400);
             line-height: 1.9;
             margin-bottom: 2rem;
@@ -79,6 +79,26 @@
             font-size: 0.85rem;
             color: var(--gray-500);
         }
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+        }
+        .benefits-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--gray-300);
+        }
+        .benefits-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5em;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
         .specs-section {
             background: var(--bg-card);
             padding: 3rem;
@@ -96,15 +116,17 @@
         .specs-table tr {
             border-bottom: 1px solid var(--gray-800);
         }
-        .specs-table th {
-            text-align: left;
-            padding: 1rem;
-            width: 200px;
-            color: var(--gray-400);
-            font-weight: 500;
-        }
+        .specs-table th,
         .specs-table td {
             padding: 1rem;
+            text-align: left;
+        }
+        .specs-table th {
+            color: var(--gray-400);
+            font-weight: 400;
+            width: 40%;
+        }
+        .specs-table td {
             color: var(--white);
         }
         @media (max-width: 1024px) {
@@ -132,7 +154,7 @@
         <div class="header-actions"><a href="/en/" class="lang-switch">EN</a><div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div></div>
     </header>
 
-        <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu-overlay" id="mobileOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-menu-close" id="mobileClose">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -178,7 +200,7 @@
         </div>
     </div>
 
-<section class="page-hero">
+    <section class="page-hero">
         <div class="page-hero-bg">
             <img src="https://images.unsplash.com/photo-1559757175-7cb04bc9c7f5?w=1920&q=80" alt="TORR RF">
             <div class="page-hero-overlay"></div>
@@ -190,17 +212,20 @@
         <div class="breadcrumb"><a href="/">Home</a><span>›</span><a href="/medical/torr.html">메디컬</a><span>›</span><span>토르 RF</span></div>
     </section>
 
+    <!-- 제품 소개 -->
     <section class="bg-dark">
         <div class="container">
             <div class="product-intro reveal">
                 <div class="product-intro-image">
-                    <img src="https://images.unsplash.com/photo-1559757175-7cb04bc9c7f5?w=600&q=80" alt="TORR RF Device">
+                    <img src="https://images.unsplash.com/photo-1559757175-7cb04bc9c7f5?w=600&q=80" alt="TORR RF Device" data-cms="torr-image">
                 </div>
                 <div class="product-intro-content">
-                    <h1>TORR <em>RF</em></h1>
-                    <p class="tagline">피부 탄력과 리프팅의 새로운 기준</p>
-                    <p>TORR RF는 최신 고주파(RF) 기술을 적용한 프리미엄 에스테틱 의료기기입니다. 피부 깊숙이 에너지를 전달하여 콜라겐 재생을 촉진하고, 피부 탄력과 리프팅에 탁월한 효과를 제공합니다.</p>
-                    <p>KFDA 승인을 받은 안전한 기기로, 비침습적 시술이 가능하여 다운타임 없이 일상생활이 가능합니다.</p>
+                    <h1 data-cms="torr-name">TORR <em>RF</em></h1>
+                    <p class="tagline" data-cms="torr-tagline">피부 탄력과 리프팅의 새로운 기준</p>
+                    <div class="description" data-cms="torr-description">
+                        <p>TORR RF는 최신 고주파(RF) 기술을 적용한 프리미엄 에스테틱 의료기기입니다. 피부 깊숙이 에너지를 전달하여 콜라겐 재생을 촉진하고, 피부 탄력과 리프팅에 탁월한 효과를 제공합니다.</p>
+                        <p>KFDA 승인을 받은 안전한 기기로, 비침습적 시술이 가능하여 다운타임 없이 일상생활이 가능합니다.</p>
+                    </div>
                     <a href="/cs/inquery.html" class="btn btn-primary">
                         제품 문의하기
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -210,6 +235,7 @@
         </div>
     </section>
 
+    <!-- 주요 특징 -->
     <section class="bg-darker">
         <div class="container">
             <div class="section-header reveal">
@@ -221,67 +247,68 @@
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                     </div>
-                    <h4>고효율 RF</h4>
-                    <p>최적화된 고주파 에너지로 깊은 층까지 침투</p>
+                    <h4 data-cms="torr-f1-title">고효율 RF</h4>
+                    <p data-cms="torr-f1-desc">최적화된 고주파 에너지로 깊은 층까지 침투</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
-                    <h4>안전성</h4>
-                    <p>KFDA 승인, 다중 안전장치 탑재</p>
+                    <h4 data-cms="torr-f2-title">안전성</h4>
+                    <p data-cms="torr-f2-desc">KFDA 승인, 다중 안전장치 탑재</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     </div>
-                    <h4>빠른 시술</h4>
-                    <p>30분 내외의 짧은 시술 시간</p>
+                    <h4 data-cms="torr-f3-title">빠른 시술</h4>
+                    <p data-cms="torr-f3-desc">30분 내외의 짧은 시술 시간</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                     </div>
-                    <h4>즉각적 효과</h4>
-                    <p>시술 직후부터 리프팅 효과 체감</p>
+                    <h4 data-cms="torr-f4-title">즉각적 효과</h4>
+                    <p data-cms="torr-f4-desc">시술 직후부터 리프팅 효과 체감</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- 효과 & 사양 -->
     <section class="bg-dark">
         <div class="container">
             <div class="content-grid reveal">
                 <div class="content-text">
-                    <p class="section-label">Treatment Areas</p>
-                    <h2>시술 <em>부위</em></h2>
-                    <p>TORR RF는 얼굴부터 바디까지 다양한 부위에 적용 가능합니다.</p>
-                    <ul>
-                        <li>얼굴 전체 리프팅</li>
-                        <li>이중턱 개선</li>
-                        <li>목 주름 개선</li>
-                        <li>팔뚝 탄력</li>
-                        <li>복부 타이트닝</li>
-                        <li>허벅지 탄력</li>
+                    <p class="section-label">Benefits</p>
+                    <h2>기대 <em>효과</em></h2>
+                    <p>TORR RF로 얻을 수 있는 다양한 효과입니다.</p>
+                    <ul class="benefits-list" data-cms="torr-benefits">
+                        <li>피부 탄력 개선 및 리프팅</li>
+                        <li>콜라겐 재생 촉진</li>
+                        <li>주름 개선</li>
+                        <li>피부결 개선</li>
+                        <li>모공 축소</li>
                     </ul>
                 </div>
                 <div class="specs-section">
                     <h3>제품 사양</h3>
                     <table class="specs-table">
-                        <tr><th>모델명</th><td>TORR RF</td></tr>
-                        <tr><th>주파수</th><td>1MHz / 2MHz</td></tr>
-                        <tr><th>출력</th><td>최대 50W</td></tr>
-                        <tr><th>모드</th><td>Monopolar / Bipolar</td></tr>
-                        <tr><th>핸드피스</th><td>Face / Body 전용</td></tr>
-                        <tr><th>인증</th><td>KFDA 의료기기</td></tr>
-                        <tr><th>크기</th><td>400 x 450 x 1100mm</td></tr>
-                        <tr><th>중량</th><td>약 35kg</td></tr>
+                        <tbody data-cms="torr-specs">
+                            <tr><th>모델명</th><td>TORR RF</td></tr>
+                            <tr><th>RF 주파수</th><td>1MHz / 2MHz</td></tr>
+                            <tr><th>출력</th><td>최대 50W</td></tr>
+                            <tr><th>모드</th><td>Monopolar / Bipolar</td></tr>
+                            <tr><th>핸드피스</th><td>Face / Body 전용</td></tr>
+                            <tr><th>인증</th><td>KFDA 의료기기</td></tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- CTA -->
     <section class="bg-darker" style="text-align: center;">
         <div class="container reveal">
             <p class="section-label">Contact Us</p>
@@ -301,7 +328,7 @@
             <div class="footer-links"><h5>Company</h5><ul><li><a href="/company/intro.html">회사소개</a></li><li><a href="/company/ceo.html">CEO 인사말</a></li></ul></div>
             <div class="footer-links"><h5>Support</h5><ul><li><a href="/cs/inquery.html">상담신청</a></li><li><a href="/cs/partnership.html">제휴문의</a></li></ul></div>
         </div>
-        <div class="footer-bottom"><p>© 2024 BRITZMEDI. All rights reserved.</p></div>
+        <div class="footer-bottom"><p>© 2024 BRITZMEDI. All rights reserved.</p><p>대표이사: 김정락 | 사업자등록번호: 682-87-00782</p></div>
     </footer>
 
     <script src="/assets/js/main.js"></script>

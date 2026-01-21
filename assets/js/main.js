@@ -192,7 +192,7 @@ function applyCMSData() {
         if (torr.specs) {
             const specsTable = document.querySelector('[data-cms="torr-specs"]');
             if (specsTable) {
-                specsTable.innerHTML = torr.specs.map(s => `<tr><td>${s.label}</td><td>${s.value}</td></tr>`).join('');
+                specsTable.innerHTML = torr.specs.map(s => `<tr><th>${s.label}</th><td>${s.value}</td></tr>`).join('');
             }
         }
     }
@@ -212,6 +212,20 @@ function applyCMSData() {
                 setText(`[data-cms="ulblanc-f${i+1}-desc"]`, f.desc);
             });
         }
+
+        if (ulblanc.benefits) {
+            const benefitsList = document.querySelector('[data-cms="ulblanc-benefits"]');
+            if (benefitsList) {
+                benefitsList.innerHTML = ulblanc.benefits.split('\n').filter(b => b.trim()).map(b => `<li>${b}</li>`).join('');
+            }
+        }
+
+        if (ulblanc.specs) {
+            const specsTable = document.querySelector('[data-cms="ulblanc-specs"]');
+            if (specsTable) {
+                specsTable.innerHTML = ulblanc.specs.map(s => `<tr><th>${s.label}</th><td>${s.value}</td></tr>`).join('');
+            }
+        }
     }
 
     // ========== 제품 - NEWCHAE ==========
@@ -222,6 +236,13 @@ function applyCMSData() {
         setText('[data-cms="newchae-description"]', newchae.description);
         const newchaeImg = document.querySelector('[data-cms="newchae-image"]');
         if (newchaeImg && newchae.image) newchaeImg.src = newchae.image;
+
+        if (newchae.features) {
+            newchae.features.forEach((f, i) => {
+                setText(`[data-cms="newchae-f${i+1}-title"]`, f.title);
+                setText(`[data-cms="newchae-f${i+1}-desc"]`, f.desc);
+            });
+        }
     }
 
     // ========== 뉴스 ==========

@@ -35,7 +35,7 @@
             color: var(--gold);
             margin-bottom: 1.5rem;
         }
-        .product-intro-content p {
+        .product-intro-content .description {
             color: var(--gray-400);
             line-height: 1.9;
             margin-bottom: 2rem;
@@ -79,6 +79,26 @@
             font-size: 0.85rem;
             color: var(--gray-500);
         }
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+        }
+        .benefits-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--gray-300);
+        }
+        .benefits-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5em;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
         .specs-section {
             background: var(--bg-card);
             padding: 3rem;
@@ -96,15 +116,17 @@
         .specs-table tr {
             border-bottom: 1px solid var(--gray-800);
         }
-        .specs-table th {
-            text-align: left;
-            padding: 1rem;
-            width: 200px;
-            color: var(--gray-400);
-            font-weight: 500;
-        }
+        .specs-table th,
         .specs-table td {
             padding: 1rem;
+            text-align: left;
+        }
+        .specs-table th {
+            color: var(--gray-400);
+            font-weight: 400;
+            width: 40%;
+        }
+        .specs-table td {
             color: var(--white);
         }
         @media (max-width: 1024px) {
@@ -123,16 +145,16 @@
     <header id="header">
         <a href="/" class="logo">BRITZMEDI</a>
         <nav>
-            <div class="nav-item"><a href="/company/intro.html" class="nav-link">기업소개</a></div>
+            <div class="nav-item"><a href="/company/intro.html" class="nav-link">기업소개</a><div class="dropdown"><a href="/company/intro.html">회사소개</a><a href="/company/ceo.html">CEO 인사말</a><a href="/company/way.html">브리츠 WAY</a><a href="/company/cibi.html">CI / BI</a><a href="/company/tech.html">연구소</a><a href="/company/contact.html">오시는 길</a></div></div>
             <div class="nav-item"><a href="/medical/torr.html" class="nav-link active">메디컬</a><div class="dropdown"><a href="/medical/torr.html">토르 RF</a><a href="/medical/ulblanc.html">울블랑</a></div></div>
             <div class="nav-item"><a href="/cosmetic/newchae.html" class="nav-link">코스메틱</a></div>
-            <div class="nav-item"><a href="/community/news.html" class="nav-link">커뮤니티</a></div>
-            <div class="nav-item"><a href="/cs/inquery.html" class="nav-link">고객지원</a></div>
+            <div class="nav-item"><a href="/community/news.html" class="nav-link">커뮤니티</a><div class="dropdown"><a href="/community/news.html">뉴스</a><a href="/community/sns.html">SNS</a><a href="/community/promotion.html">홍보영상</a></div></div>
+            <div class="nav-item"><a href="/cs/inquery.html" class="nav-link">고객지원</a><div class="dropdown"><a href="/cs/partnership.html">제휴문의</a><a href="/cs/inquery.html">상담신청</a></div></div>
         </nav>
         <div class="header-actions"><a href="/en/" class="lang-switch">EN</a><div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div></div>
     </header>
 
-        <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu-overlay" id="mobileOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-menu-close" id="mobileClose">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -178,7 +200,7 @@
         </div>
     </div>
 
-<section class="page-hero">
+    <section class="page-hero">
         <div class="page-hero-bg">
             <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=1920&q=80" alt="UL BLANC">
             <div class="page-hero-overlay"></div>
@@ -190,17 +212,20 @@
         <div class="breadcrumb"><a href="/">Home</a><span>›</span><a href="/medical/torr.html">메디컬</a><span>›</span><span>울블랑</span></div>
     </section>
 
+    <!-- 제품 소개 -->
     <section class="bg-dark">
         <div class="container">
             <div class="product-intro reveal">
                 <div class="product-intro-image">
-                    <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=600&q=80" alt="UL BLANC Device">
+                    <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=600&q=80" alt="UL BLANC Device" data-cms="ulblanc-image">
                 </div>
                 <div class="product-intro-content">
-                    <h1>UL <em>BLANC</em></h1>
-                    <p class="tagline">맑고 투명한 피부를 위한 솔루션</p>
-                    <p>UL BLANC은 피부 톤 개선과 미백 효과에 특화된 혁신적인 의료기기입니다. 멜라닌 색소 감소와 피부 톤 균일화에 탁월한 효과를 제공합니다.</p>
-                    <p>기미, 잡티, 검버섯 등 색소 침착 개선에 효과적이며, KFDA 승인을 받은 안전한 기기입니다.</p>
+                    <h1 data-cms="ulblanc-name">UL <em>BLANC</em></h1>
+                    <p class="tagline" data-cms="ulblanc-tagline">프리미엄 미백 솔루션</p>
+                    <div class="description" data-cms="ulblanc-description">
+                        <p>UL BLANC은 피부 톤 개선과 미백 효과에 특화된 혁신적인 의료기기입니다. 선진 기술을 통해 피부 깊숙이 작용하여 맑고 투명한 피부를 선사합니다.</p>
+                        <p>안전성과 효과가 검증된 솔루션으로, 다양한 피부 타입에 적용 가능합니다.</p>
+                    </div>
                     <a href="/cs/inquery.html" class="btn btn-primary">
                         제품 문의하기
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -210,6 +235,7 @@
         </div>
     </section>
 
+    <!-- 주요 특징 -->
     <section class="bg-darker">
         <div class="container">
             <div class="section-header reveal">
@@ -221,67 +247,68 @@
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
                     </div>
-                    <h4>미백 효과</h4>
-                    <p>멜라닌 색소 감소로 투명한 피부</p>
+                    <h4 data-cms="ulblanc-f1-title">피부 톤 개선</h4>
+                    <p data-cms="ulblanc-f1-desc">균일하고 밝은 피부 톤 구현</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
-                    <h4>안전성</h4>
-                    <p>KFDA 승인, 부작용 최소화</p>
+                    <h4 data-cms="ulblanc-f2-title">안전 시스템</h4>
+                    <p data-cms="ulblanc-f2-desc">피부 보호 기술 적용</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                     </div>
-                    <h4>맞춤 설정</h4>
-                    <p>피부 타입별 최적 에너지 설정</p>
+                    <h4 data-cms="ulblanc-f3-title">편안한 시술</h4>
+                    <p data-cms="ulblanc-f3-desc">통증 최소화 설계</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
                     </div>
-                    <h4>지속 효과</h4>
-                    <p>장기적인 피부 톤 개선</p>
+                    <h4 data-cms="ulblanc-f4-title">지속적 효과</h4>
+                    <p data-cms="ulblanc-f4-desc">오래 지속되는 미백 효과</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- 효과 & 사양 -->
     <section class="bg-dark">
         <div class="container">
             <div class="content-grid reveal">
                 <div class="content-text">
-                    <p class="section-label">Treatment Areas</p>
-                    <h2>시술 <em>부위</em></h2>
-                    <p>UL BLANC은 다양한 색소 침착 부위에 적용 가능합니다.</p>
-                    <ul>
-                        <li>기미, 잡티</li>
-                        <li>검버섯, 주근깨</li>
-                        <li>피부 톤 불균일</li>
-                        <li>다크서클</li>
-                        <li>여드름 자국</li>
-                        <li>손등 색소 침착</li>
+                    <p class="section-label">Benefits</p>
+                    <h2>기대 <em>효과</em></h2>
+                    <p>UL BLANC으로 얻을 수 있는 다양한 효과입니다.</p>
+                    <ul class="benefits-list" data-cms="ulblanc-benefits">
+                        <li>피부 톤 균일화</li>
+                        <li>미백 및 브라이트닝</li>
+                        <li>색소 침착 개선</li>
+                        <li>피부 투명도 향상</li>
+                        <li>자외선 손상 케어</li>
                     </ul>
                 </div>
                 <div class="specs-section">
                     <h3>제품 사양</h3>
                     <table class="specs-table">
-                        <tr><th>모델명</th><td>UL BLANC</td></tr>
-                        <tr><th>파장</th><td>532nm / 1064nm</td></tr>
-                        <tr><th>에너지</th><td>최대 800mJ</td></tr>
-                        <tr><th>스팟 사이즈</th><td>2-8mm 가변</td></tr>
-                        <tr><th>반복률</th><td>1-10Hz</td></tr>
-                        <tr><th>인증</th><td>KFDA 의료기기</td></tr>
-                        <tr><th>크기</th><td>380 x 420 x 980mm</td></tr>
-                        <tr><th>중량</th><td>약 28kg</td></tr>
+                        <tbody data-cms="ulblanc-specs">
+                            <tr><th>모델명</th><td>UL BLANC</td></tr>
+                            <tr><th>파장</th><td>Multi-wavelength</td></tr>
+                            <tr><th>에너지</th><td>최적화 펄스</td></tr>
+                            <tr><th>쿨링</th><td>Contact Cooling</td></tr>
+                            <tr><th>핸드피스</th><td>전용 핸드피스</td></tr>
+                            <tr><th>인증</th><td>KFDA 의료기기</td></tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- CTA -->
     <section class="bg-darker" style="text-align: center;">
         <div class="container reveal">
             <p class="section-label">Contact Us</p>
@@ -301,7 +328,7 @@
             <div class="footer-links"><h5>Company</h5><ul><li><a href="/company/intro.html">회사소개</a></li><li><a href="/company/ceo.html">CEO 인사말</a></li></ul></div>
             <div class="footer-links"><h5>Support</h5><ul><li><a href="/cs/inquery.html">상담신청</a></li><li><a href="/cs/partnership.html">제휴문의</a></li></ul></div>
         </div>
-        <div class="footer-bottom"><p>© 2024 BRITZMEDI. All rights reserved.</p></div>
+        <div class="footer-bottom"><p>© 2024 BRITZMEDI. All rights reserved.</p><p>대표이사: 김정락 | 사업자등록번호: 682-87-00782</p></div>
     </footer>
 
     <script src="/assets/js/main.js"></script>

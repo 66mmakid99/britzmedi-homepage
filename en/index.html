@@ -1486,7 +1486,7 @@
                         </div>
                         <div class="contact-item-content">
                             <span>Email</span>
-                            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="01686f676e41637368757b6c6465682f626e2f6a73">[email&#160;protected]</a></p>
+                            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b2dbdcd4ddf2d0c0dbc6c8dfd7d6db9cd1dd9cd9c0">[email&#160;protected]</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1668,7 +1668,15 @@
 
         // Close mobile menu on link click
         mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click windowHeight = window.innerHeight;
+            link.addEventListener('click', toggleMobileMenu);
+        });
+
+        // Scroll reveal animation
+        const reveals = document.querySelectorAll('.reveal');
+        
+        function checkReveal() {
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
                 const revealTop = el.getBoundingClientRect().top;
                 const revealPoint = 150;
 
@@ -1682,11 +1690,4 @@
         checkReveal();
 
         // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Your inquiry has been submitted. We will contact you shortly.');
-            this.reset();
-        });
-    </script>
-</body>
-</html>
+        document.getElementById('contactF

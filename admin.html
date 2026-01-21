@@ -730,6 +730,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-header"><h3>효과 (Benefits)</h3></div>
+                    <div class="card-body">
+                        <div class="form-group"><label>효과 목록 (줄바꿈으로 구분)</label><textarea class="form-control" id="ulblanc-benefits" rows="5"></textarea></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>제품 사양</h3><button class="btn btn-sm" onclick="addSpec('ulblanc')">+ 추가</button></div>
+                    <div class="card-body" id="ulblanc-specs"></div>
+                </div>
             </div>
 
             <!-- ================== NEWCHAE ================== -->
@@ -743,6 +753,17 @@
                         </div>
                         <div class="form-group"><label>제품 설명</label><textarea class="form-control" id="newchae-description" rows="4"></textarea></div>
                         <div class="form-group"><label>제품 이미지 URL</label><input type="text" class="form-control" id="newchae-image"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>주요 특징 (4개)</h3></div>
+                    <div class="card-body">
+                        <div class="form-row cols-4">
+                            <div class="form-group"><label>특징 1</label><input type="text" class="form-control" id="newchae-f1-title"><input type="text" class="form-control" id="newchae-f1-desc" style="margin-top:0.5rem"></div>
+                            <div class="form-group"><label>특징 2</label><input type="text" class="form-control" id="newchae-f2-title"><input type="text" class="form-control" id="newchae-f2-desc" style="margin-top:0.5rem"></div>
+                            <div class="form-group"><label>특징 3</label><input type="text" class="form-control" id="newchae-f3-title"><input type="text" class="form-control" id="newchae-f3-desc" style="margin-top:0.5rem"></div>
+                            <div class="form-group"><label>특징 4</label><input type="text" class="form-control" id="newchae-f4-title"><input type="text" class="form-control" id="newchae-f4-desc" style="margin-top:0.5rem"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -840,9 +861,9 @@
                 contact: { address: '경기도 화성시 기산로87번길 2, 1층', tel: '070-4348-7244', fax: '031-267-0407', hours: '평일 AM 9:00 - PM 6:00', closed: '주말 및 공휴일 휴무', map: '' }
             },
             products: {
-                torr: { name: 'TORR RF', tagline: '차세대 고주파 리프팅 솔루션', description: 'TORR RF는 최신 고주파(RF) 기술을 적용한 프리미엄 에스테틱 의료기기입니다.', image: '', features: [{ title: '고출력 RF', desc: '강력한 고주파 에너지' }, { title: '안전 시스템', desc: '다중 안전장치 탑재' }, { title: '터치스크린', desc: '직관적인 UI' }, { title: 'KFDA 인증', desc: '안전성 검증 완료' }], benefits: '피부 탄력 개선 및 리프팅\n콜라겐 재생 촉진\n주름 개선', specs: [{ label: 'RF 주파수', value: '1MHz / 2MHz' }, { label: '출력', value: '최대 50W' }] },
-                ulblanc: { name: 'UL BLANC', tagline: '프리미엄 미백 솔루션', description: 'UL BLANC은 피부 톤 개선과 미백 효과에 특화된 혁신적인 의료기기입니다.', image: '', features: [{ title: '', desc: '' }, { title: '', desc: '' }, { title: '', desc: '' }, { title: '', desc: '' }] },
-                newchae: { name: 'NEWCHAE', tagline: '프로페셔널 메디컬 코스메틱', description: 'NEWCHAE는 피부과 전문의와 함께 개발한 프리미엄 메디컬 코스메틱 라인입니다.', image: '' }
+                torr: { name: 'TORR RF', tagline: '피부 탄력과 리프팅의 새로운 기준', description: 'TORR RF는 최신 고주파(RF) 기술을 적용한 프리미엄 에스테틱 의료기기입니다. 피부 깊숙이 에너지를 전달하여 콜라겐 재생을 촉진하고, 피부 탄력과 리프팅에 탁월한 효과를 제공합니다.', image: '', features: [{ title: '고효율 RF', desc: '최적화된 고주파 에너지로 깊은 층까지 침투' }, { title: '안전성', desc: 'KFDA 승인, 다중 안전장치 탑재' }, { title: '빠른 시술', desc: '30분 내외의 짧은 시술 시간' }, { title: '즉각적 효과', desc: '시술 직후부터 리프팅 효과 체감' }], benefits: '피부 탄력 개선 및 리프팅\n콜라겐 재생 촉진\n주름 개선\n피부결 개선\n모공 축소', specs: [{ label: '모델명', value: 'TORR RF' }, { label: 'RF 주파수', value: '1MHz / 2MHz' }, { label: '출력', value: '최대 50W' }, { label: '모드', value: 'Monopolar / Bipolar' }, { label: '핸드피스', value: 'Face / Body 전용' }, { label: '인증', value: 'KFDA 의료기기' }] },
+                ulblanc: { name: 'UL BLANC', tagline: '프리미엄 미백 솔루션', description: 'UL BLANC은 피부 톤 개선과 미백 효과에 특화된 혁신적인 의료기기입니다. 선진 기술을 통해 피부 깊숙이 작용하여 맑고 투명한 피부를 선사합니다.', image: '', features: [{ title: '피부 톤 개선', desc: '균일하고 밝은 피부 톤 구현' }, { title: '안전 시스템', desc: '피부 보호 기술 적용' }, { title: '편안한 시술', desc: '통증 최소화 설계' }, { title: '지속적 효과', desc: '오래 지속되는 미백 효과' }], benefits: '피부 톤 균일화\n미백 및 브라이트닝\n색소 침착 개선\n피부 투명도 향상\n자외선 손상 케어', specs: [{ label: '모델명', value: 'UL BLANC' }, { label: '파장', value: 'Multi-wavelength' }, { label: '에너지', value: '최적화 펄스' }, { label: '쿨링', value: 'Contact Cooling' }, { label: '핸드피스', value: '전용 핸드피스' }, { label: '인증', value: 'KFDA 의료기기' }] },
+                newchae: { name: 'NEWCHAE', tagline: '프로페셔널 메디컬 코스메틱', description: 'NEWCHAE는 피부과 전문의와 함께 개발한 프리미엄 메디컬 코스메틱 라인입니다. 의료기기 시술 전후 케어부터 일상 스킨케어까지, 전문가의 손길이 담긴 제품을 경험해보세요.', image: '', features: [{ title: '피부과 협업', desc: '전문의와 공동 연구 개발' }, { title: '안전한 성분', desc: '피부 자극 최소화 포뮬러' }, { title: '시술 연계', desc: '의료기기 시술 전후 케어' }, { title: '프리미엄 케어', desc: '고농축 유효 성분 함유' }] }
             },
             news: [{ date: '2023-12-06', title: '리프팅 효과, 회복기간 모두를 고려한 리프팅 시술 방법은?' }, { date: '2023-11-15', title: '브리츠메디, 글로벌 시장 진출 가속화' }],
             settings: {
@@ -933,11 +954,14 @@
             val('ulblanc-tagline', data.products.ulblanc.tagline);
             val('ulblanc-description', data.products.ulblanc.description);
             val('ulblanc-image', data.products.ulblanc.image);
-            data.products.ulblanc.features.forEach((f, i) => { val(`ulblanc-f${i+1}-title`, f.title); val(`ulblanc-f${i+1}-desc`, f.desc); });
+            if (data.products.ulblanc.features) data.products.ulblanc.features.forEach((f, i) => { val(`ulblanc-f${i+1}-title`, f.title); val(`ulblanc-f${i+1}-desc`, f.desc); });
+            val('ulblanc-benefits', data.products.ulblanc.benefits || '');
+            renderSpecs('ulblanc');
             val('newchae-name', data.products.newchae.name);
             val('newchae-tagline', data.products.newchae.tagline);
             val('newchae-description', data.products.newchae.description);
             val('newchae-image', data.products.newchae.image);
+            if (data.products.newchae.features) data.products.newchae.features.forEach((f, i) => { val(`newchae-f${i+1}-title`, f.title); val(`newchae-f${i+1}-desc`, f.desc); });
             renderNews();
             // Settings
             val('google-sheets-url', data.settings.googleSheetsUrl);
@@ -1018,9 +1042,11 @@
             data.products.torr.name = val('torr-name'); data.products.torr.tagline = val('torr-tagline'); data.products.torr.description = val('torr-description'); data.products.torr.image = val('torr-image'); data.products.torr.benefits = val('torr-benefits');
             for (let i = 0; i < 4; i++) data.products.torr.features[i] = { title: val(`torr-f${i+1}-title`), desc: val(`torr-f${i+1}-desc`) };
             data.products.torr.specs = (data.products.torr.specs || []).map((s, i) => ({ label: val(`torr-spec-${i}-label`) || s.label, value: val(`torr-spec-${i}-value`) || s.value }));
-            data.products.ulblanc.name = val('ulblanc-name'); data.products.ulblanc.tagline = val('ulblanc-tagline'); data.products.ulblanc.description = val('ulblanc-description'); data.products.ulblanc.image = val('ulblanc-image');
-            for (let i = 0; i < 4; i++) data.products.ulblanc.features[i] = { title: val(`ulblanc-f${i+1}-title`), desc: val(`ulblanc-f${i+1}-desc`) };
+            data.products.ulblanc.name = val('ulblanc-name'); data.products.ulblanc.tagline = val('ulblanc-tagline'); data.products.ulblanc.description = val('ulblanc-description'); data.products.ulblanc.image = val('ulblanc-image'); data.products.ulblanc.benefits = val('ulblanc-benefits');
+            for (let i = 0; i < 4; i++) { if (!data.products.ulblanc.features) data.products.ulblanc.features = [{},{},{},{}]; data.products.ulblanc.features[i] = { title: val(`ulblanc-f${i+1}-title`), desc: val(`ulblanc-f${i+1}-desc`) }; }
+            data.products.ulblanc.specs = (data.products.ulblanc.specs || []).map((s, i) => ({ label: val(`ulblanc-spec-${i}-label`) || s.label, value: val(`ulblanc-spec-${i}-value`) || s.value }));
             data.products.newchae.name = val('newchae-name'); data.products.newchae.tagline = val('newchae-tagline'); data.products.newchae.description = val('newchae-description'); data.products.newchae.image = val('newchae-image');
+            for (let i = 0; i < 4; i++) { if (!data.products.newchae.features) data.products.newchae.features = [{},{},{},{}]; data.products.newchae.features[i] = { title: val(`newchae-f${i+1}-title`), desc: val(`newchae-f${i+1}-desc`) }; }
             data.news = data.news.map((n, i) => ({ date: val(`news-${i}-date`) || n.date, title: val(`news-${i}-title`) || n.title }));
             data.settings.googleSheetsUrl = val('google-sheets-url');
             data.settings.footer = { description: val('footer-description'), ceo: val('footer-ceo'), biznum: val('footer-biznum'), instagram: val('footer-instagram'), youtube: val('footer-youtube'), kakao: val('footer-kakao') };
