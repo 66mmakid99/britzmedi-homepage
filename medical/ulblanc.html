@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UL BLANC | BRITZMEDI</title>
+    <meta name="description" content="UL BLANC - 피부 톤 개선과 미백 효과에 특화된 혁신적인 의료기기">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <style>
+        .product-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .product-intro-image img {
+            width: 100%;
+            max-width: 500px;
+        }
+        .product-intro-content h1 {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+        .product-intro-content h1 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+        .product-intro-content .tagline {
+            font-size: 1.25rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+        .product-intro-content p {
+            color: var(--gray-400);
+            line-height: 1.9;
+            margin-bottom: 2rem;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--gray-800);
+            transition: all 0.3s ease;
+        }
+        .feature-item:hover {
+            border-color: var(--gold);
+        }
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .feature-icon svg {
+            width: 32px;
+            height: 32px;
+            color: var(--gold);
+        }
+        .feature-item h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .feature-item p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+        .specs-section {
+            background: var(--bg-card);
+            padding: 3rem;
+            border: 1px solid var(--gray-800);
+        }
+        .specs-section h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+        }
+        .specs-table {
+            width: 100%;
+        }
+        .specs-table tr {
+            border-bottom: 1px solid var(--gray-800);
+        }
+        .specs-table th {
+            text-align: left;
+            padding: 1rem;
+            width: 200px;
+            color: var(--gray-400);
+            font-weight: 500;
+        }
+        .specs-table td {
+            padding: 1rem;
+            color: var(--white);
+        }
+        @media (max-width: 1024px) {
+            .product-intro { grid-template-columns: 1fr; text-align: center; }
+            .product-intro-image img { margin: 0 auto; }
+            .feature-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .feature-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader" id="loader"><div class="loader-content"><div class="loader-logo">BRITZMEDI</div><div class="loader-bar"></div></div></div>
+
+    <header id="header">
+        <a href="/" class="logo">BRITZMEDI</a>
+        <nav>
+            <div class="nav-item"><a href="/company/intro.html" class="nav-link">기업소개</a></div>
+            <div class="nav-item"><a href="/medical/torr.html" class="nav-link active">메디컬</a><div class="dropdown"><a href="/medical/torr.html">토르 RF</a><a href="/medical/ulblanc.html">울블랑</a></div></div>
+            <div class="nav-item"><a href="/cosmetic/newchae.html" class="nav-link">코스메틱</a></div>
+            <div class="nav-item"><a href="/community/news.html" class="nav-link">커뮤니티</a></div>
+            <div class="nav-item"><a href="/cs/inquery.html" class="nav-link">고객지원</a></div>
+        </nav>
+        <div class="header-actions"><a href="/en/" class="lang-switch">EN</a><div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div></div>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+        <div class="mobile-nav-item"><a href="/company/intro.html" class="mobile-nav-link">기업소개</a></div>
+        <div class="mobile-nav-item"><a href="/medical/torr.html" class="mobile-nav-link">메디컬</a></div>
+        <div class="mobile-nav-item"><a href="/cosmetic/newchae.html" class="mobile-nav-link">코스메틱</a></div>
+        <div class="mobile-nav-item"><a href="/community/news.html" class="mobile-nav-link">커뮤니티</a></div>
+        <div class="mobile-nav-item"><a href="/cs/inquery.html" class="mobile-nav-link">고객지원</a></div>
+    </div>
+
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=1920&q=80" alt="UL BLANC">
+            <div class="page-hero-overlay"></div>
+        </div>
+        <div class="page-hero-content">
+            <p class="page-hero-label">Medical Device</p>
+            <h1 class="page-hero-title">UL <em>BLANC</em></h1>
+        </div>
+        <div class="breadcrumb"><a href="/">Home</a><span>›</span><a href="/medical/torr.html">메디컬</a><span>›</span><span>울블랑</span></div>
+    </section>
+
+    <section class="bg-dark">
+        <div class="container">
+            <div class="product-intro reveal">
+                <div class="product-intro-image">
+                    <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=600&q=80" alt="UL BLANC Device">
+                </div>
+                <div class="product-intro-content">
+                    <h1>UL <em>BLANC</em></h1>
+                    <p class="tagline">맑고 투명한 피부를 위한 솔루션</p>
+                    <p>UL BLANC은 피부 톤 개선과 미백 효과에 특화된 혁신적인 의료기기입니다. 멜라닌 색소 감소와 피부 톤 균일화에 탁월한 효과를 제공합니다.</p>
+                    <p>기미, 잡티, 검버섯 등 색소 침착 개선에 효과적이며, KFDA 승인을 받은 안전한 기기입니다.</p>
+                    <a href="/cs/inquery.html" class="btn btn-primary">
+                        제품 문의하기
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-darker">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-label">Key Features</p>
+                <h2 class="section-title">주요 <em>특징</em></h2>
+            </div>
+            <div class="feature-grid reveal">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    </div>
+                    <h4>미백 효과</h4>
+                    <p>멜라닌 색소 감소로 투명한 피부</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h4>안전성</h4>
+                    <p>KFDA 승인, 부작용 최소화</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </div>
+                    <h4>맞춤 설정</h4>
+                    <p>피부 타입별 최적 에너지 설정</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <h4>지속 효과</h4>
+                    <p>장기적인 피부 톤 개선</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-dark">
+        <div class="container">
+            <div class="content-grid reveal">
+                <div class="content-text">
+                    <p class="section-label">Treatment Areas</p>
+                    <h2>시술 <em>부위</em></h2>
+                    <p>UL BLANC은 다양한 색소 침착 부위에 적용 가능합니다.</p>
+                    <ul>
+                        <li>기미, 잡티</li>
+                        <li>검버섯, 주근깨</li>
+                        <li>피부 톤 불균일</li>
+                        <li>다크서클</li>
+                        <li>여드름 자국</li>
+                        <li>손등 색소 침착</li>
+                    </ul>
+                </div>
+                <div class="specs-section">
+                    <h3>제품 사양</h3>
+                    <table class="specs-table">
+                        <tr><th>모델명</th><td>UL BLANC</td></tr>
+                        <tr><th>파장</th><td>532nm / 1064nm</td></tr>
+                        <tr><th>에너지</th><td>최대 800mJ</td></tr>
+                        <tr><th>스팟 사이즈</th><td>2-8mm 가변</td></tr>
+                        <tr><th>반복률</th><td>1-10Hz</td></tr>
+                        <tr><th>인증</th><td>KFDA 의료기기</td></tr>
+                        <tr><th>크기</th><td>380 x 420 x 980mm</td></tr>
+                        <tr><th>중량</th><td>약 28kg</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-darker" style="text-align: center;">
+        <div class="container reveal">
+            <p class="section-label">Contact Us</p>
+            <h2 class="section-title">제품 <em>문의</em></h2>
+            <p class="section-description">UL BLANC에 대한 자세한 정보와 데모 시연을 원하시면 문의해주세요.</p>
+            <div style="margin-top: 2rem;">
+                <a href="/cs/inquery.html" class="btn btn-primary">문의하기</a>
+                <a href="/cs/partnership.html" class="btn" style="margin-left: 1rem;">제휴문의</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand"><a href="/" class="logo">BRITZMEDI</a><p>피부 미용 분야의 글로벌 리더</p></div>
+            <div class="footer-links"><h5>Products</h5><ul><li><a href="/medical/torr.html">TORR RF</a></li><li><a href="/medical/ulblanc.html">UL BLANC</a></li><li><a href="/cosmetic/newchae.html">NEWCHAE</a></li></ul></div>
+            <div class="footer-links"><h5>Company</h5><ul><li><a href="/company/intro.html">회사소개</a></li><li><a href="/company/ceo.html">CEO 인사말</a></li></ul></div>
+            <div class="footer-links"><h5>Support</h5><ul><li><a href="/cs/inquery.html">상담신청</a></li><li><a href="/cs/partnership.html">제휴문의</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>© 2024 BRITZMEDI. All rights reserved.</p></div>
+    </footer>
+
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>

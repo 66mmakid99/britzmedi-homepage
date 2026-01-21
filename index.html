@@ -3,29 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRITZMEDI | 에스테틱 의료기기 전문기업</title>
-    <meta name="description" content="브리츠메디는 2017년 설립된 에스테틱 의료기기 전문 기업입니다. TORR RF, UL BLANC 등 KFDA 인증 의료기기와 NEWCHAE 메디컬 코스메틱을 제공합니다.">
+    <title>BRITZMEDI | 피부 미용의 글로벌 리더 기업</title>
+    <meta name="description" content="브리츠메디는 피부 미용 분야의 글로벌 리더로서, TORR RF, UL BLANC 등 혁신적인 에스테틱 의료기기와 NEWCHAE 메디컬 코스메틱을 제공합니다.">
     <meta name="keywords" content="브리츠메디, BRITZMEDI, 에스테틱 의료기기, TORR RF, UL BLANC, NEWCHAE, RF 고주파, 피부과 장비">
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="BRITZMEDI | 에스테틱 의료기기 전문기업">
+    <meta property="og:title" content="BRITZMEDI | 피부 미용의 글로벌 리더 기업">
     <meta property="og:description" content="혁신적인 에스테틱 의료기기로 피부과의 새로운 기준을 제시합니다.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.britzmedi.co.kr/">
-    <meta property="og:locale" content="ko_KR">
     
-    <!-- Canonical & Hreflang -->
     <link rel="canonical" href="https://www.britzmedi.co.kr/">
     <link rel="alternate" hreflang="ko" href="https://www.britzmedi.co.kr/">
     <link rel="alternate" hreflang="en" href="https://www.britzmedi.co.kr/en/">
-    <link rel="alternate" hreflang="x-default" href="https://www.britzmedi.co.kr/">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
     
-    <!-- Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -33,13 +28,14 @@
         "name": "BRITZMEDI",
         "alternateName": "브리츠메디",
         "url": "https://www.britzmedi.co.kr",
-        "logo": "https://www.britzmedi.co.kr/images/logo.png",
-        "description": "에스테틱 의료기기 전문 제조기업",
+        "description": "피부 미용 분야의 글로벌 리더 기업",
         "foundingDate": "2017",
         "address": {
             "@type": "PostalAddress",
+            "streetAddress": "기산로87번길 2, 1층",
             "addressLocality": "화성시",
             "addressRegion": "경기도",
+            "postalCode": "18428",
             "addressCountry": "KR"
         },
         "contactPoint": {
@@ -49,215 +45,9 @@
         }
     }
     </script>
-    
+
     <style>
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #111111;
-            --bg-tertiary: #1a1a1a;
-            --gold: #c9a962;
-            --gold-light: #e8d5a3;
-            --gold-dark: #9a7b3a;
-            --white: #ffffff;
-            --gray-100: #f5f5f5;
-            --gray-200: #e5e5e5;
-            --gray-300: #d4d4d4;
-            --gray-400: #a3a3a3;
-            --gray-500: #737373;
-            --gray-600: #525252;
-            --gray-700: #404040;
-            --gray-800: #262626;
-            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-            --font-display: 'Cormorant Garamond', serif;
-            --font-body: 'Noto Sans KR', sans-serif;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-body);
-            background: var(--bg-primary);
-            color: var(--white);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--gold);
-            border-radius: 4px;
-        }
-
-        /* Loading Screen */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        .loader-content {
-            text-align: center;
-        }
-        .loader-logo {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            font-weight: 300;
-            letter-spacing: 0.5em;
-            color: var(--gold);
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-        .loader-bar {
-            width: 200px;
-            height: 1px;
-            background: var(--gray-700);
-            margin: 2rem auto 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .loader-bar::after {
-            content: '';
-            position: absolute;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gold);
-            animation: loading 1.5s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        @keyframes loading {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1.5rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.4s var(--transition-smooth);
-        }
-        header.scrolled {
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 1rem 4rem;
-            border-bottom: 1px solid rgba(201, 169, 98, 0.1);
-        }
-
-        .logo {
-            font-family: var(--font-display);
-            font-size: 1.8rem;
-            font-weight: 300;
-            letter-spacing: 0.3em;
-            color: var(--white);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .logo:hover {
-            color: var(--gold);
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-        }
-        nav a {
-            font-size: 0.85rem;
-            font-weight: 400;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--gray-300);
-            text-decoration: none;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--gold);
-            transition: width 0.3s ease;
-        }
-        nav a:hover {
-            color: var(--white);
-        }
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        .lang-switch {
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            color: var(--gold);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--gold);
-            transition: all 0.3s ease;
-        }
-        .lang-switch:hover {
-            background: var(--gold);
-            color: var(--bg-primary);
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            padding: 10px;
-        }
-        .menu-toggle span {
-            width: 24px;
-            height: 1px;
-            background: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        /* Hero Section */
+        /* Home Page Specific Styles */
         .hero {
             height: 100vh;
             position: relative;
@@ -266,14 +56,12 @@
             justify-content: center;
             overflow: hidden;
         }
-
         .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
         }
         .hero-bg-image {
             width: 100%;
@@ -289,17 +77,6 @@
             height: 100%;
             background: linear-gradient(135deg, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.6) 50%, rgba(10,10,10,0.8) 100%);
         }
-        .hero-bg-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(201, 169, 98, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(201, 169, 98, 0.05) 0%, transparent 50%);
-        }
-
         .hero-content {
             position: relative;
             z-index: 1;
@@ -307,78 +84,40 @@
             max-width: 1000px;
             padding: 0 2rem;
         }
-
         .hero-subtitle {
             font-size: 0.85rem;
-            font-weight: 400;
             letter-spacing: 0.4em;
             text-transform: uppercase;
             color: var(--gold);
             margin-bottom: 2rem;
             opacity: 0;
-            transform: translateY(30px);
             animation: fadeInUp 1s ease forwards 0.5s;
         }
-
         .hero-title {
             font-family: var(--font-display);
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(2.5rem, 6vw, 5rem);
             font-weight: 300;
-            line-height: 1.1;
-            letter-spacing: 0.05em;
-            margin-bottom: 2rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
             opacity: 0;
-            transform: translateY(30px);
             animation: fadeInUp 1s ease forwards 0.7s;
         }
         .hero-title em {
             font-style: italic;
             color: var(--gold);
         }
-
         .hero-description {
             font-size: 1.1rem;
-            font-weight: 300;
             color: var(--gray-300);
             max-width: 600px;
-            margin: 0 auto 3rem;
+            margin: 0 auto 2.5rem;
             opacity: 0;
-            transform: translateY(30px);
             animation: fadeInUp 1s ease forwards 0.9s;
         }
-
         .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--white);
-            text-decoration: none;
-            padding: 1rem 2.5rem;
-            border: 1px solid var(--gold);
-            background: transparent;
-            cursor: pointer;
-            transition: all 0.4s ease;
             opacity: 0;
-            transform: translateY(30px);
             animation: fadeInUp 1s ease forwards 1.1s;
         }
-        .hero-cta:hover {
-            background: var(--gold);
-            color: var(--bg-primary);
-        }
-        .hero-cta svg {
-            width: 16px;
-            height: 16px;
-            transition: transform 0.3s ease;
-        }
-        .hero-cta:hover svg {
-            transform: translateX(5px);
-        }
-
         .hero-scroll {
             position: absolute;
             bottom: 3rem;
@@ -388,209 +127,141 @@
             flex-direction: column;
             align-items: center;
             gap: 1rem;
-            color: var(--gray-400);
+            color: var(--gray-500);
             font-size: 0.7rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
+            letter-spacing: 0.2em;
             opacity: 0;
             animation: fadeIn 1s ease forwards 1.5s;
         }
         .hero-scroll-line {
             width: 1px;
-            height: 60px;
+            height: 50px;
             background: linear-gradient(to bottom, var(--gold), transparent);
-            animation: scrollLine 2s ease-in-out infinite;
+            animation: scrollPulse 2s ease infinite;
         }
-        @keyframes scrollLine {
-            0%, 100% { transform: scaleY(1); opacity: 1; }
-            50% { transform: scaleY(0.5); opacity: 0.5; }
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 1; transform: scaleY(1); }
+            50% { opacity: 0.5; transform: scaleY(0.7); }
         }
         @keyframes fadeIn {
             to { opacity: 1; }
         }
 
-        /* Section Styles */
-        section {
-            padding: 8rem 4rem;
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-        .section-label {
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 1.5rem;
-        }
-        .section-title {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 300;
-            line-height: 1.2;
-        }
-        .section-title em {
-            font-style: italic;
-            color: var(--gold);
-        }
-
         /* Products Section */
-        .products {
-            background: var(--bg-secondary);
-        }
-
         .products-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
         }
-
         .product-card {
             position: relative;
             background: var(--bg-tertiary);
             border: 1px solid var(--gray-800);
             overflow: hidden;
-            transition: all 0.5s var(--transition-smooth);
+            transition: all 0.4s ease;
         }
         .product-card:hover {
             border-color: var(--gold);
             transform: translateY(-10px);
         }
-        .product-card.featured {
-            grid-row: span 2;
-        }
-
-        .product-image {
-            position: relative;
-            height: 300px;
+        .product-card-image {
+            height: 280px;
             overflow: hidden;
         }
-        .product-card.featured .product-image {
-            height: 100%;
-            min-height: 400px;
-        }
-        .product-image img {
+        .product-card-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.8s var(--transition-smooth);
+            transition: transform 0.6s ease;
         }
-        .product-card:hover .product-image img {
+        .product-card:hover .product-card-image img {
             transform: scale(1.1);
         }
-        .product-image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 50%, rgba(10,10,10,0.9) 100%);
-        }
-
-        .product-badge {
-            position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
-            font-size: 0.65rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--bg-primary);
-            background: var(--gold);
-            padding: 0.4rem 1rem;
-        }
-
-        .product-content {
+        .product-card-content {
             padding: 2rem;
         }
-        .product-card.featured .product-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 3rem;
-        }
-        .product-category {
+        .product-card-label {
             font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
-        .product-name {
+        .product-card-title {
             font-family: var(--font-display);
-            font-size: 1.8rem;
+            font-size: 1.75rem;
             font-weight: 400;
             margin-bottom: 1rem;
         }
-        .product-card.featured .product-name {
-            font-size: 2.5rem;
-        }
-        .product-description {
+        .product-card-desc {
             font-size: 0.9rem;
             color: var(--gray-400);
-            line-height: 1.8;
+            line-height: 1.7;
             margin-bottom: 1.5rem;
         }
-        .product-link {
+        .product-card-link {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
+            letter-spacing: 0.1em;
             color: var(--white);
             text-decoration: none;
             transition: color 0.3s ease;
         }
-        .product-link:hover {
+        .product-card-link:hover {
             color: var(--gold);
         }
-        .product-link svg {
+        .product-card-link svg {
             width: 14px;
             height: 14px;
             transition: transform 0.3s ease;
         }
-        .product-link:hover svg {
+        .product-card-link:hover svg {
             transform: translateX(5px);
         }
 
-        /* About Section */
-        .about {
-            background: var(--bg-primary);
+        /* Stats */
+        .stats-section {
+            background: var(--bg-secondary);
+            padding: 5rem 4rem;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .stat-item {
+            position: relative;
+        }
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--gray-400);
         }
 
-        .about-grid {
+        /* About Preview */
+        .about-preview {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            max-width: 1400px;
-            margin: 0 auto;
+            gap: 5rem;
             align-items: center;
         }
-
         .about-image {
             position: relative;
         }
         .about-image img {
             width: 100%;
-            height: 600px;
-            object-fit: cover;
         }
         .about-image::before {
             content: '';
@@ -602,578 +273,103 @@
             border: 1px solid var(--gold);
             z-index: -1;
         }
-        .about-image-badge {
-            position: absolute;
-            bottom: -30px;
-            right: -30px;
-            width: 150px;
-            height: 150px;
-            background: var(--gold);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        .about-image-badge span:first-child {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            font-weight: 300;
-            color: var(--bg-primary);
-            line-height: 1;
-        }
-        .about-image-badge span:last-child {
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--bg-primary);
-        }
-
-        .about-content h3 {
+        .about-content h2 {
             font-family: var(--font-display);
             font-size: 2.5rem;
             font-weight: 300;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             line-height: 1.3;
         }
-        .about-content h3 em {
+        .about-content h2 em {
             font-style: italic;
             color: var(--gold);
         }
         .about-content p {
-            font-size: 1rem;
             color: var(--gray-400);
-            line-height: 2;
+            line-height: 1.9;
             margin-bottom: 1.5rem;
         }
 
-        .about-features {
+        /* News Preview */
+        .news-preview-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin-top: 3rem;
         }
-        .about-feature {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-        .about-feature-icon {
-            width: 50px;
-            height: 50px;
+        .news-preview-card {
             background: var(--bg-tertiary);
-            border: 1px solid var(--gray-700);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
+            border: 1px solid var(--gray-800);
+            padding: 2rem;
+            transition: all 0.3s ease;
         }
-        .about-feature-icon svg {
-            width: 24px;
-            height: 24px;
+        .news-preview-card:hover {
+            border-color: var(--gold);
+        }
+        .news-preview-date {
+            font-size: 0.75rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .news-preview-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        .news-preview-title a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .news-preview-title a:hover {
             color: var(--gold);
         }
-        .about-feature h4 {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-        .about-feature p {
-            font-size: 0.85rem;
-            color: var(--gray-500);
-            margin: 0;
-            line-height: 1.6;
-        }
 
-        /* Stats Section */
-        .stats {
-            background: var(--bg-secondary);
+        /* Contact CTA */
+        .contact-cta {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            text-align: center;
             padding: 6rem 4rem;
         }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .stat-item {
-            position: relative;
-        }
-        .stat-item::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: -2rem;
-            transform: translateY(-50%);
-            width: 1px;
-            height: 60px;
-            background: var(--gray-700);
-        }
-        .stat-item:last-child::after {
-            display: none;
-        }
-        .stat-number {
+        .contact-cta h2 {
             font-family: var(--font-display);
-            font-size: 4rem;
+            font-size: 2.5rem;
             font-weight: 300;
-            color: var(--gold);
-            line-height: 1;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
-        .stat-label {
-            font-size: 0.85rem;
+        .contact-cta p {
             color: var(--gray-400);
-            letter-spacing: 0.1em;
-        }
-
-        /* Gallery Section */
-        .gallery {
-            background: var(--bg-primary);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .gallery-item {
-            position: relative;
-            aspect-ratio: 1;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .gallery-item:nth-child(1) {
-            grid-column: span 2;
-            grid-row: span 2;
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s var(--transition-smooth);
-        }
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        .gallery-item-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 10, 10, 0.6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .gallery-item:hover .gallery-item-overlay {
-            opacity: 1;
-        }
-        .gallery-item-overlay svg {
-            width: 40px;
-            height: 40px;
-            color: var(--gold);
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--bg-secondary);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .contact-info h3 {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-weight: 300;
             margin-bottom: 2rem;
-        }
-        .contact-info p {
-            font-size: 1rem;
-            color: var(--gray-400);
-            line-height: 1.8;
-            margin-bottom: 3rem;
-        }
-
-        .contact-details {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .contact-item-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--gray-700);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .contact-item-icon svg {
-            width: 20px;
-            height: 20px;
-            color: var(--gold);
-        }
-        .contact-item-content span {
-            display: block;
-            font-size: 0.75rem;
-            color: var(--gray-500);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 0.25rem;
-        }
-        .contact-item-content p {
-            font-size: 1rem;
-            color: var(--white);
-            margin: 0;
-        }
-
-        .contact-form {
-            background: var(--bg-tertiary);
-            padding: 3rem;
-            border: 1px solid var(--gray-800);
-        }
-        .contact-form h4 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        .form-group label {
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--gray-400);
-            margin-bottom: 0.75rem;
-        }
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 1rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--gray-700);
-            color: var(--white);
-            font-family: var(--font-body);
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .form-submit {
-            width: 100%;
-            padding: 1.25rem;
-            background: var(--gold);
-            border: none;
-            color: var(--bg-primary);
-            font-family: var(--font-body);
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .form-submit:hover {
-            background: var(--gold-light);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--bg-primary);
-            padding: 5rem 4rem 2rem;
-            border-top: 1px solid var(--gray-800);
-        }
-
-        .footer-top {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 4rem;
-            max-width: 1400px;
-            margin: 0 auto 4rem;
-        }
-
-        .footer-brand .logo {
-            display: inline-block;
-            margin-bottom: 1.5rem;
-        }
-        .footer-brand p {
-            font-size: 0.9rem;
-            color: var(--gray-500);
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-        }
-        .footer-social a {
-            width: 40px;
-            height: 40px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--gray-700);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gray-400);
-            transition: all 0.3s ease;
-        }
-        .footer-social a:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-        }
-        .footer-social svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .footer-links h5 {
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--white);
-            margin-bottom: 1.5rem;
-        }
-        .footer-links ul {
-            list-style: none;
-        }
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-        .footer-links a {
-            font-size: 0.9rem;
-            color: var(--gray-500);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .footer-links a:hover {
-            color: var(--gold);
-        }
-
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-top: 2rem;
-            border-top: 1px solid var(--gray-800);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .footer-bottom p {
-            font-size: 0.8rem;
-            color: var(--gray-600);
-        }
-        .footer-legal {
-            display: flex;
-            gap: 2rem;
-        }
-        .footer-legal a {
-            font-size: 0.8rem;
-            color: var(--gray-600);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .footer-legal a:hover {
-            color: var(--gold);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
-            background: var(--bg-secondary);
-            z-index: 2000;
-            padding: 6rem 3rem;
-            transition: right 0.4s var(--transition-smooth);
-        }
-        .mobile-menu.active {
-            right: 0;
-        }
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        .mobile-menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        .mobile-menu-close {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            width: 40px;
-            height: 40px;
-            background: none;
-            border: 1px solid var(--gray-700);
-            color: var(--white);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .mobile-menu nav {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 2rem;
-        }
-        .mobile-menu nav a {
-            font-size: 1.2rem;
-        }
-
-        /* Scroll Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s var(--transition-smooth);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .product-card.featured {
-                grid-column: span 2;
-                grid-row: span 1;
-            }
-            .gallery-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .gallery-item:nth-child(1) {
-                grid-column: span 1;
-                grid-row: span 1;
-            }
         }
 
         @media (max-width: 1024px) {
-            header {
-                padding: 1rem 2rem;
-            }
-            nav {
-                display: none;
-            }
-            .menu-toggle {
-                display: flex;
-            }
-            section {
-                padding: 5rem 2rem;
-            }
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 4rem;
-            }
-            .about-image {
-                order: -1;
-            }
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            .footer-top {
+            .products-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            .about-preview {
+                grid-template-columns: 1fr;
                 gap: 3rem;
             }
-            .stat-item::after {
-                display: none;
-            }
         }
-
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
             .products-grid {
                 grid-template-columns: 1fr;
             }
-            .product-card.featured {
-                grid-column: span 1;
-            }
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .about-features {
-                grid-template-columns: 1fr;
-            }
-            .footer-top {
+            .stats-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .stats-grid {
+            .news-preview-grid {
                 grid-template-columns: 1fr;
-            }
-            .contact-form {
-                padding: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
+    <!-- Loading -->
     <div class="loader" id="loader">
         <div class="loader-content">
             <div class="loader-logo">BRITZMEDI</div>
@@ -1185,13 +381,48 @@
     <header id="header">
         <a href="/" class="logo">BRITZMEDI</a>
         <nav>
-            <a href="#products">Products</a>
-            <a href="#about">About</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#contact">Contact</a>
+            <div class="nav-item">
+                <a href="/company/intro.html" class="nav-link">기업소개</a>
+                <div class="dropdown">
+                    <a href="/company/intro.html">회사소개</a>
+                    <a href="/company/ceo.html">CEO 인사말</a>
+                    <a href="/company/way.html">브리츠 WAY</a>
+                    <a href="/company/cibi.html">CI / BI</a>
+                    <a href="/company/tech.html">연구소</a>
+                    <a href="/company/contact.html">오시는 길</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="/medical/torr.html" class="nav-link">메디컬</a>
+                <div class="dropdown">
+                    <a href="/medical/torr.html">토르 RF</a>
+                    <a href="/medical/ulblanc.html">울블랑</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="/cosmetic/newchae.html" class="nav-link">코스메틱</a>
+                <div class="dropdown">
+                    <a href="/cosmetic/newchae.html">뉴채</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="/community/news.html" class="nav-link">커뮤니티</a>
+                <div class="dropdown">
+                    <a href="/community/news.html">뉴스</a>
+                    <a href="/community/sns.html">SNS</a>
+                    <a href="/community/promotion.html">홍보영상</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="/cs/inquery.html" class="nav-link">고객지원</a>
+                <div class="dropdown">
+                    <a href="/cs/partnership.html">제휴문의</a>
+                    <a href="/cs/inquery.html">상담신청</a>
+                </div>
+            </div>
         </nav>
         <div class="header-actions">
-            <a href="/en/" class="lang-switch" onclick="localStorage.setItem('britzmedi_lang_selected', 'true')">EN</a>
+            <a href="/en/" class="lang-switch">EN</a>
             <div class="menu-toggle" id="menuToggle">
                 <span></span>
                 <span></span>
@@ -1204,339 +435,233 @@
     <div class="mobile-menu-overlay" id="mobileOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-menu-close" id="mobileClose">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
                 <path d="M18 6L6 18M6 6l12 12"/>
             </svg>
         </button>
-        <nav>
-            <a href="#products">Products</a>
-            <a href="#about">About</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#contact">Contact</a>
-            <a href="/en/" class="lang-switch" style="margin-top: 2rem;">EN</a>
-        </nav>
+        <div class="mobile-nav-item">
+            <a href="/company/intro.html" class="mobile-nav-link">기업소개</a>
+            <div class="mobile-dropdown">
+                <a href="/company/intro.html">회사소개</a>
+                <a href="/company/ceo.html">CEO 인사말</a>
+                <a href="/company/way.html">브리츠 WAY</a>
+                <a href="/company/cibi.html">CI / BI</a>
+                <a href="/company/tech.html">연구소</a>
+                <a href="/company/contact.html">오시는 길</a>
+            </div>
+        </div>
+        <div class="mobile-nav-item">
+            <a href="/medical/torr.html" class="mobile-nav-link">메디컬</a>
+            <div class="mobile-dropdown">
+                <a href="/medical/torr.html">토르 RF</a>
+                <a href="/medical/ulblanc.html">울블랑</a>
+            </div>
+        </div>
+        <div class="mobile-nav-item">
+            <a href="/cosmetic/newchae.html" class="mobile-nav-link">코스메틱</a>
+            <div class="mobile-dropdown">
+                <a href="/cosmetic/newchae.html">뉴채</a>
+            </div>
+        </div>
+        <div class="mobile-nav-item">
+            <a href="/community/news.html" class="mobile-nav-link">커뮤니티</a>
+            <div class="mobile-dropdown">
+                <a href="/community/news.html">뉴스</a>
+                <a href="/community/sns.html">SNS</a>
+                <a href="/community/promotion.html">홍보영상</a>
+            </div>
+        </div>
+        <div class="mobile-nav-item">
+            <a href="/cs/inquery.html" class="mobile-nav-link">고객지원</a>
+            <div class="mobile-dropdown">
+                <a href="/cs/partnership.html">제휴문의</a>
+                <a href="/cs/inquery.html">상담신청</a>
+            </div>
+        </div>
+        <div style="margin-top: 2rem;">
+            <a href="/en/" class="lang-switch">ENGLISH</a>
+        </div>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero">
         <div class="hero-bg">
-            <img src="" alt="BRITZMEDI Hero" class="hero-bg-image" id="heroImage">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1920&q=80" alt="BRITZMEDI" class="hero-bg-image" data-image-key="hero">
             <div class="hero-bg-overlay"></div>
-            <div class="hero-bg-pattern"></div>
         </div>
         <div class="hero-content">
-            <p class="hero-subtitle">Aesthetic Medical Device Excellence</p>
-            <h1 class="hero-title">혁신적인 <em>에스테틱</em><br>의료기기의 새로운 기준</h1>
-            <p class="hero-description">2017년 설립 이래, KFDA 인증 고주파 의료기기와 메디컬 코스메틱으로 피부과 시장을 선도합니다.</p>
-            <a href="#products" class="hero-cta">
-                제품 살펴보기
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-            </a>
+            <p class="hero-subtitle" data-cms="home-hero-subtitle">Aesthetic Medical Device Excellence</p>
+            <h1 class="hero-title" data-cms="home-hero-title">피부 미용의<br><em>글로벌 리더</em> 기업</h1>
+            <p class="hero-description" data-cms="home-hero-description">브리츠메디는 신제품개발과 R&D 분야의 경쟁력을 키워 피부 미용분야의 미래를 이끌어갑니다.</p>
+            <div class="hero-cta">
+                <a href="/company/intro.html" class="btn" data-cms="home-hero-cta">
+                    회사 소개
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
         </div>
         <div class="hero-scroll">
-            <span>Scroll</span>
+            <span>SCROLL</span>
             <div class="hero-scroll-line"></div>
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="section-header reveal">
-            <p class="section-label">Our Products</p>
-            <h2 class="section-title">최첨단 <em>의료기기</em> 라인업</h2>
-        </div>
-        <div class="products-grid">
-            <div class="product-card featured reveal">
-                <div class="product-image">
-                    <img src="" alt="TORR RF" id="product1Image">
-                    <div class="product-image-overlay"></div>
-                </div>
-                <span class="product-badge">Flagship</span>
-                <div class="product-content">
-                    <p class="product-category">Medical Device</p>
-                    <h3 class="product-name">TORR RF</h3>
-                    <p class="product-description">최신 고주파(RF) 기술을 적용한 프리미엄 에스테틱 의료기기. 피부 탄력 개선과 리프팅에 탁월한 효과를 제공합니다.</p>
-                    <a href="#" class="product-link">
-                        자세히 보기
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
+    <!-- Products -->
+    <section class="bg-darker" style="padding: 6rem 4rem;">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-label" data-cms="home-products-label">Our Products</p>
+                <h2 class="section-title" data-cms="home-products-title">혁신적인 <em>제품</em> 라인업</h2>
             </div>
-            <div class="product-card reveal">
-                <div class="product-image">
-                    <img src="" alt="UL BLANC" id="product2Image">
-                    <div class="product-image-overlay"></div>
+            <div class="products-grid">
+                <div class="product-card reveal">
+                    <div class="product-card-image">
+                        <img src="https://images.unsplash.com/photo-1559757175-7cb04bc9c7f5?w=800&q=80" alt="TORR RF" data-image-key="torr">
+                    </div>
+                    <div class="product-card-content">
+                        <p class="product-card-label" data-cms="home-product1-label">Medical Device</p>
+                        <h3 class="product-card-title" data-cms="home-product1-name">TORR RF</h3>
+                        <p class="product-card-desc" data-cms="home-product1-desc">최신 고주파(RF) 기술을 적용한 프리미엄 에스테틱 의료기기로 피부 탄력과 리프팅에 탁월한 효과를 제공합니다.</p>
+                        <a href="/medical/torr.html" class="product-card-link">
+                            자세히 보기
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
-                <div class="product-content">
-                    <p class="product-category">Medical Device</p>
-                    <h3 class="product-name">UL BLANC</h3>
-                    <p class="product-description">피부 톤 개선과 미백 효과에 특화된 혁신적인 의료기기 솔루션입니다.</p>
-                    <a href="#" class="product-link">
-                        자세히 보기
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
+                <div class="product-card reveal">
+                    <div class="product-card-image">
+                        <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=800&q=80" alt="UL BLANC" data-image-key="ulblanc">
+                    </div>
+                    <div class="product-card-content">
+                        <p class="product-card-label" data-cms="home-product2-label">Medical Device</p>
+                        <h3 class="product-card-title" data-cms="home-product2-name">UL BLANC</h3>
+                        <p class="product-card-desc" data-cms="home-product2-desc">피부 톤 개선과 미백 효과에 특화된 혁신적인 의료기기 솔루션입니다.</p>
+                        <a href="/medical/ulblanc.html" class="product-card-link">
+                            자세히 보기
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="product-card reveal">
-                <div class="product-image">
-                    <img src="" alt="NEWCHAE" id="product3Image">
-                    <div class="product-image-overlay"></div>
-                </div>
-                <div class="product-content">
-                    <p class="product-category">Medical Cosmetic</p>
-                    <h3 class="product-name">NEWCHAE</h3>
-                    <p class="product-description">전문 메디컬 코스메틱 라인으로, 피부과 전문의와 함께 개발한 프리미엄 스킨케어입니다.</p>
-                    <a href="#" class="product-link">
-                        자세히 보기
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
+                <div class="product-card reveal">
+                    <div class="product-card-image">
+                        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&q=80" alt="NEWCHAE" data-image-key="newchae">
+                    </div>
+                    <div class="product-card-content">
+                        <p class="product-card-label" data-cms="home-product3-label">Medical Cosmetic</p>
+                        <h3 class="product-card-title" data-cms="home-product3-name">NEWCHAE</h3>
+                        <p class="product-card-desc" data-cms="home-product3-desc">전문 메디컬 코스메틱 라인으로, 피부과 전문의와 함께 개발한 프리미엄 스킨케어입니다.</p>
+                        <a href="/cosmetic/newchae.html" class="product-card-link">
+                            자세히 보기
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
+    <!-- Stats -->
+    <section class="stats-section">
         <div class="stats-grid reveal">
             <div class="stat-item">
-                <div class="stat-number">2017</div>
-                <div class="stat-label">설립 연도</div>
+                <div class="stat-number" data-cms="home-stat1-number">2017</div>
+                <div class="stat-label" data-cms="home-stat1-label">설립 연도</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">500+</div>
-                <div class="stat-label">파트너 병원</div>
+                <div class="stat-number" data-cms="home-stat2-number">500+</div>
+                <div class="stat-label" data-cms="home-stat2-label">파트너 병원</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">KFDA</div>
-                <div class="stat-label">인증 획득</div>
+                <div class="stat-number" data-cms="home-stat3-number">KFDA</div>
+                <div class="stat-label" data-cms="home-stat3-label">인증 획득</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">3+</div>
-                <div class="stat-label">제품 라인업</div>
+                <div class="stat-number" data-cms="home-stat4-number">Global</div>
+                <div class="stat-label" data-cms="home-stat4-label">해외 진출</div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="about-grid">
-            <div class="about-image reveal">
-                <img src="" alt="BRITZMEDI About" id="aboutImage">
-                <div class="about-image-badge">
-                    <span>8</span>
-                    <span>Years</span>
+    <!-- About Preview -->
+    <section class="bg-dark" style="padding: 6rem 4rem;">
+        <div class="container">
+            <div class="about-preview">
+                <div class="about-image reveal">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="BRITZMEDI Company" data-image-key="company">
                 </div>
-            </div>
-            <div class="about-content reveal">
-                <p class="section-label">About BRITZMEDI</p>
-                <h3>피부과 의료기기의 <em>새로운 기준</em>을 제시합니다</h3>
-                <p>브리츠메디는 2017년 설립 이래 '기술로 아름다움을 완성한다'는 철학 아래, 혁신적인 에스테틱 의료기기를 개발해왔습니다.</p>
-                <p>자체 R&D 센터를 통해 KFDA 인증 제품을 개발하며, 피부과 전문의들과의 긴밀한 협력으로 임상 현장에서 검증된 솔루션을 제공합니다.</p>
-                
-                <div class="about-features">
-                    <div class="about-feature">
-                        <div class="about-feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M9 12l2 2 4-4"/>
-                                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>KFDA 인증</h4>
-                            <p>식약처 정식 인증 의료기기</p>
-                        </div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                                <path d="M2 17l10 5 10-5"/>
-                                <path d="M2 12l10 5 10-5"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>자체 R&D</h4>
-                            <p>독자적 기술 연구개발</p>
-                        </div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>품질 보증</h4>
-                            <p>철저한 품질관리 시스템</p>
-                        </div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>글로벌 진출</h4>
-                            <p>해외 시장 확장 중</p>
-                        </div>
-                    </div>
+                <div class="about-content reveal">
+                    <p class="section-label" data-cms="home-about-label">About BRITZMEDI</p>
+                    <h2 data-cms="home-about-title">건강하고 아름다운 삶,<br><em>브리츠메디</em>가 함께합니다</h2>
+                    <p data-cms="home-about-desc1">브리츠메디는 2017년 설립 이래 피부 미용 분야의 글로벌 리더로 성장해왔습니다. 신제품개발과 R&D 분야의 경쟁력을 키워 피부 미용분야의 미래를 이끌어가고 있습니다.</p>
+                    <p data-cms="home-about-desc2">피부미용의 글로벌 개척 정신으로 여러분의 파트너가 되겠습니다.</p>
+                    <a href="/company/intro.html" class="btn" data-cms="home-about-btn">
+                        더 알아보기
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="gallery" id="gallery">
-        <div class="section-header reveal">
-            <p class="section-label">Gallery</p>
-            <h2 class="section-title"><em>BRITZMEDI</em> 갤러리</h2>
-        </div>
-        <div class="gallery-grid reveal">
-            <div class="gallery-item">
-                <img src="" alt="Gallery 1" id="gallery1Image">
-                <div class="gallery-item-overlay">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="M21 21l-4.35-4.35"/>
-                        <path d="M11 8v6M8 11h6"/>
-                    </svg>
+    <!-- News Preview -->
+    <section class="bg-darker" style="padding: 6rem 4rem;">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-label">News</p>
+                <h2 class="section-title">브리츠메디의 <em>소식</em></h2>
+            </div>
+            <div class="news-preview-grid reveal">
+                <div class="news-preview-card">
+                    <p class="news-preview-date">2023.12.06</p>
+                    <h3 class="news-preview-title">
+                        <a href="/community/news.html">리프팅 효과, 회복기간 모두를 고려한 리프팅 시술 방법은?</a>
+                    </h3>
+                </div>
+                <div class="news-preview-card">
+                    <p class="news-preview-date">2023.11.15</p>
+                    <h3 class="news-preview-title">
+                        <a href="/community/news.html">브리츠메디, 글로벌 시장 진출 가속화</a>
+                    </h3>
+                </div>
+                <div class="news-preview-card">
+                    <p class="news-preview-date">2023.10.20</p>
+                    <h3 class="news-preview-title">
+                        <a href="/community/news.html">TORR RF 신제품 출시 기념 세미나 개최</a>
+                    </h3>
                 </div>
             </div>
-            <div class="gallery-item">
-                <img src="" alt="Gallery 2" id="gallery2Image">
-                <div class="gallery-item-overlay">
+            <div style="text-align: center; margin-top: 3rem;" class="reveal">
+                <a href="/community/news.html" class="btn">
+                    뉴스 더보기
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="M21 21l-4.35-4.35"/>
-                        <path d="M11 8v6M8 11h6"/>
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="" alt="Gallery 3" id="gallery3Image">
-                <div class="gallery-item-overlay">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="M21 21l-4.35-4.35"/>
-                        <path d="M11 8v6M8 11h6"/>
-                    </svg>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="" alt="Gallery 4" id="gallery4Image">
-                <div class="gallery-item-overlay">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="M21 21l-4.35-4.35"/>
-                        <path d="M11 8v6M8 11h6"/>
-                    </svg>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="" alt="Gallery 5" id="gallery5Image">
-                <div class="gallery-item-overlay">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="M21 21l-4.35-4.35"/>
-                        <path d="M11 8v6M8 11h6"/>
-                    </svg>
-                </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="section-header reveal">
-            <p class="section-label">Contact Us</p>
-            <h2 class="section-title">문의하기</h2>
-        </div>
-        <div class="contact-grid">
-            <div class="contact-info reveal">
-                <h3>BRITZMEDI와 함께<br>성장하세요</h3>
-                <p>제품 문의, 데모 요청, 파트너십 제안 등 무엇이든 편하게 연락주세요. 전문 담당자가 신속하게 답변드리겠습니다.</p>
-                
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                            </svg>
-                        </div>
-                        <div class="contact-item-content">
-                            <span>Phone</span>
-                            <p>070-4348-7244</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg>
-                        </div>
-                        <div class="contact-item-content">
-                            <span>Email</span>
-                            <p>info@britzmedi.co.kr</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                        </div>
-                        <div class="contact-item-content">
-                            <span>Address</span>
-                            <p>경기도 화성시</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-form reveal">
-                <h4>문의 양식</h4>
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label>이름 / 병원명</label>
-                        <input type="text" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>연락처</label>
-                        <input type="tel" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label>이메일</label>
-                        <input type="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label>문의 유형</label>
-                        <select name="type" required>
-                            <option value="">선택해주세요</option>
-                            <option value="product">제품 문의</option>
-                            <option value="demo">데모 요청</option>
-                            <option value="partnership">파트너십</option>
-                            <option value="other">기타</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>문의 내용</label>
-                        <textarea name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="form-submit">문의하기</button>
-                </form>
-            </div>
-        </div>
+    <!-- Contact CTA -->
+    <section class="contact-cta reveal">
+        <p class="section-label">Contact Us</p>
+        <h2>문의하기</h2>
+        <p>제품 문의, 데모 요청, 파트너십 제안 등 무엇이든 편하게 연락주세요.</p>
+        <a href="/cs/inquery.html" class="btn btn-primary">
+            상담 신청
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </a>
     </section>
 
     <!-- Footer -->
@@ -1544,11 +669,11 @@
         <div class="footer-top">
             <div class="footer-brand">
                 <a href="/" class="logo">BRITZMEDI</a>
-                <p>2017년 설립된 브리츠메디는 혁신적인 에스테틱 의료기기로 피부과 시장을 선도하는 전문 기업입니다.</p>
+                <p>피부 미용 분야의 글로벌 리더로서 혁신적인 의료기기와 코스메틱을 제공합니다.</p>
                 <div class="footer-social">
                     <a href="#" aria-label="Instagram">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <rect x="2" y="2" width="20" height="20" rx="5"/>
                             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                         </svg>
@@ -1559,43 +684,37 @@
                             <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
                         </svg>
                     </a>
-                    <a href="#" aria-label="Blog">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                        </svg>
-                    </a>
                 </div>
             </div>
             <div class="footer-links">
                 <h5>Products</h5>
                 <ul>
-                    <li><a href="#">TORR RF</a></li>
-                    <li><a href="#">UL BLANC</a></li>
-                    <li><a href="#">NEWCHAE</a></li>
+                    <li><a href="/medical/torr.html">TORR RF</a></li>
+                    <li><a href="/medical/ulblanc.html">UL BLANC</a></li>
+                    <li><a href="/cosmetic/newchae.html">NEWCHAE</a></li>
                 </ul>
             </div>
             <div class="footer-links">
                 <h5>Company</h5>
                 <ul>
-                    <li><a href="#about">회사 소개</a></li>
-                    <li><a href="#">연구개발</a></li>
-                    <li><a href="#">뉴스</a></li>
-                    <li><a href="#">채용</a></li>
+                    <li><a href="/company/intro.html">회사소개</a></li>
+                    <li><a href="/company/ceo.html">CEO 인사말</a></li>
+                    <li><a href="/company/tech.html">연구소</a></li>
+                    <li><a href="/community/news.html">뉴스</a></li>
                 </ul>
             </div>
             <div class="footer-links">
                 <h5>Support</h5>
                 <ul>
-                    <li><a href="#contact">문의하기</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">A/S 안내</a></li>
+                    <li><a href="/cs/inquery.html">상담신청</a></li>
+                    <li><a href="/cs/partnership.html">제휴문의</a></li>
+                    <li><a href="/company/contact.html">오시는 길</a></li>
                     <li><a href="/admin.html">관리자</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2024 BRITZMEDI. All rights reserved.</p>
+            <p>© 2024 BRITZMEDI. All rights reserved. 대표: 김정락 | 경기도 화성시 기산로87번길 2, 1층 | TEL: 070-4348-7244</p>
             <div class="footer-legal">
                 <a href="#">개인정보처리방침</a>
                 <a href="#">이용약관</a>
@@ -1603,113 +722,6 @@
         </div>
     </footer>
 
-    <script>
-        // Default placeholder images
-        const defaultImages = {
-            hero: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1920&q=80',
-            product1: 'https://images.unsplash.com/photo-1559757175-7cb04bc9c7f5?w=800&q=80',
-            product2: 'https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=800&q=80',
-            product3: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&q=80',
-            about: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=800&q=80',
-            gallery1: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80',
-            gallery2: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80',
-            gallery3: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=800&q=80',
-            gallery4: 'https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=800&q=80',
-            gallery5: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80'
-        };
-
-        // Load images from localStorage or use defaults
-        function loadImages() {
-            const savedImages = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
-            
-            document.getElementById('heroImage').src = savedImages.hero || defaultImages.hero;
-            document.getElementById('product1Image').src = savedImages.product1 || defaultImages.product1;
-            document.getElementById('product2Image').src = savedImages.product2 || defaultImages.product2;
-            document.getElementById('product3Image').src = savedImages.product3 || defaultImages.product3;
-            document.getElementById('aboutImage').src = savedImages.about || defaultImages.about;
-            document.getElementById('gallery1Image').src = savedImages.gallery1 || defaultImages.gallery1;
-            document.getElementById('gallery2Image').src = savedImages.gallery2 || defaultImages.gallery2;
-            document.getElementById('gallery3Image').src = savedImages.gallery3 || defaultImages.gallery3;
-            document.getElementById('gallery4Image').src = savedImages.gallery4 || defaultImages.gallery4;
-            document.getElementById('gallery5Image').src = savedImages.gallery5 || defaultImages.gallery5;
-        }
-
-        // Language auto-detection
-        function checkLanguage() {
-            if (!localStorage.getItem('britzmedi_lang_selected')) {
-                const userLang = navigator.language || navigator.userLanguage;
-                if (!userLang.startsWith('ko')) {
-                    window.location.href = '/en/';
-                }
-            }
-        }
-
-        // Loading screen
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('hidden');
-            }, 1500);
-            loadImages();
-        });
-
-        // Check language on page load
-        checkLanguage();
-
-        // Header scroll effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Mobile menu
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileOverlay = document.getElementById('mobileOverlay');
-        const mobileClose = document.getElementById('mobileClose');
-
-        function toggleMobileMenu() {
-            mobileMenu.classList.toggle('active');
-            mobileOverlay.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-        }
-
-        menuToggle.addEventListener('click', toggleMobileMenu);
-        mobileOverlay.addEventListener('click', toggleMobileMenu);
-        mobileClose.addEventListener('click', toggleMobileMenu);
-
-        // Close mobile menu on link click
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', toggleMobileMenu);
-        });
-
-        // Scroll reveal animation
-        const reveals = document.querySelectorAll('.reveal');
-        
-        function checkReveal() {
-            reveals.forEach(el => {
-                const windowHeight = window.innerHeight;
-                const revealTop = el.getBoundingClientRect().top;
-                const revealPoint = 150;
-
-                if (revealTop < windowHeight - revealPoint) {
-                    el.classList.add('active');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', checkReveal);
-        checkReveal();
-
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
-            this.reset();
-        });
-    </script>
+    <script src="/assets/js/main.js"></script>
 </body>
 </html>

@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRITZMEDI Admin - 이미지 관리</title>
+    <title>Admin CMS | BRITZMEDI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-primary: #0a0a0a;
@@ -16,9 +15,7 @@
             --bg-card: #1e1e1e;
             --gold: #c9a962;
             --gold-light: #e8d5a3;
-            --gold-dark: #9a7b3a;
             --white: #ffffff;
-            --gray-100: #f5f5f5;
             --gray-300: #d4d4d4;
             --gray-400: #a3a3a3;
             --gray-500: #737373;
@@ -27,306 +24,305 @@
             --gray-800: #262626;
             --success: #22c55e;
             --error: #ef4444;
-            --warning: #f59e0b;
+            --blue: #3b82f6;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
             background: var(--bg-primary);
             color: var(--white);
             min-height: 100vh;
+            display: flex;
         }
 
         /* Sidebar */
         .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 260px;
-            height: 100vh;
+            width: 280px;
             background: var(--bg-secondary);
             border-right: 1px solid var(--gray-800);
-            padding: 2rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
             z-index: 100;
         }
-
-        .sidebar-logo {
-            font-size: 1.5rem;
-            font-weight: 300;
-            letter-spacing: 0.2em;
-            color: var(--gold);
-            margin-bottom: 0.5rem;
-        }
-        .sidebar-subtitle {
-            font-size: 0.75rem;
-            color: var(--gray-500);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 3rem;
-        }
-
-        .nav-menu {
-            list-style: none;
-        }
-        .nav-item {
-            margin-bottom: 0.5rem;
-        }
-        .nav-link {
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-800);
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 0.875rem 1rem;
+            justify-content: space-between;
+        }
+        .sidebar-logo {
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+        }
+        .sidebar-badge {
+            font-size: 0.65rem;
+            padding: 0.25rem 0.5rem;
+            background: var(--gold);
+            color: var(--bg-primary);
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .sidebar-nav { padding: 1rem 0; }
+        .nav-section {
+            padding: 0.75rem 1.5rem 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gray-600);
+        }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
             color: var(--gray-400);
             text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.2s ease;
             font-size: 0.9rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border-left: 3px solid transparent;
         }
-        .nav-link:hover {
-            background: var(--bg-tertiary);
-            color: var(--white);
-        }
-        .nav-link.active {
-            background: rgba(201, 169, 98, 0.1);
-            color: var(--gold);
-            border: 1px solid rgba(201, 169, 98, 0.2);
-        }
-        .nav-link svg {
-            width: 20px;
-            height: 20px;
-        }
+        .nav-item:hover { color: var(--white); background: var(--bg-tertiary); }
+        .nav-item.active { color: var(--gold); background: var(--bg-tertiary); border-left-color: var(--gold); }
+        .nav-item svg { width: 18px; height: 18px; margin-right: 0.75rem; flex-shrink: 0; }
 
-        .sidebar-footer {
-            position: absolute;
-            bottom: 2rem;
-            left: 2rem;
-            right: 2rem;
+        /* Main */
+        .main {
+            flex: 1;
+            margin-left: 280px;
+            min-height: 100vh;
         }
-        .sidebar-footer a {
+        .main-header {
+            position: sticky;
+            top: 0;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--gray-800);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 50;
+        }
+        .main-header h1 { font-size: 1.25rem; font-weight: 500; }
+        .header-actions { display: flex; gap: 0.75rem; align-items: center; }
+        .main-content { padding: 2rem; }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--gray-700);
+            background: none;
+            color: var(--gray-300);
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            text-decoration: none;
+        }
+        .btn:hover { border-color: var(--gold); color: var(--gold); }
+        .btn svg { width: 16px; height: 16px; }
+        .btn-primary { background: var(--gold); border-color: var(--gold); color: var(--bg-primary); }
+        .btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); color: var(--bg-primary); }
+        .btn-danger { border-color: var(--error); color: var(--error); }
+        .btn-danger:hover { background: var(--error); color: white; }
+        .btn-sm { padding: 0.4rem 0.75rem; font-size: 0.8rem; }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--gray-800);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .card-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--gray-800);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-header h3 {
+            font-size: 1rem;
+            font-weight: 500;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--gray-500);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.2s ease;
         }
-        .sidebar-footer a:hover {
-            color: var(--gold);
-        }
+        .card-header h3 svg { width: 18px; height: 18px; color: var(--gold); }
+        .card-body { padding: 1.5rem; }
 
-        /* Main Content */
-        .main-content {
-            margin-left: 260px;
-            padding: 2rem 3rem;
-            min-height: 100vh;
+        /* Forms */
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
         }
-
-        .page-header {
-            margin-bottom: 2rem;
-        }
-        .page-title {
-            font-size: 1.75rem;
+        .form-row.cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .form-row.cols-4 { grid-template-columns: repeat(4, 1fr); }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group.full { grid-column: span 2; }
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
             font-weight: 500;
+            color: var(--gray-400);
             margin-bottom: 0.5rem;
         }
-        .page-description {
-            color: var(--gray-400);
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--gray-700);
+            color: var(--white);
+            font-family: inherit;
             font-size: 0.9rem;
+            border-radius: 6px;
+            transition: border-color 0.2s ease;
         }
+        .form-control:focus { outline: none; border-color: var(--gold); }
+        .form-control::placeholder { color: var(--gray-600); }
+        textarea.form-control { min-height: 120px; resize: vertical; }
+        .form-help { font-size: 0.75rem; color: var(--gray-500); margin-top: 0.35rem; }
 
         /* Tabs */
         .tabs {
             display: flex;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
+            gap: 0;
             border-bottom: 1px solid var(--gray-800);
-            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
         }
-        .tab-btn {
+        .tab {
             padding: 0.75rem 1.5rem;
-            background: transparent;
-            border: 1px solid transparent;
-            color: var(--gray-400);
-            font-family: inherit;
-            font-size: 0.9rem;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-        }
-        .tab-btn:hover {
-            color: var(--white);
-            background: var(--bg-tertiary);
-        }
-        .tab-btn.active {
-            color: var(--gold);
-            background: rgba(201, 169, 98, 0.1);
-            border-color: rgba(201, 169, 98, 0.3);
-        }
-
-        /* Tab Content */
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Image Grid */
-        .image-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .image-card {
-            background: var(--bg-card);
-            border: 1px solid var(--gray-800);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: border-color 0.2s ease;
-        }
-        .image-card:hover {
-            border-color: var(--gray-700);
-        }
-
-        .image-preview {
-            width: 100%;
-            height: 200px;
-            background: var(--bg-tertiary);
-            position: relative;
-            overflow: hidden;
-        }
-        .image-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .image-preview-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--gray-600);
-        }
-        .image-preview-placeholder svg {
-            width: 48px;
-            height: 48px;
-            margin-bottom: 0.5rem;
-        }
-
-        .image-card-content {
-            padding: 1.5rem;
-        }
-
-        .image-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        .image-card-title {
-            font-size: 1rem;
-            font-weight: 500;
-        }
-        .image-card-badge {
-            font-size: 0.7rem;
-            padding: 0.25rem 0.5rem;
-            background: rgba(201, 169, 98, 0.1);
-            color: var(--gold);
-            border-radius: 4px;
-            letter-spacing: 0.05em;
-        }
-
-        .image-input-group {
-            margin-bottom: 1rem;
-        }
-        .image-input-label {
-            display: block;
-            font-size: 0.75rem;
+            background: none;
+            border: none;
             color: var(--gray-500);
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-family: inherit;
+            white-space: nowrap;
+            position: relative;
+            transition: color 0.2s ease;
+        }
+        .tab:hover { color: var(--gray-300); }
+        .tab.active { color: var(--gold); }
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold);
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Stat Editor */
+        .stat-editor {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+        .stat-item-edit {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--gray-700);
+            border-radius: 8px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+        .stat-item-edit input {
+            width: 100%;
+            text-align: center;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-family: inherit;
+        }
+        .stat-item-edit input:focus { outline: none; }
+        .stat-item-edit .stat-number {
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--gold);
             margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
         }
-        .image-input-wrapper {
-            display: flex;
-            gap: 0.5rem;
+        .stat-item-edit .stat-label { font-size: 0.85rem; color: var(--gray-400); }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
         }
-        .image-input {
-            flex: 1;
-            padding: 0.75rem 1rem;
-            background: var(--bg-primary);
+        .feature-edit {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--gray-700);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+        .feature-edit .form-group { margin-bottom: 0.75rem; }
+        .feature-edit .form-group:last-child { margin-bottom: 0; }
+
+        /* Timeline Editor */
+        .timeline-item-edit {
+            display: grid;
+            grid-template-columns: 100px 1fr 1fr auto;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-tertiary);
             border: 1px solid var(--gray-700);
             border-radius: 6px;
-            color: var(--white);
-            font-family: inherit;
-            font-size: 0.9rem;
-            transition: border-color 0.2s ease;
-        }
-        .image-input:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
-        .image-input::placeholder {
-            color: var(--gray-600);
+            margin-bottom: 0.75rem;
+            align-items: center;
         }
 
-        .image-card-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        .btn {
-            padding: 0.625rem 1rem;
-            border: none;
+        /* News Editor */
+        .news-item-edit {
+            display: grid;
+            grid-template-columns: 140px 1fr auto;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--gray-700);
             border-radius: 6px;
-            font-family: inherit;
-            font-size: 0.85rem;
-            cursor: pointer;
+            margin-bottom: 0.75rem;
+            align-items: center;
+        }
+
+        /* Spec Row */
+        .spec-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr auto;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            align-items: center;
+        }
+
+        /* Status */
+        .status {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            transition: all 0.2s ease;
+            gap: 0.35rem;
+            font-size: 0.8rem;
         }
-        .btn svg {
-            width: 16px;
-            height: 16px;
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
         }
-        .btn-primary {
-            background: var(--gold);
-            color: var(--bg-primary);
-        }
-        .btn-primary:hover {
-            background: var(--gold-light);
-        }
-        .btn-secondary {
-            background: var(--bg-tertiary);
-            color: var(--gray-300);
-            border: 1px solid var(--gray-700);
-        }
-        .btn-secondary:hover {
-            background: var(--gray-800);
-            border-color: var(--gray-600);
-        }
-        .btn-danger {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--error);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-        }
-        .btn-danger:hover {
-            background: rgba(239, 68, 68, 0.2);
-        }
+        .status.unsaved .status-dot { background: var(--gold); }
 
-        /* Toast Notification */
+        /* Toast */
         .toast {
             position: fixed;
             bottom: 2rem;
@@ -343,451 +339,472 @@
             transition: all 0.3s ease;
             z-index: 1000;
         }
-        .toast.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        .toast.success {
-            border-color: var(--success);
-        }
-        .toast.success .toast-icon {
-            color: var(--success);
-        }
-        .toast.error {
-            border-color: var(--error);
-        }
-        .toast.error .toast-icon {
-            color: var(--error);
-        }
-        .toast-icon svg {
-            width: 20px;
-            height: 20px;
-        }
-        .toast-message {
-            font-size: 0.9rem;
-        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast.success { border-color: var(--success); }
+        .toast.success svg { color: var(--success); }
+        .toast svg { width: 20px; height: 20px; }
 
-        /* Instructions */
-        .instructions {
-            background: var(--bg-card);
-            border: 1px solid var(--gray-800);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .instructions h3 {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-            color: var(--gold);
-        }
-        .instructions ul {
-            list-style: none;
-            color: var(--gray-400);
-            font-size: 0.9rem;
-            line-height: 1.8;
-        }
-        .instructions li {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
-        .instructions li::before {
-            content: '•';
-            color: var(--gold);
-        }
-
-        /* Bulk Actions */
-        .bulk-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding: 1rem 1.5rem;
-            background: var(--bg-card);
-            border: 1px solid var(--gray-800);
-            border-radius: 8px;
-        }
-        .bulk-actions-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .bulk-actions-info span {
-            color: var(--gray-400);
-            font-size: 0.9rem;
-        }
-
-        /* Section Divider */
-        .section-divider {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin: 2rem 0;
-            color: var(--gray-500);
-            font-size: 0.85rem;
-        }
-        .section-divider::before,
-        .section-divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--gray-800);
-        }
+        /* Page Content */
+        .page-content { display: none; }
+        .page-content.active { display: block; }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-            .main-content {
-                margin-left: 0;
-            }
+        @media (max-width: 1200px) {
+            .form-row { grid-template-columns: 1fr; }
+            .form-row.cols-3, .form-row.cols-4 { grid-template-columns: repeat(2, 1fr); }
+            .stat-editor { grid-template-columns: repeat(2, 1fr); }
+            .feature-grid { grid-template-columns: repeat(2, 1fr); }
         }
-
         @media (max-width: 768px) {
-            .main-content {
-                padding: 1.5rem;
-            }
-            .image-grid {
-                grid-template-columns: 1fr;
-            }
+            .sidebar { display: none; }
+            .main { margin-left: 0; }
+            .stat-editor, .feature-grid { grid-template-columns: 1fr; }
+            .timeline-item-edit, .news-item-edit, .spec-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <!-- Sidebar -->
     <aside class="sidebar">
-        <div class="sidebar-logo">BRITZMEDI</div>
-        <div class="sidebar-subtitle">Admin Panel</div>
-        
-        <ul class="nav-menu">
-            <li class="nav-item">
-                <a href="#" class="nav-link active">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                        <circle cx="8.5" cy="8.5" r="1.5"/>
-                        <polyline points="21 15 16 10 5 21"/>
-                    </svg>
-                    이미지 관리
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                    </svg>
-                    콘텐츠 관리
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                    </svg>
-                    문의 관리
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="3"/>
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                    </svg>
-                    설정
-                </a>
-            </li>
-        </ul>
-        
-        <div class="sidebar-footer">
-            <a href="/">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
-                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                    <polyline points="16 17 21 12 16 7"/>
-                    <line x1="21" y1="12" x2="9" y2="12"/>
-                </svg>
-                사이트로 돌아가기
-            </a>
+        <div class="sidebar-header">
+            <span class="sidebar-logo">BRITZMEDI</span>
+            <span class="sidebar-badge">CMS</span>
         </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">메인</div>
+            <a class="nav-item active" data-page="home">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                홈페이지
+            </a>
+            
+            <div class="nav-section">기업소개</div>
+            <a class="nav-item" data-page="company-intro">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5m-4 0h4"/></svg>
+                회사소개
+            </a>
+            <a class="nav-item" data-page="company-ceo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                CEO 인사말
+            </a>
+            <a class="nav-item" data-page="company-contact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                오시는 길
+            </a>
+
+            <div class="nav-section">제품</div>
+            <a class="nav-item" data-page="product-torr">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                TORR RF
+            </a>
+            <a class="nav-item" data-page="product-ulblanc">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg>
+                UL BLANC
+            </a>
+            <a class="nav-item" data-page="product-newchae">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                NEWCHAE
+            </a>
+
+            <div class="nav-section">커뮤니티</div>
+            <a class="nav-item" data-page="community-news">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1m2 13a2 2 0 0 1-2-2V7m2 13a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"/></svg>
+                뉴스
+            </a>
+
+            <div class="nav-section">설정</div>
+            <a class="nav-item" data-page="settings-images">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                이미지 관리
+            </a>
+            <a class="nav-item" data-page="settings-forms">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                폼 / Footer
+            </a>
+        </nav>
     </aside>
 
     <!-- Main Content -->
-    <main class="main-content">
-        <div class="page-header">
-            <h1 class="page-title">이미지 관리</h1>
-            <p class="page-description">웹사이트에 표시되는 이미지를 관리합니다. URL을 입력하면 실시간으로 미리보기가 표시됩니다.</p>
+    <main class="main">
+        <div class="main-header">
+            <h1 id="pageTitle">홈페이지 관리</h1>
+            <div class="header-actions">
+                <span class="status" id="saveStatus">
+                    <span class="status-dot"></span>
+                    저장됨
+                </span>
+                <a href="/" target="_blank" class="btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    사이트 보기
+                </a>
+                <button class="btn btn-primary" onclick="saveAllData()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                    저장하기
+                </button>
+            </div>
         </div>
 
-        <div class="instructions">
-            <h3>💡 사용 가이드</h3>
-            <ul>
-                <li>이미지 URL을 입력하고 '적용' 버튼을 클릭하면 웹사이트에 즉시 반영됩니다.</li>
-                <li>Unsplash, Pexels 등의 무료 이미지 사이트 URL을 사용할 수 있습니다.</li>
-                <li>권장 이미지 크기: 히어로 1920x1080, 제품 800x600, 갤러리 800x800</li>
-                <li>'초기화' 버튼을 클릭하면 기본 이미지로 되돌아갑니다.</li>
-            </ul>
-        </div>
+        <div class="main-content">
+            <!-- ================== HOME PAGE ================== -->
+            <div class="page-content active" id="page-home">
+                <div class="tabs">
+                    <button class="tab active" data-tab="home-hero">Hero</button>
+                    <button class="tab" data-tab="home-products">제품</button>
+                    <button class="tab" data-tab="home-stats">통계</button>
+                    <button class="tab" data-tab="home-about">About</button>
+                </div>
 
-        <!-- Tabs -->
-        <div class="tabs">
-            <button class="tab-btn active" data-tab="hero">히어로</button>
-            <button class="tab-btn" data-tab="products">제품</button>
-            <button class="tab-btn" data-tab="about">회사소개</button>
-            <button class="tab-btn" data-tab="gallery">갤러리</button>
-        </div>
-
-        <!-- Hero Tab -->
-        <div class="tab-content active" id="tab-hero">
-            <div class="image-grid">
-                <div class="image-card">
-                    <div class="image-preview">
-                        <img src="" alt="Hero Image" id="preview-hero">
+                <div class="tab-content active" id="tab-home-hero">
+                    <div class="card">
+                        <div class="card-header"><h3>Hero 섹션</h3></div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>서브타이틀 (영문)</label>
+                                    <input type="text" class="form-control" id="home-hero-subtitle">
+                                </div>
+                                <div class="form-group">
+                                    <label>히어로 이미지 URL</label>
+                                    <input type="text" class="form-control" id="home-hero-image">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>메인 타이틀</label>
+                                <input type="text" class="form-control" id="home-hero-title">
+                                <p class="form-help">강조 텍스트는 *별표*로 감싸세요. 예: 피부 미용의 *글로벌 리더* 기업</p>
+                            </div>
+                            <div class="form-group">
+                                <label>설명</label>
+                                <textarea class="form-control" id="home-hero-description" rows="3"></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>CTA 버튼 텍스트</label>
+                                    <input type="text" class="form-control" id="home-hero-cta-text">
+                                </div>
+                                <div class="form-group">
+                                    <label>CTA 버튼 링크</label>
+                                    <input type="text" class="form-control" id="home-hero-cta-link">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="image-card-content">
-                        <div class="image-card-header">
-                            <h3 class="image-card-title">메인 히어로 이미지</h3>
-                            <span class="image-card-badge">1920 x 1080</span>
+                </div>
+
+                <div class="tab-content" id="tab-home-products">
+                    <div class="card">
+                        <div class="card-header"><h3>제품 섹션 헤더</h3></div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>섹션 라벨</label>
+                                    <input type="text" class="form-control" id="home-products-label">
+                                </div>
+                                <div class="form-group">
+                                    <label>섹션 타이틀</label>
+                                    <input type="text" class="form-control" id="home-products-title">
+                                </div>
+                            </div>
                         </div>
-                        <div class="image-input-group">
-                            <label class="image-input-label">이미지 URL</label>
-                            <input type="text" class="image-input" id="input-hero" placeholder="https://example.com/image.jpg">
+                    </div>
+                    <div class="feature-grid">
+                        <div class="card">
+                            <div class="card-header"><h3>제품 1</h3></div>
+                            <div class="card-body">
+                                <div class="form-group"><label>라벨</label><input type="text" class="form-control" id="home-product1-label"></div>
+                                <div class="form-group"><label>제품명</label><input type="text" class="form-control" id="home-product1-name"></div>
+                                <div class="form-group"><label>설명</label><textarea class="form-control" id="home-product1-desc" rows="3"></textarea></div>
+                            </div>
                         </div>
-                        <div class="image-card-actions">
-                            <button class="btn btn-primary" onclick="saveImage('hero')">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
-                                    <polyline points="17 21 17 13 7 13 7 21"/>
-                                    <polyline points="7 3 7 8 15 8"/>
-                                </svg>
-                                적용
-                            </button>
-                            <button class="btn btn-danger" onclick="resetImage('hero')">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="1 4 1 10 7 10"/>
-                                    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
-                                </svg>
-                                초기화
-                            </button>
+                        <div class="card">
+                            <div class="card-header"><h3>제품 2</h3></div>
+                            <div class="card-body">
+                                <div class="form-group"><label>라벨</label><input type="text" class="form-control" id="home-product2-label"></div>
+                                <div class="form-group"><label>제품명</label><input type="text" class="form-control" id="home-product2-name"></div>
+                                <div class="form-group"><label>설명</label><textarea class="form-control" id="home-product2-desc" rows="3"></textarea></div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header"><h3>제품 3</h3></div>
+                            <div class="card-body">
+                                <div class="form-group"><label>라벨</label><input type="text" class="form-control" id="home-product3-label"></div>
+                                <div class="form-group"><label>제품명</label><input type="text" class="form-control" id="home-product3-name"></div>
+                                <div class="form-group"><label>설명</label><textarea class="form-control" id="home-product3-desc" rows="3"></textarea></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-home-stats">
+                    <div class="card">
+                        <div class="card-header"><h3>통계 섹션 (4개)</h3></div>
+                        <div class="card-body">
+                            <div class="stat-editor">
+                                <div class="stat-item-edit">
+                                    <input type="text" class="stat-number" id="home-stat1-number">
+                                    <input type="text" class="stat-label" id="home-stat1-label">
+                                </div>
+                                <div class="stat-item-edit">
+                                    <input type="text" class="stat-number" id="home-stat2-number">
+                                    <input type="text" class="stat-label" id="home-stat2-label">
+                                </div>
+                                <div class="stat-item-edit">
+                                    <input type="text" class="stat-number" id="home-stat3-number">
+                                    <input type="text" class="stat-label" id="home-stat3-label">
+                                </div>
+                                <div class="stat-item-edit">
+                                    <input type="text" class="stat-number" id="home-stat4-number">
+                                    <input type="text" class="stat-label" id="home-stat4-label">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-home-about">
+                    <div class="card">
+                        <div class="card-header"><h3>About 섹션</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label>섹션 라벨</label><input type="text" class="form-control" id="home-about-label"></div>
+                            <div class="form-group"><label>타이틀</label><input type="text" class="form-control" id="home-about-title"></div>
+                            <div class="form-group"><label>설명 1</label><textarea class="form-control" id="home-about-desc1" rows="2"></textarea></div>
+                            <div class="form-group"><label>설명 2</label><textarea class="form-control" id="home-about-desc2" rows="2"></textarea></div>
+                            <div class="form-row">
+                                <div class="form-group"><label>버튼 텍스트</label><input type="text" class="form-control" id="home-about-btn-text"></div>
+                                <div class="form-group"><label>버튼 링크</label><input type="text" class="form-control" id="home-about-btn-link"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Products Tab -->
-        <div class="tab-content" id="tab-products">
-            <div class="image-grid">
-                <div class="image-card">
-                    <div class="image-preview">
-                        <img src="" alt="Product 1" id="preview-product1">
-                    </div>
-                    <div class="image-card-content">
-                        <div class="image-card-header">
-                            <h3 class="image-card-title">TORR RF</h3>
-                            <span class="image-card-badge">Featured</span>
-                        </div>
-                        <div class="image-input-group">
-                            <label class="image-input-label">이미지 URL</label>
-                            <input type="text" class="image-input" id="input-product1" placeholder="https://example.com/image.jpg">
-                        </div>
-                        <div class="image-card-actions">
-                            <button class="btn btn-primary" onclick="saveImage('product1')">적용</button>
-                            <button class="btn btn-danger" onclick="resetImage('product1')">초기화</button>
+            <!-- ================== COMPANY INTRO ================== -->
+            <div class="page-content" id="page-company-intro">
+                <div class="card">
+                    <div class="card-header"><h3>페이지 히어로</h3></div>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group"><label>라벨</label><input type="text" class="form-control" id="intro-hero-label"></div>
+                            <div class="form-group"><label>타이틀</label><input type="text" class="form-control" id="intro-hero-title"></div>
                         </div>
                     </div>
                 </div>
-
-                <div class="image-card">
-                    <div class="image-preview">
-                        <img src="" alt="Product 2" id="preview-product2">
+                <div class="card">
+                    <div class="card-header"><h3>메인 콘텐츠</h3></div>
+                    <div class="card-body">
+                        <div class="form-group"><label>섹션 라벨</label><input type="text" class="form-control" id="intro-content-label"></div>
+                        <div class="form-group"><label>타이틀</label><input type="text" class="form-control" id="intro-content-title"></div>
+                        <div class="form-group"><label>설명 1</label><textarea class="form-control" id="intro-content-desc1" rows="3"></textarea></div>
+                        <div class="form-group"><label>설명 2</label><textarea class="form-control" id="intro-content-desc2" rows="3"></textarea></div>
                     </div>
-                    <div class="image-card-content">
-                        <div class="image-card-header">
-                            <h3 class="image-card-title">UL BLANC</h3>
-                            <span class="image-card-badge">800 x 600</span>
-                        </div>
-                        <div class="image-input-group">
-                            <label class="image-input-label">이미지 URL</label>
-                            <input type="text" class="image-input" id="input-product2" placeholder="https://example.com/image.jpg">
-                        </div>
-                        <div class="image-card-actions">
-                            <button class="btn btn-primary" onclick="saveImage('product2')">적용</button>
-                            <button class="btn btn-danger" onclick="resetImage('product2')">초기화</button>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>핵심 가치 (3개)</h3></div>
+                    <div class="card-body">
+                        <div class="feature-grid">
+                            <div class="feature-edit">
+                                <div class="form-group"><label>가치 1</label><input type="text" class="form-control" id="value1-title"></div>
+                                <div class="form-group"><label>설명</label><textarea class="form-control" id="value1-desc" rows="2"></textarea></div>
+                            </div>
+                            <div class="feature-edit">
+                                <div class="form-group"><label>가치 2</label><input type="text" class="form-control" id="value2-title"></div>
+                                <div class="form-group"><label>설명</label><textarea class="form-control" id="value2-desc" rows="2"></textarea></div>
+                            </div>
+                            <div class="feature-edit">
+                                <div class="form-group"><label>가치 3</label><input type="text" class="form-control" id="value3-title"></div>
+                                <div class="form-group"><label>설명</label><textarea class="form-control" id="value3-desc" rows="2"></textarea></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="image-card">
-                    <div class="image-preview">
-                        <img src="" alt="Product 3" id="preview-product3">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>연혁</h3>
+                        <button class="btn btn-sm" onclick="addHistory()">+ 추가</button>
                     </div>
-                    <div class="image-card-content">
-                        <div class="image-card-header">
-                            <h3 class="image-card-title">NEWCHAE</h3>
-                            <span class="image-card-badge">800 x 600</span>
+                    <div class="card-body" id="historyContainer"></div>
+                </div>
+            </div>
+
+            <!-- ================== CEO ================== -->
+            <div class="page-content" id="page-company-ceo">
+                <div class="card">
+                    <div class="card-header"><h3>CEO 정보</h3></div>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group"><label>이름</label><input type="text" class="form-control" id="ceo-name"></div>
+                            <div class="form-group"><label>직책</label><input type="text" class="form-control" id="ceo-position"></div>
                         </div>
-                        <div class="image-input-group">
-                            <label class="image-input-label">이미지 URL</label>
-                            <input type="text" class="image-input" id="input-product3" placeholder="https://example.com/image.jpg">
+                        <div class="form-group"><label>이미지 URL</label><input type="text" class="form-control" id="ceo-image"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>인사말</h3></div>
+                    <div class="card-body">
+                        <div class="form-group"><label>대표 문구</label><input type="text" class="form-control" id="ceo-quote"></div>
+                        <div class="form-group"><label>인사말 본문</label><textarea class="form-control" id="ceo-message" rows="10"></textarea>
+                        <p class="form-help">문단 구분은 빈 줄로 해주세요</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================== CONTACT ================== -->
+            <div class="page-content" id="page-company-contact">
+                <div class="card">
+                    <div class="card-header"><h3>회사 위치 정보</h3></div>
+                    <div class="card-body">
+                        <div class="form-group"><label>주소</label><input type="text" class="form-control" id="contact-address"></div>
+                        <div class="form-row">
+                            <div class="form-group"><label>전화번호</label><input type="text" class="form-control" id="contact-tel"></div>
+                            <div class="form-group"><label>팩스</label><input type="text" class="form-control" id="contact-fax"></div>
                         </div>
-                        <div class="image-card-actions">
-                            <button class="btn btn-primary" onclick="saveImage('product3')">적용</button>
-                            <button class="btn btn-danger" onclick="resetImage('product3')">초기화</button>
+                        <div class="form-row">
+                            <div class="form-group"><label>운영시간</label><input type="text" class="form-control" id="contact-hours"></div>
+                            <div class="form-group"><label>휴무일</label><input type="text" class="form-control" id="contact-closed"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Google Maps Embed URL</label>
+                            <input type="text" class="form-control" id="contact-map">
+                            <p class="form-help">Google Maps에서 '공유 → 지도 퍼가기' iframe의 src URL</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- About Tab -->
-        <div class="tab-content" id="tab-about">
-            <div class="image-grid">
-                <div class="image-card">
-                    <div class="image-preview">
-                        <img src="" alt="About" id="preview-about">
+            <!-- ================== TORR RF ================== -->
+            <div class="page-content" id="page-product-torr">
+                <div class="card">
+                    <div class="card-header"><h3>TORR RF 기본 정보</h3></div>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group"><label>제품명</label><input type="text" class="form-control" id="torr-name"></div>
+                            <div class="form-group"><label>태그라인</label><input type="text" class="form-control" id="torr-tagline"></div>
+                        </div>
+                        <div class="form-group"><label>제품 설명</label><textarea class="form-control" id="torr-description" rows="4"></textarea></div>
+                        <div class="form-group"><label>제품 이미지 URL</label><input type="text" class="form-control" id="torr-image"></div>
                     </div>
-                    <div class="image-card-content">
-                        <div class="image-card-header">
-                            <h3 class="image-card-title">회사 소개 이미지</h3>
-                            <span class="image-card-badge">800 x 600</span>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>주요 특징 (4개)</h3></div>
+                    <div class="card-body">
+                        <div class="form-row cols-4">
+                            <div class="form-group"><label>특징 1</label><input type="text" class="form-control" id="torr-f1-title"><input type="text" class="form-control" id="torr-f1-desc" style="margin-top:0.5rem"></div>
+                            <div class="form-group"><label>특징 2</label><input type="text" class="form-control" id="torr-f2-title"><input type="text" class="form-control" id="torr-f2-desc" style="margin-top:0.5rem"></div>
+                            <div class="form-group"><label>특징 3</label><input type="text" class="form-control" id="torr-f3-title"><input type="text" class="form-control" id="torr-f3-desc" style="margin-top:0.5rem"></div>
+                            <div class="form-group"><label>특징 4</label><input type="text" class="form-control" id="torr-f4-title"><input type="text" class="form-control" id="torr-f4-desc" style="margin-top:0.5rem"></div>
                         </div>
-                        <div class="image-input-group">
-                            <label class="image-input-label">이미지 URL</label>
-                            <input type="text" class="image-input" id="input-about" placeholder="https://example.com/image.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>효과 (Benefits)</h3></div>
+                    <div class="card-body">
+                        <div class="form-group"><label>효과 목록 (줄바꿈으로 구분)</label><textarea class="form-control" id="torr-benefits" rows="5"></textarea></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>제품 사양</h3><button class="btn btn-sm" onclick="addSpec('torr')">+ 추가</button></div>
+                    <div class="card-body" id="torr-specs"></div>
+                </div>
+            </div>
+
+            <!-- ================== UL BLANC ================== -->
+            <div class="page-content" id="page-product-ulblanc">
+                <div class="card">
+                    <div class="card-header"><h3>UL BLANC 기본 정보</h3></div>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group"><label>제품명</label><input type="text" class="form-control" id="ulblanc-name"></div>
+                            <div class="form-group"><label>태그라인</label><input type="text" class="form-control" id="ulblanc-tagline"></div>
                         </div>
-                        <div class="image-card-actions">
-                            <button class="btn btn-primary" onclick="saveImage('about')">적용</button>
-                            <button class="btn btn-danger" onclick="resetImage('about')">초기화</button>
+                        <div class="form-group"><label>제품 설명</label><textarea class="form-control" id="ulblanc-description" rows="4"></textarea></div>
+                        <div class="form-group"><label>제품 이미지 URL</label><input type="text" class="form-control" id="ulblanc-image"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>주요 특징 (4개)</h3></div>
+                    <div class="card-body">
+                        <div class="form-row cols-4">
+                            <div class="form-group"><label>특징 1</label><input type="text" class="form-control" id="ulblanc-f1-title"><input type="text" class="form-control" id="ulblanc-f1-desc" style="margin-top:0.5rem"></div>
+                            <div class="form-group"><label>특징 2</label><input type="text" class="form-control" id="ulblanc-f2-title"><input type="text" class="form-control" id="ulblanc-f2-desc" style="margin-top:0.5rem"></div>
+                            <div class="form-group"><label>특징 3</label><input type="text" class="form-control" id="ulblanc-f3-title"><input type="text" class="form-control" id="ulblanc-f3-desc" style="margin-top:0.5rem"></div>
+                            <div class="form-group"><label>특징 4</label><input type="text" class="form-control" id="ulblanc-f4-title"><input type="text" class="form-control" id="ulblanc-f4-desc" style="margin-top:0.5rem"></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Gallery Tab -->
-        <div class="tab-content" id="tab-gallery">
-            <div class="bulk-actions">
-                <div class="bulk-actions-info">
-                    <span>갤러리 이미지 5개</span>
-                </div>
-                <div>
-                    <button class="btn btn-secondary" onclick="saveAllGallery()">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
-                            <polyline points="17 21 17 13 7 13 7 21"/>
-                            <polyline points="7 3 7 8 15 8"/>
-                        </svg>
-                        전체 적용
-                    </button>
-                    <button class="btn btn-danger" onclick="resetAllGallery()">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="1 4 1 10 7 10"/>
-                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
-                        </svg>
-                        전체 초기화
-                    </button>
+            <!-- ================== NEWCHAE ================== -->
+            <div class="page-content" id="page-product-newchae">
+                <div class="card">
+                    <div class="card-header"><h3>NEWCHAE 기본 정보</h3></div>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group"><label>제품명</label><input type="text" class="form-control" id="newchae-name"></div>
+                            <div class="form-group"><label>태그라인</label><input type="text" class="form-control" id="newchae-tagline"></div>
+                        </div>
+                        <div class="form-group"><label>제품 설명</label><textarea class="form-control" id="newchae-description" rows="4"></textarea></div>
+                        <div class="form-group"><label>제품 이미지 URL</label><input type="text" class="form-control" id="newchae-image"></div>
+                    </div>
                 </div>
             </div>
-            
-            <div class="image-grid">
-                <div class="image-card">
-                    <div class="image-preview">
-                        <img src="" alt="Gallery 1" id="preview-gallery1">
+
+            <!-- ================== NEWS ================== -->
+            <div class="page-content" id="page-community-news">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>뉴스 관리</h3>
+                        <button class="btn btn-primary btn-sm" onclick="addNews()">+ 뉴스 추가</button>
                     </div>
-                    <div class="image-card-content">
-                        <div class="image-card-header">
-                            <h3 class="image-card-title">갤러리 1</h3>
-                            <span class="image-card-badge">Main</span>
+                    <div class="card-body" id="newsContainer"></div>
+                </div>
+            </div>
+
+            <!-- ================== IMAGES ================== -->
+            <div class="page-content" id="page-settings-images">
+                <div class="card">
+                    <div class="card-header"><h3>전체 이미지 관리</h3></div>
+                    <div class="card-body">
+                        <p style="color: var(--gray-400); margin-bottom: 1.5rem;">이미지 URL을 입력하면 사이트 전체에 반영됩니다.</p>
+                        <div class="form-row">
+                            <div class="form-group"><label>Hero 배경</label><input type="text" class="form-control" id="img-hero"></div>
+                            <div class="form-group"><label>회사 이미지</label><input type="text" class="form-control" id="img-company"></div>
                         </div>
-                        <div class="image-input-group">
-                            <label class="image-input-label">이미지 URL</label>
-                            <input type="text" class="image-input" id="input-gallery1" placeholder="https://example.com/image.jpg">
+                        <div class="form-row">
+                            <div class="form-group"><label>TORR RF</label><input type="text" class="form-control" id="img-torr"></div>
+                            <div class="form-group"><label>UL BLANC</label><input type="text" class="form-control" id="img-ulblanc"></div>
                         </div>
-                        <div class="image-card-actions">
-                            <button class="btn btn-primary" onclick="saveImage('gallery1')">적용</button>
-                            <button class="btn btn-danger" onclick="resetImage('gallery1')">초기화</button>
+                        <div class="form-row">
+                            <div class="form-group"><label>NEWCHAE</label><input type="text" class="form-control" id="img-newchae"></div>
+                            <div class="form-group"><label>연구소</label><input type="text" class="form-control" id="img-lab"></div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="image-card">
-                    <div class="image-preview">
-                        <img src="" alt="Gallery 2" id="preview-gallery2">
-                    </div>
-                    <div class="image-card-content">
-                        <div class="image-card-header">
-                            <h3 class="image-card-title">갤러리 2</h3>
-                            <span class="image-card-badge">800 x 800</span>
-                        </div>
-                        <div class="image-input-group">
-                            <label class="image-input-label">이미지 URL</label>
-                            <input type="text" class="image-input" id="input-gallery2" placeholder="https://example.com/image.jpg">
-                        </div>
-                        <div class="image-card-actions">
-                            <button class="btn btn-primary" onclick="saveImage('gallery2')">적용</button>
-                            <button class="btn btn-danger" onclick="resetImage('gallery2')">초기화</button>
+            <!-- ================== FORMS / FOOTER ================== -->
+            <div class="page-content" id="page-settings-forms">
+                <div class="card">
+                    <div class="card-header"><h3>Google Sheets 연동</h3></div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Google Apps Script URL</label>
+                            <input type="text" class="form-control" id="google-sheets-url">
+                            <p class="form-help">Contact Form 데이터를 자동 저장합니다</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="image-card">
-                    <div class="image-preview">
-                        <img src="" alt="Gallery 3" id="preview-gallery3">
-                    </div>
-                    <div class="image-card-content">
-                        <div class="image-card-header">
-                            <h3 class="image-card-title">갤러리 3</h3>
-                            <span class="image-card-badge">800 x 800</span>
+                <div class="card">
+                    <div class="card-header"><h3>Footer 정보</h3></div>
+                    <div class="card-body">
+                        <div class="form-group"><label>회사 설명</label><textarea class="form-control" id="footer-description" rows="2"></textarea></div>
+                        <div class="form-row">
+                            <div class="form-group"><label>대표자</label><input type="text" class="form-control" id="footer-ceo"></div>
+                            <div class="form-group"><label>사업자등록번호</label><input type="text" class="form-control" id="footer-biznum"></div>
                         </div>
-                        <div class="image-input-group">
-                            <label class="image-input-label">이미지 URL</label>
-                            <input type="text" class="image-input" id="input-gallery3" placeholder="https://example.com/image.jpg">
+                        <div class="form-row">
+                            <div class="form-group"><label>Instagram URL</label><input type="text" class="form-control" id="footer-instagram"></div>
+                            <div class="form-group"><label>YouTube URL</label><input type="text" class="form-control" id="footer-youtube"></div>
                         </div>
-                        <div class="image-card-actions">
-                            <button class="btn btn-primary" onclick="saveImage('gallery3')">적용</button>
-                            <button class="btn btn-danger" onclick="resetImage('gallery3')">초기화</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="image-card">
-                    <div class="image-preview">
-                        <img src="" alt="Gallery 4" id="preview-gallery4">
-                    </div>
-                    <div class="image-card-content">
-                        <div class="image-card-header">
-                            <h3 class="image-card-title">갤러리 4</h3>
-                            <span class="image-card-badge">800 x 800</span>
-                        </div>
-                        <div class="image-input-group">
-                            <label class="image-input-label">이미지 URL</label>
-                            <input type="text" class="image-input" id="input-gallery4" placeholder="https://example.com/image.jpg">
-                        </div>
-                        <div class="image-card-actions">
-                            <button class="btn btn-primary" onclick="saveImage('gallery4')">적용</button>
-                            <button class="btn btn-danger" onclick="resetImage('gallery4')">초기화</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="image-card">
-                    <div class="image-preview">
-                        <img src="" alt="Gallery 5" id="preview-gallery5">
-                    </div>
-                    <div class="image-card-content">
-                        <div class="image-card-header">
-                            <h3 class="image-card-title">갤러리 5</h3>
-                            <span class="image-card-badge">800 x 800</span>
-                        </div>
-                        <div class="image-input-group">
-                            <label class="image-input-label">이미지 URL</label>
-                            <input type="text" class="image-input" id="input-gallery5" placeholder="https://example.com/image.jpg">
-                        </div>
-                        <div class="image-card-actions">
-                            <button class="btn btn-primary" onclick="saveImage('gallery5')">적용</button>
-                            <button class="btn btn-danger" onclick="resetImage('gallery5')">초기화</button>
-                        </div>
+                        <div class="form-group"><label>카카오톡 채널 URL</label><input type="text" class="form-control" id="footer-kakao"></div>
                     </div>
                 </div>
             </div>
@@ -796,170 +813,238 @@
 
     <!-- Toast -->
     <div class="toast" id="toast">
-        <div class="toast-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                <polyline points="22 4 12 14.01 9 11.01"/>
-            </svg>
-        </div>
-        <span class="toast-message" id="toastMessage">저장되었습니다.</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span id="toast-message">저장되었습니다</span>
     </div>
 
     <script>
-        // Default images
-        const defaultImages = {
-            hero: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1920&q=80',
-            product1: 'https://images.unsplash.com/photo-1559757175-7cb04bc9c7f5?w=800&q=80',
-            product2: 'https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=800&q=80',
-            product3: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&q=80',
-            about: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=800&q=80',
-            gallery1: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80',
-            gallery2: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80',
-            gallery3: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=800&q=80',
-            gallery4: 'https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=800&q=80',
-            gallery5: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80'
+        const STORAGE_KEY = 'britzmedi_cms';
+        
+        // Default data
+        const defaultData = {
+            home: {
+                hero: { subtitle: 'Aesthetic Medical Device Excellence', title: '피부 미용의 *글로벌 리더* 기업', description: '브리츠메디는 신제품개발과 R&D 분야의 경쟁력을 키워 피부 미용분야의 미래를 이끌어갑니다.', image: '', ctaText: '회사 소개', ctaLink: '/company/intro.html' },
+                products: { label: 'Our Products', title: '혁신적인 *제품* 라인업', items: [
+                    { label: 'Medical Device', name: 'TORR RF', desc: '최신 고주파(RF) 기술을 적용한 프리미엄 에스테틱 의료기기' },
+                    { label: 'Medical Device', name: 'UL BLANC', desc: '피부 톤 개선과 미백 효과에 특화된 혁신적인 의료기기' },
+                    { label: 'Medical Cosmetic', name: 'NEWCHAE', desc: '피부과 전문의와 함께 개발한 프리미엄 스킨케어' }
+                ]},
+                stats: [{ number: '2017', label: '설립 연도' }, { number: '500+', label: '파트너 병원' }, { number: 'KFDA', label: '인증 획득' }, { number: 'Global', label: '해외 진출' }],
+                about: { label: 'About BRITZMEDI', title: '건강하고 아름다운 삶, *브리츠메디*가 함께합니다', desc1: '브리츠메디는 2017년 설립 이래 피부 미용 분야의 글로벌 리더로 성장해왔습니다.', desc2: '피부미용의 글로벌 개척 정신으로 여러분의 파트너가 되겠습니다.', btnText: '더 알아보기', btnLink: '/company/intro.html' }
+            },
+            company: {
+                intro: { heroLabel: 'Company', heroTitle: '회사*소개*', contentLabel: 'About Us', contentTitle: '피부 미용의 *글로벌 리더*', contentDesc1: '브리츠메디는 2017년 설립 이래 피부 미용 분야의 글로벌 리더로 성장해왔습니다.', contentDesc2: '신제품개발과 R&D 분야의 경쟁력을 키워 피부 미용분야의 미래를 이끌어갑니다.' },
+                values: [{ title: '혁신', desc: '끊임없는 R&D 투자와 기술 혁신' }, { title: '신뢰', desc: '철저한 품질관리와 고객 지원' }, { title: '글로벌', desc: '피부 미용의 새로운 지평' }],
+                history: [{ year: '2023', title: '글로벌 시장 진출 확대', desc: '해외 파트너십 체결' }, { year: '2022', title: 'TORR RF 출시', desc: '차세대 고주파 의료기기' }, { year: '2017', title: '브리츠메디 설립', desc: '경기도 화성시에 본사 설립' }],
+                ceo: { name: '김정락', position: '대표이사 / CEO', image: '', quote: '건강하고 아름다운 삶, *브리츠메디*가 함께합니다', message: '안녕하십니까, 브리츠메디 대표이사 김정락입니다.\n\n브리츠메디는 2017년 설립 이래 피부미용 의료기기분야의 연구개발, 생산, 품질관리, 고객지원까지 끝까지 책임지는 기업이라는 비전 아래 끊임없이 혁신해왔습니다.\n\n감사합니다.' },
+                contact: { address: '경기도 화성시 기산로87번길 2, 1층', tel: '070-4348-7244', fax: '031-267-0407', hours: '평일 AM 9:00 - PM 6:00', closed: '주말 및 공휴일 휴무', map: '' }
+            },
+            products: {
+                torr: { name: 'TORR RF', tagline: '차세대 고주파 리프팅 솔루션', description: 'TORR RF는 최신 고주파(RF) 기술을 적용한 프리미엄 에스테틱 의료기기입니다.', image: '', features: [{ title: '고출력 RF', desc: '강력한 고주파 에너지' }, { title: '안전 시스템', desc: '다중 안전장치 탑재' }, { title: '터치스크린', desc: '직관적인 UI' }, { title: 'KFDA 인증', desc: '안전성 검증 완료' }], benefits: '피부 탄력 개선 및 리프팅\n콜라겐 재생 촉진\n주름 개선', specs: [{ label: 'RF 주파수', value: '1MHz / 2MHz' }, { label: '출력', value: '최대 50W' }] },
+                ulblanc: { name: 'UL BLANC', tagline: '프리미엄 미백 솔루션', description: 'UL BLANC은 피부 톤 개선과 미백 효과에 특화된 혁신적인 의료기기입니다.', image: '', features: [{ title: '', desc: '' }, { title: '', desc: '' }, { title: '', desc: '' }, { title: '', desc: '' }] },
+                newchae: { name: 'NEWCHAE', tagline: '프로페셔널 메디컬 코스메틱', description: 'NEWCHAE는 피부과 전문의와 함께 개발한 프리미엄 메디컬 코스메틱 라인입니다.', image: '' }
+            },
+            news: [{ date: '2023-12-06', title: '리프팅 효과, 회복기간 모두를 고려한 리프팅 시술 방법은?' }, { date: '2023-11-15', title: '브리츠메디, 글로벌 시장 진출 가속화' }],
+            settings: {
+                googleSheetsUrl: '',
+                footer: { description: '피부 미용 분야의 글로벌 리더', ceo: '김정락', biznum: '682-87-00782', instagram: '', youtube: '', kakao: '' },
+                images: { hero: '', company: '', torr: '', ulblanc: '', newchae: '', lab: '' }
+            }
         };
 
-        // Load saved images
-        function loadImages() {
-            const savedImages = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
-            
-            Object.keys(defaultImages).forEach(key => {
-                const preview = document.getElementById(`preview-${key}`);
-                const input = document.getElementById(`input-${key}`);
-                const imageUrl = savedImages[key] || defaultImages[key];
-                
-                if (preview) preview.src = imageUrl;
-                if (input) input.value = savedImages[key] || '';
-            });
-        }
+        let data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || JSON.parse(JSON.stringify(defaultData));
 
-        // Save single image
-        function saveImage(key) {
-            const input = document.getElementById(`input-${key}`);
-            const preview = document.getElementById(`preview-${key}`);
-            const url = input.value.trim();
-            
-            const savedImages = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
-            
-            if (url) {
-                savedImages[key] = url;
-                preview.src = url;
-            } else {
-                delete savedImages[key];
-                preview.src = defaultImages[key];
-            }
-            
-            localStorage.setItem('britzmedi_images', JSON.stringify(savedImages));
-            showToast('이미지가 저장되었습니다.', 'success');
-        }
-
-        // Reset single image
-        function resetImage(key) {
-            const input = document.getElementById(`input-${key}`);
-            const preview = document.getElementById(`preview-${key}`);
-            
-            const savedImages = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
-            delete savedImages[key];
-            localStorage.setItem('britzmedi_images', JSON.stringify(savedImages));
-            
-            input.value = '';
-            preview.src = defaultImages[key];
-            showToast('기본 이미지로 초기화되었습니다.', 'success');
-        }
-
-        // Save all gallery images
-        function saveAllGallery() {
-            for (let i = 1; i <= 5; i++) {
-                const input = document.getElementById(`input-gallery${i}`);
-                if (input.value.trim()) {
-                    saveImageSilent(`gallery${i}`);
-                }
-            }
-            showToast('갤러리 이미지가 모두 저장되었습니다.', 'success');
-        }
-
-        // Reset all gallery images
-        function resetAllGallery() {
-            for (let i = 1; i <= 5; i++) {
-                resetImageSilent(`gallery${i}`);
-            }
-            showToast('갤러리 이미지가 모두 초기화되었습니다.', 'success');
-        }
-
-        // Silent save (no toast)
-        function saveImageSilent(key) {
-            const input = document.getElementById(`input-${key}`);
-            const preview = document.getElementById(`preview-${key}`);
-            const url = input.value.trim();
-            
-            const savedImages = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
-            
-            if (url) {
-                savedImages[key] = url;
-                preview.src = url;
-            }
-            
-            localStorage.setItem('britzmedi_images', JSON.stringify(savedImages));
-        }
-
-        // Silent reset (no toast)
-        function resetImageSilent(key) {
-            const input = document.getElementById(`input-${key}`);
-            const preview = document.getElementById(`preview-${key}`);
-            
-            const savedImages = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
-            delete savedImages[key];
-            localStorage.setItem('britzmedi_images', JSON.stringify(savedImages));
-            
-            input.value = '';
-            preview.src = defaultImages[key];
-        }
-
-        // Show toast notification
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toastMessage');
-            
-            toast.className = `toast ${type}`;
-            toastMessage.textContent = message;
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-
-        // Tab switching
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active from all tabs
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
-                // Add active to clicked tab
-                btn.classList.add('active');
-                document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+        // Navigation
+        document.querySelectorAll('.nav-item[data-page]').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                item.classList.add('active');
+                document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+                document.getElementById(`page-${item.dataset.page}`).classList.add('active');
+                document.getElementById('pageTitle').textContent = item.textContent.trim() + ' 관리';
             });
         });
 
-        // Live preview on input
-        document.querySelectorAll('.image-input').forEach(input => {
-            input.addEventListener('input', (e) => {
-                const key = e.target.id.replace('input-', '');
-                const preview = document.getElementById(`preview-${key}`);
-                const url = e.target.value.trim();
-                
-                if (url) {
-                    preview.src = url;
-                } else {
-                    preview.src = defaultImages[key];
-                }
+        // Tabs
+        document.querySelectorAll('.tabs').forEach(container => {
+            container.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const parent = tab.closest('.page-content');
+                    parent.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    parent.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    tab.classList.add('active');
+                    parent.querySelector(`#tab-${tab.dataset.tab}`).classList.add('active');
+                });
             });
         });
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', loadImages);
+        // Helpers
+        const $ = id => document.getElementById(id);
+        const val = (id, v) => { const el = $(id); if (el) { if (v !== undefined) el.value = v; else return el.value; } return ''; };
+
+        // Populate forms
+        function populate() {
+            // Home
+            val('home-hero-subtitle', data.home.hero.subtitle);
+            val('home-hero-title', data.home.hero.title);
+            val('home-hero-description', data.home.hero.description);
+            val('home-hero-image', data.home.hero.image);
+            val('home-hero-cta-text', data.home.hero.ctaText);
+            val('home-hero-cta-link', data.home.hero.ctaLink);
+            val('home-products-label', data.home.products.label);
+            val('home-products-title', data.home.products.title);
+            data.home.products.items.forEach((p, i) => { val(`home-product${i+1}-label`, p.label); val(`home-product${i+1}-name`, p.name); val(`home-product${i+1}-desc`, p.desc); });
+            data.home.stats.forEach((s, i) => { val(`home-stat${i+1}-number`, s.number); val(`home-stat${i+1}-label`, s.label); });
+            val('home-about-label', data.home.about.label);
+            val('home-about-title', data.home.about.title);
+            val('home-about-desc1', data.home.about.desc1);
+            val('home-about-desc2', data.home.about.desc2);
+            val('home-about-btn-text', data.home.about.btnText);
+            val('home-about-btn-link', data.home.about.btnLink);
+            // Company
+            val('intro-hero-label', data.company.intro.heroLabel);
+            val('intro-hero-title', data.company.intro.heroTitle);
+            val('intro-content-label', data.company.intro.contentLabel);
+            val('intro-content-title', data.company.intro.contentTitle);
+            val('intro-content-desc1', data.company.intro.contentDesc1);
+            val('intro-content-desc2', data.company.intro.contentDesc2);
+            data.company.values.forEach((v, i) => { val(`value${i+1}-title`, v.title); val(`value${i+1}-desc`, v.desc); });
+            renderHistory();
+            val('ceo-name', data.company.ceo.name);
+            val('ceo-position', data.company.ceo.position);
+            val('ceo-image', data.company.ceo.image);
+            val('ceo-quote', data.company.ceo.quote);
+            val('ceo-message', data.company.ceo.message);
+            val('contact-address', data.company.contact.address);
+            val('contact-tel', data.company.contact.tel);
+            val('contact-fax', data.company.contact.fax);
+            val('contact-hours', data.company.contact.hours);
+            val('contact-closed', data.company.contact.closed);
+            val('contact-map', data.company.contact.map);
+            // Products
+            val('torr-name', data.products.torr.name);
+            val('torr-tagline', data.products.torr.tagline);
+            val('torr-description', data.products.torr.description);
+            val('torr-image', data.products.torr.image);
+            data.products.torr.features.forEach((f, i) => { val(`torr-f${i+1}-title`, f.title); val(`torr-f${i+1}-desc`, f.desc); });
+            val('torr-benefits', data.products.torr.benefits);
+            renderSpecs('torr');
+            val('ulblanc-name', data.products.ulblanc.name);
+            val('ulblanc-tagline', data.products.ulblanc.tagline);
+            val('ulblanc-description', data.products.ulblanc.description);
+            val('ulblanc-image', data.products.ulblanc.image);
+            data.products.ulblanc.features.forEach((f, i) => { val(`ulblanc-f${i+1}-title`, f.title); val(`ulblanc-f${i+1}-desc`, f.desc); });
+            val('newchae-name', data.products.newchae.name);
+            val('newchae-tagline', data.products.newchae.tagline);
+            val('newchae-description', data.products.newchae.description);
+            val('newchae-image', data.products.newchae.image);
+            renderNews();
+            // Settings
+            val('google-sheets-url', data.settings.googleSheetsUrl);
+            val('footer-description', data.settings.footer.description);
+            val('footer-ceo', data.settings.footer.ceo);
+            val('footer-biznum', data.settings.footer.biznum);
+            val('footer-instagram', data.settings.footer.instagram);
+            val('footer-youtube', data.settings.footer.youtube);
+            val('footer-kakao', data.settings.footer.kakao);
+            val('img-hero', data.settings.images.hero);
+            val('img-company', data.settings.images.company);
+            val('img-torr', data.settings.images.torr);
+            val('img-ulblanc', data.settings.images.ulblanc);
+            val('img-newchae', data.settings.images.newchae);
+            val('img-lab', data.settings.images.lab);
+        }
+
+        // History
+        function renderHistory() {
+            const c = $('historyContainer');
+            if (!c) return;
+            c.innerHTML = data.company.history.map((h, i) => `
+                <div class="timeline-item-edit">
+                    <input type="text" class="form-control" id="history-${i}-year" value="${h.year}" placeholder="연도">
+                    <input type="text" class="form-control" id="history-${i}-title" value="${h.title}" placeholder="제목">
+                    <input type="text" class="form-control" id="history-${i}-desc" value="${h.desc}" placeholder="설명">
+                    <button class="btn btn-danger btn-sm" onclick="removeHistory(${i})">삭제</button>
+                </div>
+            `).join('');
+        }
+        window.addHistory = () => { data.company.history.unshift({ year: '', title: '', desc: '' }); renderHistory(); markUnsaved(); };
+        window.removeHistory = i => { data.company.history.splice(i, 1); renderHistory(); markUnsaved(); };
+
+        // Specs
+        function renderSpecs(p) {
+            const c = $(`${p}-specs`);
+            if (!c) return;
+            const specs = data.products[p].specs || [];
+            c.innerHTML = specs.map((s, i) => `
+                <div class="spec-row">
+                    <input type="text" class="form-control" id="${p}-spec-${i}-label" value="${s.label}" placeholder="항목">
+                    <input type="text" class="form-control" id="${p}-spec-${i}-value" value="${s.value}" placeholder="값">
+                    <button class="btn btn-danger btn-sm" onclick="removeSpec('${p}',${i})">삭제</button>
+                </div>
+            `).join('');
+        }
+        window.addSpec = p => { if (!data.products[p].specs) data.products[p].specs = []; data.products[p].specs.push({ label: '', value: '' }); renderSpecs(p); markUnsaved(); };
+        window.removeSpec = (p, i) => { data.products[p].specs.splice(i, 1); renderSpecs(p); markUnsaved(); };
+
+        // News
+        function renderNews() {
+            const c = $('newsContainer');
+            if (!c) return;
+            c.innerHTML = data.news.length ? data.news.map((n, i) => `
+                <div class="news-item-edit">
+                    <input type="date" class="form-control" id="news-${i}-date" value="${n.date}">
+                    <input type="text" class="form-control" id="news-${i}-title" value="${n.title}" placeholder="뉴스 제목">
+                    <button class="btn btn-danger btn-sm" onclick="removeNews(${i})">삭제</button>
+                </div>
+            `).join('') : '<p style="color:var(--gray-500)">등록된 뉴스가 없습니다.</p>';
+        }
+        window.addNews = () => { data.news.unshift({ date: new Date().toISOString().split('T')[0], title: '' }); renderNews(); markUnsaved(); };
+        window.removeNews = i => { data.news.splice(i, 1); renderNews(); markUnsaved(); };
+
+        // Collect & Save
+        function collect() {
+            data.home.hero = { subtitle: val('home-hero-subtitle'), title: val('home-hero-title'), description: val('home-hero-description'), image: val('home-hero-image'), ctaText: val('home-hero-cta-text'), ctaLink: val('home-hero-cta-link') };
+            data.home.products.label = val('home-products-label');
+            data.home.products.title = val('home-products-title');
+            for (let i = 0; i < 3; i++) data.home.products.items[i] = { label: val(`home-product${i+1}-label`), name: val(`home-product${i+1}-name`), desc: val(`home-product${i+1}-desc`) };
+            for (let i = 0; i < 4; i++) data.home.stats[i] = { number: val(`home-stat${i+1}-number`), label: val(`home-stat${i+1}-label`) };
+            data.home.about = { label: val('home-about-label'), title: val('home-about-title'), desc1: val('home-about-desc1'), desc2: val('home-about-desc2'), btnText: val('home-about-btn-text'), btnLink: val('home-about-btn-link') };
+            data.company.intro = { heroLabel: val('intro-hero-label'), heroTitle: val('intro-hero-title'), contentLabel: val('intro-content-label'), contentTitle: val('intro-content-title'), contentDesc1: val('intro-content-desc1'), contentDesc2: val('intro-content-desc2') };
+            for (let i = 0; i < 3; i++) data.company.values[i] = { title: val(`value${i+1}-title`), desc: val(`value${i+1}-desc`) };
+            data.company.history = data.company.history.map((h, i) => ({ year: val(`history-${i}-year`) || h.year, title: val(`history-${i}-title`) || h.title, desc: val(`history-${i}-desc`) || h.desc }));
+            data.company.ceo = { name: val('ceo-name'), position: val('ceo-position'), image: val('ceo-image'), quote: val('ceo-quote'), message: val('ceo-message') };
+            data.company.contact = { address: val('contact-address'), tel: val('contact-tel'), fax: val('contact-fax'), hours: val('contact-hours'), closed: val('contact-closed'), map: val('contact-map') };
+            data.products.torr.name = val('torr-name'); data.products.torr.tagline = val('torr-tagline'); data.products.torr.description = val('torr-description'); data.products.torr.image = val('torr-image'); data.products.torr.benefits = val('torr-benefits');
+            for (let i = 0; i < 4; i++) data.products.torr.features[i] = { title: val(`torr-f${i+1}-title`), desc: val(`torr-f${i+1}-desc`) };
+            data.products.torr.specs = (data.products.torr.specs || []).map((s, i) => ({ label: val(`torr-spec-${i}-label`) || s.label, value: val(`torr-spec-${i}-value`) || s.value }));
+            data.products.ulblanc.name = val('ulblanc-name'); data.products.ulblanc.tagline = val('ulblanc-tagline'); data.products.ulblanc.description = val('ulblanc-description'); data.products.ulblanc.image = val('ulblanc-image');
+            for (let i = 0; i < 4; i++) data.products.ulblanc.features[i] = { title: val(`ulblanc-f${i+1}-title`), desc: val(`ulblanc-f${i+1}-desc`) };
+            data.products.newchae.name = val('newchae-name'); data.products.newchae.tagline = val('newchae-tagline'); data.products.newchae.description = val('newchae-description'); data.products.newchae.image = val('newchae-image');
+            data.news = data.news.map((n, i) => ({ date: val(`news-${i}-date`) || n.date, title: val(`news-${i}-title`) || n.title }));
+            data.settings.googleSheetsUrl = val('google-sheets-url');
+            data.settings.footer = { description: val('footer-description'), ceo: val('footer-ceo'), biznum: val('footer-biznum'), instagram: val('footer-instagram'), youtube: val('footer-youtube'), kakao: val('footer-kakao') };
+            data.settings.images = { hero: val('img-hero'), company: val('img-company'), torr: val('img-torr'), ulblanc: val('img-ulblanc'), newchae: val('img-newchae'), lab: val('img-lab') };
+        }
+
+        window.saveAllData = () => {
+            collect();
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            localStorage.setItem('britzmedi_images', JSON.stringify(data.settings.images));
+            showToast('저장되었습니다!');
+            markSaved();
+        };
+
+        // Status
+        function markUnsaved() { const s = $('saveStatus'); s.className = 'status unsaved'; s.innerHTML = '<span class="status-dot"></span> 저장 안됨'; }
+        function markSaved() { const s = $('saveStatus'); s.className = 'status'; s.innerHTML = '<span class="status-dot"></span> 저장됨'; }
+        document.addEventListener('input', e => { if (e.target.classList.contains('form-control') || e.target.classList.contains('stat-number') || e.target.classList.contains('stat-label')) markUnsaved(); });
+
+        // Toast
+        function showToast(msg) { const t = $('toast'); $('toast-message').textContent = msg; t.classList.add('show', 'success'); setTimeout(() => t.classList.remove('show'), 3000); }
+
+        // Init
+        populate();
     </script>
 </body>
 </html>

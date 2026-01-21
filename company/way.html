@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>브리츠 WAY | BRITZMEDI</title>
+    <meta name="description" content="브리츠메디의 경영철학과 핵심가치를 소개합니다.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <style>
+        .way-hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+        .way-hero h2 {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+        .way-hero h2 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+        .way-hero p {
+            color: var(--gray-400);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        .way-values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+        .way-value {
+            padding: 4rem 3rem;
+            border: 1px solid var(--gray-800);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .way-value:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--gold);
+        }
+        .way-value-number {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.3;
+            margin-bottom: 1rem;
+        }
+        .way-value h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .way-value p {
+            color: var(--gray-400);
+            line-height: 1.8;
+        }
+        @media (max-width: 1024px) {
+            .way-values { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader" id="loader"><div class="loader-content"><div class="loader-logo">BRITZMEDI</div><div class="loader-bar"></div></div></div>
+
+    <header id="header">
+        <a href="/" class="logo">BRITZMEDI</a>
+        <nav>
+            <div class="nav-item"><a href="/company/intro.html" class="nav-link active">기업소개</a><div class="dropdown"><a href="/company/intro.html">회사소개</a><a href="/company/ceo.html">CEO 인사말</a><a href="/company/way.html">브리츠 WAY</a><a href="/company/cibi.html">CI / BI</a><a href="/company/tech.html">연구소</a><a href="/company/contact.html">오시는 길</a></div></div>
+            <div class="nav-item"><a href="/medical/torr.html" class="nav-link">메디컬</a><div class="dropdown"><a href="/medical/torr.html">토르 RF</a><a href="/medical/ulblanc.html">울블랑</a></div></div>
+            <div class="nav-item"><a href="/cosmetic/newchae.html" class="nav-link">코스메틱</a></div>
+            <div class="nav-item"><a href="/community/news.html" class="nav-link">커뮤니티</a></div>
+            <div class="nav-item"><a href="/cs/inquery.html" class="nav-link">고객지원</a></div>
+        </nav>
+        <div class="header-actions"><a href="/en/" class="lang-switch">EN</a><div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div></div>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+        <div class="mobile-nav-item"><a href="/company/intro.html" class="mobile-nav-link">기업소개</a></div>
+        <div class="mobile-nav-item"><a href="/medical/torr.html" class="mobile-nav-link">메디컬</a></div>
+        <div class="mobile-nav-item"><a href="/cosmetic/newchae.html" class="mobile-nav-link">코스메틱</a></div>
+        <div class="mobile-nav-item"><a href="/community/news.html" class="mobile-nav-link">커뮤니티</a></div>
+        <div class="mobile-nav-item"><a href="/cs/inquery.html" class="mobile-nav-link">고객지원</a></div>
+    </div>
+
+    <section class="page-hero">
+        <div class="page-hero-bg"><div class="page-hero-overlay"></div></div>
+        <div class="page-hero-content">
+            <p class="page-hero-label">Philosophy</p>
+            <h1 class="page-hero-title">브리츠 <em>WAY</em></h1>
+        </div>
+        <div class="breadcrumb"><a href="/">Home</a><span>›</span><a href="/company/intro.html">기업소개</a><span>›</span><span>브리츠 WAY</span></div>
+    </section>
+
+    <section class="bg-dark">
+        <div class="container">
+            <div class="way-hero reveal">
+                <p class="section-label">Our Philosophy</p>
+                <h2>"지속가능한 일상의<br><em>아름다움</em>을 개척합니다"</h2>
+                <p>브리츠메디는 피부미용 의료기기분야의 연구개발, 생산, 품질관리, 고객지원까지 끝까지 책임지는 기업입니다. 신뢰와 혁신을 바탕으로 피부 미용의 새로운 기준을 제시합니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-darker" style="padding: 0;">
+        <div class="way-values reveal">
+            <div class="way-value">
+                <div class="way-value-number">01</div>
+                <h3>Innovation</h3>
+                <p>끊임없는 R&D 투자와 기술 혁신으로 피부 미용 분야의 미래를 선도합니다. 새로운 가능성에 도전하며 혁신적인 제품을 개발합니다.</p>
+            </div>
+            <div class="way-value">
+                <div class="way-value-number">02</div>
+                <h3>Trust</h3>
+                <p>철저한 품질관리와 고객 지원으로 파트너들과 깊은 신뢰 관계를 구축합니다. 약속을 지키는 기업, 브리츠메디입니다.</p>
+            </div>
+            <div class="way-value">
+                <div class="way-value-number">03</div>
+                <h3>Global</h3>
+                <p>국내를 넘어 글로벌 시장에서 피부 미용의 새로운 지평을 열어갑니다. 세계인의 아름다움에 기여합니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-dark">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-label">Mission & Vision</p>
+                <h2 class="section-title">미션 & <em>비전</em></h2>
+            </div>
+            <div class="content-grid reveal">
+                <div class="content-text">
+                    <h2><em>Mission</em></h2>
+                    <p>피부미용 의료기기분야의 연구개발, 생산, 품질관리, 고객지원까지 끝까지 책임지는 기업</p>
+                    <ul>
+                        <li>최고 품질의 의료기기 개발 및 공급</li>
+                        <li>고객 중심의 서비스 제공</li>
+                        <li>지속적인 기술 혁신</li>
+                    </ul>
+                </div>
+                <div class="content-text">
+                    <h2><em>Vision</em></h2>
+                    <p>피부 미용 분야의 글로벌 리더로서 지속가능한 일상의 아름다움을 개척</p>
+                    <ul>
+                        <li>글로벌 시장 점유율 확대</li>
+                        <li>혁신적인 제품 라인업 구축</li>
+                        <li>신뢰받는 파트너십 구축</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand"><a href="/" class="logo">BRITZMEDI</a><p>피부 미용 분야의 글로벌 리더</p></div>
+            <div class="footer-links"><h5>Products</h5><ul><li><a href="/medical/torr.html">TORR RF</a></li><li><a href="/medical/ulblanc.html">UL BLANC</a></li><li><a href="/cosmetic/newchae.html">NEWCHAE</a></li></ul></div>
+            <div class="footer-links"><h5>Company</h5><ul><li><a href="/company/intro.html">회사소개</a></li><li><a href="/company/ceo.html">CEO 인사말</a></li></ul></div>
+            <div class="footer-links"><h5>Support</h5><ul><li><a href="/cs/inquery.html">상담신청</a></li><li><a href="/cs/partnership.html">제휴문의</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>© 2024 BRITZMEDI. All rights reserved.</p><div class="footer-legal"><a href="#">개인정보처리방침</a><a href="#">이용약관</a></div></div>
+    </footer>
+
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>
