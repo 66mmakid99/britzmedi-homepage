@@ -311,22 +311,53 @@ nav {
     border-bottom: 1px solid var(--gray-800);
 }
 .mobile-nav-link {
-    display: block;
-    padding: 1rem 0;
-    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 0;
+    font-size: 1.1rem;
+    font-weight: 500;
     color: var(--white);
     text-decoration: none;
+    cursor: pointer;
+}
+.mobile-nav-link svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+    color: var(--gray-500);
+}
+.mobile-nav-item.open .mobile-nav-link svg {
+    transform: rotate(180deg);
+    color: var(--gold);
+}
+.mobile-nav-item.open .mobile-nav-link {
+    color: var(--gold);
 }
 .mobile-dropdown {
+    max-height: 0;
+    overflow: hidden;
     padding-left: 1rem;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+.mobile-nav-item.open .mobile-dropdown {
+    max-height: 500px;
     padding-bottom: 1rem;
 }
 .mobile-dropdown a {
     display: block;
-    padding: 0.5rem 0;
-    font-size: 0.9rem;
+    padding: 0.75rem 0;
+    font-size: 0.95rem;
     color: var(--gray-400);
     text-decoration: none;
+    border-left: 2px solid var(--gray-800);
+    padding-left: 1rem;
+    transition: all 0.2s ease;
+}
+.mobile-dropdown a:hover,
+.mobile-dropdown a.active {
+    color: var(--gold);
+    border-left-color: var(--gold);
 }
 
 /* ============================================
@@ -452,6 +483,16 @@ section {
 .container {
     max-width: 1400px;
     margin: 0 auto;
+    padding: 0 4rem;
+}
+
+/* Section Spacing */
+section {
+    padding: 6rem 0;
+}
+section.bg-dark,
+section.bg-darker {
+    padding: 6rem 4rem;
 }
 
 /* Background variants */
@@ -1093,6 +1134,13 @@ footer {
    Responsive
    ============================================ */
 @media (max-width: 1200px) {
+    .container {
+        padding: 0 3rem;
+    }
+    section.bg-dark,
+    section.bg-darker {
+        padding: 5rem 3rem;
+    }
     .card-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1105,6 +1153,13 @@ footer {
 }
 
 @media (max-width: 1024px) {
+    .container {
+        padding: 0 2rem;
+    }
+    section.bg-dark,
+    section.bg-darker {
+        padding: 4rem 2rem;
+    }
     header {
         padding: 1rem 2rem;
     }
@@ -1144,6 +1199,13 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+    section.bg-dark,
+    section.bg-darker {
+        padding: 3rem 1.5rem;
+    }
     .card-grid {
         grid-template-columns: 1fr;
     }
@@ -1175,6 +1237,13 @@ footer {
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+    section.bg-dark,
+    section.bg-darker {
+        padding: 2.5rem 1rem;
+    }
     .page-hero-title {
         font-size: 2rem;
     }

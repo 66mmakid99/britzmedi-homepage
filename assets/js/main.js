@@ -306,9 +306,30 @@ if (menuToggle) menuToggle.addEventListener('click', toggleMobileMenu);
 if (mobileOverlay) mobileOverlay.addEventListener('click', toggleMobileMenu);
 if (mobileClose) mobileClose.addEventListener('click', toggleMobileMenu);
 
-// Close mobile menu on link click
+// Mobile Dropdown Toggle
 if (mobileMenu) {
-    mobileMenu.querySelectorAll('a').forEach(link => {
+    const mobileNavItems = mobileMenu.querySelectorAll('.mobile-nav-item');
+    mobileNavItems.forEach(item => {
+        const link = item.querySelector('.mobile-nav-link');
+        const dropdown = item.querySelector('.mobile-dropdown');
+        
+        if (link && dropdown) {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                // 다른 열린 메뉴 닫기
+                mobileNavItems.forEach(other => {
+                    if (other !== item && other.classList.contains('open')) {
+                        other.classList.remove('open');
+                    }
+                });
+                // 현재 메뉴 토글
+                item.classList.toggle('open');
+            });
+        }
+    });
+    
+    // Close mobile menu on sub-link click
+    mobileMenu.querySelectorAll('.mobile-dropdown a').forEach(link => {
         link.addEventListener('click', () => {
             if (mobileMenu.classList.contains('active')) {
                 toggleMobileMenu();
