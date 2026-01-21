@@ -446,25 +446,25 @@ nav {
    Section Styles
    ============================================ */
 section {
-    padding: 4rem 3rem;
+    padding: 3rem 2.5rem;
     position: relative;
 }
 
 .section-header {
     text-align: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
 }
 .section-label {
     font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.4em;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 .section-title {
     font-family: var(--font-main);
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
     font-weight: 300;
     line-height: 1.3;
 }
@@ -474,25 +474,25 @@ section {
 }
 .section-description {
     max-width: 600px;
-    margin: 1.5rem auto 0;
+    margin: 1rem auto 0;
     color: var(--gray-400);
-    font-size: 1rem;
-    line-height: 1.8;
+    font-size: 0.95rem;
+    line-height: 1.75;
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 3rem;
+    padding: 0 2.5rem;
 }
 
 /* Section Spacing */
 section {
-    padding: 4rem 0;
+    padding: 3rem 0;
 }
 section.bg-dark,
 section.bg-darker {
-    padding: 4rem 3rem;
+    padding: 3rem 2.5rem;
 }
 
 /* Background variants */
@@ -509,7 +509,7 @@ section.bg-darker {
 .content-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 3rem;
     align-items: center;
 }
 .content-grid.reverse {
@@ -530,8 +530,8 @@ section.bg-darker {
 .content-image::before {
     content: '';
     position: absolute;
-    top: -20px;
-    left: -20px;
+    top: -15px;
+    left: -15px;
     width: 100%;
     height: 100%;
     border: 1px solid var(--gold);
@@ -540,9 +540,9 @@ section.bg-darker {
 
 .content-text h2 {
     font-family: var(--font-main);
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: 300;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     line-height: 1.3;
 }
 .content-text h2 em {
@@ -551,13 +551,13 @@ section.bg-darker {
 }
 .content-text p {
     color: var(--gray-400);
-    font-size: 1rem;
-    line-height: 2;
-    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
 }
 .content-text ul {
     list-style: none;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 .content-text ul li {
     position: relative;
@@ -768,7 +768,7 @@ table tr:hover td {
    ============================================ */
 .timeline {
     position: relative;
-    padding-left: 3rem;
+    padding-left: 2.5rem;
 }
 .timeline::before {
     content: '';
@@ -781,32 +781,32 @@ table tr:hover td {
 }
 .timeline-item {
     position: relative;
-    padding-bottom: 3rem;
+    padding-bottom: 2rem;
 }
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: -3rem;
+    left: -2.5rem;
     top: 0.5rem;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background: var(--gold);
     transform: translateX(-50%);
 }
 .timeline-year {
     font-family: var(--font-main);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: var(--gold);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.35rem;
 }
 .timeline-content h4 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 500;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.35rem;
 }
 .timeline-content p {
     color: var(--gray-400);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 /* ============================================
@@ -815,51 +815,51 @@ table tr:hover td {
 .product-hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 3rem;
     align-items: center;
-    padding: 4rem;
+    padding: 3rem;
     background: var(--bg-secondary);
 }
 .product-hero-image img {
     width: 100%;
-    max-width: 500px;
+    max-width: 450px;
 }
 .product-hero-content h1 {
     font-family: var(--font-main);
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: 300;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 .product-hero-content h1 em {
     color: var(--gold);
     font-style: normal;
 }
 .product-hero-content .tagline {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     color: var(--gold);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 .product-hero-content p {
     color: var(--gray-400);
-    line-height: 1.8;
-    margin-bottom: 2rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
 }
 
 .product-features {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    gap: 1.5rem;
 }
 .product-feature {
     text-align: center;
-    padding: 2rem;
+    padding: 1.5rem;
     background: var(--bg-tertiary);
     border: 1px solid var(--gray-800);
 }
 .product-feature-icon {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto 1.5rem;
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 1rem;
     background: var(--bg-secondary);
     border: 1px solid var(--gold);
     border-radius: 50%;
@@ -868,16 +868,16 @@ table tr:hover td {
     justify-content: center;
 }
 .product-feature-icon svg {
-    width: 32px;
-    height: 32px;
+    width: 26px;
+    height: 26px;
     color: var(--gold);
 }
 .product-feature h4 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    margin-bottom: 0.35rem;
 }
 .product-feature p {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--gray-500);
 }
 
@@ -971,17 +971,17 @@ table tr:hover td {
 .contact-info-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 .contact-info-item {
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 0.75rem;
 }
 .contact-info-icon {
-    width: 50px;
-    height: 50px;
+    width: 44px;
+    height: 44px;
     background: var(--bg-tertiary);
     border: 1px solid var(--gray-700);
     display: flex;
@@ -990,17 +990,17 @@ table tr:hover td {
     flex-shrink: 0;
 }
 .contact-info-icon svg {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     color: var(--gold);
 }
 .contact-info-content h4 {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.2rem;
 }
 .contact-info-content p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--gray-400);
 }
 
@@ -1009,14 +1009,14 @@ table tr:hover td {
    ============================================ */
 footer {
     background: var(--bg-primary);
-    padding: 5rem 4rem 2rem;
+    padding: 4rem 3rem 1.5rem;
     border-top: 1px solid var(--gray-800);
 }
 
 .footer-top {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 4rem;
+    gap: 3rem;
     max-width: 1400px;
     margin: 0 auto 4rem;
 }
@@ -1135,11 +1135,11 @@ footer {
    ============================================ */
 @media (max-width: 1200px) {
     .container {
-        padding: 0 2.5rem;
+        padding: 0 2rem;
     }
     section.bg-dark,
     section.bg-darker {
-        padding: 3.5rem 2.5rem;
+        padding: 2.5rem 2rem;
     }
     .card-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1154,17 +1154,17 @@ footer {
 
 @media (max-width: 1024px) {
     .container {
-        padding: 0 2rem;
+        padding: 0 1.5rem;
     }
     section.bg-dark,
     section.bg-darker {
-        padding: 3rem 2rem;
+        padding: 2.5rem 1.5rem;
     }
     header {
-        padding: 1rem 2rem;
+        padding: 1rem 1.5rem;
     }
     header.scrolled {
-        padding: 1rem 2rem;
+        padding: 1rem 1.5rem;
     }
     nav {
         display: none;
@@ -1200,11 +1200,11 @@ footer {
 
 @media (max-width: 768px) {
     .container {
-        padding: 0 1.25rem;
+        padding: 0 1rem;
     }
     section.bg-dark,
     section.bg-darker {
-        padding: 2.5rem 1.25rem;
+        padding: 2rem 1rem;
     }
     .card-grid {
         grid-template-columns: 1fr;
@@ -1223,19 +1223,19 @@ footer {
     }
     .footer-top {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1.25rem;
     }
     .footer-bottom {
         flex-direction: column;
-        gap: 0.75rem;
+        gap: 0.5rem;
         text-align: center;
     }
     .page-hero {
-        height: 30vh;
-        min-height: 220px;
+        height: 28vh;
+        min-height: 200px;
     }
     .section-header {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
 }
 
@@ -1257,4 +1257,200 @@ footer {
         height: 25vh;
         min-height: 180px;
     }
+}
+
+/* ============================================
+   Light Mode - 전체 사이트 적용
+   ============================================ */
+body.light-mode {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f8f8;
+    --bg-tertiary: #f0f0f0;
+    --bg-card: #ffffff;
+    --white: #1a1a1a;
+    --gray-100: #1a1a1a;
+    --gray-200: #333333;
+    --gray-300: #444444;
+    --gray-400: #555555;
+    --gray-500: #666666;
+    --gray-600: #888888;
+    --gray-700: #cccccc;
+    --gray-800: #e0e0e0;
+}
+
+body.light-mode header {
+    background: rgba(255,255,255,0.95);
+    border-bottom: 1px solid #e0e0e0;
+}
+
+body.light-mode .logo {
+    color: #1a1a1a;
+}
+
+body.light-mode .nav-link {
+    color: #1a1a1a;
+}
+
+body.light-mode .nav-link:hover {
+    color: var(--gold);
+}
+
+body.light-mode .dropdown {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+}
+
+body.light-mode .dropdown a {
+    color: #1a1a1a;
+}
+
+body.light-mode .dropdown a:hover {
+    background: #f5f5f5;
+    color: var(--gold);
+}
+
+body.light-mode .hero-bg-overlay,
+body.light-mode .page-hero-overlay {
+    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.85) 100%);
+}
+
+body.light-mode .hero-title,
+body.light-mode .hero-subtitle,
+body.light-mode .hero-description,
+body.light-mode .page-hero-title,
+body.light-mode .section-title,
+body.light-mode .section-label {
+    color: #1a1a1a;
+}
+
+body.light-mode .section-title em,
+body.light-mode .page-hero-title em {
+    color: var(--gold);
+}
+
+body.light-mode .btn {
+    border-color: #1a1a1a;
+    color: #1a1a1a;
+}
+
+body.light-mode .btn:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #1a1a1a;
+}
+
+body.light-mode .product-card,
+body.light-mode .news-card,
+body.light-mode .card {
+    background: #ffffff;
+    border-color: #e0e0e0;
+}
+
+body.light-mode .product-card-title,
+body.light-mode .news-card-title a,
+body.light-mode .card-title {
+    color: #1a1a1a;
+}
+
+body.light-mode .product-card-desc,
+body.light-mode .news-card-excerpt {
+    color: #555555;
+}
+
+body.light-mode .product-card-image {
+    background: linear-gradient(135deg, #f8f8f8 0%, #eeeeee 100%);
+}
+
+body.light-mode .stat-number,
+body.light-mode .stat-label {
+    color: #1a1a1a;
+}
+
+body.light-mode .footer {
+    background: #1a1a1a;
+    color: #ffffff;
+}
+
+body.light-mode .footer a {
+    color: #ffffff;
+}
+
+body.light-mode .mobile-menu {
+    background: #ffffff;
+}
+
+body.light-mode .mobile-nav-link {
+    color: #1a1a1a;
+}
+
+body.light-mode .mobile-dropdown a {
+    color: #555555;
+}
+
+body.light-mode .content-text,
+body.light-mode .content-text p,
+body.light-mode .content-text h2,
+body.light-mode .content-text h3 {
+    color: #1a1a1a;
+}
+
+body.light-mode .timeline-content h4 {
+    color: #1a1a1a;
+}
+
+body.light-mode .timeline-content p {
+    color: #555555;
+}
+
+body.light-mode .feature-item {
+    background: #f8f8f8;
+    border-color: #e0e0e0;
+}
+
+body.light-mode .feature-item h4 {
+    color: #1a1a1a;
+}
+
+body.light-mode .feature-item p {
+    color: #555555;
+}
+
+body.light-mode .specs-table th,
+body.light-mode .specs-table td {
+    border-color: #e0e0e0;
+    color: #1a1a1a;
+}
+
+body.light-mode .specs-table th {
+    background: #f5f5f5;
+}
+
+body.light-mode input,
+body.light-mode textarea,
+body.light-mode select {
+    background: #ffffff;
+    border-color: #e0e0e0;
+    color: #1a1a1a;
+}
+
+body.light-mode .breadcrumb a,
+body.light-mode .breadcrumb span {
+    color: #555555;
+}
+
+body.light-mode .lang-switch {
+    border-color: #1a1a1a;
+    color: #1a1a1a;
+}
+
+body.light-mode .menu-toggle span {
+    background: #1a1a1a;
+}
+
+body.light-mode .loader {
+    background: #ffffff;
+}
+
+body.light-mode .loader-logo {
+    color: #1a1a1a;
 }
