@@ -1437,46 +1437,55 @@
 
         // Google Apps Script 코드 복사
         function showGoogleScriptCode() {
-            const scriptCode = `// Google Apps Script - BRITZMEDI 폼 연동
-// 이 코드를 Google Sheets의 Apps Script에 붙여넣으세요.
-
-function doPost(e) {
-  try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    var data = JSON.parse(e.postData.contents);
-    
-    // 헤더가 없으면 생성
-    if (sheet.getLastRow() === 0) {
-      var headers = ['타임스탬프', '폼 유형', '이름', '회사/병원', '연락처', '이메일', '관심제품/유형', '문의내용'];
-      sheet.appendRow(headers);
-    }
-    
-    // 데이터 추가
-    var row = [
-      data.timestamp || new Date().toLocaleString('ko-KR'),
-      data.formType || '',
-      data.name || '',
-      data.company || '',
-      data.phone || '',
-      data.email || '',
-      data.product || data.partnership_type || '',
-      data.message || data.inquiry || ''
-    ];
-    
-    sheet.appendRow(row);
-    
-    return ContentService.createTextOutput(JSON.stringify({result: 'success'}))
-      .setMimeType(ContentService.MimeType.JSON);
-      
-  } catch(error) {
-    return ContentService.createTextOutput(JSON.stringify({result: 'error', error: error.toString()}))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-}
-
-function doGet(e) {
-  return ContentService.createTextOutput('BRITZMEDI Form Handler is running.');
-}`;
+            const scriptCode = '// Google Apps Script - BRITZMEDI 폼 연동\n' +
+'// 이 코드를 Google Sheets의 Apps Script에 붙여넣으세요.\n' +
+'// 배포: 배포 > 새 배포 > 웹 앱 > 액세스 권한 "모든 사용자"\n\n' +
+'function doPost(e) {\n' +
+'  try {\n' +
+'    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();\n' +
+'    var data;\n\n' +
+'    // POST 데이터 파싱 (다양한 Content-Type 지원)\n' +
+'    if (e.postData && e.postData.contents) {\n' +
+'      try {\n' +
+'        data = JSON.parse(e.postData.contents);\n' +
+'      } catch(parseError) {\n' +
+'        // JSON 파싱 실패 시 URL 인코딩된 데이터로 처리\n' +
+'        data = e.parameter || {};\n' +
+'      }\n' +
+'    } else {\n' +
+'      data = e.parameter || {};\n' +
+'    }\n\n' +
+'    // 헤더가 없으면 생성\n' +
+'    if (sheet.getLastRow() === 0) {\n' +
+'      var headers = ["타임스탬프", "폼유형", "이름", "회사/병원", "연락처", "이메일", "관심제품/유형", "활동지역", "문의내용", "페이지"];\n' +
+'      sheet.appendRow(headers);\n' +
+'    }\n\n' +
+'    // 데이터 추가\n' +
+'    var row = [\n' +
+'      data.timestamp || new Date().toLocaleString("ko-KR"),\n' +
+'      data.formType || "",\n' +
+'      data.name || "",\n' +
+'      data.company || "",\n' +
+'      data.phone || "",\n' +
+'      data.email || "",\n' +
+'      data.product || data.partnership_type || "",\n' +
+'      data.region || "",\n' +
+'      data.message || data.inquiry || "",\n' +
+'      data.page || ""\n' +
+'    ];\n\n' +
+'    sheet.appendRow(row);\n\n' +
+'    return ContentService.createTextOutput(JSON.stringify({result: "success"}))\n' +
+'      .setMimeType(ContentService.MimeType.JSON);\n\n' +
+'  } catch(error) {\n' +
+'    // 에러 로깅\n' +
+'    console.error("BRITZMEDI Form Error:", error);\n' +
+'    return ContentService.createTextOutput(JSON.stringify({result: "error", error: error.toString()}))\n' +
+'      .setMimeType(ContentService.MimeType.JSON);\n' +
+'  }\n' +
+'}\n\n' +
+'function doGet(e) {\n' +
+'  return ContentService.createTextOutput("BRITZMEDI Form Handler is running. Use POST to submit data.");\n' +
+'}';
 
             // 클립보드에 복사
             navigator.clipboard.writeText(scriptCode).then(() => {

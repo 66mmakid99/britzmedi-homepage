@@ -424,23 +424,30 @@ function initContactForm() {
 
             // Google Sheets URL 동적으로 가져오기
             const googleSheetsUrl = getGoogleSheetsUrl();
-            
+
             if (googleSheetsUrl && googleSheetsUrl.length > 10) {
                 try {
-                    await fetch(googleSheetsUrl, {
+                    // Google Apps Script로 폼 데이터 전송
+                    // no-cors 모드에서는 JSON body가 제대로 전달되지 않으므로
+                    // URL 파라미터 방식 또는 FormData 사용
+                    const response = await fetch(googleSheetsUrl, {
                         method: 'POST',
                         mode: 'no-cors',
                         headers: {
-                            'Content-Type': 'application/json',
+                            'Content-Type': 'text/plain',
                         },
                         body: JSON.stringify(data)
                     });
-                    
+
+                    // no-cors 모드에서는 response를 읽을 수 없지만,
+                    // 에러가 발생하지 않으면 전송은 완료된 것으로 간주
                     showFormMessage(form, 'success', '문의가 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
                     form.reset();
+
+                    console.log('📤 폼 데이터 전송 완료:', data);
                 } catch (error) {
                     console.error('Form submission error:', error);
-                    showFormMessage(form, 'error', '전송에 실패했습니다. 다시 시도해주세요.');
+                    showFormMessage(form, 'error', '전송에 실패했습니다. 잠시 후 다시 시도해주세요.');
                 }
             } else {
                 // Google Sheets URL이 설정되지 않은 경우
