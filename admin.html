@@ -900,12 +900,27 @@
             <!-- ================== FORMS / FOOTER ================== -->
             <div class="page-content" id="page-settings-forms">
                 <div class="card">
-                    <div class="card-header"><h3>Google Sheets 연동</h3></div>
+                    <div class="card-header"><h3>📊 Google Sheets 연동</h3></div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label>Google Apps Script URL</label>
-                            <input type="text" class="form-control" id="google-sheets-url">
-                            <p class="form-help">Contact Form 데이터를 자동 저장합니다</p>
+                            <label>Google Apps Script 웹 앱 URL</label>
+                            <input type="text" class="form-control" id="google-sheets-url" placeholder="https://script.google.com/macros/s/xxxxxxx/exec">
+                            <p class="form-help">상담신청, 제휴문의 폼 데이터가 Google Sheets에 자동 저장됩니다.</p>
+                        </div>
+                        <div style="background: var(--bg-tertiary); padding: 1.25rem; border-radius: 8px; margin-top: 1rem; border-left: 3px solid var(--gold);">
+                            <h4 style="font-size: 0.9rem; margin-bottom: 0.75rem; color: var(--gold);">📋 설정 방법</h4>
+                            <ol style="font-size: 0.85rem; color: var(--gray-400); padding-left: 1.25rem; margin: 0; line-height: 1.8;">
+                                <li>Google Sheets에서 새 스프레드시트 생성</li>
+                                <li>확장 프로그램 → Apps Script 클릭</li>
+                                <li>아래 코드를 붙여넣고 저장</li>
+                                <li>배포 → 새 배포 → 웹 앱 선택</li>
+                                <li>액세스 권한: "모든 사용자"로 설정</li>
+                                <li>생성된 URL을 위 필드에 입력 후 저장</li>
+                            </ol>
+                            <button type="button" class="btn btn-sm" style="margin-top: 1rem;" onclick="showGoogleScriptCode()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                Apps Script 코드 복사
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1418,6 +1433,68 @@
                 text.textContent = '라이트 모드';
                 icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
             }
+        }
+
+        // Google Apps Script 코드 복사
+        function showGoogleScriptCode() {
+            const scriptCode = `// Google Apps Script - BRITZMEDI 폼 연동
+// 이 코드를 Google Sheets의 Apps Script에 붙여넣으세요.
+
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = JSON.parse(e.postData.contents);
+    
+    // 헤더가 없으면 생성
+    if (sheet.getLastRow() === 0) {
+      var headers = ['타임스탬프', '폼 유형', '이름', '회사/병원', '연락처', '이메일', '관심제품/유형', '문의내용'];
+      sheet.appendRow(headers);
+    }
+    
+    // 데이터 추가
+    var row = [
+      data.timestamp || new Date().toLocaleString('ko-KR'),
+      data.formType || '',
+      data.name || '',
+      data.company || '',
+      data.phone || '',
+      data.email || '',
+      data.product || data.partnership_type || '',
+      data.message || data.inquiry || ''
+    ];
+    
+    sheet.appendRow(row);
+    
+    return ContentService.createTextOutput(JSON.stringify({result: 'success'}))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch(error) {
+    return ContentService.createTextOutput(JSON.stringify({result: 'error', error: error.toString()}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function doGet(e) {
+  return ContentService.createTextOutput('BRITZMEDI Form Handler is running.');
+}`;
+
+            // 클립보드에 복사
+            navigator.clipboard.writeText(scriptCode).then(() => {
+                showToast('✅ Apps Script 코드가 클립보드에 복사되었습니다!');
+            }).catch(() => {
+                // 폴백: 텍스트 영역 표시
+                const modal = document.createElement('div');
+                modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:10000;display:flex;align-items:center;justify-content:center;';
+                modal.innerHTML = \`
+                    <div style="background:var(--bg-card);padding:2rem;border-radius:12px;max-width:700px;width:90%;max-height:80vh;overflow:auto;">
+                        <h3 style="margin-bottom:1rem;">📋 Google Apps Script 코드</h3>
+                        <textarea style="width:100%;height:300px;background:var(--bg-tertiary);border:1px solid var(--gray-700);color:var(--white);padding:1rem;font-family:monospace;font-size:0.85rem;border-radius:8px;">\${scriptCode}</textarea>
+                        <p style="margin-top:1rem;font-size:0.85rem;color:var(--gray-400);">위 코드를 전체 선택(Ctrl+A)하여 복사하세요.</p>
+                        <button onclick="this.parentElement.parentElement.remove()" style="margin-top:1rem;" class="btn btn-primary">닫기</button>
+                    </div>
+                \`;
+                document.body.appendChild(modal);
+            });
         }
 
         // Placeholder functions for new pages

@@ -2,8 +2,15 @@
    BRITZMEDI Main JavaScript
    ============================================ */
 
-// Google Sheets Form Submission URL (설정 필요)
-const GOOGLE_SHEETS_URL = ''; // Google Apps Script URL을 여기에 입력
+// Google Sheets URL은 CMS에서 동적으로 가져옴
+function getGoogleSheetsUrl() {
+    try {
+        const cmsData = JSON.parse(localStorage.getItem('britzmedi_cms') || '{}');
+        return cmsData.settings?.googleSheetsUrl || '';
+    } catch (e) {
+        return '';
+    }
+}
 
 // ============================================
 // CMS Data Integration - 어드민 패널 연동
@@ -394,19 +401,33 @@ function initContactForm() {
             e.preventDefault();
             
             const submitBtn = form.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = '전송 중...';
+            const originalHTML = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="loading-spinner"></span> 전송 중...';
             submitBtn.disabled = true;
+            
+            // 로딩 스피너 스타일 추가
+            addFormStyles();
 
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
             data.timestamp = new Date().toLocaleString('ko-KR');
             data.page = window.location.pathname;
+            
+            // 폼 타입 결정
+            if (form.id === 'inquiryForm') {
+                data.formType = '상담신청';
+            } else if (form.id === 'partnershipForm') {
+                data.formType = '제휴문의';
+            } else {
+                data.formType = '홈페이지문의';
+            }
 
-            // Google Sheets로 전송
-            if (GOOGLE_SHEETS_URL) {
+            // Google Sheets URL 동적으로 가져오기
+            const googleSheetsUrl = getGoogleSheetsUrl();
+            
+            if (googleSheetsUrl && googleSheetsUrl.length > 10) {
                 try {
-                    await fetch(GOOGLE_SHEETS_URL, {
+                    await fetch(googleSheetsUrl, {
                         method: 'POST',
                         mode: 'no-cors',
                         headers: {
@@ -415,23 +436,115 @@ function initContactForm() {
                         body: JSON.stringify(data)
                     });
                     
-                    showToast('문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.', 'success');
+                    showFormMessage(form, 'success', '문의가 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
                     form.reset();
                 } catch (error) {
                     console.error('Form submission error:', error);
-                    showToast('전송에 실패했습니다. 다시 시도해주세요.', 'error');
+                    showFormMessage(form, 'error', '전송에 실패했습니다. 다시 시도해주세요.');
                 }
             } else {
                 // Google Sheets URL이 설정되지 않은 경우
-                console.log('Form data:', data);
-                showToast('문의가 접수되었습니다. (테스트 모드)', 'success');
-                form.reset();
+                console.log('📋 폼 데이터 (Google Sheets URL 미설정):', data);
+                showFormMessage(form, 'warning', 'Google Sheets URL이 설정되지 않았습니다. Admin 패널 > 설정 > 폼/Footer에서 설정해주세요.');
             }
 
-            submitBtn.textContent = originalText;
+            submitBtn.innerHTML = originalHTML;
             submitBtn.disabled = false;
         });
     });
+}
+
+// 폼 메시지 표시
+function showFormMessage(form, type, message) {
+    // 기존 메시지 제거
+    const existingMsg = form.parentElement.querySelector('.form-message');
+    if (existingMsg) existingMsg.remove();
+    
+    // 새 메시지 생성
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `form-message form-message-${type}`;
+    
+    const icon = type === 'success' ? '✓' : type === 'error' ? '✕' : '⚠';
+    msgDiv.innerHTML = `
+        <span class="form-message-icon">${icon}</span>
+        <span>${message}</span>
+    `;
+    
+    form.parentElement.appendChild(msgDiv);
+    
+    // 성공 시 5초 후 메시지 자동 제거
+    if (type === 'success') {
+        setTimeout(() => {
+            msgDiv.style.animation = 'formSlideIn 0.3s ease reverse';
+            setTimeout(() => msgDiv.remove(), 300);
+        }, 5000);
+    }
+}
+
+// 폼 관련 스타일 추가
+function addFormStyles() {
+    if (document.querySelector('#form-message-styles')) return;
+    
+    const style = document.createElement('style');
+    style.id = 'form-message-styles';
+    style.textContent = `
+        .form-message {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            animation: formSlideIn 0.3s ease;
+        }
+        @keyframes formSlideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .form-message-success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+        }
+        .form-message-error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+        }
+        .form-message-warning {
+            background: rgba(201, 169, 98, 0.1);
+            border: 1px solid rgba(201, 169, 98, 0.3);
+            color: #c9a962;
+        }
+        .form-message-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .form-message-success .form-message-icon { background: rgba(34, 197, 94, 0.2); }
+        .form-message-error .form-message-icon { background: rgba(239, 68, 68, 0.2); }
+        .form-message-warning .form-message-icon { background: rgba(201, 169, 98, 0.2); }
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: formSpin 0.8s linear infinite;
+            margin-right: 8px;
+        }
+        @keyframes formSpin {
+            to { transform: rotate(360deg); }
+        }
+    `;
+    document.head.appendChild(style);
 }
 
 document.addEventListener('DOMContentLoaded', initContactForm);
