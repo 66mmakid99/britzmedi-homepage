@@ -1485,15 +1485,14 @@ function doGet(e) {
                 // 폴백: 텍스트 영역 표시
                 const modal = document.createElement('div');
                 modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:10000;display:flex;align-items:center;justify-content:center;';
-                modal.innerHTML = \`
-                    <div style="background:var(--bg-card);padding:2rem;border-radius:12px;max-width:700px;width:90%;max-height:80vh;overflow:auto;">
-                        <h3 style="margin-bottom:1rem;">📋 Google Apps Script 코드</h3>
-                        <textarea style="width:100%;height:300px;background:var(--bg-tertiary);border:1px solid var(--gray-700);color:var(--white);padding:1rem;font-family:monospace;font-size:0.85rem;border-radius:8px;">\${scriptCode}</textarea>
-                        <p style="margin-top:1rem;font-size:0.85rem;color:var(--gray-400);">위 코드를 전체 선택(Ctrl+A)하여 복사하세요.</p>
-                        <button onclick="this.parentElement.parentElement.remove()" style="margin-top:1rem;" class="btn btn-primary">닫기</button>
-                    </div>
-                \`;
+                modal.innerHTML = '<div style="background:var(--bg-card);padding:2rem;border-radius:12px;max-width:700px;width:90%;max-height:80vh;overflow:auto;">' +
+                    '<h3 style="margin-bottom:1rem;">📋 Google Apps Script 코드</h3>' +
+                    '<textarea id="scriptCodeArea" style="width:100%;height:300px;background:var(--bg-tertiary);border:1px solid var(--gray-700);color:var(--white);padding:1rem;font-family:monospace;font-size:0.85rem;border-radius:8px;"></textarea>' +
+                    '<p style="margin-top:1rem;font-size:0.85rem;color:var(--gray-400);">위 코드를 전체 선택(Ctrl+A)하여 복사하세요.</p>' +
+                    '<button onclick="this.parentElement.parentElement.remove()" style="margin-top:1rem;" class="btn btn-primary">닫기</button>' +
+                    '</div>';
                 document.body.appendChild(modal);
+                document.getElementById('scriptCodeArea').value = scriptCode;
             });
         }
 
