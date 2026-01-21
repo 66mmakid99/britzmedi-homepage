@@ -543,6 +543,7 @@ const defaultImages = {
 
 function loadDynamicImages() {
     const savedImages = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
+    const savedPositions = JSON.parse(localStorage.getItem('britzmedi_image_positions') || '{}');
     
     document.querySelectorAll('[data-image-key]').forEach(el => {
         const key = el.dataset.imageKey;
@@ -550,14 +551,39 @@ function loadDynamicImages() {
         if (imageUrl) {
             if (el.tagName === 'IMG') {
                 el.src = imageUrl;
+                // 히어로 이미지 위치 적용
+                if (key === 'hero' && savedPositions.hero) {
+                    el.style.objectPosition = savedPositions.hero;
+                }
             } else {
                 el.style.backgroundImage = `url(${imageUrl})`;
             }
         }
     });
+    
+    // 제품 이미지 스케일 적용
+    const savedScales = JSON.parse(localStorage.getItem('britzmedi_image_scales') || '{}');
+    ['torr', 'ulblanc', 'newchae'].forEach(key => {
+        const img = document.querySelector(`[data-image-key="${key}"]`);
+        if (img && savedScales[key]) {
+            img.style.maxWidth = savedScales[key] + '%';
+            img.style.maxHeight = savedScales[key] + '%';
+        }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', loadDynamicImages);
+
+// ============================================
+// Light/Dark Mode Toggle
+// ============================================
+function loadThemeMode() {
+    const savedMode = localStorage.getItem('britzmedi_theme_mode');
+    if (savedMode === 'light') {
+        document.body.classList.add('light-mode');
+    }
+}
+document.addEventListener('DOMContentLoaded', loadThemeMode);
 
 // ============================================
 // Smooth Scroll for Anchor Links

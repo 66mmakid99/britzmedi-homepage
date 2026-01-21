@@ -462,6 +462,10 @@
                     <span class="status-dot"></span>
                     저장됨
                 </span>
+                <button class="btn" onclick="toggleThemeMode()" id="themeModeBtn" title="테마 모드 전환">
+                    <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <span id="themeModeText">라이트 모드</span>
+                </button>
                 <a href="/" target="_blank" class="btn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                     사이트 보기
@@ -817,10 +821,30 @@
                         <p style="color: var(--gray-400); margin-bottom: 1.5rem;">이미지 URL을 입력하면 사이트 전체에 반영됩니다. Unsplash 예시: https://images.unsplash.com/photo-xxx?w=1920&q=80</p>
                         <div class="form-group">
                             <label>🏠 Hero 배경 이미지</label>
-                            <input type="text" class="form-control" id="img-hero" placeholder="https://images.unsplash.com/..." oninput="previewImage(this, 'preview-hero')">
-                            <div id="preview-hero" style="margin-top:10px;height:120px;background:#1a1a1a;border-radius:8px;background-size:cover;background-position:center;"></div>
+                            <input type="text" class="form-control" id="img-hero" placeholder="https://images.unsplash.com/..." oninput="previewHeroImage()">
                         </div>
                         <div class="form-group">
+                            <label>📍 이미지 위치 조절 (세로)</label>
+                            <div style="display:flex;align-items:center;gap:1rem;">
+                                <span style="font-size:0.85rem;color:var(--gray-400);">상단</span>
+                                <input type="range" id="hero-position-y" min="0" max="100" value="30" style="flex:1;accent-color:var(--gold);" oninput="updateHeroPreview()">
+                                <span style="font-size:0.85rem;color:var(--gray-400);">하단</span>
+                                <span id="hero-position-value" style="min-width:50px;text-align:right;font-size:0.9rem;color:var(--gold);">30%</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>📍 이미지 위치 조절 (가로)</label>
+                            <div style="display:flex;align-items:center;gap:1rem;">
+                                <span style="font-size:0.85rem;color:var(--gray-400);">좌측</span>
+                                <input type="range" id="hero-position-x" min="0" max="100" value="50" style="flex:1;accent-color:var(--gold);" oninput="updateHeroPreview()">
+                                <span style="font-size:0.85rem;color:var(--gray-400);">우측</span>
+                                <span id="hero-position-x-value" style="min-width:50px;text-align:right;font-size:0.9rem;color:var(--gold);">50%</span>
+                            </div>
+                        </div>
+                        <div id="preview-hero" style="margin-top:10px;height:200px;background:#1a1a1a;border-radius:8px;background-size:cover;background-position:center 30%;position:relative;overflow:hidden;">
+                            <div style="position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.7);padding:5px 10px;border-radius:4px;font-size:0.8rem;">미리보기</div>
+                        </div>
+                        <div class="form-group" style="margin-top:1.5rem;">
                             <label>🏢 회사소개 이미지</label>
                             <input type="text" class="form-control" id="img-company" placeholder="https://images.unsplash.com/..." oninput="previewImage(this, 'preview-company')">
                             <div id="preview-company" style="margin-top:10px;height:80px;background:#1a1a1a;border-radius:8px;background-size:cover;background-position:center;"></div>
@@ -833,20 +857,35 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label>⚡ TORR RF</label>
-                                <input type="text" class="form-control" id="img-torr" oninput="previewImage(this, 'preview-torr')">
-                                <div id="preview-torr" style="margin-top:10px;height:80px;background:#1a1a1a;border-radius:8px;background-size:contain;background-position:center;background-repeat:no-repeat;"></div>
+                                <input type="text" class="form-control" id="img-torr" oninput="previewProductImage('torr')">
+                                <div style="display:flex;align-items:center;gap:0.5rem;margin-top:8px;">
+                                    <span style="font-size:0.75rem;color:var(--gray-400);">크기</span>
+                                    <input type="range" id="scale-torr" min="50" max="100" value="85" style="flex:1;accent-color:var(--gold);" oninput="previewProductImage('torr')">
+                                    <span id="scale-torr-value" style="font-size:0.8rem;color:var(--gold);min-width:35px;">85%</span>
+                                </div>
+                                <div id="preview-torr" style="margin-top:10px;height:120px;background:#f5f5f5;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;"></div>
                             </div>
                             <div class="form-group">
                                 <label>💡 UL BLANC</label>
-                                <input type="text" class="form-control" id="img-ulblanc" oninput="previewImage(this, 'preview-ulblanc')">
-                                <div id="preview-ulblanc" style="margin-top:10px;height:80px;background:#1a1a1a;border-radius:8px;background-size:contain;background-position:center;background-repeat:no-repeat;"></div>
+                                <input type="text" class="form-control" id="img-ulblanc" oninput="previewProductImage('ulblanc')">
+                                <div style="display:flex;align-items:center;gap:0.5rem;margin-top:8px;">
+                                    <span style="font-size:0.75rem;color:var(--gray-400);">크기</span>
+                                    <input type="range" id="scale-ulblanc" min="50" max="100" value="85" style="flex:1;accent-color:var(--gold);" oninput="previewProductImage('ulblanc')">
+                                    <span id="scale-ulblanc-value" style="font-size:0.8rem;color:var(--gold);min-width:35px;">85%</span>
+                                </div>
+                                <div id="preview-ulblanc" style="margin-top:10px;height:120px;background:#f5f5f5;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;"></div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label>💖 NEWCHAE</label>
-                                <input type="text" class="form-control" id="img-newchae" oninput="previewImage(this, 'preview-newchae')">
-                                <div id="preview-newchae" style="margin-top:10px;height:80px;background:#1a1a1a;border-radius:8px;background-size:contain;background-position:center;background-repeat:no-repeat;"></div>
+                                <input type="text" class="form-control" id="img-newchae" oninput="previewProductImage('newchae')">
+                                <div style="display:flex;align-items:center;gap:0.5rem;margin-top:8px;">
+                                    <span style="font-size:0.75rem;color:var(--gray-400);">크기</span>
+                                    <input type="range" id="scale-newchae" min="50" max="100" value="85" style="flex:1;accent-color:var(--gold);" oninput="previewProductImage('newchae')">
+                                    <span id="scale-newchae-value" style="font-size:0.8rem;color:var(--gold);min-width:35px;">85%</span>
+                                </div>
+                                <div id="preview-newchae" style="margin-top:10px;height:120px;background:#f5f5f5;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;"></div>
                             </div>
                             <div class="form-group">
                                 <label>🔬 연구소</label>
@@ -1239,6 +1278,21 @@
             collect();
             localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
             localStorage.setItem('britzmedi_images', JSON.stringify(data.settings.images));
+            
+            // 히어로 이미지 위치 저장
+            const posX = $('hero-position-x').value || '50';
+            const posY = $('hero-position-y').value || '30';
+            const positions = { hero: `${posX}% ${posY}%` };
+            localStorage.setItem('britzmedi_image_positions', JSON.stringify(positions));
+            
+            // 제품 이미지 스케일 저장
+            const scales = {
+                torr: $('scale-torr').value || '85',
+                ulblanc: $('scale-ulblanc').value || '85',
+                newchae: $('scale-newchae').value || '85'
+            };
+            localStorage.setItem('britzmedi_image_scales', JSON.stringify(scales));
+            
             showToast('저장되었습니다!');
             markSaved();
         };
@@ -1261,9 +1315,36 @@
             }
         }
 
+        // Hero 이미지 미리보기 (위치 포함)
+        function previewHeroImage() {
+            const input = $('img-hero');
+            const preview = $('preview-hero');
+            if (preview && input.value) {
+                preview.style.backgroundImage = `url(${input.value})`;
+            } else if (preview) {
+                preview.style.backgroundImage = 'none';
+            }
+            updateHeroPreview();
+        }
+
+        // Hero 이미지 위치 업데이트
+        function updateHeroPreview() {
+            const posY = $('hero-position-y').value;
+            const posX = $('hero-position-x').value;
+            const preview = $('preview-hero');
+            
+            $('hero-position-value').textContent = posY + '%';
+            $('hero-position-x-value').textContent = posX + '%';
+            
+            if (preview) {
+                preview.style.backgroundPosition = `${posX}% ${posY}%`;
+            }
+            markUnsaved();
+        }
+
         // Load image previews on page load
         function loadImagePreviews() {
-            const imgFields = ['img-hero', 'img-company', 'img-torr', 'img-ulblanc', 'img-newchae', 'img-lab'];
+            const imgFields = ['img-company', 'img-torr', 'img-ulblanc', 'img-newchae', 'img-lab'];
             imgFields.forEach(id => {
                 const input = $(id);
                 const previewId = 'preview-' + id.replace('img-', '');
@@ -1271,6 +1352,72 @@
                     previewImage(input, previewId);
                 }
             });
+            
+            // Hero 이미지 위치 로드
+            const savedPositions = JSON.parse(localStorage.getItem('britzmedi_image_positions') || '{}');
+            if (savedPositions.hero) {
+                const parts = savedPositions.hero.split(' ');
+                const posX = parseInt(parts[0]) || 50;
+                const posY = parseInt(parts[1]) || 30;
+                $('hero-position-x').value = posX;
+                $('hero-position-y').value = posY;
+            }
+            previewHeroImage();
+            
+            // 제품 이미지 스케일 로드
+            const savedScales = JSON.parse(localStorage.getItem('britzmedi_image_scales') || '{}');
+            ['torr', 'ulblanc', 'newchae'].forEach(key => {
+                if (savedScales[key]) {
+                    $('scale-' + key).value = savedScales[key];
+                }
+                previewProductImage(key);
+            });
+        }
+
+        // 제품 이미지 미리보기
+        function previewProductImage(key) {
+            const input = $('img-' + key);
+            const preview = $('preview-' + key);
+            const scaleInput = $('scale-' + key);
+            const scaleValue = $('scale-' + key + '-value');
+            
+            if (scaleInput && scaleValue) {
+                scaleValue.textContent = scaleInput.value + '%';
+            }
+            
+            if (preview) {
+                if (input && input.value) {
+                    const scale = scaleInput ? scaleInput.value : 85;
+                    preview.innerHTML = `<img src="${input.value}" style="max-width:${scale}%;max-height:${scale}%;object-fit:contain;">`;
+                } else {
+                    preview.innerHTML = '<span style="color:#666;font-size:0.8rem;">이미지 URL을 입력하세요</span>';
+                }
+            }
+            markUnsaved();
+        }
+
+        // 테마 모드 전환
+        function toggleThemeMode() {
+            const currentMode = localStorage.getItem('britzmedi_theme_mode');
+            const newMode = currentMode === 'light' ? 'dark' : 'light';
+            localStorage.setItem('britzmedi_theme_mode', newMode);
+            updateThemeModeUI();
+            showToast(newMode === 'light' ? '라이트 모드로 변경됨' : '다크 모드로 변경됨');
+        }
+        
+        function updateThemeModeUI() {
+            const mode = localStorage.getItem('britzmedi_theme_mode') || 'dark';
+            const btn = $('themeModeBtn');
+            const text = $('themeModeText');
+            const icon = $('themeIcon');
+            
+            if (mode === 'light') {
+                text.textContent = '다크 모드';
+                icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+            } else {
+                text.textContent = '라이트 모드';
+                icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+            }
         }
 
         // Placeholder functions for new pages
@@ -1290,6 +1437,7 @@
         // Init
         populate();
         setTimeout(loadImagePreviews, 100);
+        updateThemeModeUI();
     </script>
 </body>
 </html>
