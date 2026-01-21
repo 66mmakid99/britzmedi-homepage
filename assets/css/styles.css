@@ -23,6 +23,12 @@
     --font-main: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
+/* 전역 em 태그 - 이탤릭 제거, 골드 색상만 적용 */
+em {
+    font-style: normal !important;
+    color: var(--gold);
+}
+
 * {
     margin: 0;
     padding: 0;
