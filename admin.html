@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRITZMEDI Admin - 이미지 관리</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
+            --bg-card: #1e1e1e;
+            --gold: #c9a962;
+            --gold-light: #e8d5a3;
+            --gold-dark: #9a7b3a;
+            --white: #ffffff;
+            --gray-100: #f5f5f5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --gray-700: #404040;
+            --gray-800: #262626;
+            --success: #22c55e;
+            --error: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: var(--bg-primary);
+            color: var(--white);
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 260px;
+            height: 100vh;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--gray-800);
+            padding: 2rem;
+            z-index: 100;
+        }
+
+        .sidebar-logo {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        .sidebar-subtitle {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1rem;
+            color: var(--gray-400);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+        .nav-link:hover {
+            background: var(--bg-tertiary);
+            color: var(--white);
+        }
+        .nav-link.active {
+            background: rgba(201, 169, 98, 0.1);
+            color: var(--gold);
+            border: 1px solid rgba(201, 169, 98, 0.2);
+        }
+        .nav-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+        }
+        .sidebar-footer a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s ease;
+        }
+        .sidebar-footer a:hover {
+            color: var(--gold);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            padding: 2rem 3rem;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+        }
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .page-description {
+            color: var(--gray-400);
+            font-size: 0.9rem;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--gray-800);
+            padding-bottom: 1rem;
+        }
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--gray-400);
+            font-family: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        .tab-btn:hover {
+            color: var(--white);
+            background: var(--bg-tertiary);
+        }
+        .tab-btn.active {
+            color: var(--gold);
+            background: rgba(201, 169, 98, 0.1);
+            border-color: rgba(201, 169, 98, 0.3);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .image-card {
+            background: var(--bg-card);
+            border: 1px solid var(--gray-800);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s ease;
+        }
+        .image-card:hover {
+            border-color: var(--gray-700);
+        }
+
+        .image-preview {
+            width: 100%;
+            height: 200px;
+            background: var(--bg-tertiary);
+            position: relative;
+            overflow: hidden;
+        }
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .image-preview-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-600);
+        }
+        .image-preview-placeholder svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 0.5rem;
+        }
+
+        .image-card-content {
+            padding: 1.5rem;
+        }
+
+        .image-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .image-card-title {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        .image-card-badge {
+            font-size: 0.7rem;
+            padding: 0.25rem 0.5rem;
+            background: rgba(201, 169, 98, 0.1);
+            color: var(--gold);
+            border-radius: 4px;
+            letter-spacing: 0.05em;
+        }
+
+        .image-input-group {
+            margin-bottom: 1rem;
+        }
+        .image-input-label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .image-input-wrapper {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .image-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--gray-700);
+            border-radius: 6px;
+            color: var(--white);
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: border-color 0.2s ease;
+        }
+        .image-input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        .image-input::placeholder {
+            color: var(--gray-600);
+        }
+
+        .image-card-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn {
+            padding: 0.625rem 1rem;
+            border: none;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+        .btn svg {
+            width: 16px;
+            height: 16px;
+        }
+        .btn-primary {
+            background: var(--gold);
+            color: var(--bg-primary);
+        }
+        .btn-primary:hover {
+            background: var(--gold-light);
+        }
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--gray-300);
+            border: 1px solid var(--gray-700);
+        }
+        .btn-secondary:hover {
+            background: var(--gray-800);
+            border-color: var(--gray-600);
+        }
+        .btn-danger {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        .btn-danger:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--gray-700);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast.success {
+            border-color: var(--success);
+        }
+        .toast.success .toast-icon {
+            color: var(--success);
+        }
+        .toast.error {
+            border-color: var(--error);
+        }
+        .toast.error .toast-icon {
+            color: var(--error);
+        }
+        .toast-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+        .toast-message {
+            font-size: 0.9rem;
+        }
+
+        /* Instructions */
+        .instructions {
+            background: var(--bg-card);
+            border: 1px solid var(--gray-800);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .instructions h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+        .instructions ul {
+            list-style: none;
+            color: var(--gray-400);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+        .instructions li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .instructions li::before {
+            content: '•';
+            color: var(--gold);
+        }
+
+        /* Bulk Actions */
+        .bulk-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--gray-800);
+            border-radius: 8px;
+        }
+        .bulk-actions-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .bulk-actions-info span {
+            color: var(--gray-400);
+            font-size: 0.9rem;
+        }
+
+        /* Section Divider */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            color: var(--gray-500);
+            font-size: 0.85rem;
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--gray-800);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .main-content {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1.5rem;
+            }
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">BRITZMEDI</div>
+        <div class="sidebar-subtitle">Admin Panel</div>
+        
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#" class="nav-link active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    이미지 관리
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                    </svg>
+                    콘텐츠 관리
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    문의 관리
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                    설정
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <a href="/">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16 17 21 12 16 7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                사이트로 돌아가기
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">이미지 관리</h1>
+            <p class="page-description">웹사이트에 표시되는 이미지를 관리합니다. URL을 입력하면 실시간으로 미리보기가 표시됩니다.</p>
+        </div>
+
+        <div class="instructions">
+            <h3>💡 사용 가이드</h3>
+            <ul>
+                <li>이미지 URL을 입력하고 '적용' 버튼을 클릭하면 웹사이트에 즉시 반영됩니다.</li>
+                <li>Unsplash, Pexels 등의 무료 이미지 사이트 URL을 사용할 수 있습니다.</li>
+                <li>권장 이미지 크기: 히어로 1920x1080, 제품 800x600, 갤러리 800x800</li>
+                <li>'초기화' 버튼을 클릭하면 기본 이미지로 되돌아갑니다.</li>
+            </ul>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="hero">히어로</button>
+            <button class="tab-btn" data-tab="products">제품</button>
+            <button class="tab-btn" data-tab="about">회사소개</button>
+            <button class="tab-btn" data-tab="gallery">갤러리</button>
+        </div>
+
+        <!-- Hero Tab -->
+        <div class="tab-content active" id="tab-hero">
+            <div class="image-grid">
+                <div class="image-card">
+                    <div class="image-preview">
+                        <img src="" alt="Hero Image" id="preview-hero">
+                    </div>
+                    <div class="image-card-content">
+                        <div class="image-card-header">
+                            <h3 class="image-card-title">메인 히어로 이미지</h3>
+                            <span class="image-card-badge">1920 x 1080</span>
+                        </div>
+                        <div class="image-input-group">
+                            <label class="image-input-label">이미지 URL</label>
+                            <input type="text" class="image-input" id="input-hero" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="image-card-actions">
+                            <button class="btn btn-primary" onclick="saveImage('hero')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                                    <polyline points="17 21 17 13 7 13 7 21"/>
+                                    <polyline points="7 3 7 8 15 8"/>
+                                </svg>
+                                적용
+                            </button>
+                            <button class="btn btn-danger" onclick="resetImage('hero')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="1 4 1 10 7 10"/>
+                                    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+                                </svg>
+                                초기화
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Tab -->
+        <div class="tab-content" id="tab-products">
+            <div class="image-grid">
+                <div class="image-card">
+                    <div class="image-preview">
+                        <img src="" alt="Product 1" id="preview-product1">
+                    </div>
+                    <div class="image-card-content">
+                        <div class="image-card-header">
+                            <h3 class="image-card-title">TORR RF</h3>
+                            <span class="image-card-badge">Featured</span>
+                        </div>
+                        <div class="image-input-group">
+                            <label class="image-input-label">이미지 URL</label>
+                            <input type="text" class="image-input" id="input-product1" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="image-card-actions">
+                            <button class="btn btn-primary" onclick="saveImage('product1')">적용</button>
+                            <button class="btn btn-danger" onclick="resetImage('product1')">초기화</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <div class="image-preview">
+                        <img src="" alt="Product 2" id="preview-product2">
+                    </div>
+                    <div class="image-card-content">
+                        <div class="image-card-header">
+                            <h3 class="image-card-title">UL BLANC</h3>
+                            <span class="image-card-badge">800 x 600</span>
+                        </div>
+                        <div class="image-input-group">
+                            <label class="image-input-label">이미지 URL</label>
+                            <input type="text" class="image-input" id="input-product2" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="image-card-actions">
+                            <button class="btn btn-primary" onclick="saveImage('product2')">적용</button>
+                            <button class="btn btn-danger" onclick="resetImage('product2')">초기화</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <div class="image-preview">
+                        <img src="" alt="Product 3" id="preview-product3">
+                    </div>
+                    <div class="image-card-content">
+                        <div class="image-card-header">
+                            <h3 class="image-card-title">NEWCHAE</h3>
+                            <span class="image-card-badge">800 x 600</span>
+                        </div>
+                        <div class="image-input-group">
+                            <label class="image-input-label">이미지 URL</label>
+                            <input type="text" class="image-input" id="input-product3" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="image-card-actions">
+                            <button class="btn btn-primary" onclick="saveImage('product3')">적용</button>
+                            <button class="btn btn-danger" onclick="resetImage('product3')">초기화</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Tab -->
+        <div class="tab-content" id="tab-about">
+            <div class="image-grid">
+                <div class="image-card">
+                    <div class="image-preview">
+                        <img src="" alt="About" id="preview-about">
+                    </div>
+                    <div class="image-card-content">
+                        <div class="image-card-header">
+                            <h3 class="image-card-title">회사 소개 이미지</h3>
+                            <span class="image-card-badge">800 x 600</span>
+                        </div>
+                        <div class="image-input-group">
+                            <label class="image-input-label">이미지 URL</label>
+                            <input type="text" class="image-input" id="input-about" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="image-card-actions">
+                            <button class="btn btn-primary" onclick="saveImage('about')">적용</button>
+                            <button class="btn btn-danger" onclick="resetImage('about')">초기화</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Tab -->
+        <div class="tab-content" id="tab-gallery">
+            <div class="bulk-actions">
+                <div class="bulk-actions-info">
+                    <span>갤러리 이미지 5개</span>
+                </div>
+                <div>
+                    <button class="btn btn-secondary" onclick="saveAllGallery()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                            <polyline points="17 21 17 13 7 13 7 21"/>
+                            <polyline points="7 3 7 8 15 8"/>
+                        </svg>
+                        전체 적용
+                    </button>
+                    <button class="btn btn-danger" onclick="resetAllGallery()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="1 4 1 10 7 10"/>
+                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+                        </svg>
+                        전체 초기화
+                    </button>
+                </div>
+            </div>
+            
+            <div class="image-grid">
+                <div class="image-card">
+                    <div class="image-preview">
+                        <img src="" alt="Gallery 1" id="preview-gallery1">
+                    </div>
+                    <div class="image-card-content">
+                        <div class="image-card-header">
+                            <h3 class="image-card-title">갤러리 1</h3>
+                            <span class="image-card-badge">Main</span>
+                        </div>
+                        <div class="image-input-group">
+                            <label class="image-input-label">이미지 URL</label>
+                            <input type="text" class="image-input" id="input-gallery1" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="image-card-actions">
+                            <button class="btn btn-primary" onclick="saveImage('gallery1')">적용</button>
+                            <button class="btn btn-danger" onclick="resetImage('gallery1')">초기화</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <div class="image-preview">
+                        <img src="" alt="Gallery 2" id="preview-gallery2">
+                    </div>
+                    <div class="image-card-content">
+                        <div class="image-card-header">
+                            <h3 class="image-card-title">갤러리 2</h3>
+                            <span class="image-card-badge">800 x 800</span>
+                        </div>
+                        <div class="image-input-group">
+                            <label class="image-input-label">이미지 URL</label>
+                            <input type="text" class="image-input" id="input-gallery2" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="image-card-actions">
+                            <button class="btn btn-primary" onclick="saveImage('gallery2')">적용</button>
+                            <button class="btn btn-danger" onclick="resetImage('gallery2')">초기화</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <div class="image-preview">
+                        <img src="" alt="Gallery 3" id="preview-gallery3">
+                    </div>
+                    <div class="image-card-content">
+                        <div class="image-card-header">
+                            <h3 class="image-card-title">갤러리 3</h3>
+                            <span class="image-card-badge">800 x 800</span>
+                        </div>
+                        <div class="image-input-group">
+                            <label class="image-input-label">이미지 URL</label>
+                            <input type="text" class="image-input" id="input-gallery3" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="image-card-actions">
+                            <button class="btn btn-primary" onclick="saveImage('gallery3')">적용</button>
+                            <button class="btn btn-danger" onclick="resetImage('gallery3')">초기화</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <div class="image-preview">
+                        <img src="" alt="Gallery 4" id="preview-gallery4">
+                    </div>
+                    <div class="image-card-content">
+                        <div class="image-card-header">
+                            <h3 class="image-card-title">갤러리 4</h3>
+                            <span class="image-card-badge">800 x 800</span>
+                        </div>
+                        <div class="image-input-group">
+                            <label class="image-input-label">이미지 URL</label>
+                            <input type="text" class="image-input" id="input-gallery4" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="image-card-actions">
+                            <button class="btn btn-primary" onclick="saveImage('gallery4')">적용</button>
+                            <button class="btn btn-danger" onclick="resetImage('gallery4')">초기화</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <div class="image-preview">
+                        <img src="" alt="Gallery 5" id="preview-gallery5">
+                    </div>
+                    <div class="image-card-content">
+                        <div class="image-card-header">
+                            <h3 class="image-card-title">갤러리 5</h3>
+                            <span class="image-card-badge">800 x 800</span>
+                        </div>
+                        <div class="image-input-group">
+                            <label class="image-input-label">이미지 URL</label>
+                            <input type="text" class="image-input" id="input-gallery5" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="image-card-actions">
+                            <button class="btn btn-primary" onclick="saveImage('gallery5')">적용</button>
+                            <button class="btn btn-danger" onclick="resetImage('gallery5')">초기화</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <div class="toast-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+        </div>
+        <span class="toast-message" id="toastMessage">저장되었습니다.</span>
+    </div>
+
+    <script>
+        // Default images
+        const defaultImages = {
+            hero: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1920&q=80',
+            product1: 'https://images.unsplash.com/photo-1559757175-7cb04bc9c7f5?w=800&q=80',
+            product2: 'https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=800&q=80',
+            product3: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&q=80',
+            about: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=800&q=80',
+            gallery1: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80',
+            gallery2: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80',
+            gallery3: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=800&q=80',
+            gallery4: 'https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=800&q=80',
+            gallery5: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80'
+        };
+
+        // Load saved images
+        function loadImages() {
+            const savedImages = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
+            
+            Object.keys(defaultImages).forEach(key => {
+                const preview = document.getElementById(`preview-${key}`);
+                const input = document.getElementById(`input-${key}`);
+                const imageUrl = savedImages[key] || defaultImages[key];
+                
+                if (preview) preview.src = imageUrl;
+                if (input) input.value = savedImages[key] || '';
+            });
+        }
+
+        // Save single image
+        function saveImage(key) {
+            const input = document.getElementById(`input-${key}`);
+            const preview = document.getElementById(`preview-${key}`);
+            const url = input.value.trim();
+            
+            const savedImages = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
+            
+            if (url) {
+                savedImages[key] = url;
+                preview.src = url;
+            } else {
+                delete savedImages[key];
+                preview.src = defaultImages[key];
+            }
+            
+            localStorage.setItem('britzmedi_images', JSON.stringify(savedImages));
+            showToast('이미지가 저장되었습니다.', 'success');
+        }
+
+        // Reset single image
+        function resetImage(key) {
+            const input = document.getElementById(`input-${key}`);
+            const preview = document.getElementById(`preview-${key}`);
+            
+            const savedImages = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
+            delete savedImages[key];
+            localStorage.setItem('britzmedi_images', JSON.stringify(savedImages));
+            
+            input.value = '';
+            preview.src = defaultImages[key];
+            showToast('기본 이미지로 초기화되었습니다.', 'success');
+        }
+
+        // Save all gallery images
+        function saveAllGallery() {
+            for (let i = 1; i <= 5; i++) {
+                const input = document.getElementById(`input-gallery${i}`);
+                if (input.value.trim()) {
+                    saveImageSilent(`gallery${i}`);
+                }
+            }
+            showToast('갤러리 이미지가 모두 저장되었습니다.', 'success');
+        }
+
+        // Reset all gallery images
+        function resetAllGallery() {
+            for (let i = 1; i <= 5; i++) {
+                resetImageSilent(`gallery${i}`);
+            }
+            showToast('갤러리 이미지가 모두 초기화되었습니다.', 'success');
+        }
+
+        // Silent save (no toast)
+        function saveImageSilent(key) {
+            const input = document.getElementById(`input-${key}`);
+            const preview = document.getElementById(`preview-${key}`);
+            const url = input.value.trim();
+            
+            const savedImages = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
+            
+            if (url) {
+                savedImages[key] = url;
+                preview.src = url;
+            }
+            
+            localStorage.setItem('britzmedi_images', JSON.stringify(savedImages));
+        }
+
+        // Silent reset (no toast)
+        function resetImageSilent(key) {
+            const input = document.getElementById(`input-${key}`);
+            const preview = document.getElementById(`preview-${key}`);
+            
+            const savedImages = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
+            delete savedImages[key];
+            localStorage.setItem('britzmedi_images', JSON.stringify(savedImages));
+            
+            input.value = '';
+            preview.src = defaultImages[key];
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toast.className = `toast ${type}`;
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active from all tabs
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active to clicked tab
+                btn.classList.add('active');
+                document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+            });
+        });
+
+        // Live preview on input
+        document.querySelectorAll('.image-input').forEach(input => {
+            input.addEventListener('input', (e) => {
+                const key = e.target.id.replace('input-', '');
+                const preview = document.getElementById(`preview-${key}`);
+                const url = e.target.value.trim();
+                
+                if (url) {
+                    preview.src = url;
+                } else {
+                    preview.src = defaultImages[key];
+                }
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadImages);
+    </script>
+</body>
+</html>
