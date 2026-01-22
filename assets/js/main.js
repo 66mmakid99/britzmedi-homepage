@@ -428,26 +428,44 @@ function initContactForm() {
             if (googleSheetsUrl && googleSheetsUrl.length > 10) {
                 try {
                     // Google Apps Script로 폼 데이터 전송
-                    // no-cors 모드에서는 JSON body가 제대로 전달되지 않으므로
-                    // URL 파라미터 방식 또는 FormData 사용
+                    // Google Apps Script Web App은 CORS를 지원함 (배포 시 "모든 사용자" 설정 필요)
                     const response = await fetch(googleSheetsUrl, {
                         method: 'POST',
-                        mode: 'no-cors',
                         headers: {
-                            'Content-Type': 'text/plain',
+                            'Content-Type': 'text/plain;charset=utf-8',
                         },
                         body: JSON.stringify(data)
                     });
 
-                    // no-cors 모드에서는 response를 읽을 수 없지만,
-                    // 에러가 발생하지 않으면 전송은 완료된 것으로 간주
-                    showFormMessage(form, 'success', '문의가 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
-                    form.reset();
-
-                    console.log('📤 폼 데이터 전송 완료:', data);
+                    // 응답 확인
+                    if (response.ok) {
+                        const result = await response.json().catch(() => ({ result: 'success' }));
+                        console.log('📤 폼 데이터 전송 완료:', result);
+                        showFormMessage(form, 'success', '문의가 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
+                        form.reset();
+                    } else {
+                        throw new Error('Server response not OK');
+                    }
                 } catch (error) {
                     console.error('Form submission error:', error);
-                    showFormMessage(form, 'error', '전송에 실패했습니다. 잠시 후 다시 시도해주세요.');
+
+                    // CORS 에러인 경우 no-cors 폴백 시도
+                    try {
+                        await fetch(googleSheetsUrl, {
+                            method: 'POST',
+                            mode: 'no-cors',
+                            headers: {
+                                'Content-Type': 'text/plain;charset=utf-8',
+                            },
+                            body: JSON.stringify(data)
+                        });
+                        console.log('📤 폼 데이터 전송 (no-cors 폴백):', data);
+                        showFormMessage(form, 'success', '문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
+                        form.reset();
+                    } catch (fallbackError) {
+                        console.error('Fallback error:', fallbackError);
+                        showFormMessage(form, 'error', '전송에 실패했습니다. 잠시 후 다시 시도해주세요.');
+                    }
                 }
             } else {
                 // Google Sheets URL이 설정되지 않은 경우
