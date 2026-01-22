@@ -150,6 +150,39 @@
         @media (max-width: 768px) {
             .feature-grid { grid-template-columns: 1fr; }
         }
+        .product-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .gallery-item-display {
+            position: relative;
+            padding-top: 75%;
+            background: var(--bg-card);
+            border: 1px solid var(--gray-800);
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .gallery-item-display:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
+        .gallery-item-display img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @media (max-width: 1024px) {
+            .product-gallery { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .product-gallery { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -249,8 +282,19 @@
         </div>
     </section>
 
+    <!-- 이미지 갤러리 -->
+    <section class="bg-darker product-gallery-section" id="gallerySection" style="display:none;">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-label">Gallery</p>
+                <h2 class="section-title">제품 <em>갤러리</em></h2>
+            </div>
+            <div class="product-gallery reveal" id="productGallery"></div>
+        </div>
+    </section>
+
     <!-- 주요 특징 -->
-    <section class="bg-darker">
+    <section class="bg-dark">
         <div class="container">
             <div class="section-header reveal">
                 <p class="section-label">Key Features</p>
@@ -417,6 +461,20 @@
                     if (ctaDesc && p.cta.description) ctaDesc.textContent = p.cta.description;
                     if (ctaBtn && p.cta.buttonText) ctaBtn.textContent = p.cta.buttonText;
                     if (ctaBtn && p.cta.buttonLink) ctaBtn.href = p.cta.buttonLink;
+                }
+            }
+
+            // Gallery
+            if (p.gallery && p.gallery.length > 0) {
+                var gallerySection = document.getElementById('gallerySection');
+                var galleryContainer = document.getElementById('productGallery');
+                if (gallerySection && galleryContainer) {
+                    gallerySection.style.display = 'block';
+                    galleryContainer.innerHTML = p.gallery.map(function(img) {
+                        return '<div class="gallery-item-display">' +
+                            '<img src="' + img.url + '" alt="TORR RF" style="object-position:' + (img.posX || 50) + '% ' + (img.posY || 50) + '%;transform:scale(' + ((img.scale || 100) / 100) + ');">' +
+                        '</div>';
+                    }).join('');
                 }
             }
         })();

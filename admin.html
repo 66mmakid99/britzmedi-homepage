@@ -793,6 +793,7 @@
                     <button class="tab" data-tab="torr-hero">히어로</button>
                     <button class="tab" data-tab="torr-features">특징</button>
                     <button class="tab" data-tab="torr-specs">사양</button>
+                    <button class="tab" data-tab="torr-gallery">갤러리</button>
                     <button class="tab" data-tab="torr-cta">CTA</button>
                 </div>
                 <div class="tab-content active" id="tab-torr-basic">
@@ -845,6 +846,12 @@
                         <div class="card-body" id="torr-specs"></div>
                     </div>
                 </div>
+                <div class="tab-content" id="tab-torr-gallery">
+                    <div class="card">
+                        <div class="card-header"><h3>이미지 갤러리</h3><button class="btn btn-sm" onclick="addGalleryImage('torr')">+ 이미지 추가</button></div>
+                        <div class="card-body" id="torr-gallery"></div>
+                    </div>
+                </div>
                 <div class="tab-content" id="tab-torr-cta">
                     <div class="card">
                         <div class="card-header"><h3>CTA 섹션</h3></div>
@@ -867,6 +874,7 @@
                     <button class="tab" data-tab="ulblanc-hero">히어로</button>
                     <button class="tab" data-tab="ulblanc-features">특징</button>
                     <button class="tab" data-tab="ulblanc-specs">사양</button>
+                    <button class="tab" data-tab="ulblanc-gallery">갤러리</button>
                     <button class="tab" data-tab="ulblanc-cta">CTA</button>
                 </div>
                 <div class="tab-content active" id="tab-ulblanc-basic">
@@ -919,6 +927,12 @@
                         <div class="card-body" id="ulblanc-specs"></div>
                     </div>
                 </div>
+                <div class="tab-content" id="tab-ulblanc-gallery">
+                    <div class="card">
+                        <div class="card-header"><h3>이미지 갤러리</h3><button class="btn btn-sm" onclick="addGalleryImage('ulblanc')">+ 이미지 추가</button></div>
+                        <div class="card-body" id="ulblanc-gallery"></div>
+                    </div>
+                </div>
                 <div class="tab-content" id="tab-ulblanc-cta">
                     <div class="card">
                         <div class="card-header"><h3>CTA 섹션</h3></div>
@@ -941,6 +955,7 @@
                     <button class="tab" data-tab="newchae-hero">히어로</button>
                     <button class="tab" data-tab="newchae-features">특징</button>
                     <button class="tab" data-tab="newchae-lineup">제품 라인업</button>
+                    <button class="tab" data-tab="newchae-gallery">갤러리</button>
                     <button class="tab" data-tab="newchae-cta">CTA</button>
                 </div>
                 <div class="tab-content active" id="tab-newchae-basic">
@@ -985,6 +1000,12 @@
                     <div class="card">
                         <div class="card-header"><h3>제품 라인업</h3><button class="btn btn-sm" onclick="addProductLineup()">+ 추가</button></div>
                         <div class="card-body" id="newchae-lineup-container"></div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-newchae-gallery">
+                    <div class="card">
+                        <div class="card-header"><h3>이미지 갤러리</h3><button class="btn btn-sm" onclick="addGalleryImage('newchae')">+ 이미지 추가</button></div>
+                        <div class="card-body" id="newchae-gallery"></div>
                     </div>
                 </div>
                 <div class="tab-content" id="tab-newchae-cta">
@@ -1606,6 +1627,7 @@
                     <button class="tab" data-tab="en-torr-hero">Hero</button>
                     <button class="tab" data-tab="en-torr-features">Features</button>
                     <button class="tab" data-tab="en-torr-specs">Specs</button>
+                    <button class="tab" data-tab="en-torr-gallery">Gallery</button>
                     <button class="tab" data-tab="en-torr-cta">CTA</button>
                 </div>
                 <div class="tab-content active" id="tab-en-torr-basic">
@@ -1656,6 +1678,12 @@
                         <div class="card-body" id="en-torr-specs"></div>
                     </div>
                 </div>
+                <div class="tab-content" id="tab-en-torr-gallery">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Image Gallery</h3><button class="btn btn-sm" onclick="addEnGalleryImage('torr')">+ Add Image</button></div>
+                        <div class="card-body" id="en-torr-gallery"></div>
+                    </div>
+                </div>
                 <div class="tab-content" id="tab-en-torr-cta">
                     <div class="card">
                         <div class="card-header"><h3>🌐 CTA Section</h3></div>
@@ -1675,6 +1703,7 @@
                     <button class="tab" data-tab="en-ulblanc-hero">Hero</button>
                     <button class="tab" data-tab="en-ulblanc-features">Features</button>
                     <button class="tab" data-tab="en-ulblanc-specs">Specs</button>
+                    <button class="tab" data-tab="en-ulblanc-gallery">Gallery</button>
                     <button class="tab" data-tab="en-ulblanc-cta">CTA</button>
                 </div>
                 <div class="tab-content active" id="tab-en-ulblanc-basic">
@@ -1725,6 +1754,12 @@
                         <div class="card-body" id="en-ulblanc-specs"></div>
                     </div>
                 </div>
+                <div class="tab-content" id="tab-en-ulblanc-gallery">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Image Gallery</h3><button class="btn btn-sm" onclick="addEnGalleryImage('ulblanc')">+ Add Image</button></div>
+                        <div class="card-body" id="en-ulblanc-gallery"></div>
+                    </div>
+                </div>
                 <div class="tab-content" id="tab-en-ulblanc-cta">
                     <div class="card">
                         <div class="card-header"><h3>🌐 CTA Section</h3></div>
@@ -1744,6 +1779,7 @@
                     <button class="tab" data-tab="en-newchae-hero">Hero</button>
                     <button class="tab" data-tab="en-newchae-features">Features</button>
                     <button class="tab" data-tab="en-newchae-lineup">Product Line</button>
+                    <button class="tab" data-tab="en-newchae-gallery">Gallery</button>
                     <button class="tab" data-tab="en-newchae-cta">CTA</button>
                 </div>
                 <div class="tab-content active" id="tab-en-newchae-basic">
@@ -1786,6 +1822,12 @@
                     <div class="card">
                         <div class="card-header"><h3>🌐 Product Lineup</h3><button class="btn btn-sm" onclick="addEnProductLineup()">+ Add</button></div>
                         <div class="card-body" id="en-newchae-lineup-container"></div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-en-newchae-gallery">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Image Gallery</h3><button class="btn btn-sm" onclick="addEnGalleryImage('newchae')">+ Add Image</button></div>
+                        <div class="card-body" id="en-newchae-gallery"></div>
                     </div>
                 </div>
                 <div class="tab-content" id="tab-en-newchae-cta">
@@ -2063,6 +2105,7 @@
             data.products.torr.features.forEach((f, i) => { val(`torr-f${i+1}-title`, f.title); val(`torr-f${i+1}-desc`, f.desc); });
             val('torr-benefits', data.products.torr.benefits);
             renderSpecs('torr');
+            renderGallery('torr');
             if (!data.products.torr.cta) data.products.torr.cta = { title: '', description: '', buttonText: '', buttonLink: '' };
             val('torr-cta-title', data.products.torr.cta.title || '');
             val('torr-cta-desc', data.products.torr.cta.description || '');
@@ -2080,6 +2123,7 @@
             if (data.products.ulblanc.features) data.products.ulblanc.features.forEach((f, i) => { val(`ulblanc-f${i+1}-title`, f.title); val(`ulblanc-f${i+1}-desc`, f.desc); });
             val('ulblanc-benefits', data.products.ulblanc.benefits || '');
             renderSpecs('ulblanc');
+            renderGallery('ulblanc');
             if (!data.products.ulblanc.cta) data.products.ulblanc.cta = { title: '', description: '', buttonText: '', buttonLink: '' };
             val('ulblanc-cta-title', data.products.ulblanc.cta.title || '');
             val('ulblanc-cta-desc', data.products.ulblanc.cta.description || '');
@@ -2096,6 +2140,7 @@
             val('newchae-hero-title', data.products.newchae.hero.title || '');
             if (data.products.newchae.features) data.products.newchae.features.forEach((f, i) => { val(`newchae-f${i+1}-title`, f.title); val(`newchae-f${i+1}-desc`, f.desc); });
             renderProductLineup();
+            renderGallery('newchae');
             if (!data.products.newchae.cta) data.products.newchae.cta = { title: '', description: '', buttonText: '', buttonLink: '' };
             val('newchae-cta-title', data.products.newchae.cta.title || '');
             val('newchae-cta-desc', data.products.newchae.cta.description || '');
@@ -2189,6 +2234,7 @@
             if (enTorr.features) enTorr.features.forEach((f, i) => { val(`en-torr-f${i+1}-title`, f.title); val(`en-torr-f${i+1}-desc`, f.desc); });
             val('en-torr-benefits', enTorr.benefits || '');
             renderEnSpecs('torr');
+            renderEnGallery('torr');
             val('en-torr-cta-title', enTorr.cta?.title || '');
             val('en-torr-cta-desc', enTorr.cta?.description || '');
             val('en-torr-cta-btn', enTorr.cta?.buttonText || '');
@@ -2202,6 +2248,7 @@
             if (enUlblanc.features) enUlblanc.features.forEach((f, i) => { val(`en-ulblanc-f${i+1}-title`, f.title); val(`en-ulblanc-f${i+1}-desc`, f.desc); });
             val('en-ulblanc-benefits', enUlblanc.benefits || '');
             renderEnSpecs('ulblanc');
+            renderEnGallery('ulblanc');
             val('en-ulblanc-cta-title', enUlblanc.cta?.title || '');
             val('en-ulblanc-cta-desc', enUlblanc.cta?.description || '');
             val('en-ulblanc-cta-btn', enUlblanc.cta?.buttonText || '');
@@ -2214,6 +2261,7 @@
             val('en-newchae-hero-title', enNewchae.hero?.title || '');
             if (enNewchae.features) enNewchae.features.forEach((f, i) => { val(`en-newchae-f${i+1}-title`, f.title); val(`en-newchae-f${i+1}-desc`, f.desc); });
             renderEnProductLineup();
+            renderEnGallery('newchae');
             val('en-newchae-cta-title', enNewchae.cta?.title || '');
             val('en-newchae-cta-desc', enNewchae.cta?.description || '');
             val('en-newchae-cta-btn', enNewchae.cta?.buttonText || '');
@@ -2303,6 +2351,110 @@
         window.addEnProductLineup = () => { if (!data.en.productDetails.newchae.productLineup) data.en.productDetails.newchae.productLineup = []; data.en.productDetails.newchae.productLineup.push({ title: '', desc: '' }); renderEnProductLineup(); markUnsaved(); };
         window.removeEnProductLineup = i => { data.en.productDetails.newchae.productLineup.splice(i, 1); renderEnProductLineup(); markUnsaved(); };
 
+        // Gallery (Korean products)
+        function renderGallery(p) {
+            const c = $(`${p}-gallery`);
+            if (!c) return;
+            if (!data.products[p].gallery) data.products[p].gallery = [];
+            const gallery = data.products[p].gallery;
+            c.innerHTML = gallery.length ? gallery.map((img, i) => `
+                <div class="gallery-item" style="border:1px solid var(--gray-700);padding:1rem;margin-bottom:1rem;border-radius:8px;">
+                    <div class="form-row" style="align-items:flex-start;">
+                        <div style="flex:0 0 150px;">
+                            <div class="gallery-preview" id="${p}-gallery-preview-${i}" style="width:150px;height:100px;background:var(--bg-tertiary);border:1px solid var(--gray-700);background-size:cover;background-position:${img.posX || 50}% ${img.posY || 50}%;${img.url ? 'background-image:url('+img.url+');' : ''}"></div>
+                        </div>
+                        <div style="flex:1;">
+                            <div class="form-group" style="margin-bottom:0.5rem;">
+                                <label>이미지 URL</label>
+                                <input type="text" class="form-control" id="${p}-gallery-${i}-url" value="${img.url || ''}" onchange="updateGalleryPreview('${p}',${i})">
+                            </div>
+                            <div class="form-row" style="gap:0.5rem;">
+                                <div class="form-group" style="flex:1;">
+                                    <label>크기 (${img.scale || 100}%)</label>
+                                    <input type="range" min="50" max="150" value="${img.scale || 100}" id="${p}-gallery-${i}-scale" style="width:100%">
+                                </div>
+                                <div class="form-group" style="flex:1;">
+                                    <label>X위치 (${img.posX || 50}%)</label>
+                                    <input type="range" min="0" max="100" value="${img.posX || 50}" id="${p}-gallery-${i}-posX" onchange="updateGalleryPreview('${p}',${i})" style="width:100%">
+                                </div>
+                                <div class="form-group" style="flex:1;">
+                                    <label>Y위치 (${img.posY || 50}%)</label>
+                                    <input type="range" min="0" max="100" value="${img.posY || 50}" id="${p}-gallery-${i}-posY" onchange="updateGalleryPreview('${p}',${i})" style="width:100%">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-danger btn-sm" onclick="removeGalleryImage('${p}',${i})" style="margin-left:0.5rem;">삭제</button>
+                    </div>
+                </div>
+            `).join('') : '<p style="color:var(--gray-500)">등록된 이미지가 없습니다.</p>';
+        }
+        window.addGalleryImage = p => { if (!data.products[p].gallery) data.products[p].gallery = []; data.products[p].gallery.push({ url: '', scale: 100, posX: 50, posY: 50 }); renderGallery(p); markUnsaved(); };
+        window.removeGalleryImage = (p, i) => { data.products[p].gallery.splice(i, 1); renderGallery(p); markUnsaved(); };
+        window.updateGalleryPreview = (p, i) => {
+            const url = val(`${p}-gallery-${i}-url`);
+            const posX = val(`${p}-gallery-${i}-posX`);
+            const posY = val(`${p}-gallery-${i}-posY`);
+            const preview = $(`${p}-gallery-preview-${i}`);
+            if (preview) {
+                preview.style.backgroundImage = url ? `url(${url})` : 'none';
+                preview.style.backgroundPosition = `${posX}% ${posY}%`;
+            }
+            markUnsaved();
+        };
+
+        // Gallery (English products)
+        function renderEnGallery(p) {
+            const c = $(`en-${p}-gallery`);
+            if (!c) return;
+            if (!data.en.productDetails) data.en.productDetails = JSON.parse(JSON.stringify(defaultData.en.productDetails));
+            if (!data.en.productDetails[p]) data.en.productDetails[p] = JSON.parse(JSON.stringify(defaultData.en.productDetails[p]));
+            if (!data.en.productDetails[p].gallery) data.en.productDetails[p].gallery = [];
+            const gallery = data.en.productDetails[p].gallery;
+            c.innerHTML = gallery.length ? gallery.map((img, i) => `
+                <div class="gallery-item" style="border:1px solid var(--gray-700);padding:1rem;margin-bottom:1rem;border-radius:8px;">
+                    <div class="form-row" style="align-items:flex-start;">
+                        <div style="flex:0 0 150px;">
+                            <div class="gallery-preview" id="en-${p}-gallery-preview-${i}" style="width:150px;height:100px;background:var(--bg-tertiary);border:1px solid var(--gray-700);background-size:cover;background-position:${img.posX || 50}% ${img.posY || 50}%;${img.url ? 'background-image:url('+img.url+');' : ''}"></div>
+                        </div>
+                        <div style="flex:1;">
+                            <div class="form-group" style="margin-bottom:0.5rem;">
+                                <label>Image URL</label>
+                                <input type="text" class="form-control" id="en-${p}-gallery-${i}-url" value="${img.url || ''}" onchange="updateEnGalleryPreview('${p}',${i})">
+                            </div>
+                            <div class="form-row" style="gap:0.5rem;">
+                                <div class="form-group" style="flex:1;">
+                                    <label>Scale (${img.scale || 100}%)</label>
+                                    <input type="range" min="50" max="150" value="${img.scale || 100}" id="en-${p}-gallery-${i}-scale" style="width:100%">
+                                </div>
+                                <div class="form-group" style="flex:1;">
+                                    <label>X Pos (${img.posX || 50}%)</label>
+                                    <input type="range" min="0" max="100" value="${img.posX || 50}" id="en-${p}-gallery-${i}-posX" onchange="updateEnGalleryPreview('${p}',${i})" style="width:100%">
+                                </div>
+                                <div class="form-group" style="flex:1;">
+                                    <label>Y Pos (${img.posY || 50}%)</label>
+                                    <input type="range" min="0" max="100" value="${img.posY || 50}" id="en-${p}-gallery-${i}-posY" onchange="updateEnGalleryPreview('${p}',${i})" style="width:100%">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-danger btn-sm" onclick="removeEnGalleryImage('${p}',${i})" style="margin-left:0.5rem;">Delete</button>
+                    </div>
+                </div>
+            `).join('') : '<p style="color:var(--gray-500)">No images added.</p>';
+        }
+        window.addEnGalleryImage = p => { if (!data.en.productDetails[p].gallery) data.en.productDetails[p].gallery = []; data.en.productDetails[p].gallery.push({ url: '', scale: 100, posX: 50, posY: 50 }); renderEnGallery(p); markUnsaved(); };
+        window.removeEnGalleryImage = (p, i) => { data.en.productDetails[p].gallery.splice(i, 1); renderEnGallery(p); markUnsaved(); };
+        window.updateEnGalleryPreview = (p, i) => {
+            const url = val(`en-${p}-gallery-${i}-url`);
+            const posX = val(`en-${p}-gallery-${i}-posX`);
+            const posY = val(`en-${p}-gallery-${i}-posY`);
+            const preview = $(`en-${p}-gallery-preview-${i}`);
+            if (preview) {
+                preview.style.backgroundImage = url ? `url(${url})` : 'none';
+                preview.style.backgroundPosition = `${posX}% ${posY}%`;
+            }
+            markUnsaved();
+        };
+
         // News
         function renderNews() {
             const c = $('newsContainer');
@@ -2337,18 +2489,21 @@
             for (let i = 0; i < 4; i++) data.products.torr.features[i] = { title: val(`torr-f${i+1}-title`), desc: val(`torr-f${i+1}-desc`) };
             data.products.torr.specs = (data.products.torr.specs || []).map((s, i) => ({ label: val(`torr-spec-${i}-label`) || s.label, value: val(`torr-spec-${i}-value`) || s.value }));
             data.products.torr.cta = { title: val('torr-cta-title'), description: val('torr-cta-desc'), buttonText: val('torr-cta-btn'), buttonLink: val('torr-cta-link') };
+            data.products.torr.gallery = (data.products.torr.gallery || []).map((img, i) => ({ url: val(`torr-gallery-${i}-url`) || img.url, scale: parseInt(val(`torr-gallery-${i}-scale`)) || img.scale || 100, posX: parseInt(val(`torr-gallery-${i}-posX`)) || img.posX || 50, posY: parseInt(val(`torr-gallery-${i}-posY`)) || img.posY || 50 }));
             // UL BLANC
             data.products.ulblanc.name = val('ulblanc-name'); data.products.ulblanc.tagline = val('ulblanc-tagline'); data.products.ulblanc.description = val('ulblanc-description'); data.products.ulblanc.image = val('ulblanc-image'); data.products.ulblanc.benefits = val('ulblanc-benefits');
             data.products.ulblanc.hero = { backgroundImage: val('ulblanc-hero-bg'), label: val('ulblanc-hero-label'), title: val('ulblanc-hero-title') };
             for (let i = 0; i < 4; i++) { if (!data.products.ulblanc.features) data.products.ulblanc.features = [{},{},{},{}]; data.products.ulblanc.features[i] = { title: val(`ulblanc-f${i+1}-title`), desc: val(`ulblanc-f${i+1}-desc`) }; }
             data.products.ulblanc.specs = (data.products.ulblanc.specs || []).map((s, i) => ({ label: val(`ulblanc-spec-${i}-label`) || s.label, value: val(`ulblanc-spec-${i}-value`) || s.value }));
             data.products.ulblanc.cta = { title: val('ulblanc-cta-title'), description: val('ulblanc-cta-desc'), buttonText: val('ulblanc-cta-btn'), buttonLink: val('ulblanc-cta-link') };
+            data.products.ulblanc.gallery = (data.products.ulblanc.gallery || []).map((img, i) => ({ url: val(`ulblanc-gallery-${i}-url`) || img.url, scale: parseInt(val(`ulblanc-gallery-${i}-scale`)) || img.scale || 100, posX: parseInt(val(`ulblanc-gallery-${i}-posX`)) || img.posX || 50, posY: parseInt(val(`ulblanc-gallery-${i}-posY`)) || img.posY || 50 }));
             // NEWCHAE
             data.products.newchae.name = val('newchae-name'); data.products.newchae.tagline = val('newchae-tagline'); data.products.newchae.description = val('newchae-description'); data.products.newchae.image = val('newchae-image');
             data.products.newchae.hero = { backgroundImage: val('newchae-hero-bg'), label: val('newchae-hero-label'), title: val('newchae-hero-title') };
             for (let i = 0; i < 4; i++) { if (!data.products.newchae.features) data.products.newchae.features = [{},{},{},{}]; data.products.newchae.features[i] = { title: val(`newchae-f${i+1}-title`), desc: val(`newchae-f${i+1}-desc`) }; }
             data.products.newchae.productLineup = (data.products.newchae.productLineup || []).map((p, i) => ({ title: val(`newchae-lineup-${i}-title`) || p.title, desc: val(`newchae-lineup-${i}-desc`) || p.desc }));
             data.products.newchae.cta = { title: val('newchae-cta-title'), description: val('newchae-cta-desc'), buttonText: val('newchae-cta-btn'), buttonLink: val('newchae-cta-link') };
+            data.products.newchae.gallery = (data.products.newchae.gallery || []).map((img, i) => ({ url: val(`newchae-gallery-${i}-url`) || img.url, scale: parseInt(val(`newchae-gallery-${i}-scale`)) || img.scale || 100, posX: parseInt(val(`newchae-gallery-${i}-posX`)) || img.posX || 50, posY: parseInt(val(`newchae-gallery-${i}-posY`)) || img.posY || 50 }));
             data.news = data.news.map((n, i) => ({ date: val(`news-${i}-date`) || n.date, title: val(`news-${i}-title`) || n.title }));
             data.settings.googleSheetsUrl = val('google-sheets-url');
             data.settings.footer = { description: val('footer-description'), ceo: val('footer-ceo'), biznum: val('footer-biznum'), instagram: val('footer-instagram'), youtube: val('footer-youtube'), kakao: val('footer-kakao') };
@@ -2457,7 +2612,13 @@
                     title: val('en-torr-cta-title'),
                     description: val('en-torr-cta-desc'),
                     buttonText: val('en-torr-cta-btn')
-                }
+                },
+                gallery: (data.en.productDetails.torr?.gallery || []).map((img, i) => ({
+                    url: val(`en-torr-gallery-${i}-url`) || img.url,
+                    scale: parseInt(val(`en-torr-gallery-${i}-scale`)) || img.scale || 100,
+                    posX: parseInt(val(`en-torr-gallery-${i}-posX`)) || img.posX || 50,
+                    posY: parseInt(val(`en-torr-gallery-${i}-posY`)) || img.posY || 50
+                }))
             };
 
             // EN UL BLANC
@@ -2484,7 +2645,13 @@
                     title: val('en-ulblanc-cta-title'),
                     description: val('en-ulblanc-cta-desc'),
                     buttonText: val('en-ulblanc-cta-btn')
-                }
+                },
+                gallery: (data.en.productDetails.ulblanc?.gallery || []).map((img, i) => ({
+                    url: val(`en-ulblanc-gallery-${i}-url`) || img.url,
+                    scale: parseInt(val(`en-ulblanc-gallery-${i}-scale`)) || img.scale || 100,
+                    posX: parseInt(val(`en-ulblanc-gallery-${i}-posX`)) || img.posX || 50,
+                    posY: parseInt(val(`en-ulblanc-gallery-${i}-posY`)) || img.posY || 50
+                }))
             };
 
             // EN NEWCHAE
@@ -2511,7 +2678,13 @@
                     title: val('en-newchae-cta-title'),
                     description: val('en-newchae-cta-desc'),
                     buttonText: val('en-newchae-cta-btn')
-                }
+                },
+                gallery: (data.en.productDetails.newchae?.gallery || []).map((img, i) => ({
+                    url: val(`en-newchae-gallery-${i}-url`) || img.url,
+                    scale: parseInt(val(`en-newchae-gallery-${i}-scale`)) || img.scale || 100,
+                    posX: parseInt(val(`en-newchae-gallery-${i}-posX`)) || img.posX || 50,
+                    posY: parseInt(val(`en-newchae-gallery-${i}-posY`)) || img.posY || 50
+                }))
             };
         }
 
