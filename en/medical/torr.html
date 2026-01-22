@@ -306,19 +306,79 @@
 
     <script src="/assets/js/main.js"></script>
     <script>
-        // Load product image
+        // CMS Data Loading for English TORR RF
         (function() {
             var cms = JSON.parse(localStorage.getItem('britzmedi_cms') || '{}');
             var images = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
             var scales = JSON.parse(localStorage.getItem('britzmedi_image_scales') || '{}');
             var enImages = (cms.en && cms.en.images) ? cms.en.images : {};
+            var p = (cms.en && cms.en.productDetails && cms.en.productDetails.torr) ? cms.en.productDetails.torr : {};
 
+            // Product Image
             var img = enImages.torr || images.torr || '';
             var el = document.getElementById('productImage');
             if (el && img) {
                 el.src = img;
-                var scale = scales.torr || 85;
-                el.style.maxWidth = scale + '%';
+                el.style.maxWidth = (scales.torr || 85) + '%';
+            }
+
+            // Hero Section
+            if (p.hero) {
+                var heroLabel = document.querySelector('.page-hero-label');
+                var heroTitle = document.querySelector('.page-hero-title');
+                if (heroLabel && p.hero.label) heroLabel.textContent = p.hero.label;
+                if (heroTitle && p.hero.title) heroTitle.innerHTML = p.hero.title;
+            }
+
+            // Product Info
+            var nameEl = document.querySelector('.product-intro-content h1');
+            var taglineEl = document.querySelector('.product-intro-content .tagline');
+            var descEl = document.querySelector('.product-intro-content .description');
+            if (nameEl && p.name) nameEl.innerHTML = p.name;
+            if (taglineEl && p.tagline) taglineEl.textContent = p.tagline;
+            if (descEl && p.description) descEl.textContent = p.description;
+
+            // Features
+            if (p.features && p.features.length >= 4) {
+                var featureItems = document.querySelectorAll('.feature-item');
+                for (var i = 0; i < Math.min(4, featureItems.length); i++) {
+                    var h4 = featureItems[i].querySelector('h4');
+                    var pEl = featureItems[i].querySelector('p');
+                    if (h4 && p.features[i].title) h4.textContent = p.features[i].title;
+                    if (pEl && p.features[i].desc) pEl.textContent = p.features[i].desc;
+                }
+            }
+
+            // Benefits
+            if (p.benefits) {
+                var benefitsEl = document.querySelector('.benefits-list');
+                if (benefitsEl) {
+                    var benefitsArr = p.benefits.split('\n').filter(function(b) { return b.trim(); });
+                    benefitsEl.innerHTML = benefitsArr.map(function(b) { return '<li>' + b.trim() + '</li>'; }).join('');
+                }
+            }
+
+            // Specs
+            if (p.specs && p.specs.length > 0) {
+                var specsBody = document.querySelector('.specs-table tbody') || document.querySelector('.specs-table');
+                if (specsBody) {
+                    specsBody.innerHTML = p.specs.map(function(s) {
+                        return '<tr><th>' + s.label + '</th><td>' + s.value + '</td></tr>';
+                    }).join('');
+                }
+            }
+
+            // CTA
+            if (p.cta) {
+                var ctaSection = document.querySelector('.cta-section');
+                if (ctaSection) {
+                    var ctaTitle = ctaSection.querySelector('h3');
+                    var ctaDesc = ctaSection.querySelector('p');
+                    var ctaBtn = ctaSection.querySelector('.btn-primary');
+                    if (ctaTitle && p.cta.title) ctaTitle.textContent = p.cta.title;
+                    if (ctaDesc && p.cta.description) ctaDesc.textContent = p.cta.description;
+                    if (ctaBtn && p.cta.buttonText) ctaBtn.textContent = p.cta.buttonText;
+                }
             }
         })();
     </script>

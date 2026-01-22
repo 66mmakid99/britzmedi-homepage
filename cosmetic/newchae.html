@@ -319,5 +319,75 @@
     </footer>
 
     <script src="/assets/js/main.js"></script>
+    <script>
+        // CMS Data Loading
+        (function() {
+            var cms = JSON.parse(localStorage.getItem('britzmedi_cms') || '{}');
+            var images = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
+            var scales = JSON.parse(localStorage.getItem('britzmedi_image_scales') || '{}');
+            var p = cms.products && cms.products.newchae ? cms.products.newchae : {};
+
+            // Product Image
+            var img = images.newchae || p.image || '';
+            var imgEl = document.querySelector('[data-cms="newchae-image"]');
+            if (imgEl && img) {
+                imgEl.src = img;
+                imgEl.style.maxWidth = (scales.newchae || 85) + '%';
+            }
+
+            // Hero Section
+            if (p.hero) {
+                var heroLabel = document.querySelector('.page-hero-label');
+                var heroTitle = document.querySelector('.page-hero-title');
+                var heroBg = document.querySelector('.page-hero-bg img');
+                if (heroLabel && p.hero.label) heroLabel.textContent = p.hero.label;
+                if (heroTitle && p.hero.title) heroTitle.innerHTML = p.hero.title;
+                if (heroBg && p.hero.backgroundImage) heroBg.src = p.hero.backgroundImage;
+            }
+
+            // Product Info
+            if (p.name) document.querySelector('[data-cms="newchae-name"]').innerHTML = p.name;
+            if (p.tagline) document.querySelector('[data-cms="newchae-tagline"]').textContent = p.tagline;
+            if (p.description) document.querySelector('[data-cms="newchae-description"]').innerHTML = '<p>' + p.description.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>') + '</p>';
+
+            // Features
+            if (p.features && p.features.length >= 4) {
+                for (var i = 0; i < 4; i++) {
+                    var ft = document.querySelector('[data-cms="newchae-f' + (i+1) + '-title"]');
+                    var fd = document.querySelector('[data-cms="newchae-f' + (i+1) + '-desc"]');
+                    if (ft && p.features[i].title) ft.textContent = p.features[i].title;
+                    if (fd && p.features[i].desc) fd.textContent = p.features[i].desc;
+                }
+            }
+
+            // Product Lineup
+            if (p.productLineup && p.productLineup.length > 0) {
+                var lineupEl = document.querySelector('[data-cms="newchae-products"]');
+                if (lineupEl) {
+                    lineupEl.innerHTML = p.productLineup.map(function(item) {
+                        return '<div class="product-card">' +
+                            '<img src="' + (item.image || 'https://via.placeholder.com/300x300?text=' + encodeURIComponent(item.title)) + '" alt="' + item.title + '">' +
+                            '<h4>' + item.title + '</h4>' +
+                            '<p>' + item.desc + '</p>' +
+                        '</div>';
+                    }).join('');
+                }
+            }
+
+            // CTA
+            if (p.cta) {
+                var ctaSection = document.querySelector('.bg-darker[style*="text-align: center"]');
+                if (ctaSection) {
+                    var ctaTitle = ctaSection.querySelector('.section-title');
+                    var ctaDesc = ctaSection.querySelector('.section-description');
+                    var ctaBtn = ctaSection.querySelector('.btn-primary');
+                    if (ctaTitle && p.cta.title) ctaTitle.innerHTML = p.cta.title;
+                    if (ctaDesc && p.cta.description) ctaDesc.textContent = p.cta.description;
+                    if (ctaBtn && p.cta.buttonText) ctaBtn.textContent = p.cta.buttonText;
+                    if (ctaBtn && p.cta.buttonLink) ctaBtn.href = p.cta.buttonLink;
+                }
+            }
+        })();
+    </script>
 </body>
 </html>

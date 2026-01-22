@@ -505,6 +505,18 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                 English Home
             </a>
+            <a class="nav-item" data-page="en-product-torr">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                TORR RF (EN)
+            </a>
+            <a class="nav-item" data-page="en-product-ulblanc">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg>
+                UL BLANC (EN)
+            </a>
+            <a class="nav-item" data-page="en-product-newchae">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                NEWCHAE (EN)
+            </a>
 
             <div class="nav-section">설정</div>
             <a class="nav-item" data-page="settings-images">
@@ -776,97 +788,215 @@
 
             <!-- ================== TORR RF ================== -->
             <div class="page-content" id="page-product-torr">
-                <div class="card">
-                    <div class="card-header"><h3>TORR RF 기본 정보</h3></div>
-                    <div class="card-body">
-                        <div class="form-row">
-                            <div class="form-group"><label>제품명</label><input type="text" class="form-control" id="torr-name"></div>
-                            <div class="form-group"><label>태그라인</label><input type="text" class="form-control" id="torr-tagline"></div>
-                        </div>
-                        <div class="form-group"><label>제품 설명</label><textarea class="form-control" id="torr-description" rows="4"></textarea></div>
-                        <div class="form-group"><label>제품 이미지 URL</label><input type="text" class="form-control" id="torr-image"></div>
-                    </div>
+                <div class="tabs">
+                    <button class="tab active" data-tab="torr-basic">기본 정보</button>
+                    <button class="tab" data-tab="torr-hero">히어로</button>
+                    <button class="tab" data-tab="torr-features">특징</button>
+                    <button class="tab" data-tab="torr-specs">사양</button>
+                    <button class="tab" data-tab="torr-cta">CTA</button>
                 </div>
-                <div class="card">
-                    <div class="card-header"><h3>주요 특징 (4개)</h3></div>
-                    <div class="card-body">
-                        <div class="form-row cols-4">
-                            <div class="form-group"><label>특징 1</label><input type="text" class="form-control" id="torr-f1-title"><input type="text" class="form-control" id="torr-f1-desc" style="margin-top:0.5rem"></div>
-                            <div class="form-group"><label>특징 2</label><input type="text" class="form-control" id="torr-f2-title"><input type="text" class="form-control" id="torr-f2-desc" style="margin-top:0.5rem"></div>
-                            <div class="form-group"><label>특징 3</label><input type="text" class="form-control" id="torr-f3-title"><input type="text" class="form-control" id="torr-f3-desc" style="margin-top:0.5rem"></div>
-                            <div class="form-group"><label>특징 4</label><input type="text" class="form-control" id="torr-f4-title"><input type="text" class="form-control" id="torr-f4-desc" style="margin-top:0.5rem"></div>
+                <div class="tab-content active" id="tab-torr-basic">
+                    <div class="card">
+                        <div class="card-header"><h3>TORR RF 기본 정보</h3></div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group"><label>제품명</label><input type="text" class="form-control" id="torr-name"><p class="form-help">강조: &lt;em&gt;RF&lt;/em&gt;</p></div>
+                                <div class="form-group"><label>태그라인</label><input type="text" class="form-control" id="torr-tagline"></div>
+                            </div>
+                            <div class="form-group"><label>제품 설명</label><textarea class="form-control" id="torr-description" rows="4"></textarea></div>
+                            <div class="form-group"><label>제품 이미지 URL</label><input type="text" class="form-control" id="torr-image"></div>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-header"><h3>효과 (Benefits)</h3></div>
-                    <div class="card-body">
-                        <div class="form-group"><label>효과 목록 (줄바꿈으로 구분)</label><textarea class="form-control" id="torr-benefits" rows="5"></textarea></div>
+                <div class="tab-content" id="tab-torr-hero">
+                    <div class="card">
+                        <div class="card-header"><h3>히어로 섹션</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label>배경 이미지 URL</label><input type="text" class="form-control" id="torr-hero-bg"></div>
+                            <div class="form-row">
+                                <div class="form-group"><label>라벨</label><input type="text" class="form-control" id="torr-hero-label" placeholder="Medical Device"></div>
+                                <div class="form-group"><label>타이틀</label><input type="text" class="form-control" id="torr-hero-title" placeholder="TORR <em>RF</em>"><p class="form-help">강조: &lt;em&gt;태그&lt;/em&gt;</p></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-header"><h3>제품 사양</h3><button class="btn btn-sm" onclick="addSpec('torr')">+ 추가</button></div>
-                    <div class="card-body" id="torr-specs"></div>
+                <div class="tab-content" id="tab-torr-features">
+                    <div class="card">
+                        <div class="card-header"><h3>주요 특징 (4개)</h3></div>
+                        <div class="card-body">
+                            <div class="form-row cols-4">
+                                <div class="form-group"><label>특징 1</label><input type="text" class="form-control" id="torr-f1-title"><input type="text" class="form-control" id="torr-f1-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>특징 2</label><input type="text" class="form-control" id="torr-f2-title"><input type="text" class="form-control" id="torr-f2-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>특징 3</label><input type="text" class="form-control" id="torr-f3-title"><input type="text" class="form-control" id="torr-f3-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>특징 4</label><input type="text" class="form-control" id="torr-f4-title"><input type="text" class="form-control" id="torr-f4-desc" style="margin-top:0.5rem"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><h3>효과 (Benefits)</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label>효과 목록 (줄바꿈으로 구분)</label><textarea class="form-control" id="torr-benefits" rows="5"></textarea></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-torr-specs">
+                    <div class="card">
+                        <div class="card-header"><h3>제품 사양</h3><button class="btn btn-sm" onclick="addSpec('torr')">+ 추가</button></div>
+                        <div class="card-body" id="torr-specs"></div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-torr-cta">
+                    <div class="card">
+                        <div class="card-header"><h3>CTA 섹션</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label>타이틀</label><input type="text" class="form-control" id="torr-cta-title"></div>
+                            <div class="form-group"><label>설명</label><textarea class="form-control" id="torr-cta-desc" rows="2"></textarea></div>
+                            <div class="form-row">
+                                <div class="form-group"><label>버튼 텍스트</label><input type="text" class="form-control" id="torr-cta-btn"></div>
+                                <div class="form-group"><label>버튼 링크</label><input type="text" class="form-control" id="torr-cta-link"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- ================== UL BLANC ================== -->
             <div class="page-content" id="page-product-ulblanc">
-                <div class="card">
-                    <div class="card-header"><h3>UL BLANC 기본 정보</h3></div>
-                    <div class="card-body">
-                        <div class="form-row">
-                            <div class="form-group"><label>제품명</label><input type="text" class="form-control" id="ulblanc-name"></div>
-                            <div class="form-group"><label>태그라인</label><input type="text" class="form-control" id="ulblanc-tagline"></div>
-                        </div>
-                        <div class="form-group"><label>제품 설명</label><textarea class="form-control" id="ulblanc-description" rows="4"></textarea></div>
-                        <div class="form-group"><label>제품 이미지 URL</label><input type="text" class="form-control" id="ulblanc-image"></div>
-                    </div>
+                <div class="tabs">
+                    <button class="tab active" data-tab="ulblanc-basic">기본 정보</button>
+                    <button class="tab" data-tab="ulblanc-hero">히어로</button>
+                    <button class="tab" data-tab="ulblanc-features">특징</button>
+                    <button class="tab" data-tab="ulblanc-specs">사양</button>
+                    <button class="tab" data-tab="ulblanc-cta">CTA</button>
                 </div>
-                <div class="card">
-                    <div class="card-header"><h3>주요 특징 (4개)</h3></div>
-                    <div class="card-body">
-                        <div class="form-row cols-4">
-                            <div class="form-group"><label>특징 1</label><input type="text" class="form-control" id="ulblanc-f1-title"><input type="text" class="form-control" id="ulblanc-f1-desc" style="margin-top:0.5rem"></div>
-                            <div class="form-group"><label>특징 2</label><input type="text" class="form-control" id="ulblanc-f2-title"><input type="text" class="form-control" id="ulblanc-f2-desc" style="margin-top:0.5rem"></div>
-                            <div class="form-group"><label>특징 3</label><input type="text" class="form-control" id="ulblanc-f3-title"><input type="text" class="form-control" id="ulblanc-f3-desc" style="margin-top:0.5rem"></div>
-                            <div class="form-group"><label>특징 4</label><input type="text" class="form-control" id="ulblanc-f4-title"><input type="text" class="form-control" id="ulblanc-f4-desc" style="margin-top:0.5rem"></div>
+                <div class="tab-content active" id="tab-ulblanc-basic">
+                    <div class="card">
+                        <div class="card-header"><h3>UL BLANC 기본 정보</h3></div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group"><label>제품명</label><input type="text" class="form-control" id="ulblanc-name"><p class="form-help">강조: &lt;em&gt;BLANC&lt;/em&gt;</p></div>
+                                <div class="form-group"><label>태그라인</label><input type="text" class="form-control" id="ulblanc-tagline"></div>
+                            </div>
+                            <div class="form-group"><label>제품 설명</label><textarea class="form-control" id="ulblanc-description" rows="4"></textarea></div>
+                            <div class="form-group"><label>제품 이미지 URL</label><input type="text" class="form-control" id="ulblanc-image"></div>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-header"><h3>효과 (Benefits)</h3></div>
-                    <div class="card-body">
-                        <div class="form-group"><label>효과 목록 (줄바꿈으로 구분)</label><textarea class="form-control" id="ulblanc-benefits" rows="5"></textarea></div>
+                <div class="tab-content" id="tab-ulblanc-hero">
+                    <div class="card">
+                        <div class="card-header"><h3>히어로 섹션</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label>배경 이미지 URL</label><input type="text" class="form-control" id="ulblanc-hero-bg"></div>
+                            <div class="form-row">
+                                <div class="form-group"><label>라벨</label><input type="text" class="form-control" id="ulblanc-hero-label" placeholder="Medical Device"></div>
+                                <div class="form-group"><label>타이틀</label><input type="text" class="form-control" id="ulblanc-hero-title" placeholder="UL <em>BLANC</em>"><p class="form-help">강조: &lt;em&gt;태그&lt;/em&gt;</p></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-header"><h3>제품 사양</h3><button class="btn btn-sm" onclick="addSpec('ulblanc')">+ 추가</button></div>
-                    <div class="card-body" id="ulblanc-specs"></div>
+                <div class="tab-content" id="tab-ulblanc-features">
+                    <div class="card">
+                        <div class="card-header"><h3>주요 특징 (4개)</h3></div>
+                        <div class="card-body">
+                            <div class="form-row cols-4">
+                                <div class="form-group"><label>특징 1</label><input type="text" class="form-control" id="ulblanc-f1-title"><input type="text" class="form-control" id="ulblanc-f1-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>특징 2</label><input type="text" class="form-control" id="ulblanc-f2-title"><input type="text" class="form-control" id="ulblanc-f2-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>특징 3</label><input type="text" class="form-control" id="ulblanc-f3-title"><input type="text" class="form-control" id="ulblanc-f3-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>특징 4</label><input type="text" class="form-control" id="ulblanc-f4-title"><input type="text" class="form-control" id="ulblanc-f4-desc" style="margin-top:0.5rem"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><h3>효과 (Benefits)</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label>효과 목록 (줄바꿈으로 구분)</label><textarea class="form-control" id="ulblanc-benefits" rows="5"></textarea></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-ulblanc-specs">
+                    <div class="card">
+                        <div class="card-header"><h3>제품 사양</h3><button class="btn btn-sm" onclick="addSpec('ulblanc')">+ 추가</button></div>
+                        <div class="card-body" id="ulblanc-specs"></div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-ulblanc-cta">
+                    <div class="card">
+                        <div class="card-header"><h3>CTA 섹션</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label>타이틀</label><input type="text" class="form-control" id="ulblanc-cta-title"></div>
+                            <div class="form-group"><label>설명</label><textarea class="form-control" id="ulblanc-cta-desc" rows="2"></textarea></div>
+                            <div class="form-row">
+                                <div class="form-group"><label>버튼 텍스트</label><input type="text" class="form-control" id="ulblanc-cta-btn"></div>
+                                <div class="form-group"><label>버튼 링크</label><input type="text" class="form-control" id="ulblanc-cta-link"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- ================== NEWCHAE ================== -->
             <div class="page-content" id="page-product-newchae">
-                <div class="card">
-                    <div class="card-header"><h3>NEWCHAE 기본 정보</h3></div>
-                    <div class="card-body">
-                        <div class="form-row">
-                            <div class="form-group"><label>제품명</label><input type="text" class="form-control" id="newchae-name"></div>
-                            <div class="form-group"><label>태그라인</label><input type="text" class="form-control" id="newchae-tagline"></div>
+                <div class="tabs">
+                    <button class="tab active" data-tab="newchae-basic">기본 정보</button>
+                    <button class="tab" data-tab="newchae-hero">히어로</button>
+                    <button class="tab" data-tab="newchae-features">특징</button>
+                    <button class="tab" data-tab="newchae-lineup">제품 라인업</button>
+                    <button class="tab" data-tab="newchae-cta">CTA</button>
+                </div>
+                <div class="tab-content active" id="tab-newchae-basic">
+                    <div class="card">
+                        <div class="card-header"><h3>NEWCHAE 기본 정보</h3></div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group"><label>제품명</label><input type="text" class="form-control" id="newchae-name"><p class="form-help">강조: NEW&lt;em&gt;CHAE&lt;/em&gt;</p></div>
+                                <div class="form-group"><label>태그라인</label><input type="text" class="form-control" id="newchae-tagline"></div>
+                            </div>
+                            <div class="form-group"><label>제품 설명</label><textarea class="form-control" id="newchae-description" rows="4"></textarea></div>
+                            <div class="form-group"><label>제품 이미지 URL</label><input type="text" class="form-control" id="newchae-image"></div>
                         </div>
-                        <div class="form-group"><label>제품 설명</label><textarea class="form-control" id="newchae-description" rows="4"></textarea></div>
-                        <div class="form-group"><label>제품 이미지 URL</label><input type="text" class="form-control" id="newchae-image"></div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-header"><h3>주요 특징 (4개)</h3></div>
-                    <div class="card-body">
-                        <div class="form-row cols-4">
-                            <div class="form-group"><label>특징 1</label><input type="text" class="form-control" id="newchae-f1-title"><input type="text" class="form-control" id="newchae-f1-desc" style="margin-top:0.5rem"></div>
-                            <div class="form-group"><label>특징 2</label><input type="text" class="form-control" id="newchae-f2-title"><input type="text" class="form-control" id="newchae-f2-desc" style="margin-top:0.5rem"></div>
-                            <div class="form-group"><label>특징 3</label><input type="text" class="form-control" id="newchae-f3-title"><input type="text" class="form-control" id="newchae-f3-desc" style="margin-top:0.5rem"></div>
-                            <div class="form-group"><label>특징 4</label><input type="text" class="form-control" id="newchae-f4-title"><input type="text" class="form-control" id="newchae-f4-desc" style="margin-top:0.5rem"></div>
+                <div class="tab-content" id="tab-newchae-hero">
+                    <div class="card">
+                        <div class="card-header"><h3>히어로 섹션</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label>배경 이미지 URL</label><input type="text" class="form-control" id="newchae-hero-bg"></div>
+                            <div class="form-row">
+                                <div class="form-group"><label>라벨</label><input type="text" class="form-control" id="newchae-hero-label" placeholder="Medical Cosmetic"></div>
+                                <div class="form-group"><label>타이틀</label><input type="text" class="form-control" id="newchae-hero-title" placeholder="NEW<em>CHAE</em>"><p class="form-help">강조: &lt;em&gt;태그&lt;/em&gt;</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-newchae-features">
+                    <div class="card">
+                        <div class="card-header"><h3>주요 특징 (4개)</h3></div>
+                        <div class="card-body">
+                            <div class="form-row cols-4">
+                                <div class="form-group"><label>특징 1</label><input type="text" class="form-control" id="newchae-f1-title"><input type="text" class="form-control" id="newchae-f1-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>특징 2</label><input type="text" class="form-control" id="newchae-f2-title"><input type="text" class="form-control" id="newchae-f2-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>특징 3</label><input type="text" class="form-control" id="newchae-f3-title"><input type="text" class="form-control" id="newchae-f3-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>특징 4</label><input type="text" class="form-control" id="newchae-f4-title"><input type="text" class="form-control" id="newchae-f4-desc" style="margin-top:0.5rem"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-newchae-lineup">
+                    <div class="card">
+                        <div class="card-header"><h3>제품 라인업</h3><button class="btn btn-sm" onclick="addProductLineup()">+ 추가</button></div>
+                        <div class="card-body" id="newchae-lineup-container"></div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-newchae-cta">
+                    <div class="card">
+                        <div class="card-header"><h3>CTA 섹션</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label>타이틀</label><input type="text" class="form-control" id="newchae-cta-title"></div>
+                            <div class="form-group"><label>설명</label><textarea class="form-control" id="newchae-cta-desc" rows="2"></textarea></div>
+                            <div class="form-row">
+                                <div class="form-group"><label>버튼 텍스트</label><input type="text" class="form-control" id="newchae-cta-btn"></div>
+                                <div class="form-group"><label>버튼 링크</label><input type="text" class="form-control" id="newchae-cta-link"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1468,6 +1598,207 @@
                     </div>
                 </div>
             </div>
+
+            <!-- ================== ENGLISH TORR RF ================== -->
+            <div class="page-content" id="page-en-product-torr">
+                <div class="tabs">
+                    <button class="tab active" data-tab="en-torr-basic">Basic Info</button>
+                    <button class="tab" data-tab="en-torr-hero">Hero</button>
+                    <button class="tab" data-tab="en-torr-features">Features</button>
+                    <button class="tab" data-tab="en-torr-specs">Specs</button>
+                    <button class="tab" data-tab="en-torr-cta">CTA</button>
+                </div>
+                <div class="tab-content active" id="tab-en-torr-basic">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 TORR RF Basic Info</h3></div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group"><label>Product Name</label><input type="text" class="form-control" id="en-torr-name"><p class="form-help">Use &lt;em&gt;RF&lt;/em&gt; for emphasis</p></div>
+                                <div class="form-group"><label>Tagline</label><input type="text" class="form-control" id="en-torr-tagline"></div>
+                            </div>
+                            <div class="form-group"><label>Description</label><textarea class="form-control" id="en-torr-description" rows="4"></textarea></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-en-torr-hero">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Hero Section</h3></div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group"><label>Label</label><input type="text" class="form-control" id="en-torr-hero-label" placeholder="Medical Device"></div>
+                                <div class="form-group"><label>Title</label><input type="text" class="form-control" id="en-torr-hero-title" placeholder="TORR <em>RF</em>"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-en-torr-features">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Features (4)</h3></div>
+                        <div class="card-body">
+                            <div class="form-row cols-4">
+                                <div class="form-group"><label>Feature 1</label><input type="text" class="form-control" id="en-torr-f1-title"><input type="text" class="form-control" id="en-torr-f1-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>Feature 2</label><input type="text" class="form-control" id="en-torr-f2-title"><input type="text" class="form-control" id="en-torr-f2-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>Feature 3</label><input type="text" class="form-control" id="en-torr-f3-title"><input type="text" class="form-control" id="en-torr-f3-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>Feature 4</label><input type="text" class="form-control" id="en-torr-f4-title"><input type="text" class="form-control" id="en-torr-f4-desc" style="margin-top:0.5rem"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Benefits</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label>Benefits List (one per line)</label><textarea class="form-control" id="en-torr-benefits" rows="5"></textarea></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-en-torr-specs">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Specifications</h3><button class="btn btn-sm" onclick="addEnSpec('torr')">+ Add</button></div>
+                        <div class="card-body" id="en-torr-specs"></div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-en-torr-cta">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 CTA Section</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label>Title</label><input type="text" class="form-control" id="en-torr-cta-title"></div>
+                            <div class="form-group"><label>Description</label><textarea class="form-control" id="en-torr-cta-desc" rows="2"></textarea></div>
+                            <div class="form-group"><label>Button Text</label><input type="text" class="form-control" id="en-torr-cta-btn"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================== ENGLISH UL BLANC ================== -->
+            <div class="page-content" id="page-en-product-ulblanc">
+                <div class="tabs">
+                    <button class="tab active" data-tab="en-ulblanc-basic">Basic Info</button>
+                    <button class="tab" data-tab="en-ulblanc-hero">Hero</button>
+                    <button class="tab" data-tab="en-ulblanc-features">Features</button>
+                    <button class="tab" data-tab="en-ulblanc-specs">Specs</button>
+                    <button class="tab" data-tab="en-ulblanc-cta">CTA</button>
+                </div>
+                <div class="tab-content active" id="tab-en-ulblanc-basic">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 UL BLANC Basic Info</h3></div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group"><label>Product Name</label><input type="text" class="form-control" id="en-ulblanc-name"><p class="form-help">Use &lt;em&gt;BLANC&lt;/em&gt; for emphasis</p></div>
+                                <div class="form-group"><label>Tagline</label><input type="text" class="form-control" id="en-ulblanc-tagline"></div>
+                            </div>
+                            <div class="form-group"><label>Description</label><textarea class="form-control" id="en-ulblanc-description" rows="4"></textarea></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-en-ulblanc-hero">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Hero Section</h3></div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group"><label>Label</label><input type="text" class="form-control" id="en-ulblanc-hero-label" placeholder="Medical Device"></div>
+                                <div class="form-group"><label>Title</label><input type="text" class="form-control" id="en-ulblanc-hero-title" placeholder="UL <em>BLANC</em>"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-en-ulblanc-features">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Features (4)</h3></div>
+                        <div class="card-body">
+                            <div class="form-row cols-4">
+                                <div class="form-group"><label>Feature 1</label><input type="text" class="form-control" id="en-ulblanc-f1-title"><input type="text" class="form-control" id="en-ulblanc-f1-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>Feature 2</label><input type="text" class="form-control" id="en-ulblanc-f2-title"><input type="text" class="form-control" id="en-ulblanc-f2-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>Feature 3</label><input type="text" class="form-control" id="en-ulblanc-f3-title"><input type="text" class="form-control" id="en-ulblanc-f3-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>Feature 4</label><input type="text" class="form-control" id="en-ulblanc-f4-title"><input type="text" class="form-control" id="en-ulblanc-f4-desc" style="margin-top:0.5rem"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Benefits</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label>Benefits List (one per line)</label><textarea class="form-control" id="en-ulblanc-benefits" rows="5"></textarea></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-en-ulblanc-specs">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Specifications</h3><button class="btn btn-sm" onclick="addEnSpec('ulblanc')">+ Add</button></div>
+                        <div class="card-body" id="en-ulblanc-specs"></div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-en-ulblanc-cta">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 CTA Section</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label>Title</label><input type="text" class="form-control" id="en-ulblanc-cta-title"></div>
+                            <div class="form-group"><label>Description</label><textarea class="form-control" id="en-ulblanc-cta-desc" rows="2"></textarea></div>
+                            <div class="form-group"><label>Button Text</label><input type="text" class="form-control" id="en-ulblanc-cta-btn"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================== ENGLISH NEWCHAE ================== -->
+            <div class="page-content" id="page-en-product-newchae">
+                <div class="tabs">
+                    <button class="tab active" data-tab="en-newchae-basic">Basic Info</button>
+                    <button class="tab" data-tab="en-newchae-hero">Hero</button>
+                    <button class="tab" data-tab="en-newchae-features">Features</button>
+                    <button class="tab" data-tab="en-newchae-lineup">Product Line</button>
+                    <button class="tab" data-tab="en-newchae-cta">CTA</button>
+                </div>
+                <div class="tab-content active" id="tab-en-newchae-basic">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 NEWCHAE Basic Info</h3></div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group"><label>Product Name</label><input type="text" class="form-control" id="en-newchae-name"><p class="form-help">Use NEW&lt;em&gt;CHAE&lt;/em&gt; for emphasis</p></div>
+                                <div class="form-group"><label>Tagline</label><input type="text" class="form-control" id="en-newchae-tagline"></div>
+                            </div>
+                            <div class="form-group"><label>Description</label><textarea class="form-control" id="en-newchae-description" rows="4"></textarea></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-en-newchae-hero">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Hero Section</h3></div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group"><label>Label</label><input type="text" class="form-control" id="en-newchae-hero-label" placeholder="Medical Cosmetic"></div>
+                                <div class="form-group"><label>Title</label><input type="text" class="form-control" id="en-newchae-hero-title" placeholder="NEW<em>CHAE</em>"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-en-newchae-features">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Features (4)</h3></div>
+                        <div class="card-body">
+                            <div class="form-row cols-4">
+                                <div class="form-group"><label>Feature 1</label><input type="text" class="form-control" id="en-newchae-f1-title"><input type="text" class="form-control" id="en-newchae-f1-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>Feature 2</label><input type="text" class="form-control" id="en-newchae-f2-title"><input type="text" class="form-control" id="en-newchae-f2-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>Feature 3</label><input type="text" class="form-control" id="en-newchae-f3-title"><input type="text" class="form-control" id="en-newchae-f3-desc" style="margin-top:0.5rem"></div>
+                                <div class="form-group"><label>Feature 4</label><input type="text" class="form-control" id="en-newchae-f4-title"><input type="text" class="form-control" id="en-newchae-f4-desc" style="margin-top:0.5rem"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-en-newchae-lineup">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Product Lineup</h3><button class="btn btn-sm" onclick="addEnProductLineup()">+ Add</button></div>
+                        <div class="card-body" id="en-newchae-lineup-container"></div>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-en-newchae-cta">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 CTA Section</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label>Title</label><input type="text" class="form-control" id="en-newchae-cta-title"></div>
+                            <div class="form-group"><label>Description</label><textarea class="form-control" id="en-newchae-cta-desc" rows="2"></textarea></div>
+                            <div class="form-group"><label>Button Text</label><input type="text" class="form-control" id="en-newchae-cta-btn"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -1500,9 +1831,39 @@
                 contact: { address: '경기도 화성시 기산로87번길 2, 1층', tel: '070-4348-7244', fax: '031-267-0407', hours: '평일 AM 9:00 - PM 6:00', closed: '주말 및 공휴일 휴무', map: '' }
             },
             products: {
-                torr: { name: 'TORR RF', tagline: '피부 탄력과 리프팅의 새로운 기준', description: 'TORR RF는 최신 고주파(RF) 기술을 적용한 프리미엄 에스테틱 의료기기입니다. 피부 깊숙이 에너지를 전달하여 콜라겐 재생을 촉진하고, 피부 탄력과 리프팅에 탁월한 효과를 제공합니다.', image: '', features: [{ title: '고효율 RF', desc: '최적화된 고주파 에너지로 깊은 층까지 침투' }, { title: '안전성', desc: 'KFDA 승인, 다중 안전장치 탑재' }, { title: '빠른 시술', desc: '30분 내외의 짧은 시술 시간' }, { title: '즉각적 효과', desc: '시술 직후부터 리프팅 효과 체감' }], benefits: '피부 탄력 개선 및 리프팅\n콜라겐 재생 촉진\n주름 개선\n피부결 개선\n모공 축소', specs: [{ label: '모델명', value: 'TORR RF' }, { label: 'RF 주파수', value: '1MHz / 2MHz' }, { label: '출력', value: '최대 50W' }, { label: '모드', value: 'Monopolar / Bipolar' }, { label: '핸드피스', value: 'Face / Body 전용' }, { label: '인증', value: 'KFDA 의료기기' }] },
-                ulblanc: { name: 'UL BLANC', tagline: '프리미엄 미백 솔루션', description: 'UL BLANC은 피부 톤 개선과 미백 효과에 특화된 혁신적인 의료기기입니다. 선진 기술을 통해 피부 깊숙이 작용하여 맑고 투명한 피부를 선사합니다.', image: '', features: [{ title: '피부 톤 개선', desc: '균일하고 밝은 피부 톤 구현' }, { title: '안전 시스템', desc: '피부 보호 기술 적용' }, { title: '편안한 시술', desc: '통증 최소화 설계' }, { title: '지속적 효과', desc: '오래 지속되는 미백 효과' }], benefits: '피부 톤 균일화\n미백 및 브라이트닝\n색소 침착 개선\n피부 투명도 향상\n자외선 손상 케어', specs: [{ label: '모델명', value: 'UL BLANC' }, { label: '파장', value: 'Multi-wavelength' }, { label: '에너지', value: '최적화 펄스' }, { label: '쿨링', value: 'Contact Cooling' }, { label: '핸드피스', value: '전용 핸드피스' }, { label: '인증', value: 'KFDA 의료기기' }] },
-                newchae: { name: 'NEWCHAE', tagline: '프로페셔널 메디컬 코스메틱', description: 'NEWCHAE는 피부과 전문의와 함께 개발한 프리미엄 메디컬 코스메틱 라인입니다. 의료기기 시술 전후 케어부터 일상 스킨케어까지, 전문가의 손길이 담긴 제품을 경험해보세요.', image: '', features: [{ title: '피부과 협업', desc: '전문의와 공동 연구 개발' }, { title: '안전한 성분', desc: '피부 자극 최소화 포뮬러' }, { title: '시술 연계', desc: '의료기기 시술 전후 케어' }, { title: '프리미엄 케어', desc: '고농축 유효 성분 함유' }] }
+                torr: {
+                    name: 'TORR RF', tagline: '피부 탄력과 리프팅의 새로운 기준',
+                    description: 'TORR RF는 최신 고주파(RF) 기술을 적용한 프리미엄 에스테틱 의료기기입니다. 피부 깊숙이 에너지를 전달하여 콜라겐 재생을 촉진하고, 피부 탄력과 리프팅에 탁월한 효과를 제공합니다.',
+                    image: '',
+                    hero: { backgroundImage: '', label: 'Medical Device', title: 'TORR <em>RF</em>' },
+                    features: [{ title: '고효율 RF', desc: '최적화된 고주파 에너지로 깊은 층까지 침투' }, { title: '안전성', desc: 'KFDA 승인, 다중 안전장치 탑재' }, { title: '빠른 시술', desc: '30분 내외의 짧은 시술 시간' }, { title: '즉각적 효과', desc: '시술 직후부터 리프팅 효과 체감' }],
+                    benefits: '피부 탄력 개선 및 리프팅\n콜라겐 재생 촉진\n주름 개선\n피부결 개선\n모공 축소',
+                    specs: [{ label: '모델명', value: 'TORR RF' }, { label: 'RF 주파수', value: '1MHz / 2MHz' }, { label: '출력', value: '최대 50W' }, { label: '모드', value: 'Monopolar / Bipolar' }, { label: '핸드피스', value: 'Face / Body 전용' }, { label: '인증', value: 'KFDA 의료기기' }],
+                    cta: { title: 'TORR RF가 궁금하신가요?', description: '제품 문의 또는 데모 시연을 원하시면 연락주세요.', buttonText: '문의하기', buttonLink: '/cs/inquery.html' }
+                },
+                ulblanc: {
+                    name: 'UL BLANC', tagline: '프리미엄 미백 솔루션',
+                    description: 'UL BLANC은 피부 톤 개선과 미백 효과에 특화된 혁신적인 의료기기입니다. 선진 기술을 통해 피부 깊숙이 작용하여 맑고 투명한 피부를 선사합니다.',
+                    image: '',
+                    hero: { backgroundImage: '', label: 'Medical Device', title: 'UL <em>BLANC</em>' },
+                    features: [{ title: '피부 톤 개선', desc: '균일하고 밝은 피부 톤 구현' }, { title: '안전 시스템', desc: '피부 보호 기술 적용' }, { title: '편안한 시술', desc: '통증 최소화 설계' }, { title: '지속적 효과', desc: '오래 지속되는 미백 효과' }],
+                    benefits: '피부 톤 균일화\n미백 및 브라이트닝\n색소 침착 개선\n피부 투명도 향상\n자외선 손상 케어',
+                    specs: [{ label: '모델명', value: 'UL BLANC' }, { label: '파장', value: 'Multi-wavelength' }, { label: '에너지', value: '최적화 펄스' }, { label: '쿨링', value: 'Contact Cooling' }, { label: '핸드피스', value: '전용 핸드피스' }, { label: '인증', value: 'KFDA 의료기기' }],
+                    cta: { title: 'UL BLANC이 궁금하신가요?', description: '제품 문의 또는 데모 시연을 원하시면 연락주세요.', buttonText: '문의하기', buttonLink: '/cs/inquery.html' }
+                },
+                newchae: {
+                    name: 'NEWCHAE', tagline: '프로페셔널 메디컬 코스메틱',
+                    description: 'NEWCHAE는 피부과 전문의와 함께 개발한 프리미엄 메디컬 코스메틱 라인입니다. 의료기기 시술 전후 케어부터 일상 스킨케어까지, 전문가의 손길이 담긴 제품을 경험해보세요.',
+                    image: '',
+                    hero: { backgroundImage: '', label: 'Medical Cosmetic', title: 'NEW<em>CHAE</em>' },
+                    features: [{ title: '피부과 협업', desc: '전문의와 공동 연구 개발' }, { title: '안전한 성분', desc: '피부 자극 최소화 포뮬러' }, { title: '시술 연계', desc: '의료기기 시술 전후 케어' }, { title: '프리미엄 케어', desc: '고농축 유효 성분 함유' }],
+                    productLineup: [
+                        { title: '클렌징 라인', desc: '민감한 피부를 위한 순한 클렌징, 피부 장벽을 유지하면서 노폐물 제거' },
+                        { title: '트리트먼트 라인', desc: '시술 후 전문 케어 제품, 진정 및 재생 효과' },
+                        { title: '데일리 케어 라인', desc: '건강한 피부 유지를 위한 프리미엄 성분의 일상 스킨케어' }
+                    ],
+                    cta: { title: 'NEWCHAE가 궁금하신가요?', description: '제품 문의 또는 파트너십 제안을 원하시면 연락주세요.', buttonText: '문의하기', buttonLink: '/cs/inquery.html' }
+                }
             },
             news: [{ date: '2023-12-06', title: '리프팅 효과, 회복기간 모두를 고려한 리프팅 시술 방법은?' }, { date: '2023-11-15', title: '브리츠메디, 글로벌 시장 진출 가속화' }],
             settings: {
@@ -1583,6 +1944,38 @@
                     ulblanc: '',
                     newchae: '',
                     about: ''
+                },
+                productDetails: {
+                    torr: {
+                        hero: { label: 'Medical Device', title: 'TORR <em>RF</em>' },
+                        name: 'TORR <em>RF</em>', tagline: 'New standards in skin tightening and lifting',
+                        description: 'TORR RF is a premium aesthetic medical device featuring advanced RF (Radio Frequency) technology. It delivers energy deep into the skin to stimulate collagen regeneration, providing exceptional results for skin tightening and lifting treatments.',
+                        features: [{ title: 'High-Efficiency RF', desc: 'Optimized RF energy penetrates deep layers' }, { title: 'Safety', desc: 'KFDA approved with multiple safety features' }, { title: 'Quick Treatment', desc: 'Approximately 30 minutes per session' }, { title: 'Immediate Results', desc: 'Visible lifting effect right after treatment' }],
+                        benefits: 'Skin tightening and lifting\nCollagen regeneration stimulation\nWrinkle improvement\nSkin texture enhancement\nPore reduction',
+                        specs: [{ label: 'Model', value: 'TORR RF' }, { label: 'RF Frequency', value: '1MHz / 2MHz' }, { label: 'Output', value: 'Max 50W' }, { label: 'Mode', value: 'Monopolar / Bipolar' }, { label: 'Handpiece', value: 'Face / Body dedicated' }, { label: 'Certification', value: 'KFDA Medical Device' }],
+                        cta: { title: 'Interested in TORR RF?', description: 'Contact us for product inquiries or demo requests.', buttonText: 'Contact Us' }
+                    },
+                    ulblanc: {
+                        hero: { label: 'Medical Device', title: 'UL <em>BLANC</em>' },
+                        name: 'UL <em>BLANC</em>', tagline: 'Premium Brightening Solution',
+                        description: 'UL BLANC is an innovative medical device specialized in skin tone improvement and brightening effects. Through advanced technology, it works deep within the skin to deliver clear and radiant complexion.',
+                        features: [{ title: 'Tone Improvement', desc: 'Achieve even and bright skin tone' }, { title: 'Safety System', desc: 'Advanced skin protection technology' }, { title: 'Comfortable Treatment', desc: 'Minimized discomfort design' }, { title: 'Lasting Results', desc: 'Long-lasting brightening effects' }],
+                        benefits: 'Skin tone equalization\nBrightening and whitening\nPigmentation improvement\nEnhanced skin transparency\nUV damage care',
+                        specs: [{ label: 'Model', value: 'UL BLANC' }, { label: 'Wavelength', value: 'Multi-wavelength' }, { label: 'Energy', value: 'Optimized Pulse' }, { label: 'Cooling', value: 'Contact Cooling' }, { label: 'Handpiece', value: 'Dedicated Handpiece' }, { label: 'Certification', value: 'KFDA Medical Device' }],
+                        cta: { title: 'Interested in UL BLANC?', description: 'Contact us for product inquiries or demo requests.', buttonText: 'Contact Us' }
+                    },
+                    newchae: {
+                        hero: { label: 'Medical Cosmetic', title: 'NEW<em>CHAE</em>' },
+                        name: 'NEW<em>CHAE</em>', tagline: 'Professional Medical Cosmetic',
+                        description: 'NEWCHAE is a premium medical cosmetic line developed in collaboration with dermatology specialists. From pre and post treatment care to daily skincare, experience products crafted with professional expertise.',
+                        features: [{ title: 'Dermatologist Developed', desc: 'Co-developed with skin specialists' }, { title: 'Safe Ingredients', desc: 'Minimized skin irritation formula' }, { title: 'Treatment Synergy', desc: 'Pre and post treatment care' }, { title: 'Premium Care', desc: 'High-concentration active ingredients' }],
+                        productLineup: [
+                            { title: 'Cleansing Line', desc: 'Gentle cleansing for sensitive skin, maintaining skin barrier while removing impurities' },
+                            { title: 'Treatment Line', desc: 'Specialized post-treatment care products with soothing and regenerating properties' },
+                            { title: 'Daily Care Line', desc: 'Everyday skincare essentials with premium ingredients for healthy skin maintenance' }
+                        ],
+                        cta: { title: 'Interested in NEWCHAE?', description: 'Contact us for product inquiries or partnership opportunities.', buttonText: 'Contact Us' }
+                    }
                 }
             }
         };
@@ -1658,26 +2051,56 @@
             val('contact-hours', data.company.contact.hours);
             val('contact-closed', data.company.contact.closed);
             val('contact-map', data.company.contact.map);
-            // Products
+            // Products - TORR RF
             val('torr-name', data.products.torr.name);
             val('torr-tagline', data.products.torr.tagline);
             val('torr-description', data.products.torr.description);
             val('torr-image', data.products.torr.image);
+            if (!data.products.torr.hero) data.products.torr.hero = { backgroundImage: '', label: 'Medical Device', title: 'TORR <em>RF</em>' };
+            val('torr-hero-bg', data.products.torr.hero.backgroundImage || '');
+            val('torr-hero-label', data.products.torr.hero.label || '');
+            val('torr-hero-title', data.products.torr.hero.title || '');
             data.products.torr.features.forEach((f, i) => { val(`torr-f${i+1}-title`, f.title); val(`torr-f${i+1}-desc`, f.desc); });
             val('torr-benefits', data.products.torr.benefits);
             renderSpecs('torr');
+            if (!data.products.torr.cta) data.products.torr.cta = { title: '', description: '', buttonText: '', buttonLink: '' };
+            val('torr-cta-title', data.products.torr.cta.title || '');
+            val('torr-cta-desc', data.products.torr.cta.description || '');
+            val('torr-cta-btn', data.products.torr.cta.buttonText || '');
+            val('torr-cta-link', data.products.torr.cta.buttonLink || '');
+            // Products - UL BLANC
             val('ulblanc-name', data.products.ulblanc.name);
             val('ulblanc-tagline', data.products.ulblanc.tagline);
             val('ulblanc-description', data.products.ulblanc.description);
             val('ulblanc-image', data.products.ulblanc.image);
+            if (!data.products.ulblanc.hero) data.products.ulblanc.hero = { backgroundImage: '', label: 'Medical Device', title: 'UL <em>BLANC</em>' };
+            val('ulblanc-hero-bg', data.products.ulblanc.hero.backgroundImage || '');
+            val('ulblanc-hero-label', data.products.ulblanc.hero.label || '');
+            val('ulblanc-hero-title', data.products.ulblanc.hero.title || '');
             if (data.products.ulblanc.features) data.products.ulblanc.features.forEach((f, i) => { val(`ulblanc-f${i+1}-title`, f.title); val(`ulblanc-f${i+1}-desc`, f.desc); });
             val('ulblanc-benefits', data.products.ulblanc.benefits || '');
             renderSpecs('ulblanc');
+            if (!data.products.ulblanc.cta) data.products.ulblanc.cta = { title: '', description: '', buttonText: '', buttonLink: '' };
+            val('ulblanc-cta-title', data.products.ulblanc.cta.title || '');
+            val('ulblanc-cta-desc', data.products.ulblanc.cta.description || '');
+            val('ulblanc-cta-btn', data.products.ulblanc.cta.buttonText || '');
+            val('ulblanc-cta-link', data.products.ulblanc.cta.buttonLink || '');
+            // Products - NEWCHAE
             val('newchae-name', data.products.newchae.name);
             val('newchae-tagline', data.products.newchae.tagline);
             val('newchae-description', data.products.newchae.description);
             val('newchae-image', data.products.newchae.image);
+            if (!data.products.newchae.hero) data.products.newchae.hero = { backgroundImage: '', label: 'Medical Cosmetic', title: 'NEW<em>CHAE</em>' };
+            val('newchae-hero-bg', data.products.newchae.hero.backgroundImage || '');
+            val('newchae-hero-label', data.products.newchae.hero.label || '');
+            val('newchae-hero-title', data.products.newchae.hero.title || '');
             if (data.products.newchae.features) data.products.newchae.features.forEach((f, i) => { val(`newchae-f${i+1}-title`, f.title); val(`newchae-f${i+1}-desc`, f.desc); });
+            renderProductLineup();
+            if (!data.products.newchae.cta) data.products.newchae.cta = { title: '', description: '', buttonText: '', buttonLink: '' };
+            val('newchae-cta-title', data.products.newchae.cta.title || '');
+            val('newchae-cta-desc', data.products.newchae.cta.description || '');
+            val('newchae-cta-btn', data.products.newchae.cta.buttonText || '');
+            val('newchae-cta-link', data.products.newchae.cta.buttonLink || '');
             renderNews();
             // Settings
             val('google-sheets-url', data.settings.googleSheetsUrl);
@@ -1754,6 +2177,46 @@
             val('en-img-ulblanc', data.en.images.ulblanc || '');
             val('en-img-newchae', data.en.images.newchae || '');
             val('en-img-about', data.en.images.about || '');
+            // English Product Details
+            if (!data.en.productDetails) data.en.productDetails = JSON.parse(JSON.stringify(defaultData.en.productDetails));
+            // EN TORR RF
+            const enTorr = data.en.productDetails.torr;
+            val('en-torr-name', enTorr.name || '');
+            val('en-torr-tagline', enTorr.tagline || '');
+            val('en-torr-description', enTorr.description || '');
+            val('en-torr-hero-label', enTorr.hero?.label || '');
+            val('en-torr-hero-title', enTorr.hero?.title || '');
+            if (enTorr.features) enTorr.features.forEach((f, i) => { val(`en-torr-f${i+1}-title`, f.title); val(`en-torr-f${i+1}-desc`, f.desc); });
+            val('en-torr-benefits', enTorr.benefits || '');
+            renderEnSpecs('torr');
+            val('en-torr-cta-title', enTorr.cta?.title || '');
+            val('en-torr-cta-desc', enTorr.cta?.description || '');
+            val('en-torr-cta-btn', enTorr.cta?.buttonText || '');
+            // EN UL BLANC
+            const enUlblanc = data.en.productDetails.ulblanc;
+            val('en-ulblanc-name', enUlblanc.name || '');
+            val('en-ulblanc-tagline', enUlblanc.tagline || '');
+            val('en-ulblanc-description', enUlblanc.description || '');
+            val('en-ulblanc-hero-label', enUlblanc.hero?.label || '');
+            val('en-ulblanc-hero-title', enUlblanc.hero?.title || '');
+            if (enUlblanc.features) enUlblanc.features.forEach((f, i) => { val(`en-ulblanc-f${i+1}-title`, f.title); val(`en-ulblanc-f${i+1}-desc`, f.desc); });
+            val('en-ulblanc-benefits', enUlblanc.benefits || '');
+            renderEnSpecs('ulblanc');
+            val('en-ulblanc-cta-title', enUlblanc.cta?.title || '');
+            val('en-ulblanc-cta-desc', enUlblanc.cta?.description || '');
+            val('en-ulblanc-cta-btn', enUlblanc.cta?.buttonText || '');
+            // EN NEWCHAE
+            const enNewchae = data.en.productDetails.newchae;
+            val('en-newchae-name', enNewchae.name || '');
+            val('en-newchae-tagline', enNewchae.tagline || '');
+            val('en-newchae-description', enNewchae.description || '');
+            val('en-newchae-hero-label', enNewchae.hero?.label || '');
+            val('en-newchae-hero-title', enNewchae.hero?.title || '');
+            if (enNewchae.features) enNewchae.features.forEach((f, i) => { val(`en-newchae-f${i+1}-title`, f.title); val(`en-newchae-f${i+1}-desc`, f.desc); });
+            renderEnProductLineup();
+            val('en-newchae-cta-title', enNewchae.cta?.title || '');
+            val('en-newchae-cta-desc', enNewchae.cta?.description || '');
+            val('en-newchae-cta-btn', enNewchae.cta?.buttonText || '');
         }
 
         // History
@@ -1788,6 +2251,58 @@
         window.addSpec = p => { if (!data.products[p].specs) data.products[p].specs = []; data.products[p].specs.push({ label: '', value: '' }); renderSpecs(p); markUnsaved(); };
         window.removeSpec = (p, i) => { data.products[p].specs.splice(i, 1); renderSpecs(p); markUnsaved(); };
 
+        // Product Lineup (NEWCHAE)
+        function renderProductLineup() {
+            const c = $('newchae-lineup-container');
+            if (!c) return;
+            const lineup = data.products.newchae.productLineup || [];
+            c.innerHTML = lineup.length ? lineup.map((p, i) => `
+                <div class="spec-row" style="grid-template-columns:1fr 2fr auto;">
+                    <input type="text" class="form-control" id="newchae-lineup-${i}-title" value="${p.title || ''}" placeholder="제품명">
+                    <input type="text" class="form-control" id="newchae-lineup-${i}-desc" value="${p.desc || ''}" placeholder="설명">
+                    <button class="btn btn-danger btn-sm" onclick="removeProductLineup(${i})">삭제</button>
+                </div>
+            `).join('') : '<p style="color:var(--gray-500)">등록된 제품 라인업이 없습니다.</p>';
+        }
+        window.addProductLineup = () => { if (!data.products.newchae.productLineup) data.products.newchae.productLineup = []; data.products.newchae.productLineup.push({ title: '', desc: '' }); renderProductLineup(); markUnsaved(); };
+        window.removeProductLineup = i => { data.products.newchae.productLineup.splice(i, 1); renderProductLineup(); markUnsaved(); };
+
+        // English Specs
+        function renderEnSpecs(p) {
+            const c = $(`en-${p}-specs`);
+            if (!c) return;
+            if (!data.en.productDetails) data.en.productDetails = JSON.parse(JSON.stringify(defaultData.en.productDetails));
+            if (!data.en.productDetails[p]) data.en.productDetails[p] = JSON.parse(JSON.stringify(defaultData.en.productDetails[p]));
+            const specs = data.en.productDetails[p].specs || [];
+            c.innerHTML = specs.length ? specs.map((s, i) => `
+                <div class="spec-row">
+                    <input type="text" class="form-control" id="en-${p}-spec-${i}-label" value="${s.label}" placeholder="Item">
+                    <input type="text" class="form-control" id="en-${p}-spec-${i}-value" value="${s.value}" placeholder="Value">
+                    <button class="btn btn-danger btn-sm" onclick="removeEnSpec('${p}',${i})">Delete</button>
+                </div>
+            `).join('') : '<p style="color:var(--gray-500)">No specifications added.</p>';
+        }
+        window.addEnSpec = p => { if (!data.en.productDetails[p].specs) data.en.productDetails[p].specs = []; data.en.productDetails[p].specs.push({ label: '', value: '' }); renderEnSpecs(p); markUnsaved(); };
+        window.removeEnSpec = (p, i) => { data.en.productDetails[p].specs.splice(i, 1); renderEnSpecs(p); markUnsaved(); };
+
+        // English Product Lineup (NEWCHAE)
+        function renderEnProductLineup() {
+            const c = $('en-newchae-lineup-container');
+            if (!c) return;
+            if (!data.en.productDetails) data.en.productDetails = JSON.parse(JSON.stringify(defaultData.en.productDetails));
+            if (!data.en.productDetails.newchae) data.en.productDetails.newchae = JSON.parse(JSON.stringify(defaultData.en.productDetails.newchae));
+            const lineup = data.en.productDetails.newchae.productLineup || [];
+            c.innerHTML = lineup.length ? lineup.map((p, i) => `
+                <div class="spec-row" style="grid-template-columns:1fr 2fr auto;">
+                    <input type="text" class="form-control" id="en-newchae-lineup-${i}-title" value="${p.title || ''}" placeholder="Product Name">
+                    <input type="text" class="form-control" id="en-newchae-lineup-${i}-desc" value="${p.desc || ''}" placeholder="Description">
+                    <button class="btn btn-danger btn-sm" onclick="removeEnProductLineup(${i})">Delete</button>
+                </div>
+            `).join('') : '<p style="color:var(--gray-500)">No products added.</p>';
+        }
+        window.addEnProductLineup = () => { if (!data.en.productDetails.newchae.productLineup) data.en.productDetails.newchae.productLineup = []; data.en.productDetails.newchae.productLineup.push({ title: '', desc: '' }); renderEnProductLineup(); markUnsaved(); };
+        window.removeEnProductLineup = i => { data.en.productDetails.newchae.productLineup.splice(i, 1); renderEnProductLineup(); markUnsaved(); };
+
         // News
         function renderNews() {
             const c = $('newsContainer');
@@ -1816,14 +2331,24 @@
             data.company.history = data.company.history.map((h, i) => ({ year: val(`history-${i}-year`) || h.year, title: val(`history-${i}-title`) || h.title, desc: val(`history-${i}-desc`) || h.desc }));
             data.company.ceo = { name: val('ceo-name'), position: val('ceo-position'), image: val('ceo-image'), quote: val('ceo-quote'), message: val('ceo-message') };
             data.company.contact = { address: val('contact-address'), tel: val('contact-tel'), fax: val('contact-fax'), hours: val('contact-hours'), closed: val('contact-closed'), map: val('contact-map') };
+            // TORR RF
             data.products.torr.name = val('torr-name'); data.products.torr.tagline = val('torr-tagline'); data.products.torr.description = val('torr-description'); data.products.torr.image = val('torr-image'); data.products.torr.benefits = val('torr-benefits');
+            data.products.torr.hero = { backgroundImage: val('torr-hero-bg'), label: val('torr-hero-label'), title: val('torr-hero-title') };
             for (let i = 0; i < 4; i++) data.products.torr.features[i] = { title: val(`torr-f${i+1}-title`), desc: val(`torr-f${i+1}-desc`) };
             data.products.torr.specs = (data.products.torr.specs || []).map((s, i) => ({ label: val(`torr-spec-${i}-label`) || s.label, value: val(`torr-spec-${i}-value`) || s.value }));
+            data.products.torr.cta = { title: val('torr-cta-title'), description: val('torr-cta-desc'), buttonText: val('torr-cta-btn'), buttonLink: val('torr-cta-link') };
+            // UL BLANC
             data.products.ulblanc.name = val('ulblanc-name'); data.products.ulblanc.tagline = val('ulblanc-tagline'); data.products.ulblanc.description = val('ulblanc-description'); data.products.ulblanc.image = val('ulblanc-image'); data.products.ulblanc.benefits = val('ulblanc-benefits');
+            data.products.ulblanc.hero = { backgroundImage: val('ulblanc-hero-bg'), label: val('ulblanc-hero-label'), title: val('ulblanc-hero-title') };
             for (let i = 0; i < 4; i++) { if (!data.products.ulblanc.features) data.products.ulblanc.features = [{},{},{},{}]; data.products.ulblanc.features[i] = { title: val(`ulblanc-f${i+1}-title`), desc: val(`ulblanc-f${i+1}-desc`) }; }
             data.products.ulblanc.specs = (data.products.ulblanc.specs || []).map((s, i) => ({ label: val(`ulblanc-spec-${i}-label`) || s.label, value: val(`ulblanc-spec-${i}-value`) || s.value }));
+            data.products.ulblanc.cta = { title: val('ulblanc-cta-title'), description: val('ulblanc-cta-desc'), buttonText: val('ulblanc-cta-btn'), buttonLink: val('ulblanc-cta-link') };
+            // NEWCHAE
             data.products.newchae.name = val('newchae-name'); data.products.newchae.tagline = val('newchae-tagline'); data.products.newchae.description = val('newchae-description'); data.products.newchae.image = val('newchae-image');
+            data.products.newchae.hero = { backgroundImage: val('newchae-hero-bg'), label: val('newchae-hero-label'), title: val('newchae-hero-title') };
             for (let i = 0; i < 4; i++) { if (!data.products.newchae.features) data.products.newchae.features = [{},{},{},{}]; data.products.newchae.features[i] = { title: val(`newchae-f${i+1}-title`), desc: val(`newchae-f${i+1}-desc`) }; }
+            data.products.newchae.productLineup = (data.products.newchae.productLineup || []).map((p, i) => ({ title: val(`newchae-lineup-${i}-title`) || p.title, desc: val(`newchae-lineup-${i}-desc`) || p.desc }));
+            data.products.newchae.cta = { title: val('newchae-cta-title'), description: val('newchae-cta-desc'), buttonText: val('newchae-cta-btn'), buttonLink: val('newchae-cta-link') };
             data.news = data.news.map((n, i) => ({ date: val(`news-${i}-date`) || n.date, title: val(`news-${i}-title`) || n.title }));
             data.settings.googleSheetsUrl = val('google-sheets-url');
             data.settings.footer = { description: val('footer-description'), ceo: val('footer-ceo'), biznum: val('footer-biznum'), instagram: val('footer-instagram'), youtube: val('footer-youtube'), kakao: val('footer-kakao') };
@@ -1903,6 +2428,90 @@
                 ulblanc: val('en-img-ulblanc'),
                 newchae: val('en-img-newchae'),
                 about: val('en-img-about')
+            };
+
+            // English Product Details
+            if (!data.en.productDetails) data.en.productDetails = {};
+
+            // EN TORR RF
+            data.en.productDetails.torr = {
+                hero: {
+                    label: val('en-torr-hero-label'),
+                    title: val('en-torr-hero-title')
+                },
+                name: val('en-torr-name'),
+                tagline: val('en-torr-tagline'),
+                description: val('en-torr-description'),
+                features: [
+                    { title: val('en-torr-feature1-title'), desc: val('en-torr-feature1-desc') },
+                    { title: val('en-torr-feature2-title'), desc: val('en-torr-feature2-desc') },
+                    { title: val('en-torr-feature3-title'), desc: val('en-torr-feature3-desc') },
+                    { title: val('en-torr-feature4-title'), desc: val('en-torr-feature4-desc') }
+                ],
+                benefits: val('en-torr-benefits'),
+                specs: (data.en.productDetails.torr?.specs || []).map((s, i) => ({
+                    label: val(`en-torr-spec-${i}-label`) || s.label,
+                    value: val(`en-torr-spec-${i}-value`) || s.value
+                })),
+                cta: {
+                    title: val('en-torr-cta-title'),
+                    description: val('en-torr-cta-desc'),
+                    buttonText: val('en-torr-cta-btn')
+                }
+            };
+
+            // EN UL BLANC
+            data.en.productDetails.ulblanc = {
+                hero: {
+                    label: val('en-ulblanc-hero-label'),
+                    title: val('en-ulblanc-hero-title')
+                },
+                name: val('en-ulblanc-name'),
+                tagline: val('en-ulblanc-tagline'),
+                description: val('en-ulblanc-description'),
+                features: [
+                    { title: val('en-ulblanc-feature1-title'), desc: val('en-ulblanc-feature1-desc') },
+                    { title: val('en-ulblanc-feature2-title'), desc: val('en-ulblanc-feature2-desc') },
+                    { title: val('en-ulblanc-feature3-title'), desc: val('en-ulblanc-feature3-desc') },
+                    { title: val('en-ulblanc-feature4-title'), desc: val('en-ulblanc-feature4-desc') }
+                ],
+                benefits: val('en-ulblanc-benefits'),
+                specs: (data.en.productDetails.ulblanc?.specs || []).map((s, i) => ({
+                    label: val(`en-ulblanc-spec-${i}-label`) || s.label,
+                    value: val(`en-ulblanc-spec-${i}-value`) || s.value
+                })),
+                cta: {
+                    title: val('en-ulblanc-cta-title'),
+                    description: val('en-ulblanc-cta-desc'),
+                    buttonText: val('en-ulblanc-cta-btn')
+                }
+            };
+
+            // EN NEWCHAE
+            data.en.productDetails.newchae = {
+                hero: {
+                    label: val('en-newchae-hero-label'),
+                    title: val('en-newchae-hero-title')
+                },
+                name: val('en-newchae-name'),
+                tagline: val('en-newchae-tagline'),
+                description: val('en-newchae-description'),
+                features: [
+                    { title: val('en-newchae-feature1-title'), desc: val('en-newchae-feature1-desc') },
+                    { title: val('en-newchae-feature2-title'), desc: val('en-newchae-feature2-desc') },
+                    { title: val('en-newchae-feature3-title'), desc: val('en-newchae-feature3-desc') },
+                    { title: val('en-newchae-feature4-title'), desc: val('en-newchae-feature4-desc') }
+                ],
+                benefits: val('en-newchae-benefits'),
+                productLineup: (data.en.productDetails.newchae?.productLineup || []).map((p, i) => ({
+                    title: val(`en-newchae-lineup-${i}-title`) || p.title,
+                    desc: val(`en-newchae-lineup-${i}-desc`) || p.desc
+                })),
+                cta: {
+                    title: val('en-newchae-cta-title'),
+                    description: val('en-newchae-cta-desc'),
+                    buttonText: val('en-newchae-cta-btn')
+                }
             };
         }
 
