@@ -828,3 +828,15 @@ function closeVideoModal(modal) {
 }
 
 document.addEventListener('DOMContentLoaded', initVideoModal);
+
+// ============================================
+// Lazy Loading for Images
+// ============================================
+function initLazyLoading() {
+    // Add loading="lazy" to all images except hero images (for LCP optimization)
+    document.querySelectorAll('img:not(.hero-bg-image):not([loading])').forEach(img => {
+        img.setAttribute('loading', 'lazy');
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initLazyLoading);
