@@ -414,14 +414,158 @@
         @media (max-width: 768px) {
             .sidebar-close { display: flex; }
         }
+
+        /* Login Screen */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        .login-overlay.hidden {
+            display: none;
+        }
+        .login-box {
+            background: var(--bg-card);
+            border: 1px solid var(--gray-800);
+            border-radius: 12px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 400px;
+            margin: 1rem;
+        }
+        .login-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .login-logo h1 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        .login-logo p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+        .login-form .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .login-form label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gray-400);
+            margin-bottom: 0.5rem;
+        }
+        .login-form .form-control {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--gray-700);
+            color: var(--white);
+            font-family: inherit;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            transition: border-color 0.2s ease;
+        }
+        .login-form .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        .login-btn {
+            width: 100%;
+            padding: 0.9rem;
+            background: var(--gold);
+            border: none;
+            color: var(--bg-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            margin-top: 0.5rem;
+        }
+        .login-btn:hover {
+            background: var(--gold-light);
+        }
+        .login-error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--error);
+            color: var(--error);
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        .login-error.show {
+            display: block;
+        }
+        .logout-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--gray-700);
+            background: none;
+            color: var(--gray-300);
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        .logout-btn:hover {
+            border-color: var(--error);
+            color: var(--error);
+        }
+        .logout-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+        .admin-hidden {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
+    <!-- Login Screen -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-box">
+            <div class="login-logo">
+                <h1>BRITZMEDI</h1>
+                <p>관리자 로그인</p>
+            </div>
+            <div class="login-error" id="loginError">아이디 또는 비밀번호가 올바르지 않습니다.</div>
+            <form class="login-form" id="loginForm" onsubmit="return handleLogin(event)">
+                <div class="form-group">
+                    <label>아이디</label>
+                    <input type="text" class="form-control" id="loginUsername" placeholder="아이디를 입력하세요" autocomplete="username" required>
+                </div>
+                <div class="form-group">
+                    <label>비밀번호</label>
+                    <input type="password" class="form-control" id="loginPassword" placeholder="비밀번호를 입력하세요" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="login-btn">로그인</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Mobile Overlay -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
+    <aside class="sidebar admin-hidden" id="sidebar">
         <button class="sidebar-close" id="sidebarClose">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
@@ -531,7 +675,7 @@
     </aside>
 
     <!-- Main Content -->
-    <main class="main">
+    <main class="main admin-hidden">
         <div class="main-header">
             <div style="display: flex; align-items: center;">
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -555,6 +699,10 @@
                 <button class="btn btn-primary" onclick="saveAllData()">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
                     저장하기
+                </button>
+                <button class="logout-btn" onclick="handleLogout()" title="로그아웃">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    로그아웃
                 </button>
             </div>
         </div>
@@ -1851,6 +1999,88 @@
     </div>
 
     <script>
+        // ============ LOGIN SYSTEM ============
+        const LOGIN_KEY = 'britzmedi_admin_auth';
+        const ADMIN_CREDENTIALS = {
+            username: 'admin',
+            password: 'britzmedi2024!'
+        };
+
+        function checkLoginStatus() {
+            const authData = localStorage.getItem(LOGIN_KEY);
+            if (authData) {
+                try {
+                    const auth = JSON.parse(authData);
+                    // Check if session is still valid (24 hours)
+                    if (auth.loggedIn && auth.timestamp && (Date.now() - auth.timestamp < 24 * 60 * 60 * 1000)) {
+                        return true;
+                    }
+                } catch (e) {
+                    console.error('Auth check error:', e);
+                }
+            }
+            return false;
+        }
+
+        function showAdminPanel() {
+            document.getElementById('loginOverlay').classList.add('hidden');
+            document.getElementById('sidebar').classList.remove('admin-hidden');
+            document.querySelector('.main').classList.remove('admin-hidden');
+        }
+
+        function hideAdminPanel() {
+            document.getElementById('loginOverlay').classList.remove('hidden');
+            document.getElementById('sidebar').classList.add('admin-hidden');
+            document.querySelector('.main').classList.add('admin-hidden');
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const errorEl = document.getElementById('loginError');
+
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                // Save login state
+                localStorage.setItem(LOGIN_KEY, JSON.stringify({
+                    loggedIn: true,
+                    timestamp: Date.now(),
+                    username: username
+                }));
+                errorEl.classList.remove('show');
+                showAdminPanel();
+                // Clear form
+                document.getElementById('loginUsername').value = '';
+                document.getElementById('loginPassword').value = '';
+            } else {
+                errorEl.classList.add('show');
+                document.getElementById('loginPassword').value = '';
+                document.getElementById('loginPassword').focus();
+            }
+            return false;
+        }
+
+        function handleLogout() {
+            if (confirm('로그아웃 하시겠습니까?')) {
+                localStorage.removeItem(LOGIN_KEY);
+                hideAdminPanel();
+                document.getElementById('loginUsername').focus();
+            }
+        }
+
+        // Initialize login check on page load
+        (function initAuth() {
+            if (checkLoginStatus()) {
+                showAdminPanel();
+            } else {
+                hideAdminPanel();
+                setTimeout(function() {
+                    document.getElementById('loginUsername').focus();
+                }, 100);
+            }
+        })();
+
+        // ============ CMS SYSTEM ============
         const STORAGE_KEY = 'britzmedi_cms';
         
         // Default data
