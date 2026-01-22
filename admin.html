@@ -500,6 +500,12 @@
                 파트너십
             </a>
 
+            <div class="nav-section">영문 페이지</div>
+            <a class="nav-item" data-page="en-home">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                English Home
+            </a>
+
             <div class="nav-section">설정</div>
             <a class="nav-item" data-page="settings-images">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
@@ -1124,6 +1130,292 @@
                     <div class="card-footer"><button class="btn btn-sm" onclick="addPartnerBenefit()">+ 혜택 추가</button></div>
                 </div>
             </div>
+
+            <!-- ================== ENGLISH HOME PAGE ================== -->
+            <div class="page-content" id="page-en-home">
+                <div class="tabs">
+                    <button class="tab active" data-tab="en-hero">Hero</button>
+                    <button class="tab" data-tab="en-products">Products</button>
+                    <button class="tab" data-tab="en-stats">Stats</button>
+                    <button class="tab" data-tab="en-about">About</button>
+                    <button class="tab" data-tab="en-contact">Contact</button>
+                    <button class="tab" data-tab="en-footer">Footer</button>
+                </div>
+
+                <!-- EN Hero -->
+                <div class="tab-content active" id="tab-en-hero">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Hero Section (English)</h3></div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Subtitle</label>
+                                <input type="text" class="form-control" id="en-hero-subtitle" placeholder="e.g. Aesthetic Medical Device Excellence">
+                            </div>
+                            <div class="form-group">
+                                <label>Main Title</label>
+                                <input type="text" class="form-control" id="en-hero-title" placeholder="e.g. Leading Innovation in Aesthetic Medicine">
+                                <p class="form-help">강조할 텍스트는 &lt;em&gt;태그&lt;/em&gt;로 감싸세요. 예: Leading &lt;em&gt;Innovation&lt;/em&gt; in Aesthetic Medicine</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea class="form-control" id="en-hero-description" rows="3" placeholder="Hero section description text..."></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>CTA Button Text</label>
+                                    <input type="text" class="form-control" id="en-hero-cta-text" placeholder="e.g. Explore Products">
+                                </div>
+                                <div class="form-group">
+                                    <label>CTA Button Link</label>
+                                    <input type="text" class="form-control" id="en-hero-cta-link" placeholder="e.g. #products">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EN Products -->
+                <div class="tab-content" id="tab-en-products">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Products Section Header</h3></div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Section Label</label>
+                                    <input type="text" class="form-control" id="en-products-label" placeholder="e.g. Our Products">
+                                </div>
+                                <div class="form-group">
+                                    <label>Section Title</label>
+                                    <input type="text" class="form-control" id="en-products-title" placeholder="e.g. Cutting-Edge Medical Device Lineup">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="card">
+                            <div class="card-header"><h3>Product 1 - TORR RF</h3></div>
+                            <div class="card-body">
+                                <div class="form-group"><label>Badge</label><input type="text" class="form-control" id="en-product1-badge" placeholder="e.g. Flagship"></div>
+                                <div class="form-group"><label>Category</label><input type="text" class="form-control" id="en-product1-category" placeholder="e.g. Medical Device"></div>
+                                <div class="form-group"><label>Name</label><input type="text" class="form-control" id="en-product1-name" placeholder="TORR RF"></div>
+                                <div class="form-group"><label>Description</label><textarea class="form-control" id="en-product1-desc" rows="3" placeholder="Product description..."></textarea></div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header"><h3>Product 2 - UL BLANC</h3></div>
+                            <div class="card-body">
+                                <div class="form-group"><label>Category</label><input type="text" class="form-control" id="en-product2-category" placeholder="e.g. Medical Device"></div>
+                                <div class="form-group"><label>Name</label><input type="text" class="form-control" id="en-product2-name" placeholder="UL BLANC"></div>
+                                <div class="form-group"><label>Description</label><textarea class="form-control" id="en-product2-desc" rows="3" placeholder="Product description..."></textarea></div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header"><h3>Product 3 - NEWCHAE</h3></div>
+                            <div class="card-body">
+                                <div class="form-group"><label>Category</label><input type="text" class="form-control" id="en-product3-category" placeholder="e.g. Medical Cosmetic"></div>
+                                <div class="form-group"><label>Name</label><input type="text" class="form-control" id="en-product3-name" placeholder="NEWCHAE"></div>
+                                <div class="form-group"><label>Description</label><textarea class="form-control" id="en-product3-desc" rows="3" placeholder="Product description..."></textarea></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EN Stats -->
+                <div class="tab-content" id="tab-en-stats">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Stats Section (4 Items)</h3></div>
+                        <div class="card-body">
+                            <div class="stat-editor">
+                                <div class="stat-item-edit">
+                                    <input type="text" class="stat-number" id="en-stat1-number" placeholder="2017">
+                                    <input type="text" class="stat-label" id="en-stat1-label" placeholder="Founded">
+                                </div>
+                                <div class="stat-item-edit">
+                                    <input type="text" class="stat-number" id="en-stat2-number" placeholder="500+">
+                                    <input type="text" class="stat-label" id="en-stat2-label" placeholder="Partner Clinics">
+                                </div>
+                                <div class="stat-item-edit">
+                                    <input type="text" class="stat-number" id="en-stat3-number" placeholder="KFDA">
+                                    <input type="text" class="stat-label" id="en-stat3-label" placeholder="Certified">
+                                </div>
+                                <div class="stat-item-edit">
+                                    <input type="text" class="stat-number" id="en-stat4-number" placeholder="3+">
+                                    <input type="text" class="stat-label" id="en-stat4-label" placeholder="Product Lines">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EN About -->
+                <div class="tab-content" id="tab-en-about">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 About Section</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label>Section Label</label><input type="text" class="form-control" id="en-about-label" placeholder="e.g. About BRITZMEDI"></div>
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" class="form-control" id="en-about-title" placeholder="e.g. Setting New Standards in Aesthetic Medical Devices">
+                                <p class="form-help">강조: &lt;em&gt;New Standards&lt;/em&gt;</p>
+                            </div>
+                            <div class="form-group"><label>Description 1</label><textarea class="form-control" id="en-about-desc1" rows="2" placeholder="First paragraph..."></textarea></div>
+                            <div class="form-group"><label>Description 2</label><textarea class="form-control" id="en-about-desc2" rows="2" placeholder="Second paragraph..."></textarea></div>
+                            <div class="form-group"><label>Years Badge Number</label><input type="text" class="form-control" id="en-about-years" placeholder="e.g. 8" style="max-width:100px;"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 About Features (4 Items)</h3></div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Feature 1 Title</label>
+                                    <input type="text" class="form-control" id="en-feature1-title" placeholder="e.g. KFDA Certified">
+                                    <input type="text" class="form-control" id="en-feature1-desc" style="margin-top:0.5rem" placeholder="Description...">
+                                </div>
+                                <div class="form-group">
+                                    <label>Feature 2 Title</label>
+                                    <input type="text" class="form-control" id="en-feature2-title" placeholder="e.g. In-house R&D">
+                                    <input type="text" class="form-control" id="en-feature2-desc" style="margin-top:0.5rem" placeholder="Description...">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Feature 3 Title</label>
+                                    <input type="text" class="form-control" id="en-feature3-title" placeholder="e.g. Quality Assured">
+                                    <input type="text" class="form-control" id="en-feature3-desc" style="margin-top:0.5rem" placeholder="Description...">
+                                </div>
+                                <div class="form-group">
+                                    <label>Feature 4 Title</label>
+                                    <input type="text" class="form-control" id="en-feature4-title" placeholder="e.g. Global Expansion">
+                                    <input type="text" class="form-control" id="en-feature4-desc" style="margin-top:0.5rem" placeholder="Description...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EN Contact -->
+                <div class="tab-content" id="tab-en-contact">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Contact Section</h3></div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group"><label>Section Label</label><input type="text" class="form-control" id="en-contact-label" placeholder="e.g. Contact Us"></div>
+                                <div class="form-group"><label>Section Title</label><input type="text" class="form-control" id="en-contact-title" placeholder="e.g. Get in Touch"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>Info Title</label>
+                                <input type="text" class="form-control" id="en-contact-info-title" placeholder="e.g. Grow Together with BRITZMEDI">
+                                <p class="form-help">줄바꿈은 &lt;br&gt; 태그 사용</p>
+                            </div>
+                            <div class="form-group"><label>Info Description</label><textarea class="form-control" id="en-contact-info-desc" rows="2" placeholder="Contact section description..."></textarea></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Contact Details</h3></div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Phone Label</label>
+                                    <input type="text" class="form-control" id="en-contact-phone-label" placeholder="Phone">
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone Number</label>
+                                    <input type="text" class="form-control" id="en-contact-phone" placeholder="+82-70-4348-7244">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Email Label</label>
+                                    <input type="text" class="form-control" id="en-contact-email-label" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email Address</label>
+                                    <input type="text" class="form-control" id="en-contact-email" placeholder="contact@britzmedi.com">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Address Label</label>
+                                    <input type="text" class="form-control" id="en-contact-address-label" placeholder="Address">
+                                </div>
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <input type="text" class="form-control" id="en-contact-address" placeholder="Hwaseong-si, Gyeonggi-do, Korea">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Contact Form Labels</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label>Form Title</label><input type="text" class="form-control" id="en-form-title" placeholder="Contact Form"></div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Name Field Label</label><input type="text" class="form-control" id="en-form-name" placeholder="Name / Hospital"></div>
+                                <div class="form-group"><label>Phone Field Label</label><input type="text" class="form-control" id="en-form-phone" placeholder="Phone"></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Email Field Label</label><input type="text" class="form-control" id="en-form-email" placeholder="Email"></div>
+                                <div class="form-group"><label>Inquiry Type Label</label><input type="text" class="form-control" id="en-form-type" placeholder="Inquiry Type"></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Message Label</label><input type="text" class="form-control" id="en-form-message" placeholder="Message"></div>
+                                <div class="form-group"><label>Submit Button Text</label><input type="text" class="form-control" id="en-form-submit" placeholder="Submit Inquiry"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>Inquiry Type Options (한 줄에 하나씩)</label>
+                                <textarea class="form-control" id="en-form-options" rows="4" placeholder="Please select&#10;Product Inquiry&#10;Demo Request&#10;Partnership&#10;Other"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EN Footer -->
+                <div class="tab-content" id="tab-en-footer">
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Footer Content</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label>Brand Description</label><textarea class="form-control" id="en-footer-description" rows="2" placeholder="Company description in footer..."></textarea></div>
+                            <div class="form-group"><label>Copyright Text</label><input type="text" class="form-control" id="en-footer-copyright" placeholder="© 2024 BRITZMEDI. All rights reserved."></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Footer Links Titles</h3></div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group"><label>Products Column Title</label><input type="text" class="form-control" id="en-footer-products-title" placeholder="Products"></div>
+                                <div class="form-group"><label>Company Column Title</label><input type="text" class="form-control" id="en-footer-company-title" placeholder="Company"></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Support Column Title</label><input type="text" class="form-control" id="en-footer-support-title" placeholder="Support"></div>
+                                <div class="form-group"><label>Privacy Policy Text</label><input type="text" class="form-control" id="en-footer-privacy" placeholder="Privacy Policy"></div>
+                            </div>
+                            <div class="form-group"><label>Terms of Service Text</label><input type="text" class="form-control" id="en-footer-terms" placeholder="Terms of Service"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Footer Company Links</h3></div>
+                        <div class="card-body">
+                            <div class="form-row cols-4">
+                                <div class="form-group"><label>Link 1</label><input type="text" class="form-control" id="en-footer-company-link1" placeholder="About Us"></div>
+                                <div class="form-group"><label>Link 2</label><input type="text" class="form-control" id="en-footer-company-link2" placeholder="R&D"></div>
+                                <div class="form-group"><label>Link 3</label><input type="text" class="form-control" id="en-footer-company-link3" placeholder="News"></div>
+                                <div class="form-group"><label>Link 4</label><input type="text" class="form-control" id="en-footer-company-link4" placeholder="Careers"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><h3>🌐 Footer Support Links</h3></div>
+                        <div class="card-body">
+                            <div class="form-row cols-3">
+                                <div class="form-group"><label>Link 1</label><input type="text" class="form-control" id="en-footer-support-link1" placeholder="Contact"></div>
+                                <div class="form-group"><label>Link 2</label><input type="text" class="form-control" id="en-footer-support-link2" placeholder="FAQ"></div>
+                                <div class="form-group"><label>Link 3</label><input type="text" class="form-control" id="en-footer-support-link3" placeholder="Service"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -1165,6 +1457,74 @@
                 googleSheetsUrl: '',
                 footer: { description: '피부 미용 분야의 글로벌 리더', ceo: '김정락', biznum: '682-87-00782', instagram: '', youtube: '', kakao: '' },
                 images: { hero: '', company: '', torr: '', ulblanc: '', newchae: '', lab: '' }
+            },
+            en: {
+                hero: {
+                    subtitle: 'Aesthetic Medical Device Excellence',
+                    title: 'Leading <em>Innovation</em><br>in Aesthetic Medicine',
+                    description: "Since 2017, we've been pioneering KFDA-certified RF medical devices and premium medical cosmetics for dermatology clinics worldwide.",
+                    ctaText: 'Explore Products',
+                    ctaLink: '#products'
+                },
+                products: {
+                    label: 'Our Products',
+                    title: 'Cutting-Edge <em>Medical</em> Device Lineup',
+                    items: [
+                        { badge: 'Flagship', category: 'Medical Device', name: 'TORR RF', desc: 'Premium aesthetic medical device featuring advanced RF technology. Delivers exceptional results for skin tightening and lifting treatments.' },
+                        { category: 'Medical Device', name: 'UL BLANC', desc: 'Innovative medical device solution specialized in skin tone improvement and brightening effects.' },
+                        { category: 'Medical Cosmetic', name: 'NEWCHAE', desc: 'Professional medical cosmetic line developed in collaboration with dermatology specialists for premium skincare solutions.' }
+                    ]
+                },
+                stats: [
+                    { number: '2017', label: 'Founded' },
+                    { number: '500+', label: 'Partner Clinics' },
+                    { number: 'KFDA', label: 'Certified' },
+                    { number: '3+', label: 'Product Lines' }
+                ],
+                about: {
+                    label: 'About BRITZMEDI',
+                    title: 'Setting <em>New Standards</em> in Aesthetic Medical Devices',
+                    desc1: "Since our establishment in 2017, BRITZMEDI has been developing innovative aesthetic medical devices under the philosophy of 'Perfecting beauty through technology.'",
+                    desc2: 'Through our in-house R&D center, we develop KFDA-certified products and provide clinically proven solutions through close collaboration with dermatology specialists.',
+                    years: '8',
+                    features: [
+                        { title: 'KFDA Certified', desc: 'Officially certified medical devices' },
+                        { title: 'In-house R&D', desc: 'Proprietary technology development' },
+                        { title: 'Quality Assured', desc: 'Rigorous quality control systems' },
+                        { title: 'Global Expansion', desc: 'Expanding into international markets' }
+                    ]
+                },
+                contact: {
+                    label: 'Contact Us',
+                    title: 'Get in Touch',
+                    infoTitle: 'Grow Together<br>with BRITZMEDI',
+                    infoDesc: 'Whether you have product inquiries, demo requests, or partnership proposals, feel free to reach out. Our specialists will respond promptly.',
+                    phoneLabel: 'Phone',
+                    phone: '+82-70-4348-7244',
+                    emailLabel: 'Email',
+                    email: 'contact@britzmedi.com',
+                    addressLabel: 'Address',
+                    address: 'Hwaseong-si, Gyeonggi-do, Korea',
+                    formTitle: 'Contact Form',
+                    formName: 'Name / Hospital',
+                    formPhone: 'Phone',
+                    formEmail: 'Email',
+                    formType: 'Inquiry Type',
+                    formMessage: 'Message',
+                    formSubmit: 'Submit Inquiry',
+                    formOptions: 'Please select\nProduct Inquiry\nDemo Request\nPartnership\nOther'
+                },
+                footer: {
+                    description: 'Established in 2017, BRITZMEDI is a leading company specializing in innovative aesthetic medical devices for dermatology clinics.',
+                    copyright: '© 2024 BRITZMEDI. All rights reserved.',
+                    productsTitle: 'Products',
+                    companyTitle: 'Company',
+                    supportTitle: 'Support',
+                    privacy: 'Privacy Policy',
+                    terms: 'Terms of Service',
+                    companyLinks: ['About Us', 'R&D', 'News', 'Careers'],
+                    supportLinks: ['Contact', 'FAQ', 'Service']
+                }
             }
         };
 
@@ -1274,6 +1634,60 @@
             val('img-ulblanc', data.settings.images.ulblanc);
             val('img-newchae', data.settings.images.newchae);
             val('img-lab', data.settings.images.lab);
+
+            // English Page
+            if (!data.en) data.en = JSON.parse(JSON.stringify(defaultData.en));
+            val('en-hero-subtitle', data.en.hero.subtitle);
+            val('en-hero-title', data.en.hero.title);
+            val('en-hero-description', data.en.hero.description);
+            val('en-hero-cta-text', data.en.hero.ctaText);
+            val('en-hero-cta-link', data.en.hero.ctaLink);
+            val('en-products-label', data.en.products.label);
+            val('en-products-title', data.en.products.title);
+            val('en-product1-badge', data.en.products.items[0].badge || '');
+            val('en-product1-category', data.en.products.items[0].category);
+            val('en-product1-name', data.en.products.items[0].name);
+            val('en-product1-desc', data.en.products.items[0].desc);
+            val('en-product2-category', data.en.products.items[1].category);
+            val('en-product2-name', data.en.products.items[1].name);
+            val('en-product2-desc', data.en.products.items[1].desc);
+            val('en-product3-category', data.en.products.items[2].category);
+            val('en-product3-name', data.en.products.items[2].name);
+            val('en-product3-desc', data.en.products.items[2].desc);
+            data.en.stats.forEach((s, i) => { val('en-stat' + (i+1) + '-number', s.number); val('en-stat' + (i+1) + '-label', s.label); });
+            val('en-about-label', data.en.about.label);
+            val('en-about-title', data.en.about.title);
+            val('en-about-desc1', data.en.about.desc1);
+            val('en-about-desc2', data.en.about.desc2);
+            val('en-about-years', data.en.about.years || '8');
+            data.en.about.features.forEach((f, i) => { val('en-feature' + (i+1) + '-title', f.title); val('en-feature' + (i+1) + '-desc', f.desc); });
+            val('en-contact-label', data.en.contact.label);
+            val('en-contact-title', data.en.contact.title);
+            val('en-contact-info-title', data.en.contact.infoTitle);
+            val('en-contact-info-desc', data.en.contact.infoDesc);
+            val('en-contact-phone-label', data.en.contact.phoneLabel);
+            val('en-contact-phone', data.en.contact.phone);
+            val('en-contact-email-label', data.en.contact.emailLabel);
+            val('en-contact-email', data.en.contact.email);
+            val('en-contact-address-label', data.en.contact.addressLabel);
+            val('en-contact-address', data.en.contact.address);
+            val('en-form-title', data.en.contact.formTitle);
+            val('en-form-name', data.en.contact.formName);
+            val('en-form-phone', data.en.contact.formPhone);
+            val('en-form-email', data.en.contact.formEmail);
+            val('en-form-type', data.en.contact.formType);
+            val('en-form-message', data.en.contact.formMessage);
+            val('en-form-submit', data.en.contact.formSubmit);
+            val('en-form-options', data.en.contact.formOptions);
+            val('en-footer-description', data.en.footer.description);
+            val('en-footer-copyright', data.en.footer.copyright);
+            val('en-footer-products-title', data.en.footer.productsTitle);
+            val('en-footer-company-title', data.en.footer.companyTitle);
+            val('en-footer-support-title', data.en.footer.supportTitle);
+            val('en-footer-privacy', data.en.footer.privacy);
+            val('en-footer-terms', data.en.footer.terms);
+            if (data.en.footer.companyLinks) data.en.footer.companyLinks.forEach((l, i) => val('en-footer-company-link' + (i+1), l));
+            if (data.en.footer.supportLinks) data.en.footer.supportLinks.forEach((l, i) => val('en-footer-support-link' + (i+1), l));
         }
 
         // History
@@ -1351,6 +1765,71 @@
             const heroImg = val('home-hero-image') || val('img-hero');
             data.settings.images = { hero: heroImg, company: val('img-company'), torr: val('img-torr'), ulblanc: val('img-ulblanc'), newchae: val('img-newchae'), lab: val('img-lab') };
             data.home.hero.image = heroImg;
+
+            // English Page
+            if (!data.en) data.en = JSON.parse(JSON.stringify(defaultData.en));
+            data.en.hero = {
+                subtitle: val('en-hero-subtitle'),
+                title: val('en-hero-title'),
+                description: val('en-hero-description'),
+                ctaText: val('en-hero-cta-text'),
+                ctaLink: val('en-hero-cta-link')
+            };
+            data.en.products = {
+                label: val('en-products-label'),
+                title: val('en-products-title'),
+                items: [
+                    { badge: val('en-product1-badge'), category: val('en-product1-category'), name: val('en-product1-name'), desc: val('en-product1-desc') },
+                    { category: val('en-product2-category'), name: val('en-product2-name'), desc: val('en-product2-desc') },
+                    { category: val('en-product3-category'), name: val('en-product3-name'), desc: val('en-product3-desc') }
+                ]
+            };
+            data.en.stats = [];
+            for (var i = 0; i < 4; i++) {
+                data.en.stats.push({ number: val('en-stat' + (i+1) + '-number'), label: val('en-stat' + (i+1) + '-label') });
+            }
+            data.en.about = {
+                label: val('en-about-label'),
+                title: val('en-about-title'),
+                desc1: val('en-about-desc1'),
+                desc2: val('en-about-desc2'),
+                years: val('en-about-years'),
+                features: []
+            };
+            for (var i = 0; i < 4; i++) {
+                data.en.about.features.push({ title: val('en-feature' + (i+1) + '-title'), desc: val('en-feature' + (i+1) + '-desc') });
+            }
+            data.en.contact = {
+                label: val('en-contact-label'),
+                title: val('en-contact-title'),
+                infoTitle: val('en-contact-info-title'),
+                infoDesc: val('en-contact-info-desc'),
+                phoneLabel: val('en-contact-phone-label'),
+                phone: val('en-contact-phone'),
+                emailLabel: val('en-contact-email-label'),
+                email: val('en-contact-email'),
+                addressLabel: val('en-contact-address-label'),
+                address: val('en-contact-address'),
+                formTitle: val('en-form-title'),
+                formName: val('en-form-name'),
+                formPhone: val('en-form-phone'),
+                formEmail: val('en-form-email'),
+                formType: val('en-form-type'),
+                formMessage: val('en-form-message'),
+                formSubmit: val('en-form-submit'),
+                formOptions: val('en-form-options')
+            };
+            data.en.footer = {
+                description: val('en-footer-description'),
+                copyright: val('en-footer-copyright'),
+                productsTitle: val('en-footer-products-title'),
+                companyTitle: val('en-footer-company-title'),
+                supportTitle: val('en-footer-support-title'),
+                privacy: val('en-footer-privacy'),
+                terms: val('en-footer-terms'),
+                companyLinks: [val('en-footer-company-link1'), val('en-footer-company-link2'), val('en-footer-company-link3'), val('en-footer-company-link4')],
+                supportLinks: [val('en-footer-support-link1'), val('en-footer-support-link2'), val('en-footer-support-link3')]
+            };
         }
 
         window.saveAllData = () => {
