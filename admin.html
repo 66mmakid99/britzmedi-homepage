@@ -700,6 +700,10 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
                     저장하기
                 </button>
+                <button class="btn" onclick="saveAndPreview()" style="background:var(--blue);border-color:var(--blue);color:white;" title="저장 후 해당 페이지로 이동">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    저장 후 미리보기
+                </button>
                 <button class="logout-btn" onclick="handleLogout()" title="로그아웃">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
                     로그아웃
@@ -3020,6 +3024,48 @@
             
             showToast('저장되었습니다!');
             markSaved();
+        };
+
+        // Save and Preview - 저장 후 해당 페이지로 이동
+        window.saveAndPreview = () => {
+            saveAllData();
+
+            // 현재 활성화된 페이지 확인
+            const activePage = document.querySelector('.page-content.active');
+            if (!activePage) {
+                window.open('/', '_blank');
+                return;
+            }
+
+            const pageId = activePage.id.replace('page-', '');
+
+            // 페이지 ID를 URL로 매핑
+            const pageUrls = {
+                'home': '/',
+                'company-intro': '/company/intro.html',
+                'company-ceo': '/company/ceo.html',
+                'company-way': '/company/way.html',
+                'company-cibi': '/company/ci-bi.html',
+                'company-tech': '/company/tech.html',
+                'company-contact': '/company/contact.html',
+                'product-torr': '/medical/torr.html',
+                'product-ulblanc': '/medical/ulblanc.html',
+                'product-newchae': '/cosmetic/newchae.html',
+                'community-news': '/community/news.html',
+                'community-promotion': '/community/promotion.html',
+                'community-sns': '/community/sns.html',
+                'cs-inquery': '/cs/inquery.html',
+                'cs-partnership': '/cs/partnership.html',
+                'en-home': '/en/',
+                'en-product-torr': '/en/medical/torr.html',
+                'en-product-ulblanc': '/en/medical/ulblanc.html',
+                'en-product-newchae': '/en/cosmetic/newchae.html',
+                'settings-images': '/',
+                'settings-forms': '/'
+            };
+
+            const url = pageUrls[pageId] || '/';
+            window.open(url, '_blank');
         };
 
         // Status
