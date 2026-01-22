@@ -1900,8 +1900,52 @@
             }
         }
 
+        // Load English Images with Korean fallback
+        function loadEnglishImages() {
+            var cms = JSON.parse(localStorage.getItem('britzmedi_cms') || '{}');
+            var koreanImages = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
+            var koreanScales = JSON.parse(localStorage.getItem('britzmedi_image_scales') || '{}');
+            var koreanPositions = JSON.parse(localStorage.getItem('britzmedi_image_positions') || '{}');
+
+            // Get English images or fallback to Korean
+            var enImages = (cms.en && cms.en.images) ? cms.en.images : {};
+
+            // Hero Image
+            var heroImg = enImages.hero || koreanImages.hero || '';
+            if (heroImg) {
+                var heroEl = document.getElementById('heroImage');
+                if (heroEl) {
+                    heroEl.src = heroImg;
+                    if (koreanPositions.hero) {
+                        heroEl.style.objectPosition = koreanPositions.hero;
+                    }
+                }
+            }
+
+            // Product Images
+            var products = ['torr', 'ulblanc', 'newchae'];
+            products.forEach(function(key, idx) {
+                var img = enImages[key] || koreanImages[key] || '';
+                var el = document.getElementById('product' + (idx + 1) + 'Image');
+                if (el && img) {
+                    el.src = img;
+                    var scale = koreanScales[key] || 85;
+                    el.style.maxWidth = scale + '%';
+                    el.style.maxHeight = scale + '%';
+                }
+            });
+
+            // About Image
+            var aboutImg = enImages.about || koreanImages.company || '';
+            var aboutEl = document.getElementById('aboutImage');
+            if (aboutEl && aboutImg) {
+                aboutEl.src = aboutImg;
+            }
+        }
+
         // Load CMS data after page load
         loadEnglishCMS();
+        loadEnglishImages();
     </script>
 </body>
 </html>

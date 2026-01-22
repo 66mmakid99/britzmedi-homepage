@@ -1140,6 +1140,7 @@
                     <button class="tab" data-tab="en-about">About</button>
                     <button class="tab" data-tab="en-contact">Contact</button>
                     <button class="tab" data-tab="en-footer">Footer</button>
+                    <button class="tab" data-tab="en-images">Images</button>
                 </div>
 
                 <!-- EN Hero -->
@@ -1415,6 +1416,57 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- EN Images -->
+                <div class="tab-content" id="tab-en-images">
+                    <div class="card">
+                        <div class="card-header"><h3>🖼️ English Page Images</h3></div>
+                        <div class="card-body">
+                            <p style="color: var(--gray-400); margin-bottom: 1.5rem;">영문 페이지 전용 이미지를 설정합니다. 비워두면 한국어 페이지 이미지가 사용됩니다.</p>
+                            <div class="form-group">
+                                <label>🏠 Hero Background Image</label>
+                                <input type="text" class="form-control" id="en-img-hero" placeholder="https://images.unsplash.com/..." oninput="previewEnImage('hero')">
+                                <p class="form-help">비워두면 한국어 Hero 이미지 사용</p>
+                                <div id="preview-en-hero" style="margin-top:10px;height:150px;background:#1a1a1a;border-radius:8px;background-size:cover;background-position:center;position:relative;">
+                                    <div style="position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.7);padding:5px 10px;border-radius:4px;font-size:0.75rem;">EN Hero Preview</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><h3>🖼️ Product Images</h3></div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>⚡ TORR RF</label>
+                                    <input type="text" class="form-control" id="en-img-torr" oninput="previewEnProductImage('torr')">
+                                    <p class="form-help">비워두면 한국어 이미지 사용</p>
+                                    <div id="preview-en-torr" style="margin-top:10px;height:100px;background:#f5f5f5;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>💡 UL BLANC</label>
+                                    <input type="text" class="form-control" id="en-img-ulblanc" oninput="previewEnProductImage('ulblanc')">
+                                    <p class="form-help">비워두면 한국어 이미지 사용</p>
+                                    <div id="preview-en-ulblanc" style="margin-top:10px;height:100px;background:#f5f5f5;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;"></div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>💖 NEWCHAE</label>
+                                    <input type="text" class="form-control" id="en-img-newchae" oninput="previewEnProductImage('newchae')">
+                                    <p class="form-help">비워두면 한국어 이미지 사용</p>
+                                    <div id="preview-en-newchae" style="margin-top:10px;height:100px;background:#f5f5f5;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>🏢 About Section Image</label>
+                                    <input type="text" class="form-control" id="en-img-about" oninput="previewEnImage('about')">
+                                    <p class="form-help">비워두면 한국어 이미지 사용</p>
+                                    <div id="preview-en-about" style="margin-top:10px;height:100px;background:#1a1a1a;border-radius:8px;background-size:cover;background-position:center;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -1524,6 +1576,13 @@
                     terms: 'Terms of Service',
                     companyLinks: ['About Us', 'R&D', 'News', 'Careers'],
                     supportLinks: ['Contact', 'FAQ', 'Service']
+                },
+                images: {
+                    hero: '',
+                    torr: '',
+                    ulblanc: '',
+                    newchae: '',
+                    about: ''
                 }
             }
         };
@@ -1688,6 +1747,13 @@
             val('en-footer-terms', data.en.footer.terms);
             if (data.en.footer.companyLinks) data.en.footer.companyLinks.forEach((l, i) => val('en-footer-company-link' + (i+1), l));
             if (data.en.footer.supportLinks) data.en.footer.supportLinks.forEach((l, i) => val('en-footer-support-link' + (i+1), l));
+            // English Images
+            if (!data.en.images) data.en.images = { hero: '', torr: '', ulblanc: '', newchae: '', about: '' };
+            val('en-img-hero', data.en.images.hero || '');
+            val('en-img-torr', data.en.images.torr || '');
+            val('en-img-ulblanc', data.en.images.ulblanc || '');
+            val('en-img-newchae', data.en.images.newchae || '');
+            val('en-img-about', data.en.images.about || '');
         }
 
         // History
@@ -1829,6 +1895,14 @@
                 terms: val('en-footer-terms'),
                 companyLinks: [val('en-footer-company-link1'), val('en-footer-company-link2'), val('en-footer-company-link3'), val('en-footer-company-link4')],
                 supportLinks: [val('en-footer-support-link1'), val('en-footer-support-link2'), val('en-footer-support-link3')]
+            };
+            // English Images
+            data.en.images = {
+                hero: val('en-img-hero'),
+                torr: val('en-img-torr'),
+                ulblanc: val('en-img-ulblanc'),
+                newchae: val('en-img-newchae'),
+                about: val('en-img-about')
             };
         }
 
@@ -2048,6 +2122,40 @@
             });
         }
 
+        // English Image Preview
+        function previewEnImage(key) {
+            const input = $('en-img-' + key);
+            const preview = $('preview-en-' + key);
+            if (preview && input && input.value) {
+                preview.style.backgroundImage = 'url(' + input.value + ')';
+            } else if (preview) {
+                preview.style.backgroundImage = 'none';
+            }
+            markUnsaved();
+        }
+
+        function previewEnProductImage(key) {
+            const input = $('en-img-' + key);
+            const preview = $('preview-en-' + key);
+            if (preview) {
+                if (input && input.value) {
+                    preview.innerHTML = '<img src="' + input.value + '" style="max-width:85%;max-height:85%;object-fit:contain;">';
+                } else {
+                    preview.innerHTML = '<span style="color:#666;font-size:0.75rem;">비워두면 한국어 이미지 사용</span>';
+                }
+            }
+            markUnsaved();
+        }
+
+        function loadEnImagePreviews() {
+            ['hero', 'about'].forEach(function(key) {
+                previewEnImage(key);
+            });
+            ['torr', 'ulblanc', 'newchae'].forEach(function(key) {
+                previewEnProductImage(key);
+            });
+        }
+
         // Placeholder functions for new pages
         function addWayValue() {
             showToast('가치 추가 기능 - 저장 후 적용됩니다');
@@ -2095,6 +2203,7 @@
         // Init
         populate();
         setTimeout(loadImagePreviews, 100);
+        setTimeout(loadEnImagePreviews, 150);
         updateThemeModeUI();
         initMobileMenu();
     </script>
