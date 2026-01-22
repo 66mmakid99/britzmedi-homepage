@@ -418,13 +418,16 @@
                 }
             }
 
-            // Gallery
-            if (p.gallery && p.gallery.length > 0) {
+            // Gallery - fallback to Korean if English not set
+            var krProducts = cms.products || {};
+            var krGallery = (krProducts.ulblanc && krProducts.ulblanc.gallery) ? krProducts.ulblanc.gallery : [];
+            var gallery = (p.gallery && p.gallery.length > 0) ? p.gallery : krGallery;
+            if (gallery && gallery.length > 0) {
                 var gallerySection = document.getElementById('gallerySection');
                 var galleryContainer = document.getElementById('productGallery');
                 if (gallerySection && galleryContainer) {
                     gallerySection.style.display = 'block';
-                    galleryContainer.innerHTML = p.gallery.map(function(img) {
+                    galleryContainer.innerHTML = gallery.map(function(img) {
                         var w = img.width || 400;
                         var h = img.height || 300;
                         return '<div class="gallery-item-display" style="width:' + w + 'px;height:' + h + 'px;max-width:100%;">' +
