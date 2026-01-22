@@ -2589,46 +2589,80 @@
             const gallery = data.products[p].gallery;
             c.innerHTML = gallery.length ? gallery.map((img, i) => `
                 <div class="gallery-item" style="border:1px solid var(--gray-700);padding:1rem;margin-bottom:1rem;border-radius:8px;">
-                    <div class="form-row" style="align-items:flex-start;">
-                        <div style="flex:0 0 150px;">
-                            <div class="gallery-preview" id="${p}-gallery-preview-${i}" style="width:150px;height:100px;background:var(--bg-tertiary);border:1px solid var(--gray-700);background-size:cover;background-position:${img.posX || 50}% ${img.posY || 50}%;${img.url ? 'background-image:url('+img.url+');' : ''}"></div>
+                    <div class="form-row" style="align-items:flex-start;gap:1rem;">
+                        <div style="flex:0 0 auto;">
+                            <div class="gallery-preview" id="${p}-gallery-preview-${i}" style="width:${img.width || 200}px;height:${img.height || 150}px;background:var(--bg-tertiary);border:1px solid var(--gray-700);background-size:cover;background-position:${img.posX || 50}% ${img.posY || 50}%;${img.url ? 'background-image:url('+img.url+');' : ''};max-width:300px;"></div>
                         </div>
-                        <div style="flex:1;">
-                            <div class="form-group" style="margin-bottom:0.5rem;">
+                        <div style="flex:1;min-width:200px;">
+                            <div class="form-group" style="margin-bottom:0.75rem;">
                                 <label>이미지 URL</label>
                                 <input type="text" class="form-control" id="${p}-gallery-${i}-url" value="${img.url || ''}" onchange="updateGalleryPreview('${p}',${i})">
                             </div>
-                            <div class="form-row" style="gap:0.5rem;">
-                                <div class="form-group" style="flex:1;">
-                                    <label>크기 (${img.scale || 100}%)</label>
-                                    <input type="range" min="50" max="150" value="${img.scale || 100}" id="${p}-gallery-${i}-scale" style="width:100%">
+                            <div class="form-row" style="gap:0.75rem;margin-bottom:0.75rem;">
+                                <div class="form-group" style="flex:1;margin-bottom:0;">
+                                    <label>프레임 너비 (${img.width || 400}px)</label>
+                                    <input type="range" min="200" max="1200" step="50" value="${img.width || 400}" id="${p}-gallery-${i}-width" oninput="updateGallerySize('${p}',${i})" style="width:100%">
                                 </div>
-                                <div class="form-group" style="flex:1;">
+                                <div class="form-group" style="flex:1;margin-bottom:0;">
+                                    <label>프레임 높이 (${img.height || 300}px)</label>
+                                    <input type="range" min="150" max="800" step="25" value="${img.height || 300}" id="${p}-gallery-${i}-height" oninput="updateGallerySize('${p}',${i})" style="width:100%">
+                                </div>
+                            </div>
+                            <div class="form-row" style="gap:0.75rem;">
+                                <div class="form-group" style="flex:1;margin-bottom:0;">
+                                    <label>이미지 크기 (${img.scale || 100}%)</label>
+                                    <input type="range" min="50" max="200" value="${img.scale || 100}" id="${p}-gallery-${i}-scale" oninput="updateGalleryPreview('${p}',${i})" style="width:100%">
+                                </div>
+                                <div class="form-group" style="flex:1;margin-bottom:0;">
                                     <label>X위치 (${img.posX || 50}%)</label>
-                                    <input type="range" min="0" max="100" value="${img.posX || 50}" id="${p}-gallery-${i}-posX" onchange="updateGalleryPreview('${p}',${i})" style="width:100%">
+                                    <input type="range" min="0" max="100" value="${img.posX || 50}" id="${p}-gallery-${i}-posX" oninput="updateGalleryPreview('${p}',${i})" style="width:100%">
                                 </div>
-                                <div class="form-group" style="flex:1;">
+                                <div class="form-group" style="flex:1;margin-bottom:0;">
                                     <label>Y위치 (${img.posY || 50}%)</label>
-                                    <input type="range" min="0" max="100" value="${img.posY || 50}" id="${p}-gallery-${i}-posY" onchange="updateGalleryPreview('${p}',${i})" style="width:100%">
+                                    <input type="range" min="0" max="100" value="${img.posY || 50}" id="${p}-gallery-${i}-posY" oninput="updateGalleryPreview('${p}',${i})" style="width:100%">
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-danger btn-sm" onclick="removeGalleryImage('${p}',${i})" style="margin-left:0.5rem;">삭제</button>
+                        <button class="btn btn-danger btn-sm" onclick="removeGalleryImage('${p}',${i})" style="align-self:flex-start;">삭제</button>
                     </div>
                 </div>
             `).join('') : '<p style="color:var(--gray-500)">등록된 이미지가 없습니다.</p>';
         }
-        window.addGalleryImage = p => { if (!data.products[p].gallery) data.products[p].gallery = []; data.products[p].gallery.push({ url: '', scale: 100, posX: 50, posY: 50 }); renderGallery(p); markUnsaved(); };
+        window.addGalleryImage = p => { if (!data.products[p].gallery) data.products[p].gallery = []; data.products[p].gallery.push({ url: '', scale: 100, posX: 50, posY: 50, width: 400, height: 300 }); renderGallery(p); markUnsaved(); };
         window.removeGalleryImage = (p, i) => { data.products[p].gallery.splice(i, 1); renderGallery(p); markUnsaved(); };
+        window.updateGallerySize = (p, i) => {
+            const width = val(`${p}-gallery-${i}-width`);
+            const height = val(`${p}-gallery-${i}-height`);
+            const preview = $(`${p}-gallery-preview-${i}`);
+            if (preview) {
+                preview.style.width = Math.min(width, 300) + 'px';
+                preview.style.height = Math.min(height * 300 / width, 200) + 'px';
+            }
+            // Update labels
+            const widthInput = $(`${p}-gallery-${i}-width`);
+            const heightInput = $(`${p}-gallery-${i}-height`);
+            if (widthInput && widthInput.previousElementSibling) widthInput.previousElementSibling.textContent = `프레임 너비 (${width}px)`;
+            if (heightInput && heightInput.previousElementSibling) heightInput.previousElementSibling.textContent = `프레임 높이 (${height}px)`;
+            markUnsaved();
+        };
         window.updateGalleryPreview = (p, i) => {
             const url = val(`${p}-gallery-${i}-url`);
             const posX = val(`${p}-gallery-${i}-posX`);
             const posY = val(`${p}-gallery-${i}-posY`);
+            const scale = val(`${p}-gallery-${i}-scale`);
             const preview = $(`${p}-gallery-preview-${i}`);
             if (preview) {
                 preview.style.backgroundImage = url ? `url(${url})` : 'none';
                 preview.style.backgroundPosition = `${posX}% ${posY}%`;
+                preview.style.backgroundSize = scale > 100 ? `${scale}%` : 'cover';
             }
+            // Update labels
+            const scaleInput = $(`${p}-gallery-${i}-scale`);
+            const posXInput = $(`${p}-gallery-${i}-posX`);
+            const posYInput = $(`${p}-gallery-${i}-posY`);
+            if (scaleInput && scaleInput.previousElementSibling) scaleInput.previousElementSibling.textContent = `이미지 크기 (${scale}%)`;
+            if (posXInput && posXInput.previousElementSibling) posXInput.previousElementSibling.textContent = `X위치 (${posX}%)`;
+            if (posYInput && posYInput.previousElementSibling) posYInput.previousElementSibling.textContent = `Y위치 (${posY}%)`;
             markUnsaved();
         };
 
@@ -2642,46 +2676,78 @@
             const gallery = data.en.productDetails[p].gallery;
             c.innerHTML = gallery.length ? gallery.map((img, i) => `
                 <div class="gallery-item" style="border:1px solid var(--gray-700);padding:1rem;margin-bottom:1rem;border-radius:8px;">
-                    <div class="form-row" style="align-items:flex-start;">
-                        <div style="flex:0 0 150px;">
-                            <div class="gallery-preview" id="en-${p}-gallery-preview-${i}" style="width:150px;height:100px;background:var(--bg-tertiary);border:1px solid var(--gray-700);background-size:cover;background-position:${img.posX || 50}% ${img.posY || 50}%;${img.url ? 'background-image:url('+img.url+');' : ''}"></div>
+                    <div class="form-row" style="align-items:flex-start;gap:1rem;">
+                        <div style="flex:0 0 auto;">
+                            <div class="gallery-preview" id="en-${p}-gallery-preview-${i}" style="width:${img.width || 200}px;height:${img.height || 150}px;background:var(--bg-tertiary);border:1px solid var(--gray-700);background-size:cover;background-position:${img.posX || 50}% ${img.posY || 50}%;${img.url ? 'background-image:url('+img.url+');' : ''};max-width:300px;"></div>
                         </div>
-                        <div style="flex:1;">
-                            <div class="form-group" style="margin-bottom:0.5rem;">
+                        <div style="flex:1;min-width:200px;">
+                            <div class="form-group" style="margin-bottom:0.75rem;">
                                 <label>Image URL</label>
                                 <input type="text" class="form-control" id="en-${p}-gallery-${i}-url" value="${img.url || ''}" onchange="updateEnGalleryPreview('${p}',${i})">
                             </div>
-                            <div class="form-row" style="gap:0.5rem;">
-                                <div class="form-group" style="flex:1;">
+                            <div class="form-row" style="gap:0.75rem;margin-bottom:0.75rem;">
+                                <div class="form-group" style="flex:1;margin-bottom:0;">
+                                    <label>Frame Width (${img.width || 400}px)</label>
+                                    <input type="range" min="200" max="1200" step="50" value="${img.width || 400}" id="en-${p}-gallery-${i}-width" oninput="updateEnGallerySize('${p}',${i})" style="width:100%">
+                                </div>
+                                <div class="form-group" style="flex:1;margin-bottom:0;">
+                                    <label>Frame Height (${img.height || 300}px)</label>
+                                    <input type="range" min="150" max="800" step="25" value="${img.height || 300}" id="en-${p}-gallery-${i}-height" oninput="updateEnGallerySize('${p}',${i})" style="width:100%">
+                                </div>
+                            </div>
+                            <div class="form-row" style="gap:0.75rem;">
+                                <div class="form-group" style="flex:1;margin-bottom:0;">
                                     <label>Scale (${img.scale || 100}%)</label>
-                                    <input type="range" min="50" max="150" value="${img.scale || 100}" id="en-${p}-gallery-${i}-scale" style="width:100%">
+                                    <input type="range" min="50" max="200" value="${img.scale || 100}" id="en-${p}-gallery-${i}-scale" oninput="updateEnGalleryPreview('${p}',${i})" style="width:100%">
                                 </div>
-                                <div class="form-group" style="flex:1;">
+                                <div class="form-group" style="flex:1;margin-bottom:0;">
                                     <label>X Pos (${img.posX || 50}%)</label>
-                                    <input type="range" min="0" max="100" value="${img.posX || 50}" id="en-${p}-gallery-${i}-posX" onchange="updateEnGalleryPreview('${p}',${i})" style="width:100%">
+                                    <input type="range" min="0" max="100" value="${img.posX || 50}" id="en-${p}-gallery-${i}-posX" oninput="updateEnGalleryPreview('${p}',${i})" style="width:100%">
                                 </div>
-                                <div class="form-group" style="flex:1;">
+                                <div class="form-group" style="flex:1;margin-bottom:0;">
                                     <label>Y Pos (${img.posY || 50}%)</label>
-                                    <input type="range" min="0" max="100" value="${img.posY || 50}" id="en-${p}-gallery-${i}-posY" onchange="updateEnGalleryPreview('${p}',${i})" style="width:100%">
+                                    <input type="range" min="0" max="100" value="${img.posY || 50}" id="en-${p}-gallery-${i}-posY" oninput="updateEnGalleryPreview('${p}',${i})" style="width:100%">
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-danger btn-sm" onclick="removeEnGalleryImage('${p}',${i})" style="margin-left:0.5rem;">Delete</button>
+                        <button class="btn btn-danger btn-sm" onclick="removeEnGalleryImage('${p}',${i})" style="align-self:flex-start;">Delete</button>
                     </div>
                 </div>
             `).join('') : '<p style="color:var(--gray-500)">No images added.</p>';
         }
-        window.addEnGalleryImage = p => { if (!data.en.productDetails[p].gallery) data.en.productDetails[p].gallery = []; data.en.productDetails[p].gallery.push({ url: '', scale: 100, posX: 50, posY: 50 }); renderEnGallery(p); markUnsaved(); };
+        window.addEnGalleryImage = p => { if (!data.en.productDetails[p].gallery) data.en.productDetails[p].gallery = []; data.en.productDetails[p].gallery.push({ url: '', scale: 100, posX: 50, posY: 50, width: 400, height: 300 }); renderEnGallery(p); markUnsaved(); };
         window.removeEnGalleryImage = (p, i) => { data.en.productDetails[p].gallery.splice(i, 1); renderEnGallery(p); markUnsaved(); };
+        window.updateEnGallerySize = (p, i) => {
+            const width = val(`en-${p}-gallery-${i}-width`);
+            const height = val(`en-${p}-gallery-${i}-height`);
+            const preview = $(`en-${p}-gallery-preview-${i}`);
+            if (preview) {
+                preview.style.width = Math.min(width, 300) + 'px';
+                preview.style.height = Math.min(height * 300 / width, 200) + 'px';
+            }
+            const widthInput = $(`en-${p}-gallery-${i}-width`);
+            const heightInput = $(`en-${p}-gallery-${i}-height`);
+            if (widthInput && widthInput.previousElementSibling) widthInput.previousElementSibling.textContent = `Frame Width (${width}px)`;
+            if (heightInput && heightInput.previousElementSibling) heightInput.previousElementSibling.textContent = `Frame Height (${height}px)`;
+            markUnsaved();
+        };
         window.updateEnGalleryPreview = (p, i) => {
             const url = val(`en-${p}-gallery-${i}-url`);
             const posX = val(`en-${p}-gallery-${i}-posX`);
             const posY = val(`en-${p}-gallery-${i}-posY`);
+            const scale = val(`en-${p}-gallery-${i}-scale`);
             const preview = $(`en-${p}-gallery-preview-${i}`);
             if (preview) {
                 preview.style.backgroundImage = url ? `url(${url})` : 'none';
                 preview.style.backgroundPosition = `${posX}% ${posY}%`;
+                preview.style.backgroundSize = scale > 100 ? `${scale}%` : 'cover';
             }
+            const scaleInput = $(`en-${p}-gallery-${i}-scale`);
+            const posXInput = $(`en-${p}-gallery-${i}-posX`);
+            const posYInput = $(`en-${p}-gallery-${i}-posY`);
+            if (scaleInput && scaleInput.previousElementSibling) scaleInput.previousElementSibling.textContent = `Scale (${scale}%)`;
+            if (posXInput && posXInput.previousElementSibling) posXInput.previousElementSibling.textContent = `X Pos (${posX}%)`;
+            if (posYInput && posYInput.previousElementSibling) posYInput.previousElementSibling.textContent = `Y Pos (${posY}%)`;
             markUnsaved();
         };
 
@@ -2719,21 +2785,21 @@
             for (let i = 0; i < 4; i++) data.products.torr.features[i] = { title: val(`torr-f${i+1}-title`), desc: val(`torr-f${i+1}-desc`) };
             data.products.torr.specs = (data.products.torr.specs || []).map((s, i) => ({ label: val(`torr-spec-${i}-label`) || s.label, value: val(`torr-spec-${i}-value`) || s.value }));
             data.products.torr.cta = { title: val('torr-cta-title'), description: val('torr-cta-desc'), buttonText: val('torr-cta-btn'), buttonLink: val('torr-cta-link') };
-            data.products.torr.gallery = (data.products.torr.gallery || []).map((img, i) => ({ url: val(`torr-gallery-${i}-url`) || img.url, scale: parseInt(val(`torr-gallery-${i}-scale`)) || img.scale || 100, posX: parseInt(val(`torr-gallery-${i}-posX`)) || img.posX || 50, posY: parseInt(val(`torr-gallery-${i}-posY`)) || img.posY || 50 }));
+            data.products.torr.gallery = (data.products.torr.gallery || []).map((img, i) => ({ url: val(`torr-gallery-${i}-url`) || img.url, scale: parseInt(val(`torr-gallery-${i}-scale`)) || img.scale || 100, posX: parseInt(val(`torr-gallery-${i}-posX`)) || img.posX || 50, posY: parseInt(val(`torr-gallery-${i}-posY`)) || img.posY || 50, width: parseInt(val(`torr-gallery-${i}-width`)) || img.width || 400, height: parseInt(val(`torr-gallery-${i}-height`)) || img.height || 300 }));
             // UL BLANC
             data.products.ulblanc.name = val('ulblanc-name'); data.products.ulblanc.tagline = val('ulblanc-tagline'); data.products.ulblanc.description = val('ulblanc-description'); data.products.ulblanc.image = val('ulblanc-image'); data.products.ulblanc.benefits = val('ulblanc-benefits');
             data.products.ulblanc.hero = { backgroundImage: val('ulblanc-hero-bg'), label: val('ulblanc-hero-label'), title: val('ulblanc-hero-title') };
             for (let i = 0; i < 4; i++) { if (!data.products.ulblanc.features) data.products.ulblanc.features = [{},{},{},{}]; data.products.ulblanc.features[i] = { title: val(`ulblanc-f${i+1}-title`), desc: val(`ulblanc-f${i+1}-desc`) }; }
             data.products.ulblanc.specs = (data.products.ulblanc.specs || []).map((s, i) => ({ label: val(`ulblanc-spec-${i}-label`) || s.label, value: val(`ulblanc-spec-${i}-value`) || s.value }));
             data.products.ulblanc.cta = { title: val('ulblanc-cta-title'), description: val('ulblanc-cta-desc'), buttonText: val('ulblanc-cta-btn'), buttonLink: val('ulblanc-cta-link') };
-            data.products.ulblanc.gallery = (data.products.ulblanc.gallery || []).map((img, i) => ({ url: val(`ulblanc-gallery-${i}-url`) || img.url, scale: parseInt(val(`ulblanc-gallery-${i}-scale`)) || img.scale || 100, posX: parseInt(val(`ulblanc-gallery-${i}-posX`)) || img.posX || 50, posY: parseInt(val(`ulblanc-gallery-${i}-posY`)) || img.posY || 50 }));
+            data.products.ulblanc.gallery = (data.products.ulblanc.gallery || []).map((img, i) => ({ url: val(`ulblanc-gallery-${i}-url`) || img.url, scale: parseInt(val(`ulblanc-gallery-${i}-scale`)) || img.scale || 100, posX: parseInt(val(`ulblanc-gallery-${i}-posX`)) || img.posX || 50, posY: parseInt(val(`ulblanc-gallery-${i}-posY`)) || img.posY || 50, width: parseInt(val(`ulblanc-gallery-${i}-width`)) || img.width || 400, height: parseInt(val(`ulblanc-gallery-${i}-height`)) || img.height || 300 }));
             // NEWCHAE
             data.products.newchae.name = val('newchae-name'); data.products.newchae.tagline = val('newchae-tagline'); data.products.newchae.description = val('newchae-description'); data.products.newchae.image = val('newchae-image');
             data.products.newchae.hero = { backgroundImage: val('newchae-hero-bg'), label: val('newchae-hero-label'), title: val('newchae-hero-title') };
             for (let i = 0; i < 4; i++) { if (!data.products.newchae.features) data.products.newchae.features = [{},{},{},{}]; data.products.newchae.features[i] = { title: val(`newchae-f${i+1}-title`), desc: val(`newchae-f${i+1}-desc`) }; }
             data.products.newchae.productLineup = (data.products.newchae.productLineup || []).map((p, i) => ({ title: val(`newchae-lineup-${i}-title`) || p.title, desc: val(`newchae-lineup-${i}-desc`) || p.desc }));
             data.products.newchae.cta = { title: val('newchae-cta-title'), description: val('newchae-cta-desc'), buttonText: val('newchae-cta-btn'), buttonLink: val('newchae-cta-link') };
-            data.products.newchae.gallery = (data.products.newchae.gallery || []).map((img, i) => ({ url: val(`newchae-gallery-${i}-url`) || img.url, scale: parseInt(val(`newchae-gallery-${i}-scale`)) || img.scale || 100, posX: parseInt(val(`newchae-gallery-${i}-posX`)) || img.posX || 50, posY: parseInt(val(`newchae-gallery-${i}-posY`)) || img.posY || 50 }));
+            data.products.newchae.gallery = (data.products.newchae.gallery || []).map((img, i) => ({ url: val(`newchae-gallery-${i}-url`) || img.url, scale: parseInt(val(`newchae-gallery-${i}-scale`)) || img.scale || 100, posX: parseInt(val(`newchae-gallery-${i}-posX`)) || img.posX || 50, posY: parseInt(val(`newchae-gallery-${i}-posY`)) || img.posY || 50, width: parseInt(val(`newchae-gallery-${i}-width`)) || img.width || 400, height: parseInt(val(`newchae-gallery-${i}-height`)) || img.height || 300 }));
             data.news = data.news.map((n, i) => ({ date: val(`news-${i}-date`) || n.date, title: val(`news-${i}-title`) || n.title }));
             data.settings.googleSheetsUrl = val('google-sheets-url');
             data.settings.footer = { description: val('footer-description'), ceo: val('footer-ceo'), biznum: val('footer-biznum'), instagram: val('footer-instagram'), youtube: val('footer-youtube'), kakao: val('footer-kakao') };
@@ -2847,7 +2913,9 @@
                     url: val(`en-torr-gallery-${i}-url`) || img.url,
                     scale: parseInt(val(`en-torr-gallery-${i}-scale`)) || img.scale || 100,
                     posX: parseInt(val(`en-torr-gallery-${i}-posX`)) || img.posX || 50,
-                    posY: parseInt(val(`en-torr-gallery-${i}-posY`)) || img.posY || 50
+                    posY: parseInt(val(`en-torr-gallery-${i}-posY`)) || img.posY || 50,
+                    width: parseInt(val(`en-torr-gallery-${i}-width`)) || img.width || 400,
+                    height: parseInt(val(`en-torr-gallery-${i}-height`)) || img.height || 300
                 }))
             };
 
@@ -2880,7 +2948,9 @@
                     url: val(`en-ulblanc-gallery-${i}-url`) || img.url,
                     scale: parseInt(val(`en-ulblanc-gallery-${i}-scale`)) || img.scale || 100,
                     posX: parseInt(val(`en-ulblanc-gallery-${i}-posX`)) || img.posX || 50,
-                    posY: parseInt(val(`en-ulblanc-gallery-${i}-posY`)) || img.posY || 50
+                    posY: parseInt(val(`en-ulblanc-gallery-${i}-posY`)) || img.posY || 50,
+                    width: parseInt(val(`en-ulblanc-gallery-${i}-width`)) || img.width || 400,
+                    height: parseInt(val(`en-ulblanc-gallery-${i}-height`)) || img.height || 300
                 }))
             };
 
@@ -2913,7 +2983,9 @@
                     url: val(`en-newchae-gallery-${i}-url`) || img.url,
                     scale: parseInt(val(`en-newchae-gallery-${i}-scale`)) || img.scale || 100,
                     posX: parseInt(val(`en-newchae-gallery-${i}-posX`)) || img.posX || 50,
-                    posY: parseInt(val(`en-newchae-gallery-${i}-posY`)) || img.posY || 50
+                    posY: parseInt(val(`en-newchae-gallery-${i}-posY`)) || img.posY || 50,
+                    width: parseInt(val(`en-newchae-gallery-${i}-width`)) || img.width || 400,
+                    height: parseInt(val(`en-newchae-gallery-${i}-height`)) || img.height || 300
                 }))
             };
         }

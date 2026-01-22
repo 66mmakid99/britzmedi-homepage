@@ -150,37 +150,34 @@
             .feature-grid { grid-template-columns: 1fr; }
         }
         .product-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            flex-wrap: wrap;
             gap: 1.5rem;
+            justify-content: center;
         }
         .gallery-item-display {
             position: relative;
-            padding-top: 75%;
             background: var(--bg-card);
             border: 1px solid var(--gray-800);
             border-radius: 8px;
             overflow: hidden;
             cursor: pointer;
             transition: all 0.3s ease;
+            flex-shrink: 0;
         }
         .gallery-item-display:hover {
             border-color: var(--gold);
             transform: translateY(-3px);
         }
         .gallery-item-display img {
-            position: absolute;
-            top: 0;
-            left: 0;
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        @media (max-width: 1024px) {
-            .product-gallery { grid-template-columns: repeat(2, 1fr); }
-        }
         @media (max-width: 768px) {
-            .product-gallery { grid-template-columns: 1fr; }
+            .product-gallery { justify-content: center; }
+            .gallery-item-display { max-width: 100%; }
         }
     </style>
 </head>
@@ -428,7 +425,9 @@
                 if (gallerySection && galleryContainer) {
                     gallerySection.style.display = 'block';
                     galleryContainer.innerHTML = p.gallery.map(function(img) {
-                        return '<div class="gallery-item-display">' +
+                        var w = img.width || 400;
+                        var h = img.height || 300;
+                        return '<div class="gallery-item-display" style="width:' + w + 'px;height:' + h + 'px;max-width:100%;">' +
                             '<img src="' + img.url + '" alt="TORR RF" style="object-position:' + (img.posX || 50) + '% ' + (img.posY || 50) + '%;transform:scale(' + ((img.scale || 100) / 100) + ');">' +
                         '</div>';
                     }).join('');
