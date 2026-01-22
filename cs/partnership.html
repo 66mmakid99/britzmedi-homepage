@@ -275,5 +275,47 @@
     </footer>
 
     <script src="/assets/js/main.js"></script>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        // EmailJS 초기화
+        emailjs.init('qZJl-FQP1CJJqGvNp');
+
+        // 폼 제출 처리
+        document.getElementById('partnershipForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span>전송 중...</span>';
+            btn.disabled = true;
+
+            // 폼 데이터 수집
+            const region = document.getElementById('region').value;
+            const templateParams = {
+                name: document.getElementById('name').value,
+                company: document.getElementById('company').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                product: '[제휴문의] ' + document.getElementById('type').value,
+                message: (region ? '활동 지역: ' + region + '\n\n' : '') + document.getElementById('message').value
+            };
+
+            // EmailJS로 전송
+            emailjs.send('service_8527rq8', 'vdx-7PO0D8noVgfPcKbO1', templateParams)
+                .then(function(response) {
+                    alert('제휴 문의가 성공적으로 전송되었습니다.\n검토 후 연락드리겠습니다.');
+                    document.getElementById('partnershipForm').reset();
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                })
+                .catch(function(error) {
+                    console.error('EmailJS Error:', error);
+                    alert('전송 중 오류가 발생했습니다.\n잠시 후 다시 시도해주세요.');
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                });
+        });
+    </script>
 </body>
 </html>
