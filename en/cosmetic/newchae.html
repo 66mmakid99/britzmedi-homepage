@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEWCHAE | BRITZMEDI</title>
+    <meta name="description" content="NEWCHAE - Professional medical cosmetic line developed in collaboration with dermatology specialists">
+
+    <meta property="og:title" content="NEWCHAE | BRITZMEDI">
+    <meta property="og:description" content="NEWCHAE - Professional medical cosmetic line developed in collaboration with dermatology specialists">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="https://www.britzmedi.co.kr/en/cosmetic/newchae.html">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="BRITZMEDI">
+    <link rel="canonical" href="https://www.britzmedi.co.kr/en/cosmetic/newchae.html">
+    <link rel="alternate" hreflang="ko" href="https://www.britzmedi.co.kr/cosmetic/newchae.html">
+    <link rel="alternate" hreflang="en" href="https://www.britzmedi.co.kr/en/cosmetic/newchae.html">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <style>
+        .product-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        .product-intro-image img {
+            width: 100%;
+            max-width: 420px;
+        }
+        .product-intro-content h1 {
+            font-family: var(--font-main);
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 0.3rem;
+        }
+        .product-intro-content h1 em {
+            color: var(--gold);
+            font-style: normal;
+        }
+        .product-intro-content .tagline {
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .product-intro-content .description {
+            color: var(--gray-400);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        .feature-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--gray-800);
+            transition: all 0.3s ease;
+        }
+        .feature-item:hover {
+            border-color: var(--gold);
+        }
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .feature-icon svg {
+            width: 26px;
+            height: 26px;
+            color: var(--gold);
+        }
+        .feature-item h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+        .feature-item p {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+        }
+        .benefits-list li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--gray-300);
+            font-size: 0.9rem;
+        }
+        .benefits-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5em;
+            width: 5px;
+            height: 5px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        .product-line {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .product-line-item {
+            background: var(--bg-card);
+            border: 1px solid var(--gray-800);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .product-line-item:hover {
+            border-color: var(--gold);
+        }
+        .product-line-item h4 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        .product-line-item p {
+            font-size: 0.85rem;
+            color: var(--gray-400);
+        }
+        @media (max-width: 1024px) {
+            .product-intro { grid-template-columns: 1fr; text-align: center; }
+            .product-intro-image img { margin: 0 auto; }
+            .feature-grid { grid-template-columns: repeat(2, 1fr); }
+            .product-line { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .feature-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<script>if(localStorage.getItem("britzmedi_theme_mode")==="light")document.body.classList.add("light-mode");</script>
+    <div class="loader" id="loader"><div class="loader-content"><div class="loader-logo">BRITZMEDI</div><div class="loader-bar"></div></div></div>
+
+    <header id="header">
+        <a href="/en/" class="logo">BRITZMEDI</a>
+        <nav>
+            <div class="nav-item"><a href="/en/#about" class="nav-link">About</a></div>
+            <div class="nav-item"><a href="/en/#products" class="nav-link active">Products</a>
+                <div class="dropdown">
+                    <a href="/en/medical/torr.html">TORR RF</a>
+                    <a href="/en/medical/ulblanc.html">UL BLANC</a>
+                    <a href="/en/cosmetic/newchae.html">NEWCHAE</a>
+                </div>
+            </div>
+            <div class="nav-item"><a href="/en/#contact" class="nav-link">Contact</a></div>
+        </nav>
+        <div class="header-actions"><a href="/cosmetic/newchae.html" class="lang-switch">KR</a><div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div></div>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileClose">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+        <div class="mobile-nav-item">
+            <a href="/en/#about" class="mobile-nav-link" style="pointer-events: auto;">About</a>
+        </div>
+        <div class="mobile-nav-item">
+            <a class="mobile-nav-link">Products <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></a>
+            <div class="mobile-dropdown">
+                <a href="/en/medical/torr.html">TORR RF</a>
+                <a href="/en/medical/ulblanc.html">UL BLANC</a>
+                <a href="/en/cosmetic/newchae.html">NEWCHAE</a>
+            </div>
+        </div>
+        <div class="mobile-nav-item">
+            <a href="/en/#contact" class="mobile-nav-link" style="pointer-events: auto;">Contact</a>
+        </div>
+    </div>
+
+    <section class="page-hero">
+        <p class="page-hero-label">Medical Cosmetic</p>
+        <h2 class="page-hero-title">NEW<em>CHAE</em></h2>
+    </section>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="product-intro">
+                    <div class="product-intro-image">
+                        <img src="" alt="NEWCHAE" id="productImage" loading="lazy">
+                    </div>
+                    <div class="product-intro-content">
+                        <h1>NEW<em>CHAE</em></h1>
+                        <p class="tagline">Professional Medical Cosmetic</p>
+                        <p class="description">NEWCHAE is a premium medical cosmetic line developed in collaboration with dermatology specialists. From pre and post treatment care to daily skincare, experience products crafted with professional expertise.</p>
+
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                </div>
+                                <h4>Dermatologist Developed</h4>
+                                <p>Co-developed with skin specialists</p>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                </div>
+                                <h4>Safe Ingredients</h4>
+                                <p>Minimized skin irritation formula</p>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                                </div>
+                                <h4>Treatment Synergy</h4>
+                                <p>Pre and post treatment care</p>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                </div>
+                                <h4>Premium Care</h4>
+                                <p>High-concentration active ingredients</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background: var(--bg-secondary);">
+            <div class="container">
+                <h3 class="section-subtitle" style="color: var(--gold); margin-bottom: 1.25rem; text-align: center;">Product Line</h3>
+                <div class="product-line">
+                    <div class="product-line-item">
+                        <h4>Cleansing Line</h4>
+                        <p>Gentle cleansing for sensitive skin, maintaining skin barrier while removing impurities</p>
+                    </div>
+                    <div class="product-line-item">
+                        <h4>Treatment Line</h4>
+                        <p>Specialized post-treatment care products with soothing and regenerating properties</p>
+                    </div>
+                    <div class="product-line-item">
+                        <h4>Daily Care Line</h4>
+                        <p>Everyday skincare essentials with premium ingredients for healthy skin maintenance</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h3 class="section-subtitle" style="color: var(--gold); margin-bottom: 1.25rem;">Key Benefits</h3>
+                <ul class="benefits-list">
+                    <li>Formulated with dermatologist-approved ingredients</li>
+                    <li>Suitable for sensitive and post-treatment skin</li>
+                    <li>Enhances results of medical aesthetic treatments</li>
+                    <li>Premium active ingredients for visible results</li>
+                    <li>Clinically tested formulations</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section cta-section">
+            <div class="container" style="text-align: center;">
+                <h3 style="font-family: var(--font-main); font-size: 1.75rem; margin-bottom: 1rem;">Interested in NEWCHAE?</h3>
+                <p style="color: var(--gray-400); margin-bottom: 1.5rem;">Contact us for product inquiries or partnership opportunities.</p>
+                <a href="/en/#contact" class="btn btn-primary">Contact Us</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <a href="/en/" class="footer-logo">BRITZMEDI</a>
+                <p>Leading innovation in aesthetic medical devices since 2017.</p>
+            </div>
+            <div class="footer-links-group">
+                <h4>Products</h4>
+                <a href="/en/medical/torr.html">TORR RF</a>
+                <a href="/en/medical/ulblanc.html">UL BLANC</a>
+                <a href="/en/cosmetic/newchae.html">NEWCHAE</a>
+            </div>
+            <div class="footer-links-group">
+                <h4>Company</h4>
+                <a href="/en/#about">About Us</a>
+                <a href="/en/#contact">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 BRITZMEDI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/assets/js/main.js"></script>
+    <script>
+        // Load product image
+        (function() {
+            var cms = JSON.parse(localStorage.getItem('britzmedi_cms') || '{}');
+            var images = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
+            var scales = JSON.parse(localStorage.getItem('britzmedi_image_scales') || '{}');
+            var enImages = (cms.en && cms.en.images) ? cms.en.images : {};
+
+            var img = enImages.newchae || images.newchae || '';
+            var el = document.getElementById('productImage');
+            if (el && img) {
+                el.src = img;
+                var scale = scales.newchae || 85;
+                el.style.maxWidth = scale + '%';
+            }
+        })();
+    </script>
+</body>
+</html>

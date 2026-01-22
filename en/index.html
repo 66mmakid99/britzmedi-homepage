@@ -1317,7 +1317,7 @@
                     <p class="product-category" data-en="product1-category">Medical Device</p>
                     <h3 class="product-name" data-en="product1-name">TORR RF</h3>
                     <p class="product-description" data-en="product1-desc">Premium aesthetic medical device featuring advanced RF technology. Delivers exceptional results for skin tightening and lifting treatments.</p>
-                    <a href="#" class="product-link">
+                    <a href="/en/medical/torr.html" class="product-link">
                         Learn More
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1334,7 +1334,7 @@
                     <p class="product-category" data-en="product2-category">Medical Device</p>
                     <h3 class="product-name" data-en="product2-name">UL BLANC</h3>
                     <p class="product-description" data-en="product2-desc">Innovative medical device solution specialized in skin tone improvement and brightening effects.</p>
-                    <a href="#" class="product-link">
+                    <a href="/en/medical/ulblanc.html" class="product-link">
                         Learn More
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1351,7 +1351,7 @@
                     <p class="product-category" data-en="product3-category">Medical Cosmetic</p>
                     <h3 class="product-name" data-en="product3-name">NEWCHAE</h3>
                     <p class="product-description" data-en="product3-desc">Professional medical cosmetic line developed in collaboration with dermatology specialists for premium skincare solutions.</p>
-                    <a href="#" class="product-link">
+                    <a href="/en/cosmetic/newchae.html" class="product-link">
                         Learn More
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1629,9 +1629,9 @@
             <div class="footer-links">
                 <h5 data-en="footer-products-title">Products</h5>
                 <ul>
-                    <li><a href="#">TORR RF</a></li>
-                    <li><a href="#">UL BLANC</a></li>
-                    <li><a href="#">NEWCHAE</a></li>
+                    <li><a href="/en/medical/torr.html">TORR RF</a></li>
+                    <li><a href="/en/medical/ulblanc.html">UL BLANC</a></li>
+                    <li><a href="/en/cosmetic/newchae.html">NEWCHAE</a></li>
                 </ul>
             </div>
             <div class="footer-links">
@@ -1678,18 +1678,46 @@
 
         // Load images from localStorage or use defaults
         function loadImages() {
-            const savedImages = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
-            
-            document.getElementById('heroImage').src = savedImages.hero || defaultImages.hero;
-            document.getElementById('product1Image').src = savedImages.product1 || defaultImages.product1;
-            document.getElementById('product2Image').src = savedImages.product2 || defaultImages.product2;
-            document.getElementById('product3Image').src = savedImages.product3 || defaultImages.product3;
-            document.getElementById('aboutImage').src = savedImages.about || defaultImages.about;
-            document.getElementById('gallery1Image').src = savedImages.gallery1 || defaultImages.gallery1;
-            document.getElementById('gallery2Image').src = savedImages.gallery2 || defaultImages.gallery2;
-            document.getElementById('gallery3Image').src = savedImages.gallery3 || defaultImages.gallery3;
-            document.getElementById('gallery4Image').src = savedImages.gallery4 || defaultImages.gallery4;
-            document.getElementById('gallery5Image').src = savedImages.gallery5 || defaultImages.gallery5;
+            var savedImages = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
+            var cms = JSON.parse(localStorage.getItem('britzmedi_cms') || '{}');
+            var enImages = (cms.en && cms.en.images) ? cms.en.images : {};
+            var scales = JSON.parse(localStorage.getItem('britzmedi_image_scales') || '{}');
+            var positions = JSON.parse(localStorage.getItem('britzmedi_image_positions') || '{}');
+
+            // Hero - English first, then Korean, then default
+            var heroEl = document.getElementById('heroImage');
+            if (heroEl) {
+                heroEl.src = enImages.hero || savedImages.hero || defaultImages.hero;
+                if (positions.hero) heroEl.style.objectPosition = positions.hero;
+            }
+
+            // Products - English first, then Korean (torr/ulblanc/newchae), then default
+            var productMap = [
+                { en: 'torr', kr: 'torr', default: 'product1' },
+                { en: 'ulblanc', kr: 'ulblanc', default: 'product2' },
+                { en: 'newchae', kr: 'newchae', default: 'product3' }
+            ];
+            productMap.forEach(function(item, idx) {
+                var el = document.getElementById('product' + (idx + 1) + 'Image');
+                if (el) {
+                    el.src = enImages[item.en] || savedImages[item.kr] || defaultImages[item.default];
+                    var scale = scales[item.kr] || 85;
+                    el.style.maxWidth = scale + '%';
+                    el.style.maxHeight = scale + '%';
+                }
+            });
+
+            // About - English first, then Korean company, then default
+            var aboutEl = document.getElementById('aboutImage');
+            if (aboutEl) {
+                aboutEl.src = enImages.about || savedImages.company || defaultImages.about;
+            }
+
+            // Gallery
+            for (var i = 1; i <= 5; i++) {
+                var gEl = document.getElementById('gallery' + i + 'Image');
+                if (gEl) gEl.src = savedImages['gallery' + i] || defaultImages['gallery' + i];
+            }
         }
 
         // Loading screen
@@ -1900,52 +1928,8 @@
             }
         }
 
-        // Load English Images with Korean fallback
-        function loadEnglishImages() {
-            var cms = JSON.parse(localStorage.getItem('britzmedi_cms') || '{}');
-            var koreanImages = JSON.parse(localStorage.getItem('britzmedi_images') || '{}');
-            var koreanScales = JSON.parse(localStorage.getItem('britzmedi_image_scales') || '{}');
-            var koreanPositions = JSON.parse(localStorage.getItem('britzmedi_image_positions') || '{}');
-
-            // Get English images or fallback to Korean
-            var enImages = (cms.en && cms.en.images) ? cms.en.images : {};
-
-            // Hero Image
-            var heroImg = enImages.hero || koreanImages.hero || '';
-            if (heroImg) {
-                var heroEl = document.getElementById('heroImage');
-                if (heroEl) {
-                    heroEl.src = heroImg;
-                    if (koreanPositions.hero) {
-                        heroEl.style.objectPosition = koreanPositions.hero;
-                    }
-                }
-            }
-
-            // Product Images
-            var products = ['torr', 'ulblanc', 'newchae'];
-            products.forEach(function(key, idx) {
-                var img = enImages[key] || koreanImages[key] || '';
-                var el = document.getElementById('product' + (idx + 1) + 'Image');
-                if (el && img) {
-                    el.src = img;
-                    var scale = koreanScales[key] || 85;
-                    el.style.maxWidth = scale + '%';
-                    el.style.maxHeight = scale + '%';
-                }
-            });
-
-            // About Image
-            var aboutImg = enImages.about || koreanImages.company || '';
-            var aboutEl = document.getElementById('aboutImage');
-            if (aboutEl && aboutImg) {
-                aboutEl.src = aboutImg;
-            }
-        }
-
         // Load CMS data after page load
         loadEnglishCMS();
-        loadEnglishImages();
     </script>
 </body>
 </html>
