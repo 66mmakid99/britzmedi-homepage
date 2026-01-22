@@ -356,16 +356,75 @@
             .feature-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
-            .sidebar { display: none; }
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            .sidebar.open { transform: translateX(0); }
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.6);
+                z-index: 99;
+            }
+            .sidebar-overlay.show { display: block; }
             .main { margin-left: 0; }
+            .mobile-menu-btn { display: flex !important; }
             .stat-editor, .feature-grid { grid-template-columns: 1fr; }
             .timeline-item-edit, .news-item-edit, .spec-row { grid-template-columns: 1fr; }
+            .main-header { padding: 1rem; }
+            .main-header h1 { font-size: 1rem; }
+            .main-content { padding: 1rem; }
+            .card-body { padding: 1rem; }
+        }
+        .mobile-menu-btn {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--gray-700);
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 1rem;
+        }
+        .mobile-menu-btn svg { width: 20px; height: 20px; color: var(--gray-300); }
+        .mobile-menu-btn:hover { border-color: var(--gold); }
+        .mobile-menu-btn:hover svg { color: var(--gold); }
+        .sidebar-close {
+            display: none;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 32px;
+            height: 32px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--gray-700);
+            border-radius: 6px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+        .sidebar-close svg { width: 16px; height: 16px; color: var(--gray-400); }
+        @media (max-width: 768px) {
+            .sidebar-close { display: flex; }
         }
     </style>
 </head>
 <body>
+    <!-- Mobile Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
     <!-- Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
+        <button class="sidebar-close" id="sidebarClose">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
         <div class="sidebar-header">
             <span class="sidebar-logo">BRITZMEDI</span>
             <span class="sidebar-badge">CMS</span>
@@ -456,7 +515,12 @@
     <!-- Main Content -->
     <main class="main">
         <div class="main-header">
-            <h1 id="pageTitle">홈페이지 관리</h1>
+            <div style="display: flex; align-items: center;">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+                <h1 id="pageTitle">홈페이지 관리</h1>
+            </div>
             <div class="header-actions">
                 <span class="status" id="saveStatus">
                     <span class="status-dot"></span>
@@ -1519,10 +1583,41 @@
             showToast('혜택 추가 기능 - 저장 후 적용됩니다');
         }
 
+        // Mobile Menu
+        function initMobileMenu() {
+            var menuBtn = document.getElementById('mobileMenuBtn');
+            var sidebar = document.getElementById('sidebar');
+            var overlay = document.getElementById('sidebarOverlay');
+            var closeBtn = document.getElementById('sidebarClose');
+
+            function openMenu() {
+                sidebar.classList.add('open');
+                overlay.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeMenu() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+
+            if (menuBtn) menuBtn.addEventListener('click', openMenu);
+            if (overlay) overlay.addEventListener('click', closeMenu);
+            if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+            // Close menu when nav item is clicked on mobile
+            document.querySelectorAll('.nav-item[data-page]').forEach(function(item) {
+                item.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) closeMenu();
+                });
+            });
+        }
+
         // Init
         populate();
         setTimeout(loadImagePreviews, 100);
         updateThemeModeUI();
+        initMobileMenu();
     </script>
 </body>
 </html>
