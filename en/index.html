@@ -1777,11 +1777,37 @@
         window.addEventListener('scroll', checkReveal);
         checkReveal();
 
-        // Form submission
+        // Form submission with EmailJS
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your inquiry. We will contact you shortly.');
-            this.reset();
+
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Sending...';
+            btn.disabled = true;
+
+            const templateParams = {
+                name: this.querySelector('[name="name"]').value,
+                company: '(English Website)',
+                phone: this.querySelector('[name="phone"]').value,
+                email: this.querySelector('[name="email"]').value,
+                product: '[EN] ' + this.querySelector('[name="type"]').value,
+                message: this.querySelector('[name="message"]').value
+            };
+
+            emailjs.send('service_8527rq8', 'template_e1z7fdh', templateParams)
+                .then(function(response) {
+                    alert('Thank you for your inquiry. We will contact you shortly.');
+                    document.getElementById('contactForm').reset();
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                })
+                .catch(function(error) {
+                    console.error('EmailJS Error:', error);
+                    alert('An error occurred. Please try again later.');
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                });
         });
 
         // Light/Dark Mode
@@ -1931,5 +1957,9 @@
         // Load CMS data after page load
         loadEnglishCMS();
     </script>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>emailjs.init('qZJl-FQP1CJJqGvNp');</script>
 </body>
 </html>
