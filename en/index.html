@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 언어 선택 기록 (영문 페이지 방문 시) -->
+    <script>localStorage.setItem('britzmedi_lang_chosen', 'en');</script>
+
     <title>BRITZMEDI | Aesthetic Medical Device Manufacturer</title>
     <meta name="description" content="BRITZMEDI is a professional aesthetic medical device company established in 2017. We provide KFDA-certified medical devices including TORR RF, UL BLANC, and NEWCHAE medical cosmetics.">
     <meta name="keywords" content="BRITZMEDI, aesthetic medical device, TORR RF, UL BLANC, NEWCHAE, RF technology, dermatology equipment, Korea medical device">
@@ -1250,7 +1254,7 @@
             <a href="#contact">Contact</a>
         </nav>
         <div class="header-actions">
-            <a href="/" class="lang-switch" onclick="localStorage.setItem('britzmedi_lang_selected', 'true')">KO</a>
+            <a href="/" class="lang-switch" onclick="localStorage.setItem('britzmedi_lang_chosen', 'ko')">KO</a>
             <div class="menu-toggle" id="menuToggle">
                 <span></span>
                 <span></span>
@@ -1272,7 +1276,7 @@
             <a href="#about">About</a>
             <a href="#gallery">Gallery</a>
             <a href="#contact">Contact</a>
-            <a href="/" class="lang-switch" style="margin-top: 2rem;">KO</a>
+            <a href="/" class="lang-switch" style="margin-top: 2rem;" onclick="localStorage.setItem('britzmedi_lang_chosen', 'ko')">KO</a>
         </nav>
     </div>
 

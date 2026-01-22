@@ -3,6 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- IP 기반 언어 리다이렉트 -->
+    <script>
+    (function() {
+        // 이미 언어 선택을 한 경우 리다이렉트 하지 않음
+        if (localStorage.getItem('britzmedi_lang_chosen')) return;
+        // 영문 페이지에서 온 경우 (뒤로가기) 리다이렉트 하지 않음
+        if (document.referrer.includes('/en/')) return;
+
+        fetch('https://ipapi.co/json/')
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                // 한국이 아닌 경우 영문 페이지로 리다이렉트
+                if (data.country_code && data.country_code !== 'KR') {
+                    window.location.href = '/en/';
+                }
+            })
+            .catch(function() {
+                // API 오류 시 아무것도 하지 않음 (한국어 유지)
+            });
+    })();
+    </script>
+
     <title>BRITZMEDI | 피부 미용의 글로벌 리더 기업</title>
     <meta name="description" content="브리츠메디는 피부 미용 분야의 글로벌 리더로서, TORR RF, UL BLANC 등 혁신적인 에스테틱 의료기기와 NEWCHAE 메디컬 코스메틱을 제공합니다.">
     <meta name="keywords" content="브리츠메디, BRITZMEDI, 에스테틱 의료기기, TORR RF, UL BLANC, NEWCHAE, RF 고주파, 피부과 장비">
@@ -440,7 +463,7 @@
             </div>
         </nav>
         <div class="header-actions">
-            <a href="/en/" class="lang-switch">EN</a>
+            <a href="/en/" class="lang-switch" onclick="localStorage.setItem('britzmedi_lang_chosen', 'en')">EN</a>
             <div class="menu-toggle" id="menuToggle">
                 <span></span>
                 <span></span>
@@ -492,7 +515,7 @@
             </div>
         </div>
         <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--gray-800);">
-            <a href="/en/" class="lang-switch" style="display: inline-block;">ENGLISH</a>
+            <a href="/en/" class="lang-switch" style="display: inline-block;" onclick="localStorage.setItem('britzmedi_lang_chosen', 'en')">ENGLISH</a>
         </div>
     </div>
 
