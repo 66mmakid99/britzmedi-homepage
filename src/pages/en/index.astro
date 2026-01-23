@@ -4,6 +4,9 @@ import { getCollection } from 'astro:content';
 
 const products = await getCollection('products');
 const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
+
+// Load English page content
+import homeContent from '../../content/pages/home-en.json';
 ---
 
 <BaseLayout 
@@ -16,19 +19,20 @@ const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
     <section class="hero">
         <div class="hero-bg">
             <img 
-                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1920&q=80" 
+                src={homeContent.hero.image.src} 
                 alt="BRITZMEDI" 
                 class="hero-bg-image"
+                style={`object-position: ${homeContent.hero.image.positionX}% ${homeContent.hero.image.positionY}%`}
             />
             <div class="hero-bg-overlay"></div>
         </div>
         <div class="hero-content">
-            <p class="hero-subtitle">Aesthetic Medical Device Excellence</p>
-            <h1 class="hero-title"><em>Global Leader</em><br>in Aesthetic Medicine</h1>
-            <p class="hero-description">BRITZMEDI leads the future of aesthetic medicine through innovative R&D and product development.</p>
+            <p class="hero-subtitle">{homeContent.hero.subtitle}</p>
+            <h1 class="hero-title" set:html={homeContent.hero.title}></h1>
+            <p class="hero-description">{homeContent.hero.description}</p>
             <div class="hero-cta">
-                <a href="#about" class="btn">
-                    Learn More
+                <a href={homeContent.hero.ctaLink} class="btn">
+                    {homeContent.hero.ctaText}
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
@@ -45,12 +49,12 @@ const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
     <section class="bg-darker" style="padding: 6rem 4rem;">
         <div class="container">
             <div class="section-header reveal">
-                <p class="section-label">Our Products</p>
-                <h2 class="section-title">Innovative <em>Product</em> Lineup</h2>
+                <p class="section-label">{homeContent.products.label}</p>
+                <h2 class="section-title" set:html={homeContent.products.title}></h2>
             </div>
             <div class="products-grid">
                 {sortedProducts.map(product => (
-                    <div class="product-card reveal">
+                    <a href={`/en/products/${product.data.urlSlug}`} class="product-card reveal">
                         <div class="product-card-image">
                             <img 
                                 src={product.data.image.src} 
@@ -63,12 +67,10 @@ const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
                             </p>
                             <h3 class="product-card-title">{product.data.name}</h3>
                             <p class="product-card-desc">
-                                {product.data.category === 'medical' 
-                                    ? 'Premium aesthetic medical device with cutting-edge technology.'
-                                    : 'Medical-grade cosmetic developed with dermatologists.'}
+                                {product.data.taglineEn || product.data.tagline}
                             </p>
                         </div>
-                    </div>
+                    </a>
                 ))}
             </div>
         </div>
@@ -77,22 +79,12 @@ const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
     <!-- Stats Section -->
     <section class="stats-section">
         <div class="stats-grid reveal">
-            <div class="stat-item">
-                <div class="stat-number">2017</div>
-                <div class="stat-label">Established</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">500+</div>
-                <div class="stat-label">Partner Clinics</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">KFDA</div>
-                <div class="stat-label">Certified</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">Global</div>
-                <div class="stat-label">Expansion</div>
-            </div>
+            {homeContent.stats.map(stat => (
+                <div class="stat-item">
+                    <div class="stat-number">{stat.number}</div>
+                    <div class="stat-label">{stat.label}</div>
+                </div>
+            ))}
         </div>
     </section>
 
@@ -101,13 +93,13 @@ const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
         <div class="container">
             <div class="about-preview">
                 <div class="about-image reveal">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="BRITZMEDI Company" />
+                    <img src={homeContent.about.image.src} alt="BRITZMEDI Company" />
                 </div>
                 <div class="about-content reveal">
-                    <p class="section-label">About BRITZMEDI</p>
-                    <h2>Your Partner for<br><em>Healthy Beauty</em></h2>
-                    <p>Since 2017, BRITZMEDI has grown as a global leader in aesthetic medicine. We drive the future of beauty through competitive R&D and innovative product development.</p>
-                    <p>We are committed to being your trusted partner with a pioneering spirit in global aesthetic medicine.</p>
+                    <p class="section-label">{homeContent.about.label}</p>
+                    <h2 set:html={homeContent.about.title}></h2>
+                    <p>{homeContent.about.description}</p>
+                    <p>{homeContent.about.description2}</p>
                 </div>
             </div>
         </div>
@@ -115,11 +107,11 @@ const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
 
     <!-- Contact Section -->
     <section class="contact-cta reveal">
-        <p class="section-label">Contact Us</p>
-        <h2>Get in Touch</h2>
-        <p>For product inquiries, demo requests, or partnership proposals, please contact us.</p>
-        <a href="/en/contact" class="btn btn-primary">
-            Contact Us
+        <p class="section-label">{homeContent.contact.label}</p>
+        <h2>{homeContent.contact.title}</h2>
+        <p>{homeContent.contact.description}</p>
+        <a href={homeContent.contact.ctaLink} class="btn btn-primary">
+            {homeContent.contact.ctaText}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>

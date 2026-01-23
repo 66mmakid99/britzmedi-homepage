@@ -275,6 +275,65 @@ collections:
                   - { label: "제목", name: "title", widget: "string" }
                   - { label: "설명", name: "description", widget: "string" }
 
+      # 메인 페이지 (영문)
+      - name: "home-en"
+        label: "메인 페이지 (English)"
+        file: "src/content/pages/home-en.json"
+        fields:
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Title (HTML)", name: "title", widget: "string", hint: "<em>emphasis</em>, <br> tags allowed" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Button Text", name: "ctaText", widget: "string" }
+              - { label: "Button Link", name: "ctaLink", widget: "string" }
+              - label: "Background Image"
+                name: "image"
+                widget: "object"
+                fields:
+                  - { label: "Image URL", name: "src", widget: "image" }
+                  - { label: "Position X (%)", name: "positionX", widget: "number", default: 50 }
+                  - { label: "Position Y (%)", name: "positionY", widget: "number", default: 30 }
+          - label: "Products Section"
+            name: "products"
+            widget: "object"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+          - label: "Stats"
+            name: "stats"
+            widget: "list"
+            max: 4
+            fields:
+              - { label: "Number/Text", name: "number", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+          - label: "About Section"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Description 2", name: "description2", widget: "text" }
+              - { label: "Button Text", name: "ctaText", widget: "string" }
+              - { label: "Button Link", name: "ctaLink", widget: "string" }
+              - label: "Image"
+                name: "image"
+                widget: "object"
+                fields:
+                  - { label: "Image URL", name: "src", widget: "image" }
+          - label: "Contact Section"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Button Text", name: "ctaText", widget: "string" }
+              - { label: "Button Link", name: "ctaLink", widget: "string" }
+
       # 메인 페이지 (한국어)
       - name: "home"
         label: "메인 페이지 (한국어)"

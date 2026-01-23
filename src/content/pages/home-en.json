@@ -1,0 +1,42 @@
+{
+  "hero": {
+    "subtitle": "Aesthetic Medical Device Excellence",
+    "title": "<em>Global Leader</em><br>in Aesthetic Medicine",
+    "description": "BRITZMEDI leads the future of aesthetic medicine through innovative R&D and product development.",
+    "ctaText": "Learn More",
+    "ctaLink": "#about",
+    "image": {
+      "src": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1920&q=80",
+      "positionX": 50,
+      "positionY": 30
+    }
+  },
+  "products": {
+    "label": "Our Products",
+    "title": "Innovative <em>Product</em> Lineup"
+  },
+  "stats": [
+    { "number": "2017", "label": "Established" },
+    { "number": "500+", "label": "Partner Clinics" },
+    { "number": "KFDA", "label": "Certified" },
+    { "number": "Global", "label": "Expansion" }
+  ],
+  "about": {
+    "label": "About BRITZMEDI",
+    "title": "Your Partner for<br><em>Healthy Beauty</em>",
+    "description": "Since 2017, BRITZMEDI has grown as a global leader in aesthetic medicine. We drive the future of beauty through competitive R&D and innovative product development.",
+    "description2": "We are committed to being your trusted partner with a pioneering spirit in global aesthetic medicine.",
+    "ctaText": "Learn More",
+    "ctaLink": "/en",
+    "image": {
+      "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
+    }
+  },
+  "contact": {
+    "label": "Contact Us",
+    "title": "Get in Touch",
+    "description": "For product inquiries, demo requests, or partnership proposals, please contact us.",
+    "ctaText": "Contact Us",
+    "ctaLink": "/en/contact"
+  }
+}
