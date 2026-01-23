@@ -1,9 +1,6 @@
 backend:
-  name: github
-  repo: 66mmakid99/britzmedi-homepage
+  name: git-gateway
   branch: main
-  base_url: https://britzmedi-homepage.pages.dev
-  auth_endpoint: /api/auth
 
 # 로컬 개발용 (선택)
 # local_backend: true
