@@ -8,7 +8,9 @@ const productsCollection = defineCollection({
     urlSlug: z.string(), // renamed from 'slug' to avoid conflict with Astro's reserved slug
     category: z.enum(['medical', 'cosmetic']),
     tagline: z.string(),
+    taglineEn: z.string().optional(),
     description: z.string(),
+    descriptionEn: z.string().optional(),
     image: z.object({
       src: z.string(),
       alt: z.string().optional(),
@@ -18,11 +20,14 @@ const productsCollection = defineCollection({
     }),
     features: z.array(z.object({
       title: z.string(),
+      titleEn: z.string().optional(),
       description: z.string(),
+      descriptionEn: z.string().optional(),
       icon: z.string().optional(),
     })).optional(),
     specs: z.array(z.object({
       label: z.string(),
+      labelEn: z.string().optional(),
       value: z.string(),
     })).optional(),
     order: z.number().default(0),

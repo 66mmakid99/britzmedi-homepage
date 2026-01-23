@@ -144,6 +144,16 @@ collections:
             min: 50
             max: 150
             hint: "이미지 표시 크기 (50~150%)"
+      - label: "태그라인 (영문)"
+        name: "taglineEn"
+        widget: "string"
+        required: false
+        hint: "English tagline for international page"
+      - label: "설명 (영문)"
+        name: "descriptionEn"
+        widget: "text"
+        required: false
+        hint: "English description for international page"
       - label: "특징"
         name: "features"
         widget: "list"
@@ -152,9 +162,17 @@ collections:
           - label: "제목"
             name: "title"
             widget: "string"
+          - label: "제목 (영문)"
+            name: "titleEn"
+            widget: "string"
+            required: false
           - label: "설명"
             name: "description"
             widget: "string"
+          - label: "설명 (영문)"
+            name: "descriptionEn"
+            widget: "string"
+            required: false
       - label: "사양"
         name: "specs"
         widget: "list"
@@ -163,6 +181,10 @@ collections:
           - label: "항목"
             name: "label"
             widget: "string"
+          - label: "항목 (영문)"
+            name: "labelEn"
+            widget: "string"
+            required: false
           - label: "값"
             name: "value"
             widget: "string"
