@@ -39,9 +39,11 @@ const footerLinks = lang === 'ko' ? {
 
 const companyInfo = {
   name: 'BRITZMEDI',
-  ceo: '김정락',
+  ceo: '이신재',
   address: '경기도 화성시 기산로87번길 2, 1층',
   tel: '070-4348-7244',
+  businessNumber: '682-87-00782',
+  email: 'marketing@britzmedi.co.kr',
 };
 ---
 
@@ -98,7 +100,9 @@ const companyInfo = {
     <div class="footer-bottom">
         <p>
             &copy; {new Date().getFullYear()} BRITZMEDI. All rights reserved. 
-            {lang === 'ko' && `대표: ${companyInfo.ceo} | ${companyInfo.address} | TEL: ${companyInfo.tel}`}
+            {lang === 'ko' 
+                ? `대표이사: ${companyInfo.ceo} | 사업자등록번호: ${companyInfo.businessNumber} | TEL: ${companyInfo.tel} | ${companyInfo.email}`
+                : `CEO: Shin-Jae Lee | Business Reg. No.: ${companyInfo.businessNumber} | Tel: ${companyInfo.tel} | ${companyInfo.email}`}
         </p>
         <div class="footer-legal">
             <a href="#">{lang === 'ko' ? '개인정보처리방침' : 'Privacy Policy'}</a>
