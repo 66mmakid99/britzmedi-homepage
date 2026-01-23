@@ -6,7 +6,11 @@ const products = await getCollection('products');
 const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
 ---
 
-<BaseLayout title="제품">
+<BaseLayout 
+    title="제품"
+    description="브리츠메디의 혁신적인 에스테틱 의료기기 라인업을 소개합니다. TORR RF 고주파 리프팅, UL BLANC 피부 미백 레이저, NEWCHAE 프리미엄 메디컬 코스메틱까지 KFDA, CE 인증 제품을 만나보세요."
+    canonicalPath="/products/"
+>
     <section class="page-hero">
         <div class="page-hero-bg"></div>
         <div class="page-hero-overlay"></div>

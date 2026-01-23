@@ -7,77 +7,358 @@ interface Props {
   title: string;
   description?: string;
   lang?: 'ko' | 'en';
+  keywords?: string;
+  ogImage?: string;
+  ogType?: string;
+  canonicalPath?: string;
+  noindex?: boolean;
 }
 
 const { 
   title, 
-  description = '브리츠메디는 피부 미용 분야의 글로벌 리더로서, TORR RF, UL BLANC 등 혁신적인 에스테틱 의료기기와 NEWCHAE 메디컬 코스메틱을 제공합니다.',
-  lang = 'ko'
+  lang = 'ko',
+  description,
+  keywords,
+  ogImage = '/og-image.jpg',
+  ogType = 'website',
+  canonicalPath = '',
+  noindex = false
 } = Astro.props;
 
+// Set defaults based on lang
+const finalDescription = description || (lang === 'en' 
+  ? 'BRITZMEDI is a global leader in aesthetic medicine, providing innovative medical devices like TORR RF, UL BLANC and NEWCHAE medical cosmetics.'
+  : '브리츠메디는 피부 미용 분야의 글로벌 리더로서, TORR RF, UL BLANC 등 혁신적인 에스테틱 의료기기와 NEWCHAE 메디컬 코스메틱을 제공합니다.');
+
+const finalKeywords = keywords || (lang === 'en'
+  ? 'BRITZMEDI, aesthetic medical device, RF technology, TORR RF, UL BLANC, NEWCHAE, dermatology equipment, skin lifting, medical cosmetics, Korea medical device'
+  : '브리츠메디, BRITZMEDI, 에스테틱 의료기기, TORR RF, UL BLANC, NEWCHAE, RF 고주파, 피부과 장비, 피부 리프팅, 미백 레이저, 메디컬 코스메틱, 의료기기 제조');
+
 const siteUrl = 'https://britzmedi-homepage.pages.dev';
+const currentUrl = canonicalPath ? `${siteUrl}${canonicalPath}` : siteUrl;
+const fullTitle = `${title} | BRITZMEDI - ${lang === 'ko' ? '피부미용 의료기기 전문기업' : 'Aesthetic Medical Device Expert'}`;
+
+// Company information for structured data
+const companyData = {
+  name: 'BRITZMEDI',
+  nameKo: '브리츠메디',
+  legalName: '브리츠메디 주식회사',
+  ceo: '이신재',
+  ceoEn: 'Shin-Jae Lee',
+  foundingDate: '2017',
+  address: {
+    street: '기산로87번길 2, 1층',
+    city: '화성시',
+    region: '경기도',
+    postalCode: '18428',
+    country: 'KR',
+    full: '경기도 화성시 기산로87번길 2, 1층',
+    fullEn: '1F, 2 Gisan-ro 87beon-gil, Hwaseong-si, Gyeonggi-do, South Korea'
+  },
+  phone: '+82-70-4348-7244',
+  email: 'marketing@britzmedi.co.kr',
+  businessNumber: '682-87-00782',
+  geo: {
+    latitude: 37.1994,
+    longitude: 126.8312
+  }
+};
+
+// Products for structured data
+const products = [
+  {
+    name: 'TORR RF',
+    description: lang === 'ko' 
+      ? '고주파 에너지로 피부 깊숙이 전달하는 프리미엄 리프팅 솔루션'
+      : 'Premium lifting solution delivering RF energy deep into the skin',
+    category: 'Medical Device',
+    url: `${siteUrl}${lang === 'ko' ? '/products/torr-rf' : '/en/products/torr-rf'}`
+  },
+  {
+    name: 'UL BLANC',
+    description: lang === 'ko'
+      ? '피부 톤 개선과 미백 효과에 특화된 혁신적인 솔루션'
+      : 'Innovative solution specialized in skin tone improvement and whitening',
+    category: 'Medical Device',
+    url: `${siteUrl}${lang === 'ko' ? '/products/ul-blanc' : '/en/products/ul-blanc'}`
+  },
+  {
+    name: 'NEWCHAE',
+    description: lang === 'ko'
+      ? '피부과 전문의와 함께 개발한 프리미엄 메디컬 코스메틱'
+      : 'Premium medical cosmetics developed with dermatologists',
+    category: 'Medical Cosmetic',
+    url: `${siteUrl}${lang === 'ko' ? '/products/newchae' : '/en/products/newchae'}`
+  }
+];
 ---
 
 <!DOCTYPE html>
-<html lang={lang}>
+<html lang={lang === 'ko' ? 'ko-KR' : 'en-US'}>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>{title} | BRITZMEDI</title>
-    <meta name="description" content={description}>
-    <meta name="keywords" content="브리츠메디, BRITZMEDI, 에스테틱 의료기기, TORR RF, UL BLANC, NEWCHAE, RF 고주파, 피부과 장비">
+    <!-- Primary Meta Tags -->
+    <title>{fullTitle}</title>
+    <meta name="title" content={fullTitle}>
+    <meta name="description" content={finalDescription}>
+    <meta name="keywords" content={finalKeywords}>
+    <meta name="author" content="BRITZMEDI">
+    <meta name="publisher" content="BRITZMEDI">
+    <meta name="copyright" content="BRITZMEDI">
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}>
+    <meta name="googlebot" content={noindex ? 'noindex, nofollow' : 'index, follow'}>
+    <meta name="bingbot" content={noindex ? 'noindex, nofollow' : 'index, follow'}>
     
-    <!-- Open Graph -->
-    <meta property="og:title" content={`${title} | BRITZMEDI`}>
-    <meta property="og:description" content={description}>
-    <meta property="og:type" content="website">
-    <meta property="og:url" content={siteUrl}>
+    <!-- GEO Meta Tags -->
+    <meta name="geo.region" content="KR-41">
+    <meta name="geo.placename" content="Hwaseong, Gyeonggi-do, South Korea">
+    <meta name="geo.position" content={`${companyData.geo.latitude};${companyData.geo.longitude}`}>
+    <meta name="ICBM" content={`${companyData.geo.latitude}, ${companyData.geo.longitude}`}>
+    
+    <!-- Language & Locale -->
+    <meta name="language" content={lang === 'ko' ? 'Korean' : 'English'}>
+    <meta http-equiv="content-language" content={lang === 'ko' ? 'ko-KR' : 'en-US'}>
+    
+    <!-- Mobile & App -->
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="msapplication-TileColor" content="#0a0a0a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BRITZMEDI">
+    <meta name="application-name" content="BRITZMEDI">
+    <meta name="format-detection" content="telephone=yes">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType}>
+    <meta property="og:url" content={currentUrl}>
+    <meta property="og:title" content={fullTitle}>
+    <meta property="og:description" content={finalDescription}>
+    <meta property="og:image" content={`${siteUrl}${ogImage}`}>
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content={`BRITZMEDI - ${lang === 'ko' ? '피부미용 의료기기 전문기업' : 'Aesthetic Medical Device Expert'}`}>
     <meta property="og:locale" content={lang === 'ko' ? 'ko_KR' : 'en_US'}>
+    <meta property="og:locale:alternate" content={lang === 'ko' ? 'en_US' : 'ko_KR'}>
     <meta property="og:site_name" content="BRITZMEDI">
     
-    <!-- Twitter Card -->
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content={`${title} | BRITZMEDI`}>
-    <meta name="twitter:description" content={description}>
+    <meta name="twitter:url" content={currentUrl}>
+    <meta name="twitter:title" content={fullTitle}>
+    <meta name="twitter:description" content={finalDescription}>
+    <meta name="twitter:image" content={`${siteUrl}${ogImage}`}>
+    <meta name="twitter:image:alt" content={`BRITZMEDI - ${lang === 'ko' ? '피부미용 의료기기 전문기업' : 'Aesthetic Medical Device Expert'}`}>
     
-    <!-- Canonical -->
-    <link rel="canonical" href={siteUrl}>
-    <link rel="alternate" hreflang="ko" href={siteUrl}>
-    <link rel="alternate" hreflang="en" href={`${siteUrl}/en/`}>
+    <!-- Canonical & Alternate Languages -->
+    <link rel="canonical" href={currentUrl}>
+    <link rel="alternate" hreflang="ko" href={`${siteUrl}${canonicalPath.replace('/en', '') || '/'}`}>
+    <link rel="alternate" hreflang="en" href={`${siteUrl}/en${canonicalPath.replace('/en', '') || '/'}`}>
     <link rel="alternate" hreflang="x-default" href={siteUrl}>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
     <!-- Netlify Identity (for Decap CMS) -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "MedicalOrganization",
-        "name": "BRITZMEDI",
-        "alternateName": "브리츠메디",
-        "url": "https://britzmedi-homepage.pages.dev",
-        "description": "피부 미용 분야의 글로벌 리더 기업",
-        "foundingDate": "2017",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "기산로87번길 2, 1층",
-            "addressLocality": "화성시",
-            "addressRegion": "경기도",
-            "postalCode": "18428",
-            "addressCountry": "KR"
+    <!-- Structured Data: Organization -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "MedicalBusiness",
+      "@id": `${siteUrl}/#organization`,
+      "name": companyData.name,
+      "alternateName": [companyData.nameKo, companyData.legalName],
+      "url": siteUrl,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${siteUrl}/logo.png`,
+        "width": 512,
+        "height": 512
+      },
+      "image": `${siteUrl}/og-image.jpg`,
+      "description": lang === 'ko' 
+        ? "브리츠메디는 2017년 설립된 피부 미용 의료기기 전문 기업으로, TORR RF, UL BLANC 등 혁신적인 에스테틱 장비와 NEWCHAE 메디컬 코스메틱을 개발 및 제조합니다. KFDA, CE 인증을 획득한 고품질 제품으로 국내외 500개 이상의 피부과 및 에스테틱 클리닉에 공급하고 있습니다."
+        : "BRITZMEDI, established in 2017, is a specialized aesthetic medical device company developing and manufacturing innovative equipment including TORR RF, UL BLANC, and NEWCHAE medical cosmetics. With KFDA and CE certifications, we supply high-quality products to over 500 dermatology clinics and aesthetic centers worldwide.",
+      "foundingDate": companyData.foundingDate,
+      "founder": {
+        "@type": "Person",
+        "name": lang === 'ko' ? companyData.ceo : companyData.ceoEn
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": companyData.address.street,
+        "addressLocality": companyData.address.city,
+        "addressRegion": companyData.address.region,
+        "postalCode": companyData.address.postalCode,
+        "addressCountry": companyData.address.country
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": companyData.geo.latitude,
+        "longitude": companyData.geo.longitude
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": companyData.phone,
+          "contactType": "customer service",
+          "availableLanguage": ["Korean", "English"],
+          "areaServed": "Worldwide"
         },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+82-70-4348-7244",
-            "contactType": "customer service"
+        {
+          "@type": "ContactPoint",
+          "email": companyData.email,
+          "contactType": "sales",
+          "availableLanguage": ["Korean", "English"]
         }
-    }
-    </script>
+      ],
+      "sameAs": [],
+      "areaServed": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": companyData.geo.latitude,
+          "longitude": companyData.geo.longitude
+        },
+        "geoRadius": "50000"
+      },
+      "priceRange": "$$$",
+      "currenciesAccepted": "KRW, USD",
+      "paymentAccepted": "Bank Transfer, Credit Card",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": lang === 'ko' ? "브리츠메디 제품 카탈로그" : "BRITZMEDI Product Catalog",
+        "itemListElement": products.map((product, index) => ({
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": product.name,
+            "description": product.description,
+            "category": product.category,
+            "url": product.url,
+            "brand": {
+              "@type": "Brand",
+              "name": "BRITZMEDI"
+            },
+            "manufacturer": {
+              "@type": "Organization",
+              "name": "BRITZMEDI"
+            }
+          }
+        }))
+      }
+    })} />
+    
+    <!-- Structured Data: WebSite with SearchAction (for AEO) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "url": siteUrl,
+      "name": "BRITZMEDI",
+      "description": lang === 'ko' 
+        ? "피부 미용 의료기기 전문 기업 브리츠메디 공식 웹사이트"
+        : "Official website of BRITZMEDI, aesthetic medical device specialist",
+      "publisher": {
+        "@id": `${siteUrl}/#organization`
+      },
+      "inLanguage": [lang === 'ko' ? 'ko-KR' : 'en-US'],
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${siteUrl}/search?q={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
+    })} />
+    
+    <!-- Structured Data: BreadcrumbList -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": lang === 'ko' ? siteUrl : `${siteUrl}/en/`
+        }
+      ]
+    })} />
+    
+    <!-- Structured Data: FAQPage (for AEO - AI/Voice Search Optimization) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": lang === 'ko' ? [
+        {
+          "@type": "Question",
+          "name": "브리츠메디는 어떤 회사인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "브리츠메디는 2017년 설립된 피부 미용 의료기기 전문 기업입니다. TORR RF(고주파 리프팅), UL BLANC(피부 미백), NEWCHAE(메디컬 코스메틱) 등 혁신적인 에스테틱 솔루션을 개발하고 있으며, KFDA와 CE 인증을 획득한 제품으로 국내외 500개 이상의 클리닉에 공급하고 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "TORR RF는 어떤 제품인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TORR RF는 브리츠메디의 대표 의료기기로, 최신 고주파(RF) 기술을 적용한 프리미엄 피부 리프팅 솔루션입니다. 1MHz/2MHz 주파수, Monopolar/Bipolar 모드를 지원하며, 비침습적 시술로 얼굴, 목, 바디 등 다양한 부위에 적용 가능합니다. KFDA, CE 인증을 획득했습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "브리츠메디 제품은 어디서 구매할 수 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "브리츠메디 제품 구매 및 데모 문의는 공식 웹사이트 문의 페이지(britzmedi-homepage.pages.dev/contact) 또는 이메일(marketing@britzmedi.co.kr), 전화(070-4348-7244)를 통해 가능합니다. 본사는 경기도 화성시 기산로87번길 2, 1층에 위치해 있습니다."
+          }
+        }
+      ] : [
+        {
+          "@type": "Question",
+          "name": "What is BRITZMEDI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BRITZMEDI is a specialized aesthetic medical device company established in 2017 in South Korea. We develop innovative solutions including TORR RF (RF lifting), UL BLANC (skin whitening), and NEWCHAE (medical cosmetics). Our KFDA and CE certified products are supplied to over 500 clinics worldwide."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is TORR RF?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TORR RF is BRITZMEDI's flagship medical device, a premium skin lifting solution using cutting-edge radiofrequency technology. It features 1MHz/2MHz frequency options, Monopolar/Bipolar modes, and is applicable to face, neck, and body areas through non-invasive treatment. It holds KFDA and CE certifications."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I purchase BRITZMEDI products?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For product inquiries and demo requests, please visit our contact page at britzmedi-homepage.pages.dev/en/contact, email us at marketing@britzmedi.co.kr, or call +82-70-4348-7244. Our headquarters is located at 1F, 2 Gisan-ro 87beon-gil, Hwaseong-si, Gyeonggi-do, South Korea."
+          }
+        }
+      ]
+    })} />
 </head>
 <body>
     <!-- Theme Mode (instant load to prevent flash) -->

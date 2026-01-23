@@ -14,7 +14,13 @@ const { product } = Astro.props;
 const { Content } = await product.render();
 ---
 
-<BaseLayout title={product.data.name} lang="en">
+<BaseLayout 
+    title={product.data.name}
+    description={product.data.descriptionEn || product.data.description}
+    lang="en"
+    canonicalPath={`/en/products/${product.data.urlSlug}`}
+    ogType="product"
+>
     <section class="page-hero">
         <div class="page-hero-bg"></div>
         <div class="page-hero-overlay"></div>

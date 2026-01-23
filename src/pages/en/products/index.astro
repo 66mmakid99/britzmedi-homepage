@@ -6,7 +6,12 @@ const products = await getCollection('products');
 const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
 ---
 
-<BaseLayout title="Products" lang="en">
+<BaseLayout 
+    title="Products"
+    description="Discover BRITZMEDI's innovative aesthetic medical device lineup. TORR RF lifting device, UL BLANC whitening laser, and NEWCHAE premium medical cosmetics - all KFDA and CE certified."
+    lang="en"
+    canonicalPath="/en/products/"
+>
     <section class="page-hero">
         <div class="page-hero-bg"></div>
         <div class="page-hero-overlay"></div>

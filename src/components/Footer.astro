@@ -1,9 +1,15 @@
 ---
+import { getEntry } from 'astro:content';
+
 interface Props {
   lang?: 'ko' | 'en';
 }
 
 const { lang = 'ko' } = Astro.props;
+
+// settings.json에서 회사 정보 가져오기
+const settingsEntry = await getEntry('pages', 'settings');
+const settings = settingsEntry?.data || {};
 
 const footerLinks = lang === 'ko' ? {
   products: [
@@ -24,26 +30,28 @@ const footerLinks = lang === 'ko' ? {
   ]
 } : {
   products: [
-    { label: 'TORR RF', href: '/en' },
-    { label: 'UL BLANC', href: '/en' },
-    { label: 'NEWCHAE', href: '/en' },
+    { label: 'TORR RF', href: '/en/products/torr-rf' },
+    { label: 'UL BLANC', href: '/en/products/ul-blanc' },
+    { label: 'NEWCHAE', href: '/en/products/newchae' },
   ],
   company: [
     { label: 'About', href: '/en' },
-    { label: 'News', href: '/en' },
+    { label: 'Products', href: '/en/products' },
   ],
   support: [
-    { label: 'Contact', href: '/en' },
+    { label: 'Contact', href: '/en/contact' },
   ]
 };
 
 const companyInfo = {
-  name: 'BRITZMEDI',
-  ceo: '이신재',
-  address: '경기도 화성시 기산로87번길 2, 1층',
-  tel: '070-4348-7244',
-  businessNumber: '682-87-00782',
-  email: 'marketing@britzmedi.co.kr',
+  name: settings.company?.name || 'BRITZMEDI',
+  ceo: settings.company?.ceo || '이신재',
+  ceoEn: 'Shin-Jae Lee',
+  address: settings.company?.address || '경기도 화성시 기산로87번길 2, 1층',
+  addressEn: settings.company?.addressEn || '1F, 2 Gisan-ro 87beon-gil, Hwaseong-si, Gyeonggi-do, Korea',
+  tel: settings.company?.phone || '070-4348-7244',
+  businessNumber: settings.company?.businessNumber || '682-87-00782',
+  email: settings.company?.email || 'marketing@britzmedi.co.kr',
 };
 ---
 
@@ -101,8 +109,8 @@ const companyInfo = {
         <p>
             &copy; {new Date().getFullYear()} BRITZMEDI. All rights reserved. 
             {lang === 'ko' 
-                ? `대표이사: ${companyInfo.ceo} | 사업자등록번호: ${companyInfo.businessNumber} | TEL: ${companyInfo.tel} | ${companyInfo.email}`
-                : `CEO: Shin-Jae Lee | Business Reg. No.: ${companyInfo.businessNumber} | Tel: ${companyInfo.tel} | ${companyInfo.email}`}
+                ? `${companyInfo.address} | 대표이사: ${companyInfo.ceo} | 사업자등록번호: ${companyInfo.businessNumber} | TEL: ${companyInfo.tel} | ${companyInfo.email}`
+                : `${companyInfo.addressEn} | CEO: ${companyInfo.ceoEn} | Business Reg. No.: ${companyInfo.businessNumber} | Tel: ${companyInfo.tel} | ${companyInfo.email}`}
         </p>
         <div class="footer-legal">
             <a href="#">{lang === 'ko' ? '개인정보처리방침' : 'Privacy Policy'}</a>
