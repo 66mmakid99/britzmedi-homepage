@@ -1,0 +1,233 @@
+---
+interface Props {
+  lang?: 'ko' | 'en';
+}
+
+const { lang = 'ko' } = Astro.props;
+
+const footerLinks = lang === 'ko' ? {
+  products: [
+    { label: 'TORR RF', href: '/products/torr-rf' },
+    { label: 'UL BLANC', href: '/products/ul-blanc' },
+    { label: 'NEWCHAE', href: '/products/newchae' },
+  ],
+  company: [
+    { label: '회사소개', href: '/company/intro' },
+    { label: '브리츠 WAY', href: '/company/way' },
+    { label: '연구소', href: '/company/tech' },
+    { label: '뉴스', href: '/community/news' },
+  ],
+  support: [
+    { label: '문의하기', href: '/contact' },
+    { label: '오시는 길', href: '/company/contact' },
+    { label: '관리자', href: '/admin/' },
+  ]
+} : {
+  products: [
+    { label: 'TORR RF', href: '/en' },
+    { label: 'UL BLANC', href: '/en' },
+    { label: 'NEWCHAE', href: '/en' },
+  ],
+  company: [
+    { label: 'About', href: '/en' },
+    { label: 'News', href: '/en' },
+  ],
+  support: [
+    { label: 'Contact', href: '/en' },
+  ]
+};
+
+const companyInfo = {
+  name: 'BRITZMEDI',
+  ceo: '김정락',
+  address: '경기도 화성시 기산로87번길 2, 1층',
+  tel: '070-4348-7244',
+};
+---
+
+<footer>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <a href={lang === 'ko' ? '/' : '/en'} class="logo">BRITZMEDI</a>
+            <p>
+                {lang === 'ko' 
+                    ? '피부 미용 분야의 글로벌 리더로서 혁신적인 의료기기와 코스메틱을 제공합니다.'
+                    : 'A global leader in aesthetic medicine, providing innovative medical devices and cosmetics.'}
+            </p>
+            <div class="footer-social">
+                <a href="#" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <h5>Products</h5>
+            <ul>
+                {footerLinks.products.map(link => (
+                    <li><a href={link.href}>{link.label}</a></li>
+                ))}
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h5>Company</h5>
+            <ul>
+                {footerLinks.company.map(link => (
+                    <li><a href={link.href}>{link.label}</a></li>
+                ))}
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h5>Support</h5>
+            <ul>
+                {footerLinks.support.map(link => (
+                    <li><a href={link.href}>{link.label}</a></li>
+                ))}
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>
+            &copy; {new Date().getFullYear()} BRITZMEDI. All rights reserved. 
+            {lang === 'ko' && `대표: ${companyInfo.ceo} | ${companyInfo.address} | TEL: ${companyInfo.tel}`}
+        </p>
+        <div class="footer-legal">
+            <a href="#">{lang === 'ko' ? '개인정보처리방침' : 'Privacy Policy'}</a>
+            <a href="#">{lang === 'ko' ? '이용약관' : 'Terms of Service'}</a>
+        </div>
+    </div>
+</footer>
+
+<style>
+    footer {
+        background: var(--bg-primary);
+        padding: 4rem 3rem 1.5rem;
+        border-top: 1px solid var(--gray-800);
+    }
+
+    .footer-top {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3rem;
+        max-width: 1400px;
+        margin: 0 auto 4rem;
+    }
+
+    .footer-brand .logo {
+        display: inline-block;
+        margin-bottom: 1.5rem;
+        font-family: var(--font-main);
+        font-size: 1.5rem;
+        font-weight: 300;
+        letter-spacing: 0.3em;
+        color: var(--white);
+        text-decoration: none;
+    }
+    .footer-brand p {
+        font-size: 0.9rem;
+        color: var(--gray-500);
+        line-height: 1.8;
+        margin-bottom: 2rem;
+    }
+    .footer-social {
+        display: flex;
+        gap: 1rem;
+    }
+    .footer-social a {
+        width: 40px;
+        height: 40px;
+        background: var(--bg-tertiary);
+        border: 1px solid var(--gray-700);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gray-400);
+        transition: all 0.3s ease;
+    }
+    .footer-social a:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+    }
+    .footer-social svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .footer-links h5 {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--white);
+        margin-bottom: 1.5rem;
+    }
+    .footer-links ul {
+        list-style: none;
+    }
+    .footer-links li {
+        margin-bottom: 0.75rem;
+    }
+    .footer-links a {
+        font-size: 0.9rem;
+        color: var(--gray-500);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    .footer-links a:hover {
+        color: var(--gold);
+    }
+
+    .footer-bottom {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding-top: 2rem;
+        border-top: 1px solid var(--gray-800);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .footer-bottom p {
+        font-size: 0.8rem;
+        color: var(--gray-600);
+    }
+    .footer-legal {
+        display: flex;
+        gap: 2rem;
+    }
+    .footer-legal a {
+        font-size: 0.8rem;
+        color: var(--gray-600);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    .footer-legal a:hover {
+        color: var(--gold);
+    }
+
+    @media (max-width: 1024px) {
+        .footer-top {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .footer-top {
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+        .footer-bottom {
+            flex-direction: column;
+            gap: 0.5rem;
+            text-align: center;
+        }
+    }
+</style>

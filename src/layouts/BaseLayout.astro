@@ -1,0 +1,136 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  lang?: 'ko' | 'en';
+}
+
+const { 
+  title, 
+  description = '브리츠메디는 피부 미용 분야의 글로벌 리더로서, TORR RF, UL BLANC 등 혁신적인 에스테틱 의료기기와 NEWCHAE 메디컬 코스메틱을 제공합니다.',
+  lang = 'ko'
+} = Astro.props;
+
+const siteUrl = 'https://britzmedi-homepage.pages.dev';
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{title} | BRITZMEDI</title>
+    <meta name="description" content={description}>
+    <meta name="keywords" content="브리츠메디, BRITZMEDI, 에스테틱 의료기기, TORR RF, UL BLANC, NEWCHAE, RF 고주파, 피부과 장비">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={`${title} | BRITZMEDI`}>
+    <meta property="og:description" content={description}>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content={siteUrl}>
+    <meta property="og:locale" content={lang === 'ko' ? 'ko_KR' : 'en_US'}>
+    <meta property="og:site_name" content="BRITZMEDI">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={`${title} | BRITZMEDI`}>
+    <meta name="twitter:description" content={description}>
+    
+    <!-- Canonical -->
+    <link rel="canonical" href={siteUrl}>
+    <link rel="alternate" hreflang="ko" href={siteUrl}>
+    <link rel="alternate" hreflang="en" href={`${siteUrl}/en/`}>
+    <link rel="alternate" hreflang="x-default" href={siteUrl}>
+    
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MedicalOrganization",
+        "name": "BRITZMEDI",
+        "alternateName": "브리츠메디",
+        "url": "https://britzmedi-homepage.pages.dev",
+        "description": "피부 미용 분야의 글로벌 리더 기업",
+        "foundingDate": "2017",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "기산로87번길 2, 1층",
+            "addressLocality": "화성시",
+            "addressRegion": "경기도",
+            "postalCode": "18428",
+            "addressCountry": "KR"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+82-70-4348-7244",
+            "contactType": "customer service"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Theme Mode (instant load to prevent flash) -->
+    <script is:inline>
+        if(localStorage.getItem("britzmedi_theme_mode")==="light")document.body.classList.add("light-mode");
+    </script>
+    
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">BRITZMEDI</div>
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <Header lang={lang} />
+    
+    <main>
+        <slot />
+    </main>
+    
+    <Footer lang={lang} />
+
+    <!-- Global Scripts -->
+    <script>
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                if (loader) {
+                    loader.classList.add('hidden');
+                }
+            }, 800);
+        });
+
+        // Scroll Reveal
+        function initReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            function checkReveal() {
+                reveals.forEach(el => {
+                    const windowHeight = window.innerHeight;
+                    const revealTop = el.getBoundingClientRect().top;
+                    const revealPoint = 150;
+
+                    if (revealTop < windowHeight - revealPoint) {
+                        el.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', checkReveal);
+            checkReveal();
+        }
+
+        document.addEventListener('DOMContentLoaded', initReveal);
+    </script>
+</body>
+</html>

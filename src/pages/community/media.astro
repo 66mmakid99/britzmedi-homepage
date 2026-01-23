@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="미디어">
+    <section class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-content">
+            <p class="page-hero-label">Media</p>
+            <h1 class="page-hero-title"><em>미디어</em></h1>
+        </div>
+    </section>
+
+    <section class="bg-dark" style="padding: 5rem 4rem;">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-label">Video</p>
+                <h2 class="section-title">홍보 <em>영상</em></h2>
+            </div>
+            <div class="video-grid reveal">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&q=80" alt="Video Thumbnail" />
+                        <div class="video-play">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>브리츠메디 기업 소개</h3>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1559757175-7cb04bc9c7f5?w=400&q=80" alt="Video Thumbnail" />
+                        <div class="video-play">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>TORR RF 제품 소개</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-darker" style="padding: 5rem 4rem;">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-label">Social Media</p>
+                <h2 class="section-title"><em>SNS</em></h2>
+            </div>
+            <div class="social-links reveal">
+                <a href="#" class="social-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                    <span>Instagram</span>
+                </a>
+                <a href="#" class="social-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+                    </svg>
+                    <span>YouTube</span>
+                </a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    .video-card {
+        cursor: pointer;
+    }
+    .video-thumbnail {
+        position: relative;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+        margin-bottom: 1rem;
+    }
+    .video-thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    .video-card:hover .video-thumbnail img {
+        transform: scale(1.05);
+    }
+    .video-play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        background: var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--bg-primary);
+        transition: transform 0.3s ease;
+    }
+    .video-card:hover .video-play {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    .video-play svg {
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+    }
+    .video-card h3 {
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+    }
+    .social-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 2rem 3rem;
+        background: var(--bg-tertiary);
+        border: 1px solid var(--gray-800);
+        text-decoration: none;
+        color: var(--white);
+        transition: all 0.3s ease;
+    }
+    .social-card:hover {
+        border-color: var(--gold);
+        transform: translateY(-5px);
+    }
+    .social-card svg {
+        width: 40px;
+        height: 40px;
+        color: var(--gold);
+    }
+    @media (max-width: 768px) {
+        .video-grid {
+            grid-template-columns: 1fr;
+        }
+        .social-links {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>

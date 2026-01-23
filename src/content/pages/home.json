@@ -1,0 +1,47 @@
+{
+  "hero": {
+    "subtitle": "Aesthetic Medical Device Excellence",
+    "title": "피부 미용의<br><em>글로벌 리더</em> 기업",
+    "description": "브리츠메디는 신제품개발과 R&D 분야의 경쟁력을 키워 피부 미용분야의 미래를 이끌어갑니다.",
+    "ctaText": "회사 소개",
+    "ctaLink": "/company/intro",
+    "image": {
+      "src": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1920&q=80",
+      "positionX": 50,
+      "positionY": 30
+    }
+  },
+  "products": {
+    "label": "Our Products",
+    "title": "혁신적인 <em>제품</em> 라인업"
+  },
+  "stats": [
+    { "number": "2017", "label": "설립 연도" },
+    { "number": "500+", "label": "파트너 병원" },
+    { "number": "KFDA", "label": "인증 획득" },
+    { "number": "Global", "label": "해외 진출" }
+  ],
+  "about": {
+    "label": "About BRITZMEDI",
+    "title": "건강하고 아름다운 삶,<br><em>브리츠메디</em>가 함께합니다",
+    "description": "브리츠메디는 2017년 설립 이래 피부 미용 분야의 글로벌 리더로 성장해왔습니다. 신제품개발과 R&D 분야의 경쟁력을 키워 피부 미용분야의 미래를 이끌어가고 있습니다.\n\n피부미용의 글로벌 개척 정신으로 여러분의 파트너가 되겠습니다.",
+    "ctaText": "더 알아보기",
+    "ctaLink": "/company/intro",
+    "image": {
+      "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
+    }
+  },
+  "news": {
+    "label": "News",
+    "title": "브리츠메디의 <em>소식</em>",
+    "ctaText": "뉴스 더보기",
+    "ctaLink": "/community/news"
+  },
+  "contact": {
+    "label": "Contact Us",
+    "title": "문의하기",
+    "description": "제품 문의, 데모 요청, 파트너십 제안 등 무엇이든 편하게 연락주세요.",
+    "ctaText": "상담 신청",
+    "ctaLink": "/contact"
+  }
+}

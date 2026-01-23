@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const products = await getCollection('products');
+const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="제품">
+    <section class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-content">
+            <p class="page-hero-label">Our Products</p>
+            <h1 class="page-hero-title"><em>제품</em> 소개</h1>
+        </div>
+    </section>
+
+    <section class="bg-dark" style="padding: 5rem 4rem;">
+        <div class="container">
+            <div class="products-grid">
+                {sortedProducts.map(product => (
+                    <a href={`/products/${product.data.urlSlug}`} class="product-card reveal">
+                        <div class="product-card-image">
+                            <img 
+                                src={product.data.image.src} 
+                                alt={product.data.name}
+                                style={`max-width: ${product.data.image.scale}%; max-height: ${product.data.image.scale}%`}
+                            />
+                        </div>
+                        <div class="product-card-content">
+                            <p class="product-card-label">
+                                {product.data.category === 'medical' ? 'Medical Device' : 'Medical Cosmetic'}
+                            </p>
+                            <h3 class="product-card-title">{product.data.name}</h3>
+                            <p class="product-card-tagline">{product.data.tagline}</p>
+                        </div>
+                    </a>
+                ))}
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+    .product-card {
+        background: var(--bg-tertiary);
+        border: 1px solid var(--gray-800);
+        overflow: hidden;
+        text-decoration: none;
+        transition: all 0.4s ease;
+    }
+    .product-card:hover {
+        border-color: var(--gold);
+        transform: translateY(-10px);
+    }
+    .product-card-image {
+        aspect-ratio: 1/1;
+        background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+    .product-card-image img {
+        object-fit: contain;
+        transition: transform 0.6s ease;
+    }
+    .product-card:hover .product-card-image img {
+        transform: scale(1.08);
+    }
+    .product-card-content {
+        padding: 1.5rem;
+    }
+    .product-card-label {
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.5rem;
+    }
+    .product-card-title {
+        font-family: var(--font-main);
+        font-size: 1.75rem;
+        font-weight: 400;
+        color: var(--white);
+        margin-bottom: 0.5rem;
+    }
+    .product-card-tagline {
+        font-size: 0.9rem;
+        color: var(--gray-400);
+        line-height: 1.6;
+    }
+    @media (max-width: 1024px) {
+        .products-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    @media (max-width: 768px) {
+        .products-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

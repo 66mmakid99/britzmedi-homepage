@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="CI / BI">
+    <section class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-content">
+            <p class="page-hero-label">Brand Identity</p>
+            <h1 class="page-hero-title">CI / <em>BI</em></h1>
+        </div>
+    </section>
+
+    <section class="bg-dark" style="padding: 5rem 4rem;">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-label">Corporate Identity</p>
+                <h2 class="section-title">브리츠메디 <em>CI</em></h2>
+            </div>
+            <div class="ci-showcase reveal">
+                <div class="logo-display">
+                    <div class="logo-box dark">
+                        <span class="display-logo">BRITZMEDI</span>
+                    </div>
+                    <div class="logo-box light">
+                        <span class="display-logo dark-text">BRITZMEDI</span>
+                    </div>
+                </div>
+                <div class="ci-info">
+                    <p>브리츠메디의 CI는 미니멀하고 세련된 디자인으로 브랜드의 프리미엄 이미지를 표현합니다. 넓은 자간과 가벼운 웨이트의 서체로 현대적이고 고급스러운 느낌을 전달합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-darker" style="padding: 5rem 4rem;">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-label">Brand Colors</p>
+                <h2 class="section-title">브랜드 <em>컬러</em></h2>
+            </div>
+            <div class="color-palette reveal">
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #c9a962;"></div>
+                    <div class="color-info">
+                        <h4>Gold</h4>
+                        <p>#C9A962</p>
+                    </div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #0a0a0a;"></div>
+                    <div class="color-info">
+                        <h4>Black</h4>
+                        <p>#0A0A0A</p>
+                    </div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #ffffff; border: 1px solid #333;"></div>
+                    <div class="color-info">
+                        <h4>White</h4>
+                        <p>#FFFFFF</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .ci-showcase {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .logo-display {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+    .logo-box {
+        aspect-ratio: 16/9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--gray-800);
+    }
+    .logo-box.dark {
+        background: var(--bg-primary);
+    }
+    .logo-box.light {
+        background: #ffffff;
+    }
+    .display-logo {
+        font-family: var(--font-main);
+        font-size: 2.5rem;
+        font-weight: 300;
+        letter-spacing: 0.3em;
+        color: var(--white);
+    }
+    .display-logo.dark-text {
+        color: #0a0a0a;
+    }
+    .ci-info {
+        text-align: center;
+    }
+    .ci-info p {
+        color: var(--gray-400);
+        line-height: 1.8;
+    }
+    .color-palette {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .color-item {
+        text-align: center;
+    }
+    .color-swatch {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+    }
+    .color-info h4 {
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+    }
+    .color-info p {
+        font-size: 0.85rem;
+        color: var(--gray-500);
+        font-family: monospace;
+    }
+    @media (max-width: 768px) {
+        .logo-display {
+            grid-template-columns: 1fr;
+        }
+        .color-palette {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

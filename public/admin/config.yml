@@ -1,0 +1,285 @@
+backend:
+  name: github
+  repo: 66mmakid99/britzmedi-homepage
+  branch: main
+  base_url: https://britzmedi-homepage.pages.dev
+  auth_endpoint: /api/auth
+
+# 로컬 개발용 (선택)
+# local_backend: true
+
+# 미디어 설정 - 추후 R2 연동 시 변경
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+# 사이트 URL
+site_url: https://britzmedi-homepage.pages.dev
+display_url: https://britzmedi-homepage.pages.dev
+
+# 언어 설정
+locale: 'ko'
+
+# 슬러그 설정
+slug:
+  encoding: "unicode"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  # ========================================
+  # 뉴스/공지사항
+  # ========================================
+  - name: "news"
+    label: "뉴스/공지사항"
+    label_singular: "뉴스"
+    folder: "src/content/news"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} ({{year}}-{{month}}-{{day}})"
+    sortable_fields: ['date', 'title']
+    view_filters:
+      - label: "최근 게시물"
+        field: featured
+        pattern: true
+    fields:
+      - label: "제목"
+        name: "title"
+        widget: "string"
+        required: true
+      - label: "날짜"
+        name: "date"
+        widget: "datetime"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        required: true
+      - label: "썸네일"
+        name: "thumbnail"
+        widget: "image"
+        required: false
+        media_folder: "/public/uploads/news"
+        public_folder: "/uploads/news"
+      - label: "요약"
+        name: "summary"
+        widget: "text"
+        required: true
+        hint: "목록에 표시될 짧은 요약문입니다."
+      - label: "주요 뉴스"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "체크하면 메인 페이지에 우선 노출됩니다."
+      - label: "본문"
+        name: "body"
+        widget: "markdown"
+        required: true
+
+  # ========================================
+  # 제품 관리
+  # ========================================
+  - name: "products"
+    label: "제품"
+    label_singular: "제품"
+    folder: "src/content/products"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    summary: "{{name}} ({{category}})"
+    sortable_fields: ['order', 'name']
+    fields:
+      - label: "제품명"
+        name: "name"
+        widget: "string"
+        required: true
+      - label: "URL 슬러그"
+        name: "slug"
+        widget: "string"
+        required: true
+        hint: "URL에 사용될 영문 이름 (예: torr-rf)"
+      - label: "카테고리"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "의료기기", value: "medical" }
+          - { label: "코스메틱", value: "cosmetic" }
+        required: true
+      - label: "태그라인"
+        name: "tagline"
+        widget: "string"
+        required: true
+        hint: "한 줄 소개문"
+      - label: "설명"
+        name: "description"
+        widget: "text"
+        required: true
+      - label: "제품 이미지"
+        name: "image"
+        widget: "object"
+        fields:
+          - label: "이미지"
+            name: "src"
+            widget: "image"
+            required: true
+            media_folder: "/public/uploads/products"
+            public_folder: "/uploads/products"
+          - label: "대체 텍스트"
+            name: "alt"
+            widget: "string"
+            required: false
+          - label: "가로 위치 (%)"
+            name: "positionX"
+            widget: "number"
+            default: 50
+            min: 0
+            max: 100
+            hint: "0=왼쪽, 50=중앙, 100=오른쪽"
+          - label: "세로 위치 (%)"
+            name: "positionY"
+            widget: "number"
+            default: 50
+            min: 0
+            max: 100
+            hint: "0=위, 50=중앙, 100=아래"
+          - label: "이미지 크기 (%)"
+            name: "scale"
+            widget: "number"
+            default: 85
+            min: 50
+            max: 150
+            hint: "이미지 표시 크기 (50~150%)"
+      - label: "특징"
+        name: "features"
+        widget: "list"
+        required: false
+        fields:
+          - label: "제목"
+            name: "title"
+            widget: "string"
+          - label: "설명"
+            name: "description"
+            widget: "string"
+      - label: "사양"
+        name: "specs"
+        widget: "list"
+        required: false
+        fields:
+          - label: "항목"
+            name: "label"
+            widget: "string"
+          - label: "값"
+            name: "value"
+            widget: "string"
+      - label: "정렬 순서"
+        name: "order"
+        widget: "number"
+        default: 0
+        hint: "작은 숫자가 먼저 표시됩니다."
+      - label: "상세 설명"
+        name: "body"
+        widget: "markdown"
+        required: false
+
+  # ========================================
+  # 페이지 설정
+  # ========================================
+  - name: "settings"
+    label: "사이트 설정"
+    files:
+      # 전역 설정
+      - name: "global"
+        label: "전역 설정"
+        file: "src/content/pages/settings.json"
+        fields:
+          - label: "회사 정보"
+            name: "company"
+            widget: "object"
+            fields:
+              - { label: "회사명 (영문)", name: "name", widget: "string" }
+              - { label: "회사명 (한글)", name: "nameKo", widget: "string" }
+              - { label: "대표자", name: "ceo", widget: "string" }
+              - { label: "주소", name: "address", widget: "string" }
+              - { label: "주소 (영문)", name: "addressEn", widget: "string" }
+              - { label: "전화번호", name: "phone", widget: "string" }
+              - { label: "팩스", name: "fax", widget: "string", required: false }
+              - { label: "이메일", name: "email", widget: "string" }
+              - { label: "사업자등록번호", name: "businessNumber", widget: "string", required: false }
+          - label: "SNS"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "Instagram", name: "instagram", widget: "string", required: false }
+              - { label: "YouTube", name: "youtube", widget: "string", required: false }
+              - { label: "Kakao", name: "kakao", widget: "string", required: false }
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            fields:
+              - { label: "사이트 제목", name: "siteTitle", widget: "string" }
+              - { label: "사이트 설명", name: "siteDescription", widget: "text" }
+              - { label: "사이트 URL", name: "siteUrl", widget: "string" }
+
+      # 메인 페이지 (한국어)
+      - name: "home"
+        label: "메인 페이지 (한국어)"
+        file: "src/content/pages/home.json"
+        fields:
+          - label: "히어로 섹션"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "부제목", name: "subtitle", widget: "string" }
+              - { label: "제목 (HTML 가능)", name: "title", widget: "string", hint: "<em>강조</em> 태그 사용 가능" }
+              - { label: "설명", name: "description", widget: "text" }
+              - { label: "버튼 텍스트", name: "ctaText", widget: "string" }
+              - { label: "버튼 링크", name: "ctaLink", widget: "string" }
+              - label: "배경 이미지"
+                name: "image"
+                widget: "object"
+                fields:
+                  - { label: "이미지 URL", name: "src", widget: "image" }
+                  - { label: "가로 위치 (%)", name: "positionX", widget: "number", default: 50 }
+                  - { label: "세로 위치 (%)", name: "positionY", widget: "number", default: 30 }
+          - label: "제품 섹션"
+            name: "products"
+            widget: "object"
+            fields:
+              - { label: "라벨", name: "label", widget: "string" }
+              - { label: "제목", name: "title", widget: "string" }
+          - label: "통계"
+            name: "stats"
+            widget: "list"
+            max: 4
+            fields:
+              - { label: "숫자/텍스트", name: "number", widget: "string" }
+              - { label: "라벨", name: "label", widget: "string" }
+          - label: "회사 소개 섹션"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "라벨", name: "label", widget: "string" }
+              - { label: "제목", name: "title", widget: "string" }
+              - { label: "설명", name: "description", widget: "text" }
+              - { label: "버튼 텍스트", name: "ctaText", widget: "string" }
+              - { label: "버튼 링크", name: "ctaLink", widget: "string" }
+              - label: "이미지"
+                name: "image"
+                widget: "object"
+                fields:
+                  - { label: "이미지 URL", name: "src", widget: "image" }
+          - label: "뉴스 섹션"
+            name: "news"
+            widget: "object"
+            fields:
+              - { label: "라벨", name: "label", widget: "string" }
+              - { label: "제목", name: "title", widget: "string" }
+              - { label: "버튼 텍스트", name: "ctaText", widget: "string" }
+              - { label: "버튼 링크", name: "ctaLink", widget: "string" }
+          - label: "문의 섹션"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "라벨", name: "label", widget: "string" }
+              - { label: "제목", name: "title", widget: "string" }
+              - { label: "설명", name: "description", widget: "text" }
+              - { label: "버튼 텍스트", name: "ctaText", widget: "string" }
+              - { label: "버튼 링크", name: "ctaLink", widget: "string" }

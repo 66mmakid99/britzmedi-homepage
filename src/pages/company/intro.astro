@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="회사소개">
+    <section class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-content">
+            <p class="page-hero-label">About Us</p>
+            <h1 class="page-hero-title"><em>회사</em>소개</h1>
+        </div>
+    </section>
+
+    <section class="bg-dark" style="padding: 5rem 4rem;">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-image reveal">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="BRITZMEDI Office" />
+                </div>
+                <div class="content-text reveal">
+                    <p class="section-label">Who We Are</p>
+                    <h2>피부미용의 <em>글로벌 리더</em>,<br>브리츠메디입니다</h2>
+                    <p>브리츠메디는 2017년 설립 이래 피부 미용 분야의 글로벌 리더로 성장해왔습니다. 신제품개발과 R&D 분야의 경쟁력을 키워 피부 미용분야의 미래를 이끌어가고 있습니다.</p>
+                    <p>최고의 기술력과 품질로 고객 여러분께 최상의 가치를 제공하며, 피부미용의 글로벌 개척 정신으로 여러분의 파트너가 되겠습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-darker" style="padding: 5rem 4rem;">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-label">CEO Message</p>
+                <h2 class="section-title">CEO <em>인사말</em></h2>
+            </div>
+            <div class="ceo-section reveal">
+                <div class="ceo-content">
+                    <blockquote>
+                        "건강하고 아름다운 삶을 위한 혁신,<br>브리츠메디가 함께합니다."
+                    </blockquote>
+                    <p>안녕하십니까, 브리츠메디 대표 김정락입니다.</p>
+                    <p>저희 브리츠메디는 피부 미용 분야의 글로벌 리더로서 혁신적인 의료기기와 코스메틱을 개발하고 있습니다. 끊임없는 연구개발과 품질 혁신을 통해 고객 여러분께 최상의 가치를 제공하겠습니다.</p>
+                    <p>앞으로도 브리츠메디는 피부미용의 글로벌 개척 정신으로 여러분의 든든한 파트너가 되겠습니다.</p>
+                    <div class="ceo-signature">
+                        <span>BRITZMEDI 대표이사</span>
+                        <strong>김정락</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-dark" style="padding: 5rem 4rem;">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-label">Core Values</p>
+                <h2 class="section-title">핵심 <em>가치</em></h2>
+            </div>
+            <div class="card-grid">
+                <div class="card reveal">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>끊임없는 연구개발을 통해 혁신적인 제품과 기술을 선보입니다.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3>Quality</h3>
+                    <p>최고 품질의 제품으로 고객 만족을 실현합니다.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                        </svg>
+                    </div>
+                    <h3>Global</h3>
+                    <p>세계 시장을 향한 글로벌 비전으로 성장합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .ceo-section {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .ceo-content blockquote {
+        font-family: var(--font-main);
+        font-size: 1.75rem;
+        font-weight: 300;
+        color: var(--gold);
+        line-height: 1.5;
+        margin-bottom: 2rem;
+        padding-left: 2rem;
+        border-left: 3px solid var(--gold);
+    }
+    .ceo-content p {
+        color: var(--gray-400);
+        line-height: 1.9;
+        margin-bottom: 1rem;
+    }
+    .ceo-signature {
+        margin-top: 2rem;
+        text-align: right;
+    }
+    .ceo-signature span {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--gray-500);
+        margin-bottom: 0.25rem;
+    }
+    .ceo-signature strong {
+        font-size: 1.25rem;
+        color: var(--white);
+    }
+</style>

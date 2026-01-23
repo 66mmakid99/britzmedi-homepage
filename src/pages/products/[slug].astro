@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  return products.map(product => ({
+    params: { slug: product.data.urlSlug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const { Content } = await product.render();
+---
+
+<BaseLayout title={product.data.name}>
+    <section class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-content">
+            <p class="page-hero-label">
+                {product.data.category === 'medical' ? 'Medical Device' : 'Medical Cosmetic'}
+            </p>
+            <h1 class="page-hero-title"><em>{product.data.name}</em></h1>
+        </div>
+    </section>
+
+    <section class="bg-dark">
+        <div class="product-hero">
+            <div class="product-hero-image reveal">
+                <img 
+                    src={product.data.image.src} 
+                    alt={product.data.name}
+                    style={`object-position: ${product.data.image.positionX}% ${product.data.image.positionY}%`}
+                />
+            </div>
+            <div class="product-hero-content reveal">
+                <h1>{product.data.name}</h1>
+                <p class="tagline">{product.data.tagline}</p>
+                <p>{product.data.description}</p>
+                <a href="/contact" class="btn btn-primary">
+                    문의하기
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    {product.data.features && product.data.features.length > 0 && (
+        <section class="bg-darker" style="padding: 5rem 4rem;">
+            <div class="container">
+                <div class="section-header reveal">
+                    <p class="section-label">Features</p>
+                    <h2 class="section-title">주요 <em>특징</em></h2>
+                </div>
+                <div class="product-features">
+                    {product.data.features.map(feature => (
+                        <div class="product-feature reveal">
+                            <div class="product-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <polyline points="22 4 12 14.01 9 11.01"/>
+                                </svg>
+                            </div>
+                            <h4>{feature.title}</h4>
+                            <p>{feature.description}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    )}
+
+    {product.data.specs && product.data.specs.length > 0 && (
+        <section class="bg-dark" style="padding: 5rem 4rem;">
+            <div class="container">
+                <div class="specs-table reveal">
+                    <h3>제품 사양</h3>
+                    <table>
+                        <tbody>
+                            {product.data.specs.map(spec => (
+                                <tr>
+                                    <th>{spec.label}</th>
+                                    <td>{spec.value}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    )}
+
+    <section class="bg-darker" style="padding: 5rem 4rem;">
+        <div class="container">
+            <div class="product-content reveal">
+                <Content />
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .product-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .product-content :global(h2) {
+        font-family: var(--font-main);
+        font-size: 1.75rem;
+        font-weight: 400;
+        margin: 2rem 0 1rem;
+        color: var(--gold);
+    }
+    .product-content :global(h3) {
+        font-size: 1.25rem;
+        font-weight: 500;
+        margin: 1.5rem 0 0.75rem;
+    }
+    .product-content :global(p) {
+        color: var(--gray-400);
+        line-height: 1.8;
+        margin-bottom: 1rem;
+    }
+    .product-content :global(ul),
+    .product-content :global(ol) {
+        margin: 1rem 0;
+        padding-left: 1.5rem;
+    }
+    .product-content :global(li) {
+        color: var(--gray-400);
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+    }
+</style>

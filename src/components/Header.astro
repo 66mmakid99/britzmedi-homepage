@@ -1,0 +1,442 @@
+---
+interface Props {
+  lang?: 'ko' | 'en';
+}
+
+const { lang = 'ko' } = Astro.props;
+
+const navItems = lang === 'ko' ? [
+  {
+    label: '기업소개',
+    href: '/company/intro',
+    dropdown: [
+      { label: '회사소개', href: '/company/intro' },
+      { label: '브리츠 WAY', href: '/company/way' },
+      { label: '연구소', href: '/company/tech' },
+      { label: 'CI / BI', href: '/company/cibi' },
+      { label: '오시는 길', href: '/company/contact' },
+    ]
+  },
+  {
+    label: '제품',
+    href: '/products',
+    dropdown: [
+      { label: 'TORR RF', href: '/products/torr-rf' },
+      { label: 'UL BLANC', href: '/products/ul-blanc' },
+      { label: 'NEWCHAE', href: '/products/newchae' },
+    ]
+  },
+  {
+    label: '커뮤니티',
+    href: '/community/news',
+    dropdown: [
+      { label: '뉴스/공지', href: '/community/news' },
+      { label: '미디어', href: '/community/media' },
+    ]
+  },
+  {
+    label: '문의하기',
+    href: '/contact',
+    dropdown: null
+  }
+] : [
+  {
+    label: 'Company',
+    href: '/en',
+    dropdown: null
+  },
+  {
+    label: 'Products',
+    href: '/en',
+    dropdown: null
+  },
+  {
+    label: 'Contact',
+    href: '/en',
+    dropdown: null
+  }
+];
+
+const langSwitch = lang === 'ko' ? { label: 'EN', href: '/en' } : { label: 'KO', href: '/' };
+---
+
+<header id="header">
+    <a href={lang === 'ko' ? '/' : '/en'} class="logo">BRITZMEDI</a>
+    <nav>
+        {navItems.map(item => (
+            <div class="nav-item">
+                <a href={item.href} class="nav-link">{item.label}</a>
+                {item.dropdown && (
+                    <div class="dropdown">
+                        {item.dropdown.map(sub => (
+                            <a href={sub.href}>{sub.label}</a>
+                        ))}
+                    </div>
+                )}
+            </div>
+        ))}
+    </nav>
+    <div class="header-actions">
+        <a href={langSwitch.href} class="lang-switch">{langSwitch.label}</a>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu-overlay" id="mobileOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileClose">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+            <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+    </button>
+    {navItems.map(item => (
+        <div class="mobile-nav-item">
+            {item.dropdown ? (
+                <>
+                    <a class="mobile-nav-link">
+                        {item.label}
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </a>
+                    <div class="mobile-dropdown">
+                        {item.dropdown.map(sub => (
+                            <a href={sub.href}>{sub.label}</a>
+                        ))}
+                    </div>
+                </>
+            ) : (
+                <a href={item.href} class="mobile-nav-link" style="pointer-events: auto;">{item.label}</a>
+            )}
+        </div>
+    ))}
+    <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--gray-800);">
+        <a href={langSwitch.href} class="lang-switch" style="display: inline-block;">
+            {lang === 'ko' ? 'ENGLISH' : '한국어'}
+        </a>
+    </div>
+</div>
+
+<style>
+    /* Header & Navigation */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 1.5rem 4rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.4s var(--transition-smooth);
+    }
+    header.scrolled {
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(20px);
+        padding: 1rem 4rem;
+        border-bottom: 1px solid rgba(201, 169, 98, 0.1);
+    }
+
+    .logo {
+        font-family: var(--font-main);
+        font-size: 1.8rem;
+        font-weight: 300;
+        letter-spacing: 0.3em;
+        color: var(--white);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    .logo:hover {
+        color: var(--gold);
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+    }
+
+    .nav-item {
+        position: relative;
+    }
+
+    .nav-link {
+        font-size: 0.85rem;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--gray-300);
+        text-decoration: none;
+        padding: 0.5rem 0;
+        position: relative;
+        transition: color 0.3s ease;
+    }
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--gold);
+        transition: width 0.3s ease;
+    }
+    .nav-link:hover,
+    .nav-link.active {
+        color: var(--white);
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        width: 100%;
+    }
+
+    /* Dropdown Menu */
+    .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        min-width: 200px;
+        background: var(--bg-secondary);
+        border: 1px solid var(--gray-800);
+        padding: 1rem 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+    }
+    .nav-item:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        margin-top: 0.5rem;
+    }
+    .dropdown a {
+        display: block;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.85rem;
+        color: var(--gray-400);
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+    .dropdown a:hover {
+        color: var(--gold);
+        background: var(--bg-tertiary);
+    }
+
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    .lang-switch {
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        color: var(--gold);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--gold);
+        transition: all 0.3s ease;
+    }
+    .lang-switch:hover {
+        background: var(--gold);
+        color: var(--bg-primary);
+    }
+
+    .menu-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+        padding: 10px;
+    }
+    .menu-toggle span {
+        width: 24px;
+        height: 1px;
+        background: var(--white);
+        transition: all 0.3s ease;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        max-width: 400px;
+        height: 100%;
+        background: var(--bg-secondary);
+        z-index: 2000;
+        padding: 6rem 2rem 2rem;
+        transition: right 0.4s var(--transition-smooth);
+        overflow-y: auto;
+    }
+    .mobile-menu.active {
+        right: 0;
+    }
+    .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    .mobile-menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    .mobile-menu-close {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: 1px solid var(--gray-700);
+        color: var(--white);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mobile-nav-item {
+        border-bottom: 1px solid var(--gray-800);
+    }
+    .mobile-nav-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem 0;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--white);
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .mobile-nav-link svg {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.3s ease;
+        color: var(--gray-500);
+    }
+    .mobile-nav-item.open .mobile-nav-link svg {
+        transform: rotate(180deg);
+        color: var(--gold);
+    }
+    .mobile-nav-item.open .mobile-nav-link {
+        color: var(--gold);
+    }
+    .mobile-dropdown {
+        max-height: 0;
+        overflow: hidden;
+        padding-left: 1rem;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .mobile-nav-item.open .mobile-dropdown {
+        max-height: 500px;
+        padding-bottom: 1rem;
+    }
+    .mobile-dropdown a {
+        display: block;
+        padding: 0.75rem 0;
+        font-size: 0.95rem;
+        color: var(--gray-400);
+        text-decoration: none;
+        border-left: 2px solid var(--gray-800);
+        padding-left: 1rem;
+        transition: all 0.2s ease;
+    }
+    .mobile-dropdown a:hover,
+    .mobile-dropdown a.active {
+        color: var(--gold);
+        border-left-color: var(--gold);
+    }
+
+    @media (max-width: 1024px) {
+        header {
+            padding: 1rem 1.5rem;
+        }
+        header.scrolled {
+            padding: 1rem 1.5rem;
+        }
+        nav {
+            display: none;
+        }
+        .menu-toggle {
+            display: flex;
+        }
+    }
+</style>
+
+<script>
+    // Header Scroll Effect
+    const header = document.getElementById('header');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
+
+    // Mobile Menu
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const mobileClose = document.getElementById('mobileClose');
+
+    function toggleMobileMenu() {
+        if (mobileMenu && mobileOverlay) {
+            mobileMenu.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+    }
+
+    if (menuToggle) menuToggle.addEventListener('click', toggleMobileMenu);
+    if (mobileOverlay) mobileOverlay.addEventListener('click', toggleMobileMenu);
+    if (mobileClose) mobileClose.addEventListener('click', toggleMobileMenu);
+
+    // Mobile Dropdown Toggle
+    if (mobileMenu) {
+        const mobileNavItems = mobileMenu.querySelectorAll('.mobile-nav-item');
+        mobileNavItems.forEach(item => {
+            const link = item.querySelector('.mobile-nav-link');
+            const dropdown = item.querySelector('.mobile-dropdown');
+            
+            if (link && dropdown) {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    mobileNavItems.forEach(other => {
+                        if (other !== item && other.classList.contains('open')) {
+                            other.classList.remove('open');
+                        }
+                    });
+                    item.classList.toggle('open');
+                });
+            }
+        });
+        
+        mobileMenu.querySelectorAll('.mobile-dropdown a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+    }
+</script>

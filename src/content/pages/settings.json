@@ -1,0 +1,23 @@
+{
+  "company": {
+    "name": "BRITZMEDI",
+    "nameKo": "브리츠메디",
+    "ceo": "김정락",
+    "address": "경기도 화성시 기산로87번길 2, 1층",
+    "addressEn": "1F, 2 Gisan-ro 87beon-gil, Hwaseong-si, Gyeonggi-do, Korea",
+    "phone": "070-4348-7244",
+    "fax": "",
+    "email": "info@britzmedi.com",
+    "businessNumber": ""
+  },
+  "social": {
+    "instagram": "",
+    "youtube": "",
+    "kakao": ""
+  },
+  "seo": {
+    "siteTitle": "BRITZMEDI",
+    "siteDescription": "피부 미용 분야의 글로벌 리더 기업",
+    "siteUrl": "https://britzmedi-homepage.pages.dev"
+  }
+}

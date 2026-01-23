@@ -1,0 +1,49 @@
+---
+name: "TORR RF"
+urlSlug: "torr-rf"
+category: "medical"
+tagline: "고주파 에너지로 피부 깊숙이 전달하는 프리미엄 리프팅 솔루션"
+description: "최신 고주파(RF) 기술을 적용한 프리미엄 에스테틱 의료기기로 피부 탄력과 리프팅에 탁월한 효과를 제공합니다. 안전하고 효과적인 시술로 고객 만족도를 높여드립니다."
+image:
+  src: "https://images.unsplash.com/photo-1559757175-7cb04bc9c7f5?w=800&q=80"
+  alt: "TORR RF 의료기기"
+  positionX: 50
+  positionY: 50
+  scale: 85
+features:
+  - title: "고주파 RF 기술"
+    description: "최신 고주파 기술로 피부 깊숙이 에너지 전달"
+  - title: "안전한 시술"
+    description: "FDA 승인 기술로 안전성 확보"
+  - title: "빠른 효과"
+    description: "시술 직후부터 눈에 띄는 리프팅 효과"
+  - title: "다양한 적용"
+    description: "얼굴, 목, 바디 등 다양한 부위 시술 가능"
+specs:
+  - label: "출력"
+    value: "최대 50W"
+  - label: "주파수"
+    value: "1MHz / 2MHz"
+  - label: "모드"
+    value: "Monopolar / Bipolar"
+  - label: "인증"
+    value: "KFDA, CE"
+order: 1
+---
+
+## TORR RF 소개
+
+TORR RF는 브리츠메디의 대표 의료기기로, 최신 고주파(RF) 기술을 적용하여 피부 탄력과 리프팅에 탁월한 효과를 제공합니다.
+
+### 주요 특징
+
+- 비침습적 시술로 빠른 회복
+- 모든 피부 타입에 안전하게 적용
+- 정확한 에너지 전달로 균일한 시술 결과
+- 직관적인 사용자 인터페이스
+
+### 적용 부위
+
+1. **얼굴** - 이마, 눈가, 볼, 턱선
+2. **목** - 목주름, 더블친
+3. **바디** - 복부, 팔뚝, 허벅지

@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const news = await getCollection('news');
+  return news.map(item => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await item.render();
+---
+
+<BaseLayout title={item.data.title}>
+    <section class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-content">
+            <p class="page-hero-label">News</p>
+            <h1 class="page-hero-title" style="font-size: clamp(1.5rem, 3vw, 2.5rem);">{item.data.title}</h1>
+        </div>
+    </section>
+
+    <section class="bg-dark" style="padding: 5rem 4rem;">
+        <div class="container">
+            <article class="news-article reveal">
+                <div class="news-meta">
+                    <time>
+                        {item.data.date.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </time>
+                </div>
+                <div class="news-content">
+                    <Content />
+                </div>
+                <div class="news-footer">
+                    <a href="/community/news" class="btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        목록으로
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .news-article {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .news-meta {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--gray-800);
+    }
+    .news-meta time {
+        color: var(--gold);
+        font-size: 0.9rem;
+    }
+    .news-content {
+        margin-bottom: 3rem;
+    }
+    .news-content :global(h2) {
+        font-family: var(--font-main);
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin: 2rem 0 1rem;
+        color: var(--gold);
+    }
+    .news-content :global(p) {
+        color: var(--gray-300);
+        line-height: 1.9;
+        margin-bottom: 1rem;
+    }
+    .news-content :global(ul),
+    .news-content :global(ol) {
+        margin: 1rem 0;
+        padding-left: 1.5rem;
+    }
+    .news-content :global(li) {
+        color: var(--gray-300);
+        margin-bottom: 0.5rem;
+        line-height: 1.7;
+    }
+    .news-content :global(strong) {
+        color: var(--white);
+    }
+    .news-footer {
+        padding-top: 2rem;
+        border-top: 1px solid var(--gray-800);
+    }
+</style>

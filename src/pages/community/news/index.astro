@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const news = await getCollection('news');
+const sortedNews = news.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout title="뉴스/공지">
+    <section class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-content">
+            <p class="page-hero-label">News & Notice</p>
+            <h1 class="page-hero-title">뉴스/<em>공지</em></h1>
+        </div>
+    </section>
+
+    <section class="bg-dark" style="padding: 5rem 4rem;">
+        <div class="container">
+            <div class="news-grid">
+                {sortedNews.map(item => (
+                    <article class="news-card reveal">
+                        <div class="news-card-content">
+                            <time class="news-card-date">
+                                {item.data.date.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\. /g, '.').replace('.', '')}
+                            </time>
+                            <h3 class="news-card-title">
+                                <a href={`/community/news/${item.slug}`}>{item.data.title}</a>
+                            </h3>
+                            <p class="news-card-excerpt">{item.data.summary}</p>
+                        </div>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+</BaseLayout>
