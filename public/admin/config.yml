@@ -215,6 +215,44 @@ collections:
               - { label: "사이트 설명", name: "siteDescription", widget: "text" }
               - { label: "사이트 URL", name: "siteUrl", widget: "string" }
 
+      # 회사소개 페이지
+      - name: "company"
+        label: "회사소개 페이지"
+        file: "src/content/pages/company.json"
+        fields:
+          - label: "회사 소개 섹션"
+            name: "intro"
+            widget: "object"
+            fields:
+              - { label: "라벨", name: "label", widget: "string" }
+              - { label: "제목 (HTML 가능)", name: "title", widget: "string", hint: "<em>강조</em>, <br> 태그 사용 가능" }
+              - { label: "설명 1", name: "description", widget: "text" }
+              - { label: "설명 2", name: "description2", widget: "text" }
+          - label: "CEO 인사말"
+            name: "ceo"
+            widget: "object"
+            fields:
+              - { label: "라벨", name: "label", widget: "string" }
+              - { label: "섹션 제목", name: "title", widget: "string" }
+              - { label: "인용문", name: "quote", widget: "string", hint: "<br> 태그로 줄바꿈 가능" }
+              - { label: "인사말", name: "greeting", widget: "string" }
+              - { label: "메시지 1", name: "message", widget: "text" }
+              - { label: "메시지 2", name: "message2", widget: "text" }
+              - { label: "CEO 이름", name: "name", widget: "string" }
+              - { label: "직함", name: "position", widget: "string" }
+          - label: "핵심 가치"
+            name: "values"
+            widget: "object"
+            fields:
+              - { label: "라벨", name: "label", widget: "string" }
+              - { label: "제목", name: "title", widget: "string" }
+              - label: "가치 항목"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "제목", name: "title", widget: "string" }
+                  - { label: "설명", name: "description", widget: "string" }
+
       # 메인 페이지 (한국어)
       - name: "home"
         label: "메인 페이지 (한국어)"
