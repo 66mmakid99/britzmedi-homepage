@@ -6,7 +6,7 @@
     "ctaText": "회사 소개",
     "ctaLink": "/company/intro",
     "image": {
-      "src": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1920&q=80",
+      "src": "/uploads/torr-rf-model-x-4-up-scayl-1-.png",
       "positionX": 50,
       "positionY": 30
     }
@@ -16,10 +16,22 @@
     "title": "혁신적인 <em>제품</em> 라인업"
   },
   "stats": [
-    { "number": "2017", "label": "설립 연도" },
-    { "number": "500+", "label": "파트너 병원" },
-    { "number": "KFDA", "label": "인증 획득" },
-    { "number": "Global", "label": "해외 진출" }
+    {
+      "number": "2017",
+      "label": "설립 연도"
+    },
+    {
+      "number": "500+",
+      "label": "파트너 병원"
+    },
+    {
+      "number": "KFDA",
+      "label": "인증 획득"
+    },
+    {
+      "number": "Global",
+      "label": "해외 진출"
+    }
   ],
   "about": {
     "label": "About BRITZMEDI",
